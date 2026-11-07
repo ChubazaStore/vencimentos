@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.340';
+(function(){var V='13.341';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1058,7 +1058,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.340';
+const VERSION='13.341';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1174,7 +1174,7 @@ const LOGOS={"detran":"i-detran.webp","paytag":"i-paytag.webp","leroymerlin":"i-
 /* IV: só vira algo depois de "Limpar memória" (Ajustes): força baixar tudo de novo, como na 1ª vez */
 const IV=(()=>{try{return sessionStorage.getItem('imgv')||''}catch(e){return ''}})();
 const imgU=f=>IV?f+'?v='+IV:f;
-const IMGCACHE='cartoes-13';
+const IMGCACHE='cartoes-14';
 /* v13.332: estilo dos ícones. Escuro = os arquivos i-<id>.webp (padrão). Claro = i-<id>-c.webp, só para os que têm versão clara (lista LOGOC; os demais continuam iguais nos dois estilos). Escolha em Ajustes, guardada em sobrou.ic */
 const LOGOC={"i-github.webp":1,"i-futfanatics.webp":1,"i-livelo.webp":1,"i-bb.webp":1,"i-gmail.webp":1,"i-amazon.webp":1,"i-youtube.webp":1,"i-neon.webp":1,"i-portoseguro.webp":1,"i-whatsapp.webp":1,"i-prime.webp":1,"i-inter.webp":1,"i-instagram.webp":1,"i-netshoes.webp":1,"i-facebook.webp":1,"i-shopee.webp":1,"i-claude.webp":1,"i-ifood.webp":1,"i-btg.webp":1,"i-vivo.webp":1,"i-yamaha.webp":1,"i-fgc.webp":1,"i-agora.webp":1,"i-centauro.webp":1};
 const ICLIGHT=()=>{try{return localStorage.getItem('sobrou.ic')==='c'}catch(e){return false}};
