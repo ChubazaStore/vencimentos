@@ -1,5 +1,6 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+  v13.340 · 06/11/2026 · Ícones dos tipos de conta (passo 1) voltam ao tamanho de 32 px: na v13.339 a compactação automática encolhia o ícone para a tela caber. Agora, quando sobra pouco, só o espaço em volta diminui (o ícone nunca encolhe) e a rolagem fica travada; se sobrar muito, a tela rola. Só CSS/código; sem imagens neste zip.
   v13.339 · 06/11/2026 · Janela Nova conta: quando tudo cabe na tela, ela não rola mais para cima/baixo (não tem nada para ver). Se sobrar só um pouco, os tipos ficam levemente mais compactos para caber; só rola quando o conteúdo realmente passa da tela (ex.: lista longa de empresas, telas pequenas). Só código; sem imagens neste zip.
   v13.338 · 06/11/2026 · Ícones dos TIPOS de conta (passo 1 do Nova conta: Alimentação, Assinatura, Boleto…) maiores: de 21 para 32 px (os quadradinhos ficam cerca de 14 px mais altos; o resto não muda). Só CSS; sem imagens neste zip.
   v13.337 · 06/11/2026 · Botão Escuro | Claro dentro da tela de escolher a empresa (ao lado de A–Z / Minha ordem): troca o estilo dos ícones na hora, sem recarregar o app, e vale para o app todo (é o mesmo ajuste de Ajustes → Estilo dos ícones). Só código; sem imagens neste zip.
