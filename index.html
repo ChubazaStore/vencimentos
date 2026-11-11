@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.353';
+(function(){var V='13.354';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -343,6 +343,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .act.danger{color:var(--bad);border-color:rgba(251,111,111,.35)}
 .act.armed{background:var(--bad);color:#fff;border-color:transparent}
 
+.hb .dl{font-style:normal;font-size:11px;font-weight:700;margin-left:8px;padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.07)}.hb .dl.up{color:#ff8a7a}.hb .dl.dn{color:var(--ok,#3ddc97)}.hb .dl.eq,.hb .dl.nw{color:#9aa3b8}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
 .card h3{margin:0 0 4px;font:700 16px var(--fd)}
@@ -1059,7 +1060,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.353';
+const VERSION='13.354';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1353,7 +1354,7 @@ const CTIPO={credito:'crédito',debito:'débito'};
 function lead(b){
   const c=CAT[b.cat]||CAT.outros;
   if(okImg(b.img)) return '<div class="pv img"><img alt="" src="'+b.img+'"></div>';
-  if(b.cat==='cartao'&&PROV[b.prov]) return badge(PROV[b.prov]); /* v13.353: cartão mostra o ícone do banco, não a arte do cartão */
+  if(b.cat==='cartao'&&PROV[b.prov]) return badge(PROV[b.prov]); /* v13.354: cartão mostra o ícone do banco, não a arte do cartão */
   if(b.cat==='cartao') return '<div class="ico" style="--c:'+c.c+'">'+svg('cartao' in IC?'cartao':'outros')+'</div>';
   const p=PROV[b.prov], bk=b.bank&&PROV[b.bank];
   /* banco escolhido: vira o ícone da conta quando ela não tem logo próprio (com logo, o banco aparece só no texto) */
@@ -1742,7 +1743,10 @@ function renderPan(){
   const bars=mths.map((x,i)=>'<div class="bc'+(x.cur?' cur':'')+'"><div class="v num">'+(x.tot?short(x.tot):'')+'</div><div class="b" style="height:'+Math.max(4,Math.round(x.tot/mx*118))+'px;--i:'+i+'">'+(x.tot&&x.pd?'<i style="height:'+Math.round(x.pd/x.tot*100)+'%"></i>':'')+'</div><div class="m">'+x.l+'</div></div>').join('');
   const mo=monthOccs(V.y,V.m), byc={};mo.forEach(o=>{byc[o.b.cat]=(byc[o.b.cat]||0)+o.amt});
   const cl=Object.keys(byc).sort((a,b)=>byc[b]-byc[a]), ct=sum(mo)||1;
-  const cats=cl.length?cl.map((k,i)=>{const c=CAT[k]||CAT.outros;return '<div class="hb" style="--c:'+c.c+'"><div class="t"><b>'+c.l+'</b><span class="num">'+brl(byc[k])+' · '+Math.round(byc[k]/ct*100)+'%</span></div><div class="tr"><i style="width:'+Math.max(3,byc[k]/ct*100)+'%;--i:'+i+'"></i></div></div>'}).join(''):'<p class="cap">Sem contas em '+MES[V.m]+'.</p>';
+  /* v13.354: mês anterior por tipo, para mostrar a variação */
+  const pd0=new Date(V.y,V.m-1,1), pmo=monthOccs(pd0.getFullYear(),pd0.getMonth()), pbyc={};pmo.forEach(o=>{pbyc[o.b.cat]=(pbyc[o.b.cat]||0)+o.amt});
+  const dlt=k=>{const p=pbyc[k]||0,c=byc[k]||0;if(!p)return '<em class="dl nw">novo</em>';const d=Math.round((c-p)/p*100);return Math.abs(d)<3?'<em class="dl eq">= mês ant.</em>':d>0?'<em class="dl up">▲ '+d+'%</em>':'<em class="dl dn">▼ '+Math.abs(d)+'%</em>'};
+  const cats=cl.length?cl.map((k,i)=>{const c=CAT[k]||CAT.outros;return '<div class="hb" style="--c:'+c.c+'"><div class="t"><b>'+c.l+'</b><span class="num">'+brl(byc[k])+' · '+Math.round(byc[k]/ct*100)+'%'+dlt(k)+'</span></div><div class="tr"><i style="width:'+Math.max(3,byc[k]/ct*100)+'%;--i:'+i+'"></i></div></div>'}).join(''):'<p class="cap">Sem contas em '+MES[V.m]+'.</p>';
   const G=S.goals||{}, gk=Object.keys(G).filter(k=>G[k]>0&&CAT[k]);
   const over=gk.filter(k=>(byc[k]||0)>G[k]);
   const galert=over.length?'<div class="galert">⚠️ Meta estourada em '+MES[V.m]+': '+over.map(k=>'<b>'+CAT[k].l+'</b> (+'+brl(byc[k]-G[k])+')').join(', ')+'</div>':'';
@@ -1774,7 +1778,7 @@ function renderPan(){
    galert+'<div class="card"><h3>Próximos 6 meses</h3><div class="cap">Total de contas por mês. A parte verde já foi paga.</div><div class="bars">'+bars+'</div><div class="lg"><span><i style="background:var(--ok)"></i>Pago</span><span><i style="background:rgba(255,255,255,.2)"></i>A pagar</span></div></div>'+
    '<div class="kpi"><div><span>Fixo por mês</span><b class="num">'+brl(commit)+'</b></div><div><span>Dívida parcelada</span><b class="num">'+brl(remain)+'</b></div></div>'+
    goals+evo+
-   '<div class="card"><h3>Por tipo em '+MES[V.m]+'</h3><div class="cap">Para onde o dinheiro do mês está indo.</div>'+cats+'</div>'+
+   '<div class="card"><h3>Por tipo em '+MES[V.m]+'</h3><div class="cap">Para onde o dinheiro do mês está indo. A seta compara com o mês anterior.</div>'+cats+'</div>'+
    '<div class="card"><h3>Por empresa em '+MES[V.m]+'</h3><div class="cap">Onde o dinheiro do mês foi, empresa por empresa.</div>'+comp+'</div>'+
    '<div class="card"><h3>Financiamentos e parcelas</h3><div class="cap">Quanto já foi pago de cada compromisso.</div>'+(lt||'<p class="cap">Nada parcelado ainda. Ao adicionar uma conta, escolha Parcelada.</p>')+'</div>';
   $$('#pan .segE button').forEach(b=>b.onclick=()=>{EV=+b.dataset.n;renderPan()});
