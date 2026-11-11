@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.355';
+(function(){var V='13.356';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -344,6 +344,25 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .act.armed{background:var(--bad);color:#fff;border-color:transparent}
 
 .hb .dl{font-style:normal;font-size:11px;font-weight:700;margin-left:8px;padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.07)}.hb .dl.up{color:#ff8a7a}.hb .dl.dn{color:var(--ok,#3ddc97)}.hb .dl.eq,.hb .dl.nw{color:#9aa3b8}
+.mid b .pk{display:inline-block!important;width:14px!important;height:14px!important;margin-left:6px;vertical-align:-1px;position:static!important}
+.pk{width:13px;height:13px;margin-left:6px;vertical-align:-1px;color:var(--ok);stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pcap{font-size:12.5px;color:var(--mu);margin:8px 4px 2px;line-height:1.4}
+.pit{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:10px 10px 10px 12px;margin-top:8px}
+.pit .pic{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font:800 12px var(--fb);background:rgba(52,211,153,.12);color:var(--ok)}
+.pit .pic.b{background:rgba(242,201,76,.13);color:#f2c94c}.pit .pic.o{background:rgba(255,255,255,.08);color:var(--mu)}
+.pit .pm{flex:1;min-width:0}.pit .pm b{display:block;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pit .pm span{display:block;font-size:12.5px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pit .pcp{flex:none;height:36px;padding:0 13px;border-radius:12px;background:linear-gradient(90deg,#e6d78a,#c9ea4d);color:#111;font:700 13px var(--fb)}
+.pit .prm{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);color:var(--mu);font-size:16px;line-height:1}
+#dt .dh{display:flex;align-items:center;gap:14px;margin:4px 0 8px}
+#dt .dh i.k{display:block;font:700 11px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--gold2,#c9ea4d);font-style:normal}
+#dt .dh b{display:block;font-size:22px;font-weight:800}
+#dt .dv{font-size:34px;font-weight:800;margin:6px 2px 0}
+#dt .dw{color:var(--mu);font-size:14px;margin:2px 2px 4px}
+#dt .pcard{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.35);border-radius:22px;padding:6px 14px 10px;margin-top:14px}
+#dt .pcard h4{margin:10px 0 2px;font:700 12px var(--fb);letter-spacing:.14em;color:var(--ok)}
+#dt .dn{color:var(--tx,#ddd);font-size:15px;line-height:1.45;white-space:pre-wrap;word-break:break-word;margin:0 2px}
+#dt .dbt{display:flex;gap:10px;margin-top:16px}#dt .dbt .act{margin-top:0}#dt .dbt #dpay{flex:1.4}#dt .dbt #ded{flex:1}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
 .card h3{margin:0 0 4px;font:700 16px var(--fd)}
@@ -1049,18 +1068,36 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
     </div>
     </div>
     <p class="hint s3" id="hint"></p>
+    <div class="lbl s3">Como pagar (opcional)</div>
+    <div id="paybox" class="s3">
+      <div class="seg" id="pk" style="grid-template-columns:1fr 1.25fr 1fr"><button type="button" data-pk="pix" class="on">Pix</button><button type="button" data-pk="barras">Cód. de barras</button><button type="button" data-pk="outro">Outro</button></div>
+      <input class="fld" id="pvl" autocorrect="off" spellcheck="false" autocomplete="off" autocapitalize="off" type="text" maxlength="700" placeholder="Chave Pix (CPF, e-mail, telefone…)" style="margin-top:10px">
+      <input class="fld" id="pnm" autocorrect="off" spellcheck="false" autocomplete="off" type="text" maxlength="40" placeholder="Nome de quem recebe (opcional)" style="margin-top:8px">
+      <button type="button" class="act" id="padd">Salvar forma de pagamento</button>
+      <div class="pcap" id="pcap">Fica guardado nesta conta. Na hora de pagar é só tocar na conta e em Copiar.</div>
+      <div id="plist"></div>
+    </div>
     <div class="lbl s3">Observação (opcional)</div>
-    <textarea class="fld s3" id="fo" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Código de barras, número do contrato, lembrete..."></textarea>
+    <textarea class="fld s3" id="fo" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Número do contrato, lembrete, combinado..."></textarea>
     <button type="button" class="act s3" id="fcopy" hidden>Copiar observação</button>
     <div id="extra" class="s3"></div>
     <div class="sfoot" id="sfoot"><button type="button" class="sbk" id="sbk" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="save snx" id="snx">Continuar</button><button type="submit" class="save s3" id="fs">Adicionar conta</button></div>
   </form>
 </div>
+<div class="sheet" id="dt" hidden>
+  <div class="scrim" id="dtscrim"></div>
+  <header class="top sband" aria-hidden="true"><div class="brand"><div class="logo"><img data-mk alt=""></div><h1>Sobrou<span class="ex">!</span></h1></div><div class="hr"><span class="ver"></span><span class="pill">Premium</span></div></header>
+  <div class="panel" id="dtp" role="dialog" aria-label="Detalhes da conta">
+    <div class="grab"></div>
+    <div class="stitle"><h2 id="dth">Conta</h2><button type="button" class="x" id="dtx" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div id="dtc"></div>
+  </div>
+</div>
 
 <script>
 (function(){
 'use strict';
-const VERSION='13.355';
+const VERSION='13.356';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1355,7 +1392,7 @@ const CTIPO={credito:'crédito',debito:'débito'};
 function lead(b){
   const c=CAT[b.cat]||CAT.outros;
   if(okImg(b.img)) return '<div class="pv img"><img alt="" src="'+b.img+'"></div>';
-  if(b.cat==='cartao'&&PROV[b.prov]) return badge(PROV[b.prov]); /* v13.355: cartão mostra o ícone do banco, não a arte do cartão */
+  if(b.cat==='cartao'&&PROV[b.prov]) return badge(PROV[b.prov]); /* v13.356: cartão mostra o ícone do banco, não a arte do cartão */
   if(b.cat==='cartao') return '<div class="ico" style="--c:'+c.c+'">'+svg('cartao' in IC?'cartao':'outros')+'</div>';
   const p=PROV[b.prov], bk=b.bank&&PROV[b.bank];
   /* banco escolhido: vira o ícone da conta quando ela não tem logo próprio (com logo, o banco aparece só no texto) */
@@ -1502,7 +1539,7 @@ function row(o,i){
   return '<div class="row'+(o.paid?' paid':'')+(late?' late':'')+(tod?' today':'')+(i>=10?' na':'')+'" data-id="'+o.b.id+'" data-key="'+o.key+'" style="--i:'+i+'">'+
     '<button type="button" class="chk" aria-label="Marcar como paga">'+CHECK+'</button>'+
     lead(o.b)+
-    '<div class="mid"><i class="k">'+esc(c.l)+'</i><b>'+esc(o.b.name)+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
+    '<div class="mid"><i class="k">'+esc(c.l)+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
     '<div class="amt">'+brl(o.amt)+'</div></div>';
 }
 
@@ -1744,7 +1781,7 @@ function renderPan(){
   const bars=mths.map((x,i)=>'<div class="bc'+(x.cur?' cur':'')+'"><div class="v num">'+(x.tot?short(x.tot):'')+'</div><div class="b" style="height:'+Math.max(4,Math.round(x.tot/mx*118))+'px;--i:'+i+'">'+(x.tot&&x.pd?'<i style="height:'+Math.round(x.pd/x.tot*100)+'%"></i>':'')+'</div><div class="m">'+x.l+'</div></div>').join('');
   const mo=monthOccs(V.y,V.m), byc={};mo.forEach(o=>{byc[o.b.cat]=(byc[o.b.cat]||0)+o.amt});
   const cl=Object.keys(byc).sort((a,b)=>byc[b]-byc[a]), ct=sum(mo)||1;
-  /* v13.355: mês anterior por tipo, para mostrar a variação */
+  /* v13.356: mês anterior por tipo, para mostrar a variação */
   const pd0=new Date(V.y,V.m-1,1), pmo=monthOccs(pd0.getFullYear(),pd0.getMonth()), pbyc={};pmo.forEach(o=>{pbyc[o.b.cat]=(pbyc[o.b.cat]||0)+o.amt});
   const dlt=k=>{const p=pbyc[k]||0,c=byc[k]||0;if(!p)return '<em class="dl nw">novo</em>';const d=Math.round((c-p)/p*100);return Math.abs(d)<3?'<em class="dl eq">= mês ant.</em>':d>0?'<em class="dl up">▲ '+d+'%</em>':'<em class="dl dn">▼ '+Math.abs(d)+'%</em>'};
   const cats=cl.length?cl.map((k,i)=>{const c=CAT[k]||CAT.outros;return '<div class="hb" style="--c:'+c.c+'"><div class="t"><b>'+c.l+'</b><span class="num">'+brl(byc[k])+' · '+Math.round(byc[k]/ct*100)+'%'+dlt(k)+'</span></div><div class="tr"><i style="width:'+Math.max(3,byc[k]/ct*100)+'%;--i:'+i+'"></i></div></div>'}).join(''):'<p class="cap">Sem contas em '+MES[V.m]+'.</p>';
@@ -1899,7 +1936,7 @@ document.addEventListener('click',e=>{
   if(r&&$('#list').contains(r)){
     const ch=e.target.closest('.chk');
     if(ch){const rc=ch.getBoundingClientRect();togglePaid(r.dataset.id,r.dataset.key,rc.left+rc.width/2,rc.top+rc.height/2)}
-    else openSheet(r.dataset.id,r.dataset.key);
+    else openDet(r.dataset.id,r.dataset.key);
   }
 });
 /* v13.260: pagar / desfazer em etapas, sem pulos.
@@ -2712,12 +2749,12 @@ function openSheet(id,key){
   const b=id?S.bills.find(v=>v.id===id):null;
   BKOPEN=false;F={cents:0,cat:'boleto',rep:'once',total:12,cur:1,prov:'',bank:'',via:'',brand:'visa',tier:'standard',ctype:'',model:'',last4:'',limit:0,close:0,img:'',auto:'',scope:'all',touched:false,mode:'bill',modeTouched:false,tp:false};
   $('#fn').value='';$('#fo').value='';$('#fd').value=toISO(today0());CF='';CK='';CSEL='';CKS='';$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#bl').value='';$('#blm').hidden=true;$('#ps').value='';
-  $('#extra').innerHTML='';
+  $('#extra').innerHTML='';F.pay=[];PAYK='pix';
   if(b){
     const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
     EDIT={id:b.id,key:key,orig:o?o.amt:b.amount};
     BKOPEN=false;F={cents:EDIT.orig,cat:b.cat,rep:b.repeat,total:b.total||12,cur:1,prov:b.prov||'',bank:b.bank||'',via:b.via||'',brand:b.brand||'visa',tier:b.tier||'standard',ctype:CTIPO[b.ctype]?b.ctype:'',model:b.model||'',last4:b.last4||'',limit:b.limit||0,close:b.close||0,img:okImg(b.img)?b.img:'',auto:PROV[b.prov]?AN(PROV[b.prov],b.cat):'',scope:VARIAVEL.indexOf(b.cat)>-1?'one':'all',touched:true,mode:b.spent?'spent':'bill',modeTouched:true};
-    F.tp=true;
+    F.tp=true;F.pay=(b.pay||[]).map(x=>({k:x.k,n:x.n||'',v:x.v}));
     $('#fn').value=b.name;$('#fo').value=b.note||'';$('#fd').value=b.due;$('#cl').value=F.last4;$('#cli').value=F.limit?brl(F.limit):'';$('#ccl').value=F.close||'';
     $('#st').textContent='Editar conta';$('#fs').textContent='Salvar alterações';
     let ex='';
@@ -2732,7 +2769,7 @@ function openSheet(id,key){
   /* v13.87: um layout só: antes o scrollTop=0 aqui obrigava o iPhone a medir a janela com o conteúdo ANTIGO e logo depois tudo era trocado e medido de novo; agora volta ao topo depois de montar o conteúdo novo */
   sh.hidden=false;document.body.style.overflow='hidden';
   pn.classList.toggle('stps',STEPS());if(STEPS())setStep(EDIT?3:1);
-  PGK='';renderProv();syncForm();pn.scrollTop=0;
+  PGK='';renderPay();renderProv();syncForm();pn.scrollTop=0;
   snapPanel();abrirAnim(pn);void sh.offsetWidth;sh.classList.add('open');provWarm();traceAbrir(pn);
   clearTimeout(window.__sft);window.__sft=setTimeout(()=>{if(sh.classList.contains('open'))document.body.classList.add('sfull')},640);
   /* v13.175: sem foco automático no Valor ao abrir (o iPhone não abre o teclado por foco automático; o campo ficava "já focado" e o toque seguia o caminho nativo, que desloca a tela ~7 pt quando o teclado aparece) */
@@ -3315,7 +3352,54 @@ function putExtra(b){
   if(okImg(F.img))b.img=F.img;else delete b.img;
   if(F.cat==='cartao'){b.ctype=F.ctype;b.brand=F.brand;b.tier=F.tier;b.last4=F.last4;b.model=F.model||'';if(F.limit)b.limit=F.limit;else delete b.limit;if(F.close)b.close=F.close;else delete b.close}
   else{delete b.ctype;delete b.brand;delete b.tier;delete b.last4;delete b.limit;delete b.close}
+  if(F.pay&&F.pay.length)b.pay=F.pay.map(x=>({k:x.k,n:x.n||'',v:x.v}));else delete b.pay;
 }
+/* v13.356: COMO PAGAR (Pix, código de barras, outro) + tela de detalhes com botão Copiar */
+const PGT={pix:{l:'Pix',ic:'Pix',c:'',ph:'Chave Pix (CPF, e-mail, telefone…)',np:'Nome de quem recebe (opcional)',ms:'Chave Pix copiada'},barras:{l:'Código de barras',ic:'|||',c:' b',ph:'Cole o código de barras do boleto',np:'Nome (opcional)',ms:'Código de barras copiado'},outro:{l:'Outro',ic:'•••',c:' o',ph:'Dados para pagar (conta, link…)',np:'Nome (opcional)',ms:'Copiado'}};
+let PAYK='pix';
+function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;return '<div class="pit"><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm"><b>'+esc(x.n||t.l)+'</b><span>'+esc(x.v)+'</span></div><button type="button" class="pcp" data-cp="'+i+'">Copiar</button>'+(withRm?'<button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">×</button>':'')+'</div>'}).join('')}
+function renderPay(){
+  const t=PGT[PAYK];$$('#pk button').forEach(b=>b.classList.toggle('on',b.dataset.pk===PAYK));
+  $('#pvl').placeholder=t.ph;$('#pnm').placeholder=t.np;
+  $('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:14px">Já salvo nesta conta</div>'+payItems(F.pay,true):'';
+}
+function payAdd(){
+  const v=$('#pvl').value.trim();if(!v)return false;
+  if(F.pay.length>=6){toast('No máximo 6 formas de pagamento');return false}
+  F.pay.push({k:PAYK,n:$('#pnm').value.trim().slice(0,40),v:v.slice(0,700)});
+  $('#pvl').value='';$('#pnm').value='';renderPay();return true}
+function copyTxt(t,msg){
+  const ok=()=>toast(msg||'Copiado'),fb=()=>{try{const a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(a);a.select();a.setSelectionRange(0,t.length);const r=document.execCommand('copy');a.remove();r?ok():toast('Não consegui copiar')}catch(e){toast('Não consegui copiar')}};
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}}
+$('#paybox').addEventListener('click',e=>{
+  const k=e.target.closest('[data-pk]');if(k){PAYK=k.dataset.pk;renderPay();return}
+  if(e.target.closest('#padd')){if(!$('#pvl').value.trim())toast('Digite a chave ou o código');else if(payAdd())toast('Forma de pagamento salva');return}
+  const c=e.target.closest('[data-cp]');if(c){const x=F.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms);return}
+  const r=e.target.closest('[data-rm]');if(r){F.pay.splice(+r.dataset.rm,1);renderPay()}
+});
+$('#paybox').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('#pvl,#pnm')){e.preventDefault();if(payAdd())toast('Forma de pagamento salva')}});
+let DTID=null,DTKEY=null;
+function openDet(id,key){
+  const b=S.bills.find(v=>v.id===id);
+  if(!b||!b.pay||!b.pay.length){openSheet(id,key);return}
+  const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
+  DTID=id;DTKEY=key;const c=CAT[b.cat]||CAT.outros;
+  let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';else if(b.repeat==='inst'&&o)w+=' · '+o.n+'/'+b.total;
+  $('#dth').textContent='Pagar';
+  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(c.l)+'</i><b>'+esc(b.name)+'</b></div></div>'+
+   '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+'</div>'+
+   '<div class="pcard"><h4>PAGAR</h4>'+payItems(b.pay,false)+'</div>'+
+   (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
+   '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
+  const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';$('#dtp').scrollTop=0;void d.offsetWidth;d.classList.add('open')}
+function closeDet(){const d=$('#dt');d.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
+$('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
+$('#dt').addEventListener('click',e=>{
+  const c=e.target.closest('[data-cp]');
+  if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms);return}
+  if(e.target.closest('#ded')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openSheet(id,k),RMq()?0:200);return}
+  if(e.target.closest('#dpay')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>togglePaid(id,k,innerWidth/2,innerHeight*.6,true),RMq()?0:200)}
+});
 $('#panel').addEventListener('submit',e=>{
   e.preventDefault();
   if($('#panel').classList.contains('stps')&&SSTEP<3){if(stFalta())return;setStep(SSTEP+1);return}
@@ -3329,6 +3413,7 @@ $('#panel').addEventListener('submit',e=>{
     requestAnimationFrame(()=>{a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake');const f=$('#fa');try{f.focus({preventScroll:true})}catch(e){f.focus()}});
     return}
   if(F.cat==='cartao'&&!CTIPO[F.ctype]){stErr('Escolha se o cartão é de crédito ou débito',$('#ctpl'));return}
+  if($('#pvl').value.trim()&&!payAdd())return;
   const pv=PROV[F.prov];
   const name=$('#fn').value.trim()||(pv?AN(pv,F.cat):CAT[F.cat].l), due=$('#fd').value||toISO(today0()), note=$('#fo').value.trim();
   if(EDIT){
