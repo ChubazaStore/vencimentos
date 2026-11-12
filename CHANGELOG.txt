@@ -1,5 +1,6 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+  v13.370 · 11/11/2026 · EDITAR forma de pagamento já salva: tocar numa forma em “Já salvo nesta conta” carrega o tipo, a chave e o nome nos campos (botão vira “Atualizar forma de pagamento”) e salva por cima. Antes só dava para apagar e criar de novo, e o nome digitado com a chave em branco era descartado sem avisar; agora avisa “Falta a chave ou o código”.
   v13.369 · 11/11/2026 · DOIS ÍCONES 3D NOVOS (claro e escuro, ocupando o quadrado quase inteiro): “Material Escolar” (mochila) e “Escola Particular” (prédio), ambos no tipo Educação. Arquivos: i-materialescolar(.webp / -c.webp) e i-escolaparticular(.webp / -c.webp). Busca acha por mochila, caderno, papelaria, colégio, mensalidade…
   v13.368 · 11/11/2026 · Ícone dos blocos A B C agora é o item novo “Creche” (tipo Educação), e não mais o “Escola”, que volta a ser como era. Arquivos: i-creche.webp (escuro) e i-creche-c.webp (claro). Busca acha também por escolinha, berçário, maternal, colégio e abc.
   v13.367 · 11/11/2026 · NOVO ÍCONE 3D “Escola” (blocos A B C), claro e escuro, ocupando o quadrado quase inteiro; entra no lugar do “Es” da Escola (tipo Educação). Arquivos novos: i-escola.webp (escuro) e i-escola-c.webp (claro). Busca também acha por escolinha, creche, colégio e abc.

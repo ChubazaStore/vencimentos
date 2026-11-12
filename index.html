@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.369';
+(function(){var V='13.370';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -368,7 +368,8 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 @media(prefers-reduced-motion:reduce){.pit.flash{animation:none}.pit .pcp.done{transform:none}}
 #dt .scrim{background:rgba(2,3,6,.58)!important;transition:opacity .28s!important}
 #dt .panel{box-shadow:0 -18px 50px rgba(0,0,0,.45)}
-#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.369: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
+#paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.370: toque numa forma salva para editar */
+#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.370: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
 .row{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .row.lpon{background:linear-gradient(90deg,rgba(var(--ar),.14),rgba(var(--ar),.03));transform:scale(.988);transition:transform .2s,background .2s}
 #lpb{position:fixed;inset:0;z-index:120;background:rgba(2,3,6,.28)}
@@ -402,7 +403,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.369: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.370: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -1137,7 +1138,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.369';
+const VERSION='13.370';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2795,7 +2796,7 @@ function openSheet(id,key){
   const b=id?S.bills.find(v=>v.id===id):null;
   BKOPEN=false;F={cents:0,cat:'boleto',rep:'once',total:12,cur:1,prov:'',bank:'',via:'',brand:'visa',tier:'standard',ctype:'',model:'',last4:'',limit:0,close:0,img:'',auto:'',scope:'all',touched:false,mode:'bill',modeTouched:false,tp:false};
   $('#fn').value='';$('#fo').value='';$('#fd').value=toISO(today0());CF='';CK='';CSEL='';CKS='';$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#bl').value='';$('#blm').hidden=true;$('#ps').value='';
-  $('#extra').innerHTML='';F.pay=[];PAYK='pix';
+  $('#extra').innerHTML='';F.pay=[];PAYK='pix';PEDX=-1;
   if(b){
     const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
     EDIT={id:b.id,key:key,orig:o?o.amt:b.amount};
@@ -3402,9 +3403,9 @@ function putExtra(b){
 }
 /* v13.356: COMO PAGAR (Pix, código de barras, outro) + tela de detalhes com botão Copiar */
 const PGT={pix:{l:'Pix',ic:"<svg viewBox=\"0 0 24 24\"><path d=\"M5.283 18.36a3.505 3.505 0 0 0 2.493-1.032l3.6-3.6a.684.684 0 0 1 .946 0l3.613 3.613a3.504 3.504 0 0 0 2.493 1.032h.71l-4.56 4.56a3.647 3.647 0 0 1-5.156 0L4.85 18.36ZM18.428 5.627a3.505 3.505 0 0 0-2.493 1.032l-3.613 3.614a.67.67 0 0 1-.946 0l-3.6-3.6A3.505 3.505 0 0 0 5.283 5.64h-.434l4.573-4.572a3.646 3.646 0 0 1 5.156 0l4.559 4.559ZM1.068 9.422 3.79 6.699h1.492a2.483 2.483 0 0 1 1.744.722l3.6 3.6a1.73 1.73 0 0 0 2.443 0l3.614-3.613a2.482 2.482 0 0 1 1.744-.723h1.767l2.737 2.737a3.646 3.646 0 0 1 0 5.156l-2.736 2.736h-1.768a2.482 2.482 0 0 1-1.744-.722l-3.613-3.613a1.77 1.77 0 0 0-2.444 0l-3.6 3.6a2.483 2.483 0 0 1-1.744.722H3.791l-2.723-2.723a3.646 3.646 0 0 1 0-5.156\"/></svg>",c:'',ph:'Chave Pix (CPF, e-mail, telefone…)',np:'Nome de quem recebe (opcional)',ms:'Chave Pix copiada'},barras:{l:'Código de barras',ic:"<svg viewBox=\"0 0 256 256\"><path d=\"M224,48V208H32V48Z\" opacity=\"0.2\"/><path d=\"M232,48V88a8,8,0,0,1-16,0V56H184a8,8,0,0,1,0-16h40A8,8,0,0,1,232,48ZM72,200H40V168a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16Zm152-40a8,8,0,0,0-8,8v32H184a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V168A8,8,0,0,0,224,160ZM32,96a8,8,0,0,0,8-8V56H72a8,8,0,0,0,0-16H32a8,8,0,0,0-8,8V88A8,8,0,0,0,32,96ZM80,80a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,80,80Zm104,88V88a8,8,0,0,0-16,0v80a8,8,0,0,0,16,0ZM144,80a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,144,80Zm-32,0a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,112,80Z\"/></svg>",c:' b',ph:'Cole o código de barras do boleto',np:'Nome (opcional)',ms:'Código de barras copiado'},outro:{l:'Outro',ic:"<svg viewBox=\"0 0 256 256\"><circle cx=\"56\" cy=\"128\" r=\"20\"/><circle cx=\"128\" cy=\"128\" r=\"20\"/><circle cx=\"200\" cy=\"128\" r=\"20\"/></svg>",c:' o',ph:'Dados para pagar (conta, link…)',np:'Nome (opcional)',ms:'Copiado'}};
-let PAYK='pix';
+let PAYK='pix',PEDX=-1;
 function cpfOk(d){if(d.length!==11||/^(\d)\1{10}$/.test(d))return false;let a=0,b=0;for(let i=0;i<9;i++){a+=d[i]*(10-i)}a=(a*10)%11%10;if(a!==+d[9])return false;for(let i=0;i<10;i++){b+=d[i]*(11-i)}b=(b*10)%11%10;return b===+d[10]}
-/* v13.369: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
+/* v13.370: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
 function pixTipo(v){v=String(v||'').trim();if(!v)return '';const d=v.replace(/\D/g,'');
   if(v.indexOf('@')>0)return 'E-mail';
   if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v))return 'Chave aleatória';
@@ -3414,16 +3415,18 @@ function pixTipo(v){v=String(v||'').trim();if(!v)return '';const d=v.replace(/\D
   if(/^\(?\d{2}\)?\s?9?\d{4}-?\d{4}$/.test(v))return 'Telefone';
   if(/^\d{11}$/.test(v))return cpfOk(v)?'CPF':'Telefone';
   return '';}
-function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;const tp=x.k==='pix'?pixTipo(x.v):'';return '<div class="pit"><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm">'+(x.k==='pix'?'<i class="ptag">Pix'+(tp?' · '+esc(tp):'')+'</i>':'')+'<b>'+esc(x.n||t.l)+'</b><span>'+esc(x.v)+'</span></div><button type="button" class="pcp" data-cp="'+i+'">Copiar</button>'+(withRm?'<button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">×</button>':'')+'</div>'}).join('')}
+function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;const tp=x.k==='pix'?pixTipo(x.v):'';return '<div class="pit'+(withRm&&i===PEDX?' ed':'')+'"'+(withRm?' data-ed="'+i+'"':'')+'><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm">'+(x.k==='pix'?'<i class="ptag">Pix'+(tp?' · '+esc(tp):'')+'</i>':'')+'<b>'+esc(x.n||t.l)+'</b><span>'+esc(x.v)+'</span></div><button type="button" class="pcp" data-cp="'+i+'">Copiar</button>'+(withRm?'<button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">×</button>':'')+'</div>'}).join('')}
 function renderPay(){
   const t=PGT[PAYK];$$('#pk button').forEach(b=>b.classList.toggle('on',b.dataset.pk===PAYK));
   $('#pvl').placeholder=t.ph;$('#pnm').placeholder=t.np;
-  $('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:14px">Já salvo nesta conta</div>'+payItems(F.pay,true):'';
+  $('#padd').textContent=PEDX>=0?'Atualizar forma de pagamento':'Salvar forma de pagamento';
+  $('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:14px">Já salvo nesta conta · toque para editar</div>'+payItems(F.pay,true):'';
 }
 function payAdd(){
   const v=$('#pvl').value.trim();if(!v)return false;
-  if(F.pay.length>=6){toast('No máximo 6 formas de pagamento');return false}
-  F.pay.push({k:PAYK,n:$('#pnm').value.trim().slice(0,40),v:v.slice(0,700)});
+  if(F.pay.length>=6&&!(PEDX>=0&&F.pay[PEDX])){toast('No máximo 6 formas de pagamento');return false}
+  const it={k:PAYK,n:$('#pnm').value.trim().slice(0,40),v:v.slice(0,700)};
+  if(PEDX>=0&&F.pay[PEDX])F.pay[PEDX]=it;else F.pay.push(it);PEDX=-1;
   $('#pvl').value='';$('#pnm').value='';renderPay();return true}
 function copyFx(btn,lab){
   if(!btn||!btn.isConnected)return;
@@ -3449,7 +3452,8 @@ $('#paybox').addEventListener('click',e=>{
   const k=e.target.closest('[data-pk]');if(k){PAYK=k.dataset.pk;renderPay();return}
   if(e.target.closest('#padd')){if(!$('#pvl').value.trim())toast('Digite a chave ou o código');else if(payAdd())toast('Forma de pagamento salva');return}
   const c=e.target.closest('[data-cp]');if(c){const x=F.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);return}
-  const r=e.target.closest('[data-rm]');if(r){F.pay.splice(+r.dataset.rm,1);renderPay()}
+  const r=e.target.closest('[data-rm]');if(r){F.pay.splice(+r.dataset.rm,1);PEDX=-1;$('#pvl').value='';$('#pnm').value='';renderPay();return}
+  const ed=e.target.closest('[data-ed]');if(ed){const i=+ed.dataset.ed,x=F.pay[i];if(!x)return;if(PEDX===i){PEDX=-1;$('#pvl').value='';$('#pnm').value='';renderPay();return}PEDX=i;PAYK=x.k;renderPay();$('#pvl').value=x.v;$('#pnm').value=x.n||'';try{$('#pvl').scrollIntoView({block:'center',behavior:RMq()?'auto':'smooth'})}catch(_){}}
 });
 $('#paybox').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('#pvl,#pnm')){e.preventDefault();if(payAdd())toast('Forma de pagamento salva')}});
 let DTID=null,DTKEY=null;
@@ -3533,7 +3537,7 @@ function statsFx(v){
     if(!arr){if(df<-4){y0=null;return}if(df<6)return;arr=true;pn.style.transition='none'}
     dy=Math.max(0,df);pn.style.transform='translateY('+dy+'px)'},{passive:true});
   const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;if(!era)return;pn.style.transition='';
-    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.369: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
+    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.370: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
   d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true});
 })();
 $('#panel').addEventListener('submit',e=>{
@@ -3549,6 +3553,7 @@ $('#panel').addEventListener('submit',e=>{
     requestAnimationFrame(()=>{a.classList.remove('shake');void a.offsetWidth;a.classList.add('shake');const f=$('#fa');try{f.focus({preventScroll:true})}catch(e){f.focus()}});
     return}
   if(F.cat==='cartao'&&!CTIPO[F.ctype]){stErr('Escolha se o cartão é de crédito ou débito',$('#ctpl'));return}
+  if(!$('#pvl').value.trim()&&$('#pnm').value.trim()&&PEDX<0){toast('Falta a chave ou o código da forma de pagamento');try{$('#pvl').scrollIntoView({block:'center'})}catch(_){}return}
   if($('#pvl').value.trim()&&!payAdd())return;
   const pv=PROV[F.prov];
   const name=$('#fn').value.trim()||(pv?AN(pv,F.cat):CAT[F.cat].l), due=$('#fd').value||toISO(today0()), note=$('#fo').value.trim();
