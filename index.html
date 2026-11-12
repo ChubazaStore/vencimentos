@@ -59,7 +59,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.400';
+(function(){var V='13.401';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1194,7 +1194,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.400';
+const VERSION='13.401';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1969,7 +1969,6 @@ function renderSet(){
    '<div class="lbl" style="margin-top:14px">Temas prontos</div><div class="thm" id="thm">'+TH.PR.map((p,i)=>'<button type="button" class="tp" data-pr="'+i+'"><span class="tpv" style="background:'+TH.hsl(TH.BG[p[1]][1],TH.BG[p[1]][2],i===9||p[1]===1?3:11)+'"><i style="background:'+TH.AC[p[2]][1]+'"></i><b style="background:'+TH.AC[p[2]][1]+'"></b></span><span>'+p[0]+'</span></button>').join('')+'</div>'+
    '<div class="lbl" style="margin-top:16px">Cor de fundo</div><div class="sw" id="swb">'+TH.BG.map((b,i)=>'<button type="button" class="swc" data-b="'+i+'" aria-label="'+b[0]+'" style="background:'+TH.hsl(b[1],b[2]===0?0:Math.max(b[2],30),i===1?4:16)+'"></button>').join('')+'</div>'+
    '<div class="lbl" style="margin-top:16px">Cor de destaque</div><div class="sw" id="swa">'+TH.AC.map((a,i)=>'<button type="button" class="swc" data-a="'+i+'" aria-label="'+a[0]+'" style="background:'+a[1]+'"></button>').join('')+'</div><button class="act" id="bspl" style="margin-top:16px">Ver animação de abertura</button></div>'+
-   '<div class="card"><h3>Estilo dos ícones</h3><div class="cap"><b>Escuro</b>: os ícones das empresas como aparecem no iPhone com a tela escura. <b>Claro</b>: como aparecem com a tela clara. '+(Object.keys(LOGOC).length?'Versão clara disponível para '+Object.keys(LOGOC).length+' de '+Object.keys(LOGOS).length+' ícones; os outros são iguais nos dois estilos. ':'A versão clara ainda não foi adicionada: por enquanto os dois estilos mostram os mesmos ícones. ')+'A tela recarrega ao trocar. Vale só para este aparelho.</div><div class="crow" id="bic">'+[['e','Escuro'],['c','Claro']].map(k=>'<button type="button" class="crb'+((k[0]==='c')===ICLIGHT()?' on':'')+'" data-i="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Efeitos especiais</h3><div class="cap">Giro 3D e brilho dos cartões, animações ao abrir as telas, desfoque da barra de baixo e abertura animada. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve; ligue de novo quando quiser comparar. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div></div>'+
    '<div class="card"><h3>Brilho do cartão</h3><div class="cap"><b>Faixa</b>: a faixa de luz reta de sempre. <b>Seda</b>: uma luz larga e macia que desliza. <b>Contorno</b>: uma luz desliza pela borda do cartão, como no site de renda fixa. Troca na hora. Só vale para este aparelho.</div><div class="crow" id="bbr">'+[['0','Faixa'],['1','Seda'],['6','Contorno']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>'+
@@ -1979,7 +1978,6 @@ function renderSet(){
    '<button class="act" id="bcopy">Copiar backup</button><textarea class="fld bk" id="bpaste" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui o backup para restaurar"></textarea><button class="act" id="brest">Restaurar backup</button></div>'+
    '<div class="card"><h3>Atualização</h3><div class="cap">O app confere sozinho se há versão nova ao abrir. Seus dados não são apagados.</div><button class="act" id="bupd">Verificar atualização</button></div>'+
    (window.__diag?window.__diag.card():'')+
-   '<div class="card"><h3>Memória de imagens</h3><div class="cap">Apaga as imagens guardadas no aparelho (ícones e cartões) e baixa tudo de novo, como na primeira vez. Seus lançamentos e dados <b>não</b> são apagados.</div><button class="act" id="bclr">Limpar memória e recarregar</button><button class="act" id="bchk">Verificar arquivos de imagem</button><div class="cap" id="bchkr" style="margin:10px 0 0"></div></div>'+
    '<div class="card"><h3>Dados</h3><div class="cap">'+S.bills.length+(S.bills.length===1?' conta cadastrada':' contas cadastradas')+' neste aparelho. O aplicativo da tela de início tem os próprios dados, separados do Safari.</div><button class="act danger" id="bwipe">Apagar tudo</button></div>'+
    '<p class="hint" style="text-align:center;margin-top:22px">Sobrou! v'+VERSION+'</p>';
   const thSync=()=>{const c=TH.cur;$$('#swb .swc').forEach(b=>b.classList.toggle('on',+b.dataset.b===c[0]));$$('#swa .swc').forEach(b=>b.classList.toggle('on',+b.dataset.a===c[1]));$$('#thm .tp').forEach(b=>{const p=TH.PR[+b.dataset.pr];b.classList.toggle('on',p[1]===c[0]&&p[2]===c[1])})};
@@ -1993,38 +1991,19 @@ function renderSet(){
   ['#pmul','#pjur'].forEach(i=>{const e=$(i);if(e)e.onchange=()=>{pf();toast('Salvo')}});
   $('#bend').onclick=e=>{const b=e.target.closest('.crb');if(!b||(b.dataset.e==='firm')===window.__ENDF)return;try{localStorage.setItem('sobrou.ends',b.dataset.e==='firm'?'firm':'el')}catch(_){}toast('Pontas: '+(b.dataset.e==='firm'?'firme':'elástico')+'…');setTimeout(()=>location.reload(),350)};
   $('#bcr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
-  $('#bic').onclick=e=>{const b=e.target.closest('.crb');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}toast('Ícones: '+(c?'claros':'escuros')+'…');setTimeout(()=>location.reload(),350)};
   $('#bfx').onclick=()=>{const off=!NOFX();document.documentElement.classList.toggle('nofx',off);try{if(off)localStorage.setItem('sobrou.fx','0');else localStorage.removeItem('sobrou.fx')}catch(e){}renderSet();toast(off?'Efeitos especiais desligados':'Efeitos especiais ligados')};
   $('#bbr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.dataset.b===BRI())return;document.documentElement.setAttribute('data-bri',b.dataset.b);try{if(b.dataset.b==='0')localStorage.removeItem('sobrou.bri');else localStorage.setItem('sobrou.bri',b.dataset.b)}catch(_){}$$('#bbr .crb').forEach(x=>x.classList.toggle('on',x===b));toast('Brilho: '+{'0':'faixa','1':'seda','6':'contorno'}[b.dataset.b])};
   $('#thm').onclick=e=>{const b=e.target.closest('.tp');if(!b)return;const p=TH.PR[+b.dataset.pr];TH.set(p[1],p[2]);thSync()};
   $('#swb').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(+b.dataset.b,TH.cur[1]);thSync()};
   $('#swa').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(TH.cur[0],+b.dataset.a);thSync()};
   $('#bupd').onclick=()=>checkUpdate(true);
-  $('#bchk').onclick=async()=>{
-    const out=$('#bchkr');
-    if(!/^https?:/.test(location.protocol)){out.textContent='Só funciona no app hospedado (GitHub).';return}
-    const L=[];TPLS.forEach(t=>{if(t.s&&L.indexOf(t.s)<0)L.push(t.s)});
-    Object.keys(LOGOS).forEach(k=>{const v=LOGOS[k];if(v&&v.charAt(0)!=='@'&&L.indexOf(v)<0)L.push(v)});
-    const miss=[];let n=0,i=0;out.textContent='Verificando 0/'+L.length+'…';
-    const w=async()=>{while(i<L.length){const f=L[i++];
-      try{const r=await fetch(f+'?chk='+Date.now(),{method:'HEAD',cache:'no-store'});if(!r.ok)miss.push(f)}catch(e){miss.push(f)}
-      n++;if(n%10===0)out.textContent='Verificando '+n+'/'+L.length+'…'}};
-    await Promise.all([w(),w(),w(),w(),w(),w()]);
-    out.innerHTML=miss.length?('<b style="color:var(--bad)">Faltam '+miss.length+' de '+L.length+' arquivos:</b><br>'+miss.map(esc).join('<br>')):'<b style="color:var(--ok)">Todos os '+L.length+' arquivos estão no GitHub.</b>'};
-  $('#bclr').onclick=async()=>{
-    toast('Limpando memória…');
-    try{const k=await caches.keys();await Promise.all(k.map(x=>caches.delete(x)))}catch(e){}
-    try{const r=await navigator.serviceWorker.getRegistrations();await Promise.all(r.map(x=>x.unregister()))}catch(e){}
-    try{localStorage.removeItem('vencimentos.html');localStorage.removeItem('vencimentos.htmlv')}catch(e){}
-    try{sessionStorage.setItem('imgv',String(Date.now()))}catch(e){}
-    setTimeout(()=>location.replace(location.pathname+'?c='+Date.now()),500)};
   $('#bcopy').onclick=async()=>{
     const txt=JSON.stringify(S);
     try{await navigator.clipboard.writeText(txt);copyFx($('#bcopy'))}
     catch(e){const ta=$('#bpaste');ta.value=txt;ta.select();toast('Selecione e copie o texto')}
   };
   $('#brest').onclick=()=>{
-    try{const o=JSON.parse($('#bpaste').value.trim());if(!o||!Array.isArray(o.bills))throw 0;S={bills:o.bills,goals:(o.goals&&typeof o.goals==='object')?o.goals:{},order:(o.order&&typeof o.order==='object')?o.order:{},pord:o.pord==='custom'?'custom':'az'};normS();save();toast('Backup restaurado ('+S.bills.length+' contas)');renderSet()}
+    try{const o=JSON.parse($('#bpaste').value.trim());if(!o||!Array.isArray(o.bills))throw 0;S={bills:o.bills,goals:(o.goals&&typeof o.goals==='object')?o.goals:{},order:(o.order&&typeof o.order==='object')?o.order:{},pord:o.pord==='custom'?'custom':'az',pen:(o.pen&&typeof o.pen==='object')?o.pen:undefined};normS();save();toast('Backup restaurado ('+S.bills.length+' contas)');renderSet()}
     catch(e){toast('Backup inválido')}
   };
   let armed=0;
