@@ -12,10 +12,54 @@
 <style>html{background:#0a0c13}
 /* fontes guardadas no próprio GitHub (nada de Google): f-figtree.woff2 e f-bricolage.woff2 */
 @font-face{font-family:'Figtree';font-style:normal;font-weight:300 900;font-display:swap;src:url(f-figtree.woff2) format('woff2')}
-@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}
+/* v13.400: busca, parcial, multa, tutorial, boas-vindas */
+.sbar{position:relative;margin:14px 0 2px}.sbar[hidden]{display:none}
+.sbar svg{position:absolute;left:14px;top:50%;width:18px;height:18px;margin-top:-9px;fill:none;stroke:var(--mu);stroke-width:2;stroke-linecap:round;pointer-events:none}
+.sbar input{width:100%;height:46px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:0 40px 0 42px;font-size:16px;outline:0;-webkit-appearance:none;appearance:none}
+.sbar input::-webkit-search-cancel-button{-webkit-appearance:none}
+.sbar input:focus{border-color:var(--gold)}
+.sbar #sqx{position:absolute;right:6px;top:6px;width:34px;height:34px;border-radius:12px;font-size:20px;color:var(--mu)}
+.amt .sm{display:block;margin-top:2px;font:600 10.5px var(--fb);letter-spacing:0;text-align:right;white-space:nowrap}
+.amt .sm.pp{color:var(--ok)}.amt .sm.pen{color:var(--bad)}
+.ppd{position:fixed;inset:0;z-index:9500;display:flex;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .22s;pointer-events:none}
+.ppd.open{opacity:1;pointer-events:auto}
+.ppd .ppx{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.ppc{position:relative;width:min(520px,100%);background:var(--card);border:1px solid var(--line2);border-radius:26px 26px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .28s var(--ease)}
+.ppd.open .ppc{transform:none}
+.ppc h4{font:700 18px var(--fd);margin:0 0 6px}
+.ppc .ppn{margin:0;color:var(--mu);font-size:13px;line-height:1.5}.ppc .ppn b{color:var(--tx,inherit)}
+.ppc .fld{font-size:18px;font-weight:600}
+.ppq{display:flex;gap:8px;margin-top:10px}.ppq button{flex:1;height:38px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);font:600 12.5px var(--fb)}
+.pperr{min-height:18px;margin-top:8px;color:var(--bad);font-size:12.5px}
+.ppr{display:flex;gap:10px}.ppr .act{margin-top:6px;flex:1}
+.ppz{display:block;width:100%;margin-top:14px;font:600 12.5px var(--fb);color:var(--bad);padding:8px}
+.penf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.penf label{font:600 12px var(--fb);color:var(--mu)}.penf .fld{margin-top:6px;font-size:16px;height:46px}
+.gadd.tb{grid-template-columns:1fr auto;margin:0 0 14px}
+.gl.tot{padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.hlp,.wlc{position:fixed;inset:0;opacity:0;transition:opacity .24s;pointer-events:none}
+.hlp.open,.wlc.open{opacity:1;pointer-events:auto}
+.hlp{z-index:9400;background:var(--bg,#0b0d14);display:flex;flex-direction:column}
+.hlh{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 18px 12px;border-bottom:1px solid var(--line)}
+.hlh b{font:700 18px var(--fd)}.hlh button{width:40px;height:40px;border-radius:14px;font-size:24px;background:rgba(255,255,255,.06)}
+.hlb{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(40px + env(safe-area-inset-bottom))}
+.hlb details{border:1px solid var(--line);border-radius:18px;background:var(--card);margin-bottom:10px;padding:0 16px}
+.hlb summary{list-style:none;cursor:pointer;padding:15px 0;font:700 15px var(--fb);display:flex;justify-content:space-between;gap:10px}
+.hlb summary::-webkit-details-marker{display:none}.hlb summary::after{content:"+";color:var(--gold2);font-size:20px;line-height:1}
+.hlb details[open] summary::after{content:"–"}
+.hlb details p{margin:0 0 16px;color:var(--mu);font-size:14px;line-height:1.55}.hlb details p b{color:var(--tx,inherit)}
+.wlc{z-index:8800;background:radial-gradient(120% 80% at 50% 25%,var(--card2,#1a1e2c),var(--bg,#0b0d14));display:grid;place-items:center;padding:24px}
+.wlk{width:min(420px,100%);text-align:center}
+.wlic{width:92px;height:92px;margin:0 auto 26px;border-radius:30px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 18px 40px -16px var(--gold)}
+.wlic svg{width:44px;height:44px;fill:none;stroke:var(--on,#1a1405);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.wlk h3{font:800 26px var(--fd);letter-spacing:-.02em;margin:0 0 12px}.wlk p{margin:0 auto;color:var(--mu);font-size:15px;line-height:1.55;max-width:340px}
+.wld{display:flex;gap:7px;justify-content:center;margin:26px 0 22px}.wld i{width:8px;height:8px;border-radius:8px;background:rgba(255,255,255,.2);transition:all .25s}.wld i.on{width:24px;background:var(--gold)}
+.wlk .cta{width:100%;justify-content:center;height:52px}.wls{margin-top:12px;min-height:34px;color:var(--mu);font:600 13.5px var(--fb)}
+@media (prefers-reduced-motion:reduce){.ppd,.ppc,.hlp,.wlc,.wld i{transition:none}}
+</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.396';
+(function(){var V='13.400';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -364,7 +408,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 #dt .pcard{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.35);border-radius:22px;padding:6px 14px 10px;margin-top:14px}
 #dt .pcard h4{margin:10px 0 2px;font:700 12px var(--fb);letter-spacing:.14em;color:var(--ok)}
 #dt .dn{color:var(--tx,#ddd);font-size:15px;line-height:1.45;white-space:pre-wrap;word-break:break-word;margin:0 2px}
-#dt .dbt{display:flex;gap:10px;margin-top:16px}#dt .dbt .act{margin-top:0}#dt .dbt #dpay{flex:1.4}#dt .dbt #ded{flex:1}
+#dt .dbt{display:flex;gap:10px;margin-top:16px}#dt .dbt .act{margin-top:0}#dt .dbt #dpay{flex:1.4}#dt .dbt #ded,#dt .dbt #dpp{flex:1}
 .pit.flash{animation:pflash 1s ease-out}@keyframes pflash{0%{box-shadow:0 0 0 0 rgba(52,211,153,.7);border-color:#34d399;background:rgba(52,211,153,.22)}60%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
 .pit .pcp{transition:background .25s,transform .25s}.pit .pcp.done{background:linear-gradient(90deg,#6ee7b7,#34d399);transform:scale(1.06)}
 @media(prefers-reduced-motion:reduce){.pit.flash{animation:none}.pit .pcp.done{transform:none}}
@@ -495,6 +539,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pgrid .pt .pv.logo{box-shadow:none;overflow:visible}
 .pgrid .pt .pv.logo img{border-radius:inherit}
 .panel.stps .imgrow .pprev:empty{display:none}
+.lim .tx.sub{font-size:11.5px;opacity:.85;margin-top:2px}.lim .lex{font-size:11px;color:var(--mu);margin-top:3px;line-height:1.35}
 .panel.stps .imgrow{gap:10px}
 .panel.stps #pimg{height:48px;font-size:14px}
 /* v13.237: no cadastro em passos não existe o ícone 'Outro' (sempre se escolhe uma opção da lista ou a própria foto/logo) */
@@ -1019,6 +1064,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
   <main>
     <section class="page" id="p-home">
       <div class="hero" id="hero"></div>
+      <div class="sbar" id="sbar" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="sqi" type="search" placeholder="Buscar conta, empresa ou banco" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Buscar conta"><button type="button" id="sqx" hidden aria-label="Limpar busca">×</button></div>
       <div id="list"></div>
     </section>
 
@@ -1148,7 +1194,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.396';
+const VERSION='13.400';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1482,7 +1528,9 @@ function occ(b,y,m){
   const day=Math.min(b.day||s.getDate(),dim(y,m));
   const key=mkey(y,m);
   const ov=b.ov&&b.ov[key];
-  return {b:b,key:key,date:new Date(y,m,day),n:diff+1,paid:(PAYFZ.size&&PAYFZ.has(b.id+'|'+key))?PAYFZ.get(b.id+'|'+key):(b.paid[key]||null),amt:ov!=null?ov:stAmt(b,key)};
+  const pd=(PAYFZ.size&&PAYFZ.has(b.id+'|'+key))?PAYFZ.get(b.id+'|'+key):(b.paid[key]||null);
+  const full=ov!=null?ov:stAmt(b,key), pp=(!pd&&b.pp&&b.pp[key]>0&&full>0)?Math.min(b.pp[key],full-1):0; /* v13.400: pagamento parcial: amt = o que FALTA; full = valor inteiro da conta */
+  return {b:b,key:key,date:new Date(y,m,day),n:diff+1,paid:pd,amt:full-pp,full:full,pp:pp};
 }
 const monthOccs=(y,m)=>S.bills.map(b=>occ(b,y,m)).filter(Boolean);
 function overdueAll(){
@@ -1497,6 +1545,13 @@ function overdueAll(){
   return out.sort((a,b)=>a.date-b.date);
 }
 const sum=a=>a.reduce((s,o)=>s+o.amt,0);
+const fsum=a=>a.reduce((s,o)=>s+o.full,0); /* valor inteiro das contas */
+const got=a=>a.reduce((s,o)=>s+(o.paid?o.full:o.full-o.amt),0); /* quanto já foi pago (contas pagas + partes pagas) */
+const nz=x=>String(x==null?'':x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const moneyC=v=>{const t=String(v||'').replace(/[^\d,.]/g,'').replace(/\./g,'').replace(',','.'),n=Math.round(parseFloat(t)*100);return n>0?n:0};
+/* v13.400: estimativa de multa e juros em conta atrasada (não vale para cartão; é só uma estimativa, o valor real é o do boleto/fatura) */
+function PEN(){const p=S.pen;return {on:!p||p.on!==false,multa:p&&p.multa>=0?p.multa:2,juros:p&&p.juros>=0?p.juros:1}}
+function penOf(o){const c=PEN();if(!c.on||o.paid||o.b.cat==='cartao'||!(o.amt>0))return 0;const d=ddiff(today0(),o.date);if(d<=0)return 0;return Math.round(o.amt*(c.multa/100)+o.amt*(c.juros/100)*(d/30))}
 
 function whenText(o){
   const t=today0();
@@ -1596,7 +1651,7 @@ function row(o,i){
     '<button type="button" class="chk" aria-label="Marcar como paga">'+CHECK+'</button>'+
     lead(o.b)+
     '<div class="mid"><i class="k">'+esc(catLbl(o.b,c))+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
-    '<div class="amt'+(o.amt===0&&isZC(o.b.cat)&&!o.paid?' lan">A lançar':'">'+brl(o.amt))+'</div></div>';
+    '<div class="amt'+(o.amt===0&&isZC(o.b.cat)&&!o.paid?' lan">A lançar':'">'+brl(o.amt)+(o.pp>0?'<small class="sm pp">já pagou '+brl(o.pp)+'</small>':'')+(late&&penOf(o)>0?'<small class="sm pen">+ '+brl(penOf(o))+' multa/juros</small>':''))+'</div></div>';
 }
 
 /* v13.270: "remendo" da lista ao pagar/desfazer. Em vez de apagar e recriar todas as linhas, mantém as que não mudaram (já desenhadas)
@@ -1669,12 +1724,13 @@ function limHTML(g,t){
   if(!lim&&!cl)return '';
   const kk=x=>(x.prov||x.name)+'|'+(x.model||'')+'|'+(x.last4||'');
   const k=kk(b);
-  let used=g.occ.filter(o=>!o.paid).reduce((a,o)=>a+o.amt,0);
-  try{(ODC||overdueAll()).forEach(o=>{if(o.b.cat==='cartao'&&kk(o.b)===k&&!g.occ.some(x=>x.b.id===o.b.id&&x.date.getTime()===o.date.getTime()))used+=o.amt})}catch(e){}
+  const cur=g.occ.filter(o=>!o.paid).reduce((a,o)=>a+o.amt,0);let used=cur,prev=0; /* v13.399: separa o que é deste mês do que ficou em aberto de meses anteriores */
+  try{(ODC||overdueAll()).forEach(o=>{if(o.b.cat==='cartao'&&kk(o.b)===k&&!g.occ.some(x=>x.b.id===o.b.id&&x.date.getTime()===o.date.getTime())){used+=o.amt;prev+=o.amt}})}catch(e){}
   let h='<div class="lim">';
   if(lim){
     const pc=Math.min(100,Math.round(used/lim*100)),cls=pc>=90?'d':pc>=70?'w':'';
     h+='<div class="bar"><i class="'+cls+'" style="width:'+pc+'%"></i></div><div class="tx"><span>Usado <b class="num">'+brl(used)+'</b> · '+pc+'%</span><span>Disponível <b class="num">'+brl(Math.max(0,lim-used))+'</b></span></div>';
+    if(prev>0)h+='<div class="tx sub"><span>Deste mês <b class="num">'+brl(cur)+'</b></span><span>Meses anteriores <b class="num">'+brl(prev)+'</b></span></div><div class="lex">Fatura não paga continua ocupando o limite até você pagar.</div>';
   }
   if(cl){
     let y=t.getFullYear(),m=t.getMonth(),c=new Date(y,m,Math.min(cl,dim(y,m)));
@@ -1774,8 +1830,10 @@ function renderHome(){
   ODC=overdueAll();
   const od=isCur?ODC:mo.filter(o=>!o.paid&&o.date<t);
   const up=mo.filter(o=>!o.paid&&o.date>=t), pd=mo.filter(o=>o.paid);
-  const fl=o=>!FCAT||o.b.cat===FCAT, odL=od.filter(fl), upL=up.filter(fl), pdL=pd.filter(fl);
-  const total=sum(mo), paid=sum(pd), rest=total-paid, pct=total?(rest>0?Math.min(99,Math.round(paid/total*100)):Math.round(paid/total*100)):0; /* só mostra 100% quando não falta nada (antes arredondava 99,6% para 100%) */
+  const fq=nz(FQ.trim()), hit=o=>{const b=o.b,p=PROV[b.prov],k=PROV[b.bank];return nz([b.name,p&&p.n,k&&k.n,catLbl(b,CAT[b.cat]||CAT.outros),b.note,VIA[b.via],b.last4].join(' ')).indexOf(fq)>=0};
+  const fl=o=>(!FCAT||o.b.cat===FCAT)&&(!fq||hit(o)), odL=od.filter(fl), upL=up.filter(fl), pdL=pd.filter(fl);
+  try{const sb=$('#sbar');if(sb){sb.hidden=!(S.bills.length>=5||FQ);const x=$('#sqx');if(x)x.hidden=!FQ}}catch(e){}
+  const total=fsum(mo), paid=got(mo), rest=total-paid, pct=total?(rest>0?Math.min(99,Math.round(paid/total*100)):Math.round(paid/total*100)):0; /* só mostra 100% quando não falta nada (antes arredondava 99,6% para 100%) */
   const R=47,C=2*Math.PI*R;
   const nxt=up[0], hk=V.y+'-'+V.m, same=(!ANIM||NAVM)&&HPREV&&(NAVM||hk===HKEY); /* mesma tela: totais animam do valor anterior, não do zero */
   const r0=NAVM?rest:same?HPREV.rest:0,p0=NAVM?pct:same?HPREV.pct:0; /* v13.180: trocar de mês NÃO conta nem varre o anel (virava piscada ao passar vários meses): o valor e o anel já entram no valor final */
@@ -1790,7 +1848,7 @@ function renderHome(){
    '<div class="ct"><div><span id="rpc" data-v="'+p0+'">'+p0+'%</span><small>pago</small></div></div></div></div>'+
    '<div class="stats"><div class="st"><span>Total</span><b class="num">'+brl(total)+'</b></div><div class="st ok"><span>Pago</span><b class="num">'+brl(paid)+'</b></div><div class="st'+(od.length?' bad':'')+'"><span>Atrasadas</span><b class="num">'+(od.length?brl(sum(od)):'—')+'</b></div></div>';
   heroSet(HH);statsFx([total,paid,sum(od)]);
-  const ch=cardsHTML(cardGroups(mo));
+  const ch=FQ?'':cardsHTML(cardGroups(mo));
   let h='';
   if(!mo.length&&!od.length&&!S.bills.length){
     h+='<div class="wel"><div class="wel-ic"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="4"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="M9 15l2.2 2.2L15.5 13"/></svg></div><h4>Bem-vindo ao Sobrou!</h4><p>Cadastre sua primeira conta e acompanhe tudo o que vence, mês a mês.</p><div class="wel-k">Comece por aqui</div><div class="wel-g">'+
@@ -1803,7 +1861,8 @@ function renderHome(){
     h+=section('late','Atrasadas',odL,0);
     h+=section('','A pagar',upL,odL.length);
     if(!FCAT&&mo.length&&!up.length&&!od.length) h+='<div class="cheer">Tudo pago em '+MES[V.m]+'. Tá em dia.</div>';
-    if(FCAT&&!odL.length&&!upL.length&&!pdL.length) h+='<p class="fnone">Nenhuma conta desse tipo em '+MES[V.m]+'.</p>';
+    if(FQ)h+='<div class="fchip"><span>Busca: <b>'+esc(FQ.trim())+'</b> em '+MES[V.m]+'</span><button type="button" data-fqclr="1" aria-label="Limpar busca">× Limpar</button></div>';
+    if((FCAT||fq)&&!odL.length&&!upL.length&&!pdL.length) h+='<p class="fnone">'+(fq?'Nenhuma conta encontrada em '+MES[V.m]+'.':'Nenhuma conta desse tipo em '+MES[V.m]+'.')+'</p>';
     h+=section('done','Pagas',pdL,odL.length+upL.length);
   }
   const L=$('#list'),oldSec=L.querySelector('.sec.cardsec'),oc=oldSec&&oldSec.querySelector('.cards'),osl=(oc&&hk===HKEY)?oc.scrollLeft:0;
@@ -1843,24 +1902,26 @@ function renderHome(){
 /* ---------- panorama ---------- */
 function renderPan(){
   const t=today0(), ty=t.getFullYear(), tm=t.getMonth();
-  const mths=[];for(let i=0;i<6;i++){const d=new Date(ty,tm+i,1),o=monthOccs(d.getFullYear(),d.getMonth());mths.push({l:MS[d.getMonth()],tot:sum(o),pd:sum(o.filter(x=>x.paid)),cur:i===0})}
+  const mths=[];for(let i=0;i<6;i++){const d=new Date(ty,tm+i,1),o=monthOccs(d.getFullYear(),d.getMonth());mths.push({l:MS[d.getMonth()],tot:fsum(o),pd:got(o),cur:i===0})}
   const mx=Math.max(1,...mths.map(x=>x.tot));
   const bars=mths.map((x,i)=>'<div class="bc'+(x.cur?' cur':'')+'"><div class="v num">'+(x.tot?short(x.tot):'')+'</div><div class="b" style="height:'+Math.max(4,Math.round(x.tot/mx*118))+'px;--i:'+i+'">'+(x.tot&&x.pd?'<i style="height:'+Math.round(x.pd/x.tot*100)+'%"></i>':'')+'</div><div class="m">'+x.l+'</div></div>').join('');
-  const mo=monthOccs(V.y,V.m), byc={};mo.forEach(o=>{byc[o.b.cat]=(byc[o.b.cat]||0)+o.amt});
-  const cl=Object.keys(byc).sort((a,b)=>byc[b]-byc[a]), ct=sum(mo)||1;
+  const mo=monthOccs(V.y,V.m), byc={};mo.forEach(o=>{byc[o.b.cat]=(byc[o.b.cat]||0)+o.full});
+  const cl=Object.keys(byc).sort((a,b)=>byc[b]-byc[a]), ct=fsum(mo)||1;
   /* v13.354: mês anterior por tipo, para mostrar a variação */
-  const pd0=new Date(V.y,V.m-1,1), pmo=monthOccs(pd0.getFullYear(),pd0.getMonth()), pbyc={};pmo.forEach(o=>{pbyc[o.b.cat]=(pbyc[o.b.cat]||0)+o.amt});
+  const pd0=new Date(V.y,V.m-1,1), pmo=monthOccs(pd0.getFullYear(),pd0.getMonth()), pbyc={};pmo.forEach(o=>{pbyc[o.b.cat]=(pbyc[o.b.cat]||0)+o.full});
   const dlt=k=>{const p=pbyc[k]||0,c=byc[k]||0;if(!p)return '<em class="dl nw">novo</em>';const d=Math.round((c-p)/p*100);return Math.abs(d)<3?'<em class="dl eq">= mês ant.</em>':d>0?'<em class="dl up">▲ '+d+'%</em>':'<em class="dl dn">▼ '+Math.abs(d)+'%</em>'};
   const cats=cl.length?cl.map((k,i)=>{const c=CAT[k]||CAT.outros;return '<div class="hb" data-fc="'+k+'" style="--c:'+c.c+'"><div class="t"><b>'+c.l+'</b><span class="num">'+brl(byc[k])+' · '+Math.round(byc[k]/ct*100)+'%'+dlt(k)+'</span></div><div class="tr"><i style="width:'+Math.max(3,byc[k]/ct*100)+'%;--i:'+i+'"></i></div></div>'}).join(''):'<p class="cap">Sem contas em '+MES[V.m]+'.</p>';
   const G=S.goals||{}, gk=Object.keys(G).filter(k=>G[k]>0&&CAT[k]);
   const over=gk.filter(k=>(byc[k]||0)>G[k]);
-  const galert=over.length?'<div class="galert">⚠️ Meta estourada em '+MES[V.m]+': '+over.map(k=>'<b>'+CAT[k].l+'</b> (+'+brl(byc[k]-G[k])+')').join(', ')+'</div>':'';
+  const GT=G._tot>0?G._tot:0, tm0=fsum(mo), tOver=GT>0&&tm0>GT;
+  const galert=(over.length||tOver)?'<div class="galert">⚠️ '+(tOver?'Orçamento do mês estourado em '+brl(tm0-GT)+(over.length?'. ':''):'')+(over.length?'Meta estourada em '+MES[V.m]+': '+over.map(k=>'<b>'+CAT[k].l+'</b> (+'+brl(byc[k]-G[k])+')').join(', '):'')+'</div>':'';
+  const tbud=GT>0?(()=>{const p=tm0/GT,st=p>1?'over':p>=.8?'warn':'';return '<div class="gl tot '+st+'" style="--c:var(--gold)"><div class="t"><b>Orçamento total</b><span class="num">'+brl(tm0)+' de '+brl(GT)+' · '+Math.round(p*100)+'%'+(p>1?' · passou '+brl(tm0-GT):p>=.8?' · quase':' · sobra '+brl(GT-tm0))+'</span><button class="x" data-g="_tot" aria-label="Remover orçamento">×</button></div><div class="tr"><i style="width:'+Math.max(3,Math.min(100,p*100))+'%"></i></div></div>'})():'<div class="gadd tb"><input class="fld" id="tval" autocorrect="off" spellcheck="false" autocomplete="off" inputmode="decimal" placeholder="Orçamento total do mês (R$)"><button id="tsave">Salvar</button></div>';
   const glist=gk.length?gk.map((k,i)=>{const u=byc[k]||0,p=u/G[k],st=p>1?'over':p>=.8?'warn':'';const c=CAT[k];
     return '<div class="gl '+st+'" style="--c:'+c.c+'"><div class="t"><b>'+c.l+'</b><span class="num">'+brl(u)+' de '+brl(G[k])+' · '+Math.round(p*100)+'%'+(p>1?' · passou '+brl(u-G[k]):p>=.8?' · quase':'')+'</span><button class="x" data-g="'+k+'" aria-label="Remover meta">×</button></div><div class="tr"><i style="width:'+Math.max(3,Math.min(100,p*100))+'%;animation-delay:'+(i*60)+'ms"></i></div></div>'}).join(''):'<p class="cap" style="margin:0">Nenhuma meta ainda. Escolha um tipo e o limite mensal.</p>';
   const gopts=Object.keys(CAT).filter(k=>!(G[k]>0)).map(k=>'<option value="'+k+'">'+CAT[k].l+'</option>').join('');
-  const goals='<div class="card"><h3>Metas do mês</h3><div class="cap">Quanto você quer gastar por tipo em '+MES[V.m]+'. Avisa ao chegar em 80% e quando passar.</div>'+glist+
+  const goals='<div class="card"><h3>Metas do mês</h3><div class="cap">Defina um <b>orçamento total</b> para o mês e, se quiser, limites por tipo de conta. Avisa ao chegar em 80% e quando passar. Vale para todos os meses.</div>'+tbud+glist+
     (gopts?'<div class="gadd"><select class="fld" id="gcat">'+gopts+'</select><input class="fld" id="gval" autocorrect="off" spellcheck="false" autocomplete="off" inputmode="decimal" placeholder="R$ limite"><button id="gsave">Salvar</button></div>':'')+'</div>';
-  const N=EV, evm=[];for(let i=N-1;i>=0;i--){const d=new Date(ty,tm-i,1),o=monthOccs(d.getFullYear(),d.getMonth());evm.push({l:MS[d.getMonth()],tot:sum(o),pd:sum(o.filter(x=>x.paid)),cur:i===0})}
+  const N=EV, evm=[];for(let i=N-1;i>=0;i--){const d=new Date(ty,tm-i,1),o=monthOccs(d.getFullYear(),d.getMonth());evm.push({l:MS[d.getMonth()],tot:fsum(o),pd:got(o),cur:i===0})}
   const emx=Math.max(1,...evm.map(x=>x.tot));
   const ebars=evm.map((x,i)=>'<div class="bc'+(x.cur?' cur':'')+'"><div class="v num">'+(x.tot?short(x.tot):'')+'</div><div class="b" style="height:'+Math.max(4,Math.round(x.tot/emx*100))+'px;--i:'+i+'">'+(x.tot&&x.pd?'<i style="height:'+Math.round(x.pd/x.tot*100)+'%"></i>':'')+'</div><div class="m">'+x.l+'</div></div>').join('');
   const cu=evm[N-1].tot, prv=evm.slice(0,N-1).filter(x=>x.tot>0), avg=prv.length?prv.reduce((a,x)=>a+x.tot,0)/prv.length:0;
@@ -1876,7 +1937,7 @@ function renderPan(){
   }).join('');
   const rec=S.bills.filter(b=>b.repeat==='monthly'&&!b.endKey);
   const commit=sum(rec.map(b=>({amt:curAmt(b)})))+sum(S.bills.filter(b=>b.repeat==='inst'&&Object.keys(b.paid).length<b.total).map(b=>({amt:curAmt(b)})));
-  const gc={};mo.forEach(o=>{const k=o.b.prov||('n:'+o.b.name);if(!gc[k])gc[k]={b:o.b,tot:0};gc[k].tot+=o.amt});
+  const gc={};mo.forEach(o=>{const k=o.b.prov||('n:'+o.b.name);if(!gc[k])gc[k]={b:o.b,tot:0};gc[k].tot+=o.full});
   const gl=Object.keys(gc).map(k=>gc[k]).sort((a,b)=>b.tot-a.tot).slice(0,8), gmx=gl.length?gl[0].tot:1;
   const comp=gl.length?gl.map((g,i)=>{const p=PROV[g.b.prov];return '<div class="pco">'+lead(g.b)+'<div class="pm"><div class="t"><b>'+esc(p?p.n:g.b.name)+'</b><span class="num">'+brl(g.tot)+'</span></div><div class="tr"><i style="width:'+Math.max(4,g.tot/gmx*100).toFixed(1)+'%;--i:'+i+'"></i></div></div></div>'}).join(''):'<p class="cap">Sem contas em '+MES[V.m]+'.</p>';
   $('#pan').innerHTML=
@@ -1889,6 +1950,7 @@ function renderPan(){
   $$('#pan .segE button').forEach(b=>b.onclick=()=>{EV=+b.dataset.n;renderPan()});
   $$('#pan .hb[data-fc]').forEach(b=>b.onclick=()=>{FCAT=b.dataset.fc;setTab('home')});
   $$('#pan .gl .x').forEach(b=>b.onclick=()=>{delete S.goals[b.dataset.g];save();renderPan()});
+  const ts=$('#tsave');if(ts)ts.onclick=()=>{const v=moneyC($('#tval').value);if(!v){toast('Digite o orçamento do mês');return}S.goals._tot=v;save();toast('Orçamento salvo');renderPan()};
   const gs=$('#gsave');if(gs)gs.onclick=()=>{
     const s=$('#gval').value.replace(/[^\d,.]/g,'').replace(/\./g,'').replace(',','.'),v=Math.round(parseFloat(s)*100);
     if(!(v>0)){toast('Digite o limite');return}
@@ -1911,6 +1973,8 @@ function renderSet(){
    '<div class="card"><h3>Efeitos especiais</h3><div class="cap">Giro 3D e brilho dos cartões, animações ao abrir as telas, desfoque da barra de baixo e abertura animada. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve; ligue de novo quando quiser comparar. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div></div>'+
    '<div class="card"><h3>Brilho do cartão</h3><div class="cap"><b>Faixa</b>: a faixa de luz reta de sempre. <b>Seda</b>: uma luz larga e macia que desliza. <b>Contorno</b>: uma luz desliza pela borda do cartão, como no site de renda fixa. Troca na hora. Só vale para este aparelho.</div><div class="crow" id="bbr">'+[['0','Faixa'],['1','Seda'],['6','Contorno']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>'+
+   '<div class="card"><h3>Multa e juros de atraso</h3><div class="cap">Estima quanto uma conta atrasada passa a custar e mostra em vermelho na lista. É só uma estimativa: o valor real é o do boleto ou da fatura. Não vale para cartão.</div>'+(function(){const c=PEN();return '<div class="fxrow"><b>'+(c.on?'Ligada':'Desligada')+'</b><button type="button" class="swt" id="bpen" role="switch" aria-checked="'+c.on+'" aria-label="Estimar multa e juros"></button></div>'+(c.on?'<div class="penf"><label>Multa única (%)<input class="fld" id="pmul" inputmode="decimal" autocomplete="off" value="'+String(c.multa).replace('.',',')+'"></label><label>Juros ao mês (%)<input class="fld" id="pjur" inputmode="decimal" autocomplete="off" value="'+String(c.juros).replace('.',',')+'"></label></div><div class="cap" style="margin:10px 0 0">Padrão de boletos: multa de 2% e juros de 1% ao mês, contados por dia de atraso.</div>':'')})()+'</div>'+
+   '<div class="card"><h3>Como o Sobrou! funciona</h3><div class="cap">Um passo a passo curto de cada parte do app: cadastrar, pagar, pagar só uma parte, cartões, metas e mais.</div><button class="act" id="bhelp">Abrir o tutorial</button><button class="act" id="bwlc">Rever as boas-vindas</button></div>'+
    '<div class="card"><h3>Backup</h3><div class="cap">Copie o backup e guarde no WhatsApp, Notas ou e-mail. Para restaurar, cole o texto abaixo.</div>'+
    '<button class="act" id="bcopy">Copiar backup</button><textarea class="fld bk" id="bpaste" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui o backup para restaurar"></textarea><button class="act" id="brest">Restaurar backup</button></div>'+
    '<div class="card"><h3>Atualização</h3><div class="cap">O app confere sozinho se há versão nova ao abrir. Seus dados não são apagados.</div><button class="act" id="bupd">Verificar atualização</button></div>'+
@@ -1923,6 +1987,10 @@ function renderSet(){
   if(window.__acc)window.__acc.bind();
   if(window.__diag)window.__diag.bind();
   $('#bspl').onclick=()=>window.showSplash&&window.showSplash();
+  $('#bhelp').onclick=()=>openHelp();$('#bwlc').onclick=()=>openWelcome(true);
+  $('#bpen').onclick=()=>{const c=PEN();S.pen={on:!c.on,multa:c.multa,juros:c.juros};save();renderSet();toast(c.on?'Multa e juros desligados':'Multa e juros ligados')};
+  const pf=()=>{const g=id=>{const e=$(id);if(!e)return null;const n=parseFloat(String(e.value).replace(',','.'));return n>=0&&n<=100?n:null};const m=g('#pmul'),j=g('#pjur'),c=PEN();if(m==null||j==null)return;S.pen={on:c.on,multa:m,juros:j};save()};
+  ['#pmul','#pjur'].forEach(i=>{const e=$(i);if(e)e.onchange=()=>{pf();toast('Salvo')}});
   $('#bend').onclick=e=>{const b=e.target.closest('.crb');if(!b||(b.dataset.e==='firm')===window.__ENDF)return;try{localStorage.setItem('sobrou.ends',b.dataset.e==='firm'?'firm':'el')}catch(_){}toast('Pontas: '+(b.dataset.e==='firm'?'firme':'elástico')+'…');setTimeout(()=>location.reload(),350)};
   $('#bcr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
   $('#bic').onclick=e=>{const b=e.target.closest('.crb');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}toast('Ícones: '+(c?'claros':'escuros')+'…');setTimeout(()=>location.reload(),350)};
@@ -2182,6 +2250,7 @@ function togglePaid(id,key,x,y,direto){
   const b=S.bills.find(v=>v.id===id);if(!b)return;
   const k=id+'|'+key;if(PAYQ.has(k))return;
   const paying=!b.paid[key];
+  if(paying&&b.pp&&b.pp[key]){delete b.pp[key]} /* v13.400: ao marcar como paga, some o pagamento parcial */
   if(paying&&isZC(b.cat)){const pk=key.split('-').map(Number),oc=occ(b,pk[0],pk[1]-1);if(oc&&oc.amt===0){toast(b.cat==='cartao'?'Informe o valor da fatura antes de marcar como paga':'Informe o valor da conta antes de marcar como paga');openSheet(b.id,key);return}} /* v13.380: fatura zerada (a lançar) não é paga: abre a edição para informar o valor */
   if(direto||RMq()){ /* sem animação (vindo da janela de edição ou movimento reduzido) */
     if(paying){b.paid[key]=toISO(new Date());save();renderAll();if(!direto)burst(x,y)}
@@ -2210,7 +2279,11 @@ function togglePaid(id,key,x,y,direto){
 let F=null, EDIT=null;
 const AUTOM=['cartao','assinatura','servicos','telecom','moradia','saude','seguro','educacao','transferencia','tag'];
 /* v13.237: pergunta do passo 2 conforme o tipo (antes era sempre 'Quem é?') */
-function PQ(c){return c==='cartao'?'Qual é o cartão?':c==='transferencia'?'Para qual banco?':(BANKPROV.indexOf(c)>-1)?'Qual é o banco?':(['assinatura','telecom','servicos','tag'].indexOf(c)>-1)?'Qual é o serviço?':'Qual é a empresa?'}
+function PQ(c){ /* v13.397: pergunta do passo 2 conforme o que a lista mostra */
+  return({cartao:'Qual a instituição do cartão?',transferencia:'Para qual banco?',boleto:'Qual a instituição?',financ:'Qual é o banco?',consorcio:'Qual é a administradora?',
+    assinatura:'Qual é o serviço?',telecom:'Qual é a operadora?',servicos:'Qual é a empresa?',tag:'Qual é a tag?',saude:'Qual é o plano ou a academia?',seguro:'Qual é a seguradora?',
+    moradia:'Qual é a conta de moradia?',educacao:'Qual é a escola ou o curso?',impostos:'Qual é o imposto?',alimentacao:'Qual é o restaurante ou app?',compras:'Qual é a loja?',
+    transporte:'Qual é o serviço?',viagem:'Qual é a empresa?',outros:'Qual é a conta?'})[c]||'Qual é a empresa?'}
 const BANKPROV=['boleto','financ','consorcio'];   /* nesses tipos o "Quem é?" já é o banco: não repete a lista de bancos */
 const bankPick=cat=>bankOk(cat)&&BANKPROV.indexOf(cat)<0;
 const bankOk=cat=>cat!=='cartao'&&cat!=='transferencia';   /* todos os tipos aceitam "como você paga" (forma + banco), menos cartão e transferência (que já são o próprio banco) */
@@ -2316,7 +2389,7 @@ let BKB=false,BKOPEN=false;
 function renderBank(){
   const show=bankOk(F.cat);
   $('#bkx').hidden=!show;
-  $('#paybox').classList.toggle('nopb',show);$('#pklbl').classList.toggle('nopb',show); /* v13.395: tipos que já têm “Como você paga” (forma + banco) não repetem “Como pagar” (Pix/Boleto/Outro) lá embaixo; ele fica só no Cartão e na Transferência */
+  $('#pklbl').textContent=F.cat==='cartao'?'Como pagar (opcional)':'Chave Pix ou código do boleto (opcional)'; /* v13.398: o bloco de chave Pix / código do boleto voltou em todos os tipos; só o nome muda fora do Cartão */
   if(!show)return;
   const pk=bankPick(F.cat);
   $('#bkb').hidden=!pk;
@@ -2821,12 +2894,13 @@ function openSheet(id,key){
   $('#extra').innerHTML='';F.pay=[];PAYK='';PEDX=-1;$('#pvl').value='';$('#pnm').value='';setPB('');
   if(b){
     const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
-    EDIT={id:b.id,key:key,orig:o?o.amt:b.amount};
+    EDIT={id:b.id,key:key,orig:o?o.full:b.amount};
     BKOPEN=false;F={cents:EDIT.orig,cat:b.cat,rep:b.repeat,total:b.total||12,cur:1,prov:b.prov||'',bank:b.bank||'',via:b.via||'',brand:b.brand||'visa',tier:b.tier||'standard',ctype:CTIPO[b.ctype]?b.ctype:'',model:b.model||'',last4:b.last4||'',limit:b.limit||0,close:b.close||0,img:okImg(b.img)?b.img:'',auto:PROV[b.prov]?AN(PROV[b.prov],b.cat):'',scope:VARIAVEL.indexOf(b.cat)>-1?'one':'fwd',touched:true,mode:b.spent?'spent':'bill',modeTouched:true};
     F.tp=true;F.pay=(b.pay||[]).map(x=>{const o={k:x.k,n:x.n||'',v:x.v};if(x.b)o.b=x.b;return o});
     $('#fn').value=b.name;$('#fo').value=b.note||'';$('#fd').value=b.due;$('#cl').value=F.last4;$('#cli').value=F.limit?brl(F.limit):'';$('#ccl').value=F.close||'';
     $('#st').textContent='Editar conta';$('#fs').textContent='Salvar alterações';
     let ex='';
+    if(o&&!o.paid&&o.full>0) ex+='<button type="button" class="act" id="xpp">Registrar pagamento parcial</button>';
     if(o) ex+='<button type="button" class="act ok" id="xpay">'+(o.paid?'Desfazer pagamento deste mês':'Marcar este mês como paga')+'</button>';
     if(b.repeat!=='once') ex+='<button type="button" class="act" id="xend">Encerrar a partir deste mês</button>';
     ex+='<button type="button" class="act danger" id="xdel">Excluir conta</button>';
@@ -3511,10 +3585,10 @@ function openDet(id,key){
   let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';else if(b.repeat==='inst'&&o)w+=' · '+o.n+'/'+b.total;
   $('#dth').textContent='Pagar';
   $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c))+'</i><b>'+esc(b.name)+'</b></div></div>'+
-   '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+'</div>'+
+   '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div>'+
    '<div class="pcard"><h4>PAGAR</h4>'+payItems(b.pay,false)+'</div>'+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
-   '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
+   '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+(o&&!o.paid&&o.full>0?'<button type="button" class="act" id="dpp">Parcial</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
   const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';clearTimeout(window.__dts);window.__dts=setTimeout(()=>{if($('#dt').classList.contains('open'))document.body.classList.add('so')},300);const pp=$('#dtp');pp.scrollTop=0;pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2||true);void d.offsetWidth;d.classList.add('open');requestAnimationFrame(()=>{pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2)})}
 function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remove('open');document.body.style.overflow='';if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so'); /* v13.374: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela */
   setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
@@ -3523,11 +3597,12 @@ $('#dt').addEventListener('click',e=>{
   const c=e.target.closest('[data-cp]');
   if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);return}
   if(e.target.closest('#ded')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openSheet(id,k),RMq()?0:200);return}
+  if(e.target.closest('#dpp')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openPP(id,k),RMq()?0:240);return}
   const dp=e.target.closest('#dpay');
   if(dp){if(dp._busy)return;dp._busy=1;const id=DTID,k=DTKEY,pg=dp.textContent.indexOf('Desfazer')<0;copyFx(dp,pg?'✓ Paga':'✓ Pagamento desfeito');setTimeout(()=>{togglePaid(id,k,innerWidth/2,innerHeight*.6,true);requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(closeDet,RMq()?0:60)))},RMq()?0:620)}
 });
 /* v13.360: segurar na conta (menu rápido), totais que rolam, arrastar a janela Pagar para fechar, filtro por tipo */
-var FCAT='',LPFIRED=0,LPT=null,LPX=0,LPY=0,HST=null;
+var FQ='',FCAT='',LPFIRED=0,LPT=null,LPX=0,LPY=0,HST=null;
 function lpClose(){const m=$('#lpm'),b=$('#lpb');if(m)m.remove();if(b)b.remove();$$('#list .row.lpon').forEach(r=>r.classList.remove('lpon'))}
 function lpOpen(r){
   const id=r.dataset.id,key=r.dataset.key,b=S.bills.find(v=>v.id===id);if(!b)return;
@@ -3539,6 +3614,7 @@ function lpOpen(r){
   let h='';(b.pay||[]).forEach((x,i)=>{const t=PGT[x.k]||PGT.outro;h+='<button type="button" class="g" data-lp="cp'+i+'">⧉ Copiar '+esc(x.n&&(b.pay.filter(y=>y.k===x.k).length>1)?t.l+' · '+x.n:t.l)+'</button>'});
   if(h)h+='<div class="sp"></div>';
   if(o)h+='<button type="button" data-lp="pay">'+(o.paid?'↺ Desfazer pagamento':'✓ Marcar como paga')+'</button>';
+  if(o&&!o.paid&&o.full>0)h+='<button type="button" data-lp="pp">◐ Pagamento parcial</button>';
   h+='<button type="button" data-lp="ed">✎ Editar</button>';
   m.innerHTML=h;document.body.appendChild(bk);document.body.appendChild(m);
   const rc=r.getBoundingClientRect(),w=236,mh=m.offsetHeight;
@@ -3551,6 +3627,7 @@ function lpOpen(r){
     if(k[0]==='c'&&k[1]==='p'){const x=b.pay[+k.slice(2)];if(x)copyTxt(x.v,'',a);setTimeout(lpClose,700);return}
     lpClose();
     if(k==='pay')setTimeout(()=>togglePaid(id,key,LPX,LPY),RMq()?0:120);
+    else if(k==='pp')setTimeout(()=>openPP(id,key),RMq()?0:120);
     else setTimeout(()=>openSheet(id,key),RMq()?0:120)};
 }
 function lpCancel(){clearTimeout(LPT);LPT=null}
@@ -3562,6 +3639,64 @@ document.addEventListener('pointerdown',e=>{
 document.addEventListener('pointermove',e=>{if(LPT&&(Math.abs(e.clientX-LPX)>9||Math.abs(e.clientY-LPY)>9))lpCancel()},{passive:true});
 ['pointerup','pointercancel','scroll','touchmove'].forEach(n=>document.addEventListener(n,lpCancel,{passive:true,capture:true}));
 document.addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest('#list .row'))e.preventDefault()});
+/* v13.400: pagamento parcial: registra quanto já foi pago de uma conta; o que falta continua na lista (e no limite do cartão) */
+function ppClose(){const d=$('#ppd');if(d){d.classList.remove('open');setTimeout(()=>d.remove(),260)}}
+function openPP(id,key){
+  const b=S.bills.find(v=>v.id===id);if(!b)return;
+  const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));if(!o||o.paid||!(o.full>0))return;
+  ppClose();lpClose();
+  const d=document.createElement('div');d.id='ppd';d.className='ppd';
+  d.innerHTML='<div class="ppx"></div><div class="ppc" role="dialog" aria-label="Pagamento parcial"><h4>Pagamento parcial</h4><p class="ppn">'+esc(b.name)+' · valor da conta <b class="num">'+brl(o.full)+'</b>'+(o.pp>0?'<br>Já pago: <b class="num">'+brl(o.pp)+'</b> · falta <b class="num">'+brl(o.amt)+'</b>':'')+'</p>'+
+   '<label class="lbl" for="ppv" style="margin-top:12px">Quanto você pagou agora?</label><input class="fld" id="ppv" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="R$ 0,00">'+
+   '<div class="ppq"><button type="button" data-q="2">Metade do que falta</button><button type="button" data-q="1">Tudo que falta</button></div><div class="pperr" id="pperr"></div>'+
+   '<div class="ppr"><button type="button" class="act" id="ppc">Cancelar</button><button type="button" class="act ok" id="ppok">Registrar</button></div>'+
+   (o.pp>0?'<button type="button" class="ppz" id="ppz">Apagar os pagamentos parciais desta conta</button>':'')+'</div>';
+  document.body.appendChild(d);void d.offsetWidth;d.classList.add('open');
+  const inp=$('#ppv');
+  d.querySelector('.ppx').onclick=ppClose;$('#ppc').onclick=ppClose;
+  d.querySelectorAll('.ppq button').forEach(x=>x.onclick=()=>{const v=x.dataset.q==='2'?Math.round(o.amt/2):o.amt;inp.value=(v/100).toFixed(2).replace('.',',')});
+  const ant=b.pp&&b.pp[key]||0;
+  const pz=$('#ppz');if(pz)pz.onclick=()=>{if(b.pp){delete b.pp[key]}save();ppClose();renderAll();toast('Pagamentos parciais apagados',()=>{b.pp=b.pp||{};b.pp[key]=ant;save();renderAll()})};
+  $('#ppok').onclick=()=>{
+    const v=moneyC(inp.value);
+    if(!v){$('#pperr').textContent='Digite quanto você pagou.';inp.focus();return}
+    if(v>=o.amt){ppClose();setTimeout(()=>togglePaid(id,key,innerWidth/2,innerHeight*.6,true),RMq()?0:200);return} /* pagou tudo que faltava: vira conta paga */
+    if(!b.pp)b.pp={};b.pp[key]=ant+v;save();ppClose();renderAll();
+    toast('Parcial registrado · falta '+brl(o.amt-v),()=>{if(ant)b.pp[key]=ant;else delete b.pp[key];save();renderAll()});
+  };
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#ppok').click()}});
+}
+(function(){const i=$('#sqi'),x=$('#sqx');let t=0;
+  i.addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{FQ=i.value;if(TAB==='home')renderHome()},140)});
+  x.onclick=()=>{i.value='';FQ='';renderHome();i.focus()};
+  $('#list').addEventListener('click',e=>{if(e.target.closest('[data-fqclr]')){i.value='';FQ='';renderHome()}});
+})();
+/* v13.400: tutorial "Como funciona" (Ajustes) e boas-vindas de 3 telas */
+const HELPT=[["Cadastrar uma conta", "Toque no botão <b>+</b>. São 3 passos: <b>1</b> o tipo (boleto, cartão, assinatura…), <b>2</b> a empresa ou o cartão, <b>3</b> valor, vencimento, como você paga e, se quiser, o código do Pix ou do boleto. Em contas que se repetem, escolha <b>Mensal</b> ou <b>Parcelada</b>."], ["Marcar como paga", "Toque na bolinha à esquerda da conta. Para desfazer, toque de novo. <b>Segure</b> o dedo sobre a conta para abrir o menu rápido: copiar Pix/boleto, marcar como paga, pagamento parcial e editar. Toque na conta para ver os detalhes e os códigos de pagamento."], ["Pagamento parcial", "Pagou só uma parte? Segure a conta e escolha <b>Pagamento parcial</b> (ou use o botão <b>Parcial</b> nos detalhes). Digite quanto pagou: a conta continua na lista só com o que <b>falta</b>, e o topo da tela já soma o que foi pago. Quando você pagar o resto, ela vira paga."], ["Cartão de crédito e débito", "Cadastre o cartão com o limite e o dia do fechamento. O app mostra quanto do limite está usado, o que é do mês e o que ficou de meses anteriores. A fatura dos meses seguintes começa em <b>R$ 0,00 · A lançar</b>: informe o valor quando souber."], ["Luz, água, gás e Tag", "Como o valor muda todo mês, você cadastra uma vez e os meses seguintes aparecem como <b>A lançar</b>. Quando a conta chegar, toque nela, informe o valor e pronto. Não dá para marcar como paga sem saber o valor."], ["Pix e código de boleto", "No passo 3 do cadastro guarde a chave Pix ou o código de barras. Na lista, um ícone de chave mostra quais contas têm código. Toque na conta e em <b>Copiar</b>, ou segure para copiar direto do menu."], ["Contas atrasadas e multa", "Contas vencidas e não pagas ficam em <b>Atrasadas</b>, em vermelho, em qualquer mês. O app estima a multa e os juros (padrão: 2% + 1% ao mês) e mostra abaixo do valor. Dá para ajustar ou desligar em <b>Ajustes → Multa e juros de atraso</b>."], ["Buscar e filtrar", "Com 5 ou mais contas aparece a <b>busca</b> abaixo do resumo: procure por nome, empresa, banco ou observação. No <b>Panorama</b>, toque num tipo (ex.: Moradia) para ver só essas contas."], ["Panorama e metas", "O Panorama mostra os próximos meses, para onde o dinheiro vai e quanto falta pagar de parcelas. Em <b>Metas do mês</b> defina um <b>orçamento total</b> e limites por tipo: o app avisa ao chegar em 80% e quando passar."], ["Meses e navegação", "Use as setas no topo para ver outros meses. <b>Voltar a hoje</b> traz o mês atual. Encerrar uma conta: abra a conta e toque em <b>Encerrar a partir deste mês</b>."], ["Aparência e ícones", "Em <b>Ajustes</b> escolha tema, cores, ícones claros ou escuros, o brilho do cartão e o carrossel. Se o aparelho for antigo e engasgar, desligue os <b>Efeitos especiais</b>."], ["Backup e seus dados", "Seus dados ficam neste aparelho. Em <b>Ajustes → Backup</b>, copie o backup e guarde no WhatsApp, Notas ou e-mail. Para restaurar, cole o texto no mesmo lugar. Fazer o backup de vez em quando evita perder tudo se trocar de celular."], ["Instalar no iPhone", "Abra o endereço no <b>Safari</b>, toque em <b>Compartilhar</b> e em <b>Adicionar à Tela de Início</b>. Depois abra pelo ícone, como um aplicativo."]];
+function openHelp(){
+  const o=document.getElementById('hlp');if(o)o.remove();
+  const d=document.createElement('div');d.id='hlp';d.className='hlp';
+  d.innerHTML='<div class="hlh"><b>Como o Sobrou! funciona</b><button type="button" id="hlx" aria-label="Fechar">×</button></div><div class="hlb">'+HELPT.map((t,i)=>'<details'+(i===0?' open':'')+'><summary>'+t[0]+'</summary><p>'+t[1]+'</p></details>').join('')+'<button type="button" class="act" id="hlw">Rever as boas-vindas</button></div>';
+  document.body.appendChild(d);document.body.style.overflow='hidden';void d.offsetWidth;d.classList.add('open');
+  const fecha=()=>{d.classList.remove('open');document.body.style.overflow='';setTimeout(()=>d.remove(),260)};
+  $('#hlx').onclick=fecha;$('#hlw').onclick=()=>{fecha();setTimeout(()=>openWelcome(true),280)};
+}
+const WLC=[
+ ['M7 3.5h10a2.5 2.5 0 0 1 2.5 2.5v14l-3-2-2.2 2-2.3-2-2.3 2L8 18l-3 2V6A2.5 2.5 0 0 1 7.5 3.5z','Cadastre suas contas','Boletos, cartões, assinaturas, luz, água, financiamentos. Escolha o tipo, a empresa e o vencimento em 3 passos rápidos.'],
+ ['M5 12.5l4.2 4.2L19 7','Marque o que já pagou','Toque na bolinha da conta para marcar como paga. Segure para copiar o Pix, pagar só uma parte ou editar. O topo mostra sempre quanto falta.'],
+ ['M5 20V11M12 20V4M19 20v-6','Veja o mês e planeje','O Panorama mostra para onde o dinheiro vai. Defina um orçamento do mês e receba aviso antes de estourar. Tudo fica guardado neste aparelho.']];
+function openWelcome(manual){
+  if(document.getElementById('wlc'))return;
+  let i=0;const d=document.createElement('div');d.id='wlc';d.className='wlc';
+  const draw=()=>{const w=WLC[i];d.innerHTML='<div class="wlk"><div class="wlic"><svg viewBox="0 0 24 24"><path d="'+w[0]+'"/></svg></div><h3>'+w[1]+'</h3><p>'+w[2]+'</p><div class="wld">'+WLC.map((x,j)=>'<i'+(j===i?' class="on"':'')+'></i>').join('')+'</div><button type="button" class="cta" id="wln">'+(i<WLC.length-1?'Continuar':(manual?'Fechar':'Começar'))+'</button><button type="button" class="wls" id="wlp">'+(i<WLC.length-1?'Pular':'')+'</button></div>'};
+  const fecha=()=>{try{localStorage.setItem('sobrou.wlc','1')}catch(e){}d.classList.remove('open');setTimeout(()=>d.remove(),260)};
+  d.onclick=e=>{if(e.target.closest('#wln')){if(i<WLC.length-1){i++;draw()}else fecha()}else if(e.target.closest('#wlp'))fecha()};
+  draw();document.body.appendChild(d);void d.offsetWidth;d.classList.add('open');
+}
+(function(){let seen=0;try{seen=localStorage.getItem('sobrou.wlc')}catch(e){}if(seen||S.bills.length)return;
+  let n=0;const t=setInterval(()=>{n++;if(n>240){clearInterval(t);return}
+    if(document.getElementById('spl')||document.documentElement.classList.contains('lgon')||!document.body)return;
+    clearInterval(t);if(!S.bills.length)openWelcome(false)},500)})();
 /* totais do cartão do topo (Total / Pago / Atrasadas) rolam do valor anterior até o novo */
 function statsFx(v){
   const prev=HST;HST=v.slice();
@@ -3660,6 +3795,7 @@ $('#panel').addEventListener('submit',e=>{
 $('#extra').addEventListener('click',function(e){
   const b=e.target.closest('button');if(!b||!EDIT)return;
   const bill=S.bills.find(v=>v.id===EDIT.id);if(!bill)return;
+  if(b.id==='xpp'){const k=EDIT.key,i=bill.id;closeSheet();setTimeout(()=>openPP(i,k),RMq()?0:460);return}
   if(b.id==='xpay'){const k=EDIT.key;closeSheet();togglePaid(bill.id,k,innerWidth/2,innerHeight*.6,true)}
   if(b.id==='xend'){
     const p=EDIT.key.split('-').map(Number), prev=new Date(p[0],p[1]-2,1), s=fromISO(bill.due);
