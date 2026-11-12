@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.363';
+(function(){var V='13.364';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1133,7 +1133,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.363';
+const VERSION='13.364';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3450,8 +3450,8 @@ function openDet(id,key){
    '<div class="pcard"><h4>PAGAR</h4>'+payItems(b.pay,false)+'</div>'+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
-  const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';$('#dtp').scrollTop=0;void d.offsetWidth;d.classList.add('open')}
-function closeDet(){const d=$('#dt');d.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
+  const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';document.body.classList.add('so');$('#dtp').scrollTop=0;void d.offsetWidth;d.classList.add('open')}
+function closeDet(){const d=$('#dt');d.classList.remove('open');document.body.style.overflow='';setTimeout(()=>{if(!d.classList.contains('open')){d.hidden=true;if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so')}},430)}
 $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
   const c=e.target.closest('[data-cp]');
