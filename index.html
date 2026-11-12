@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.362';
+(function(){var V='13.363';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1133,7 +1133,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.362';
+const VERSION='13.363';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3458,7 +3458,7 @@ $('#dt').addEventListener('click',e=>{
   if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);return}
   if(e.target.closest('#ded')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openSheet(id,k),RMq()?0:200);return}
   const dp=e.target.closest('#dpay');
-  if(dp){if(dp._busy)return;dp._busy=1;const id=DTID,k=DTKEY,pg=dp.textContent.indexOf('Desfazer')<0;copyFx(dp,pg?'✓ Paga':'✓ Pagamento desfeito');setTimeout(()=>{closeDet();setTimeout(()=>requestAnimationFrame(()=>togglePaid(id,k,innerWidth/2,innerHeight*.6,true)),RMq()?0:470)},RMq()?0:620)}
+  if(dp){if(dp._busy)return;dp._busy=1;const id=DTID,k=DTKEY,pg=dp.textContent.indexOf('Desfazer')<0;copyFx(dp,pg?'✓ Paga':'✓ Pagamento desfeito');setTimeout(()=>{togglePaid(id,k,innerWidth/2,innerHeight*.6,true);requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(closeDet,RMq()?0:60)))},RMq()?0:620)}
 });
 /* v13.360: segurar na conta (menu rápido), totais que rolam, arrastar a janela Pagar para fechar, filtro por tipo */
 var FCAT='',LPFIRED=0,LPT=null,LPX=0,LPY=0,HST=null;
