@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.390';
+(function(){var V='13.394';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1148,7 +1148,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.390';
+const VERSION='13.394';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1265,13 +1265,13 @@ L('educacao',NEW([['vanescolar','Van Escolar','#F2A71B','VE'],['creche','Creche'
 L('cartao',NEW([['agibank','Agibank','#2F6BFF','Ag']]));L('transferencia',['agibank']);L('boleto',['agibank']);L('financ',['agibank']);BK.push('agibank');
 Object.assign(PROV.agibank,{al:'agi banco digital'});
 /* ícones das empresas: arquivos i-<id>.webp na mesma pasta do index.html */
-const LOGOS={"materialescolar":"i-materialescolar.webp","escolaparticular":"i-escolaparticular.webp","creche":"i-creche.webp","vanescolar":"i-vanescolar.webp","trivago":"i-trivago.webp","cvc":"i-cvc.webp","blablacar":"i-blablacar.webp","sabesp":"i-sabesp.webp","agibank":"i-agibank.webp","detran":"i-detran.webp","paytag":"i-paytag.webp","leroymerlin":"i-leroymerlin.webp","quintoandar":"i-quintoandar.webp","oi":"i-oi.webp","sky":"i-sky.webp","starlink":"i-starlink.webp","premiere":"i-premiere.webp","conectcar":"i-conectcar.webp","pinterest":"i-pinterest.webp","santandercorretora":"i-santandercorretora.webp","guincho":"i-guincho.webp","mecanico":"i-mecanico.webp","pirelli":"i-pirelli.webp","michelin":"i-michelin.webp","bridgestone":"i-bridgestone.webp","veloe":"i-veloe.webp","semparar":"i-semparar.webp","shellbox":"i-shellbox.webp","premmia":"i-premmia.webp","uninove":"i-uninove.webp","cea":"i-cea.webp","abril":"i-abril.webp","agora":"i-agora.webp","airbnb":"i-airbnb.webp","aliexpress":"i-aliexpress.webp","amazon":"i-amazon.webp","amazonmusic":"i-amazonmusic.webp","amil":"i-amil.webp","amildental":"i-amildental.webp","assai":"i-assai.webp","azulaerea":"i-azulaerea.webp","bb":"i-bb.webp","bobs":"i-bobs.webp","booking":"i-booking.webp","bradesco":"i-bradesco.webp","bradescosaude":"i-bradescosaude.webp","bradescoseg":"i-bradescoseg.webp","btg":"i-btg.webp","burgerking":"i-burgerking.webp","buser":"i-buser.webp","bv":"i-bv.webp","c6":"i-c6.webp","cacaushow":"i-cacaushow.webp","caixa":"i-caixa.webp","centauro":"i-centauro.webp","claro":"i-claro.webp","claude":"i-claude.webp","cnh":"i-cnh.webp","cnn":"i-cnn.webp","cocobambu":"i-cocobambu.webp","comgas":"i-comgas.webp","cpfl":"i-cpfl.webp","decolar":"i-decolar.webp","disney":"i-disney.webp","dolcegusto":"i-dolcegusto.webp","dominos":"i-dominos.webp","enel":"i-enel.webp","estadao":"i-estadao.webp","folha":"i-folha.webp","futfanatics":"i-futfanatics.webp","genial":"i-genial.webp","giraffas":"i-giraffas.webp","github":"i-github.webp","globoplay":"i-globoplay.webp","gol":"i-gol.webp","google":"i-google.webp","habibs":"i-habibs.webp","hapvida":"i-hapvida.webp","hotelscom":"i-hotelscom.webp","ifood":"i-ifood.webp","infinitepay":"i-infinitepay.webp","inter":"i-inter.webp","ion":"i-ion.webp","itau":"i-itau.webp","keeta":"i-keeta.webp","kfc":"i-kfc.webp","kiwify":"i-kiwify.webp","latam":"i-latam.webp","latampass":"i-latampass.webp","livelo":"i-livelo.webp","localiza":"i-localiza.webp","max":"i-max.webp","mcdonalds":"i-mcdonalds.webp","mercadolivre":"i-mercadolivre.webp","mercadopago":"i-mercadopago.webp","movida":"i-movida.webp","n99":"i-n99.webp","neon":"i-neon.webp","netflix":"i-netflix.webp","netshoes":"i-netshoes.webp","next":"i-next.webp","nubank":"i-nubank.webp","odonto":"i-odonto.webp","outback":"i-outback.webp","pan":"i-pan.webp","paypal":"i-paypal.webp","picpay":"i-picpay.webp","pizzahut":"i-pizzahut.webp","pluxee":"i-pluxee.webp","popeyes":"i-popeyes.webp","portoseguro":"i-portoseguro.webp","portobank":"@portoseguro","prime":"i-prime.webp","ragazzo":"i-ragazzo.webp","rededor":"i-rededor.webp","rico":"i-rico.webp","santander":"i-santander.webp","serasa":"i-serasa.webp","shein":"i-shein.webp","shopee":"i-shopee.webp","sicoob":"i-sicoob.webp","sicredi":"i-sicredi.webp","smiles":"i-smiles.webp","spotify":"i-spotify.webp","starbucks":"i-starbucks.webp","subway":"i-subway.webp","sulamerica":"i-sulamerica.webp","sulamericaodonto":"i-sulamericaodonto.webp","tim":"i-tim.webp","uber":"i-uber.webp","veja":"i-veja.webp","vivo":"i-vivo.webp","wellhub":"i-wellhub.webp","x":"i-x.webp","xp":"i-xp.webp","yamaha":"i-yamaha.webp","youtube":"i-youtube.webp","youtubemusic":"i-youtubemusic.webp","zedelivery":"i-zedelivery.webp","bmg":"i-bmg.webp","safra":"i-safra.webp","fgc":"i-fgc.webp","gmail":"i-gmail.webp","paodeacucar":"i-paodeacucar.webp","carrefour":"i-carrefour.webp","magalu":"i-magalu.webp","casasbahia":"i-casasbahia.webp","samsclub":"i-samsclub.webp","atacadao":"i-atacadao.webp","rappi":"i-rappi.webp","tendaatacado":"i-tendaatacado.webp","americanas":"i-americanas.webp","swift":"i-swift.webp","marisa":"i-marisa.webp","renner":"i-renner.webp","riachuelo":"i-riachuelo.webp","pernambucanas":"i-pernambucanas.webp","havan":"i-havan.webp","whatsapp":"i-whatsapp.webp","telegram":"i-telegram.webp","facebook":"i-facebook.webp","instagram":"i-instagram.webp","kmv":"i-kmv.webp"};
+const LOGOS={"garagem":"i-garagem.webp","materialescolar":"i-materialescolar.webp","escolaparticular":"i-escolaparticular.webp","creche":"i-creche.webp","vanescolar":"i-vanescolar.webp","trivago":"i-trivago.webp","cvc":"i-cvc.webp","blablacar":"i-blablacar.webp","sabesp":"i-sabesp.webp","agibank":"i-agibank.webp","detran":"i-detran.webp","paytag":"i-paytag.webp","leroymerlin":"i-leroymerlin.webp","quintoandar":"i-quintoandar.webp","oi":"i-oi.webp","sky":"i-sky.webp","starlink":"i-starlink.webp","premiere":"i-premiere.webp","conectcar":"i-conectcar.webp","pinterest":"i-pinterest.webp","santandercorretora":"i-santandercorretora.webp","guincho":"i-guincho.webp","mecanico":"i-mecanico.webp","pirelli":"i-pirelli.webp","michelin":"i-michelin.webp","bridgestone":"i-bridgestone.webp","veloe":"i-veloe.webp","semparar":"i-semparar.webp","shellbox":"i-shellbox.webp","premmia":"i-premmia.webp","uninove":"i-uninove.webp","cea":"i-cea.webp","abril":"i-abril.webp","agora":"i-agora.webp","airbnb":"i-airbnb.webp","aliexpress":"i-aliexpress.webp","amazon":"i-amazon.webp","amazonmusic":"i-amazonmusic.webp","amil":"i-amil.webp","amildental":"i-amildental.webp","assai":"i-assai.webp","azulaerea":"i-azulaerea.webp","bb":"i-bb.webp","bobs":"i-bobs.webp","booking":"i-booking.webp","bradesco":"i-bradesco.webp","bradescosaude":"i-bradescosaude.webp","bradescoseg":"i-bradescoseg.webp","btg":"i-btg.webp","burgerking":"i-burgerking.webp","buser":"i-buser.webp","bv":"i-bv.webp","c6":"i-c6.webp","cacaushow":"i-cacaushow.webp","caixa":"i-caixa.webp","centauro":"i-centauro.webp","claro":"i-claro.webp","claude":"i-claude.webp","cnh":"i-cnh.webp","cnn":"i-cnn.webp","cocobambu":"i-cocobambu.webp","comgas":"i-comgas.webp","cpfl":"i-cpfl.webp","decolar":"i-decolar.webp","disney":"i-disney.webp","dolcegusto":"i-dolcegusto.webp","dominos":"i-dominos.webp","enel":"i-enel.webp","estadao":"i-estadao.webp","folha":"i-folha.webp","futfanatics":"i-futfanatics.webp","genial":"i-genial.webp","giraffas":"i-giraffas.webp","github":"i-github.webp","globoplay":"i-globoplay.webp","gol":"i-gol.webp","google":"i-google.webp","habibs":"i-habibs.webp","hapvida":"i-hapvida.webp","hotelscom":"i-hotelscom.webp","ifood":"i-ifood.webp","infinitepay":"i-infinitepay.webp","inter":"i-inter.webp","ion":"i-ion.webp","itau":"i-itau.webp","keeta":"i-keeta.webp","kfc":"i-kfc.webp","kiwify":"i-kiwify.webp","latam":"i-latam.webp","latampass":"i-latampass.webp","livelo":"i-livelo.webp","localiza":"i-localiza.webp","max":"i-max.webp","mcdonalds":"i-mcdonalds.webp","mercadolivre":"i-mercadolivre.webp","mercadopago":"i-mercadopago.webp","movida":"i-movida.webp","n99":"i-n99.webp","neon":"i-neon.webp","netflix":"i-netflix.webp","netshoes":"i-netshoes.webp","next":"i-next.webp","nubank":"i-nubank.webp","odonto":"i-odonto.webp","outback":"i-outback.webp","pan":"i-pan.webp","paypal":"i-paypal.webp","picpay":"i-picpay.webp","pizzahut":"i-pizzahut.webp","pluxee":"i-pluxee.webp","popeyes":"i-popeyes.webp","portoseguro":"i-portoseguro.webp","portobank":"@portoseguro","prime":"i-prime.webp","ragazzo":"i-ragazzo.webp","rededor":"i-rededor.webp","rico":"i-rico.webp","santander":"i-santander.webp","serasa":"i-serasa.webp","shein":"i-shein.webp","shopee":"i-shopee.webp","sicoob":"i-sicoob.webp","sicredi":"i-sicredi.webp","smiles":"i-smiles.webp","spotify":"i-spotify.webp","starbucks":"i-starbucks.webp","subway":"i-subway.webp","sulamerica":"i-sulamerica.webp","sulamericaodonto":"i-sulamericaodonto.webp","tim":"i-tim.webp","uber":"i-uber.webp","veja":"i-veja.webp","vivo":"i-vivo.webp","wellhub":"i-wellhub.webp","x":"i-x.webp","xp":"i-xp.webp","yamaha":"i-yamaha.webp","youtube":"i-youtube.webp","youtubemusic":"i-youtubemusic.webp","zedelivery":"i-zedelivery.webp","bmg":"i-bmg.webp","safra":"i-safra.webp","fgc":"i-fgc.webp","gmail":"i-gmail.webp","paodeacucar":"i-paodeacucar.webp","carrefour":"i-carrefour.webp","magalu":"i-magalu.webp","casasbahia":"i-casasbahia.webp","samsclub":"i-samsclub.webp","atacadao":"i-atacadao.webp","rappi":"i-rappi.webp","tendaatacado":"i-tendaatacado.webp","americanas":"i-americanas.webp","swift":"i-swift.webp","marisa":"i-marisa.webp","renner":"i-renner.webp","riachuelo":"i-riachuelo.webp","pernambucanas":"i-pernambucanas.webp","havan":"i-havan.webp","whatsapp":"i-whatsapp.webp","telegram":"i-telegram.webp","facebook":"i-facebook.webp","instagram":"i-instagram.webp","kmv":"i-kmv.webp"};
 /* IV: só vira algo depois de "Limpar memória" (Ajustes): força baixar tudo de novo, como na 1ª vez */
 const IV=(()=>{try{return sessionStorage.getItem('imgv')||''}catch(e){return ''}})();
 const imgU=f=>IV?f+'?v='+IV:f;
-const IMGCACHE='cartoes-21';
+const IMGCACHE='cartoes-22';
 /* v13.332: estilo dos ícones. Claro = i-<id>-c.webp (PADRÃO desde a v13.351). Escuro = os arquivos i-<id>.webp, só para os que têm versão clara (lista LOGOC; os demais continuam iguais nos dois estilos). Escolha em Ajustes, guardada em sobrou.ic ('c' claro, 'd' escuro; sem valor = claro) */
-const LOGOC={"i-materialescolar.webp":1,"i-escolaparticular.webp":1,"i-creche.webp":1,"i-vanescolar.webp":1,"i-movida.webp":1,"i-smiles.webp":1,"i-gol.webp":1,"i-hotelscom.webp":1,"i-trivago.webp":1,"i-cvc.webp":1,"i-bradescoseg.webp":1,"i-bradescosaude.webp":1,"i-amil.webp":1,"i-amildental.webp":1,"i-azulaerea.webp":1,"i-sabesp.webp":1,"i-comgas.webp":1,"i-buser.webp":1,"i-blablacar.webp":1,"i-enel.webp":1,"i-github.webp":1,"i-futfanatics.webp":1,"i-livelo.webp":1,"i-bb.webp":1,"i-gmail.webp":1,"i-amazon.webp":1,"i-youtube.webp":1,"i-neon.webp":1,"i-portoseguro.webp":1,"i-whatsapp.webp":1,"i-prime.webp":1,"i-inter.webp":1,"i-instagram.webp":1,"i-netshoes.webp":1,"i-facebook.webp":1,"i-shopee.webp":1,"i-claude.webp":1,"i-ifood.webp":1,"i-btg.webp":1,"i-vivo.webp":1,"i-yamaha.webp":1,"i-fgc.webp":1,"i-agora.webp":1,"i-centauro.webp":1,"i-pinterest.webp":1,"i-premiere.webp":1,"i-oi.webp":1,"i-sky.webp":1,"i-quintoandar.webp":1,"i-picpay.webp":1,"i-nubank.webp":1,"i-mercadopago.webp":1,"i-bv.webp":1,"i-pan.webp":1,"i-sicoob.webp":1};
+const LOGOC={"i-garagem.webp":1,"i-materialescolar.webp":1,"i-escolaparticular.webp":1,"i-creche.webp":1,"i-vanescolar.webp":1,"i-movida.webp":1,"i-smiles.webp":1,"i-gol.webp":1,"i-hotelscom.webp":1,"i-trivago.webp":1,"i-cvc.webp":1,"i-bradescoseg.webp":1,"i-bradescosaude.webp":1,"i-amil.webp":1,"i-amildental.webp":1,"i-azulaerea.webp":1,"i-sabesp.webp":1,"i-comgas.webp":1,"i-buser.webp":1,"i-blablacar.webp":1,"i-enel.webp":1,"i-github.webp":1,"i-futfanatics.webp":1,"i-livelo.webp":1,"i-bb.webp":1,"i-gmail.webp":1,"i-amazon.webp":1,"i-youtube.webp":1,"i-neon.webp":1,"i-portoseguro.webp":1,"i-whatsapp.webp":1,"i-prime.webp":1,"i-inter.webp":1,"i-instagram.webp":1,"i-netshoes.webp":1,"i-facebook.webp":1,"i-shopee.webp":1,"i-claude.webp":1,"i-ifood.webp":1,"i-btg.webp":1,"i-vivo.webp":1,"i-yamaha.webp":1,"i-fgc.webp":1,"i-agora.webp":1,"i-centauro.webp":1,"i-pinterest.webp":1,"i-premiere.webp":1,"i-oi.webp":1,"i-sky.webp":1,"i-quintoandar.webp":1,"i-picpay.webp":1,"i-nubank.webp":1,"i-mercadopago.webp":1,"i-bv.webp":1,"i-pan.webp":1,"i-sicoob.webp":1};
 const ICLIGHT=()=>{try{return localStorage.getItem('sobrou.ic')!=='d'}catch(e){return true}};
 function logo(id){let v=LOGOS[id];if(v&&v.charAt(0)==='@')v=LOGOS[v.slice(1)];if(!/^i-[a-z0-9_-]+\.webp$/.test(v||''))return '';if(LOGOC[v]&&ICLIGHT())v=v.replace(/\.webp$/,'-c.webp');if(ICMISS[v]){const b=v.replace(/-c\.webp$/,'.webp');if(b!==v&&!ICMISS[b])v=b;else return ''}return imgU(v)}
 const ICOK={},ICMISS={};
@@ -1440,6 +1440,7 @@ function cardArt(o,mini){
    '<span class="cc-r"><b class="cc-net n-'+br+'">'+BRANDS[br]+'</b>'+(tier==='standard'?'':'<i class="cc-tier">'+TIERS[tier]+'</i>')+'</span><i class="cc-fx"><b class="cc-rg"><u></u></b></i></div>';
 }
 const CTIPO={credito:'crédito',debito:'débito'};
+const isZC=c=>c==='cartao'||c==='servicos'||c==='tag'; /* v13.391: contas de valor que muda todo mês (cartão e Luz·Água·Gás): meses seguintes começam em R$ 0,00 (a lançar) */
 function catLbl(b,c){return b.cat==='cartao'&&CTIPO[b.ctype]?'Cartão de '+CTIPO[b.ctype]:c.l} /* v13.378: na lista o rótulo do cartão já diz crédito ou débito */
 function lead(b){
   const c=CAT[b.cat]||CAT.outros;
@@ -1490,7 +1491,7 @@ function overdueAll(){
     const s=fromISO(b.due), si=s.getFullYear()*12+s.getMonth();
     for(let i=Math.max(si,ni-36);i<=ni;i++){
       const o=occ(b,Math.floor(i/12),i%12);
-      if(o&&!o.paid&&o.date<t&&!(b.cat==='cartao'&&o.amt===0)) out.push(o);
+      if(o&&!o.paid&&o.date<t&&!(isZC(b.cat)&&o.amt===0)) out.push(o);
     }
   });
   return out.sort((a,b)=>a.date-b.date);
@@ -1595,7 +1596,7 @@ function row(o,i){
     '<button type="button" class="chk" aria-label="Marcar como paga">'+CHECK+'</button>'+
     lead(o.b)+
     '<div class="mid"><i class="k">'+esc(catLbl(o.b,c))+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
-    '<div class="amt'+(o.amt===0&&o.b.cat==='cartao'&&!o.paid?' lan">A lançar':'">'+brl(o.amt))+'</div></div>';
+    '<div class="amt'+(o.amt===0&&isZC(o.b.cat)&&!o.paid?' lan">A lançar':'">'+brl(o.amt))+'</div></div>';
 }
 
 /* v13.270: "remendo" da lista ao pagar/desfazer. Em vez de apagar e recriar todas as linhas, mantém as que não mudaram (já desenhadas)
@@ -2181,7 +2182,7 @@ function togglePaid(id,key,x,y,direto){
   const b=S.bills.find(v=>v.id===id);if(!b)return;
   const k=id+'|'+key;if(PAYQ.has(k))return;
   const paying=!b.paid[key];
-  if(paying&&b.cat==='cartao'){const pk=key.split('-').map(Number),oc=occ(b,pk[0],pk[1]-1);if(oc&&oc.amt===0){toast('Informe o valor da fatura antes de marcar como paga');openSheet(b.id,key);return}} /* v13.380: fatura zerada (a lançar) não é paga: abre a edição para informar o valor */
+  if(paying&&isZC(b.cat)){const pk=key.split('-').map(Number),oc=occ(b,pk[0],pk[1]-1);if(oc&&oc.amt===0){toast(b.cat==='cartao'?'Informe o valor da fatura antes de marcar como paga':'Informe o valor da conta antes de marcar como paga');openSheet(b.id,key);return}} /* v13.380: fatura zerada (a lançar) não é paga: abre a edição para informar o valor */
   if(direto||RMq()){ /* sem animação (vindo da janela de edição ou movimento reduzido) */
     if(paying){b.paid[key]=toISO(new Date());save();renderAll();if(!direto)burst(x,y)}
     else{delete b.paid[key];save();renderAll()}
@@ -2719,9 +2720,11 @@ function syncForm(){
     const ccz=F.cat==='cartao';
     if(ccz&&!EDIT&&F.rep==='inst')F.rep='monthly';
     const bi=$('#fr [data-r=inst]');if(bi)bi.hidden=ccz&&!(EDIT&&F.rep==='inst');$('#fr').style.gridTemplateColumns=(bi&&bi.hidden)?'1fr 1fr':'';
-    const zb=$('#czbox');if(zb){zb.hidden=!(ccz&&!EDIT&&F.rep==='monthly'&&F.mode!=='spent');
+    const zc=isZC(F.cat),sv=zc&&F.cat!=='cartao';
+    const zb=$('#czbox');if(zb){zb.hidden=!(zc&&!EDIT&&F.rep==='monthly'&&F.mode!=='spent');
+      const zl=zb.querySelector('.lbl');if(zl)zl.textContent=sv?'Contas dos próximos meses':'Faturas dos próximos meses';
       $$('#fcz button').forEach(b=>b.classList.toggle('on',b.dataset.z===F.cz));
-      $('#czh').textContent=F.cz==='zero'?'Cada fatura é de um mês: só este mês fica com o valor; do mês seguinte em diante aparece “A lançar” até você informar o valor.':'Os meses seguintes repetem o valor informado até você mudar.'}}
+      $('#czh').textContent=F.cz==='zero'?(sv?'O valor muda todo mês: só este mês fica com o valor (deixe R$ 0,00 se ainda não souber). Do mês seguinte em diante aparece “A lançar” até você informar o valor.':'Cada fatura é de um mês: só este mês fica com o valor; do mês seguinte em diante aparece “A lançar” até você informar o valor.'):'Os meses seguintes repetem o valor informado até você mudar.'}}
   $$('#fs2 button').forEach(b=>b.classList.toggle('on',b.dataset.sc===F.scope));
   try{$('#schint').textContent=F.scope==='one'?'O novo valor vale só neste mês.':F.scope==='fwd'?'O novo valor vale deste mês em diante; os meses anteriores continuam como estavam.':'O novo valor vale para todos os meses, inclusive os anteriores.'}catch(_){}
   const cc=F.cat==='cartao';
@@ -3592,7 +3595,7 @@ $('#panel').addEventListener('submit',e=>{
   e.preventDefault();
   if(SSTEP<3){if(stFalta())return;setStep(SSTEP+1);return}
   if(!EDIT&&!F.tp){toast('Escolha o tipo da conta');return}
-  if(!F.cents){
+  if(!F.cents&&!(isZC(F.cat)&&F.cat!=='cartao'&&!EDIT&&F.rep==='monthly'&&F.mode!=='spent'&&F.cz==='zero')){
     const a=$('#amtbox'),pn=$('#panel'),y=Math.round(pn.scrollTop);
     window.__diagAct&&window.__diagAct('adicionar conta sem valor');
     window.__diagNote&&window.__diagNote('Adicionar conta sem valor: a janela voltou ao topo de uma vez (estava em '+y+' px)','info');
@@ -3645,7 +3648,7 @@ $('#panel').addEventListener('submit',e=>{
       }
     }
   }
-  if(F.cat==='cartao'&&F.rep==='monthly'&&F.mode!=='spent'&&F.cz==='zero'){const k0=mkey(s.getFullYear(),s.getMonth()),n1=new Date(s.getFullYear(),s.getMonth()+1,1);b.amount=0;b.st=[{k:k0,a:F.cents},{k:mkey(n1.getFullYear(),n1.getMonth()),a:0}]} /* v13.380: fatura de cartão: só o 1º mês leva o valor, os seguintes começam em zero */
+  if(isZC(F.cat)&&F.rep==='monthly'&&F.mode!=='spent'&&F.cz==='zero'){const k0=mkey(s.getFullYear(),s.getMonth()),n1=new Date(s.getFullYear(),s.getMonth()+1,1);b.amount=0;b.st=[{k:k0,a:F.cents},{k:mkey(n1.getFullYear(),n1.getMonth()),a:0}]} /* v13.380: fatura de cartão: só o 1º mês leva o valor, os seguintes começam em zero */
   S.bills.push(b);save();
   const o=fromISO(due);V={y:o.getFullYear(),m:o.getMonth()};
   if(F.rep==='inst'&&F.cur>1){const t=today0();V={y:t.getFullYear(),m:t.getMonth()}}
