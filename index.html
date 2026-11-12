@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.374';
+(function(){var V='13.376';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -837,12 +837,12 @@ body.so .panel .cc-fx::after{animation:none}
 .panel.stps .save{margin-top:0;flex:1;height:54px;border-radius:18px}
 .panel.stps .snx{display:block}
 .panel.stps[data-step="3"] .snx{display:none}
-.panel.stps .sbk{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.panel.stps .sbk{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:18px;background:color-mix(in srgb,var(--tx) 16%,var(--p2));border:1px solid var(--line2);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
 .panel.stps[data-step="1"] .sbk{display:none}
 /* v13.374: editando uma conta não há passos nem seta de voltar (dava para trocar a conta por cima): só Cancelar e Salvar alterações */
 .scn{display:none}
 .panel.stps.edt .sprog,.panel.stps.edt .sst,.panel.stps.edt .sq,.panel.stps.edt .sbk{display:none}
-.panel.stps.edt .scn{display:grid;place-items:center;flex:none;height:54px;padding:0 20px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);font:700 15px var(--fb)}
+.panel.stps.edt .scn{display:grid;place-items:center;flex:none;height:54px;padding:0 20px;border-radius:18px;background:color-mix(in srgb,#ff4d5e 24%,var(--p2));border:1px solid rgba(255,77,94,.55);color:#ff7a86;font:700 15px var(--fb)}
 .panel.stps.edt .ssum{margin-top:12px}
 
 .panel.stps .ssum{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
@@ -1128,7 +1128,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.374';
+const VERSION='13.376';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2857,7 +2857,7 @@ function stFalta(){
   }
   return false}
 $('#snx').onclick=()=>{if(stFalta())return;stErr('');setStep(Math.min(3,SSTEP+1))};
-$('#sbk').onclick=()=>setStep(Math.max(1,SSTEP-1));
+$('#sbk').onclick=()=>{if(SSTEP===2&&!EDIT){stLimpa();try{$('#cm').innerHTML='';renderProv();syncForm()}catch(e){}}setStep(Math.max(1,SSTEP-1))}; /* v13.376: voltar ao passo 1 apaga o que foi escolhido no passo 2 */
 $('#scn').onclick=()=>closeSheet();
 
 /* o valor é uma máscara de centavos: cada dígito entra SEMPRE no fim (5 → R$ 0,05), onde quer que o cursor esteja. Antes o app lia o texto
@@ -2893,17 +2893,20 @@ $('#fa').addEventListener('input',e=>{
   F.cents=d?parseInt(d,10):0;e.target.value=fmtAmt(F.cents);
 });
 $('#tm').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.o==='custom'){if(!Array.isArray(S.order._tipos))S.order._tipos=catIds();S.order._tipm='custom'}else S.order._tipm='az';save();tipSave();renderCats()});
+function stLimpa(){ /* v13.376: zera tudo o que foi escolhido no passo 2 (empresa/banco, foto, cartão, como paga) */
+  if($('#fn').value===F.auto)$('#fn').value='';
+  F.auto='';F.prov='';F.pvs=0;F.bank='';F.bks=0;F.via='';F.model='';F.last4='';
+  F.img='';F.brand='visa';F.tier='standard';F.ctype='';F.limit=0;F.close=0; /* v13.259: a foto escolhida e os dados de cartão também são do tipo anterior */
+  CF='';CK='';CSEL='';CKS='';BKOPEN=false;
+  try{$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#ps').value='';setPB('')}catch(_){}
+}
 function fcSelect(b){
   const antes=F.cat;
   F.cat=b.dataset.c;F.tp=true;
   autoCat();
   /* v13.259: ao TROCAR de tipo numa conta nova, a escolha do tipo anterior (ex.: Banco do Brasil do Boleto) não vai junto para o passo 2 do novo tipo. Na edição de uma conta existente continua como antes. */
   if(!EDIT&&antes!==F.cat){
-    if($('#fn').value===F.auto)$('#fn').value='';
-    F.auto='';F.prov='';F.pvs=0;F.bank='';F.bks=0;F.via='';F.model='';F.last4='';
-    F.img='';F.brand='visa';F.tier='standard';F.ctype='';F.limit=0;F.close=0; /* v13.259: a foto escolhida e os dados de cartão também são do tipo anterior */
-    CF='';CK='';CSEL='';CKS='';BKOPEN=false;
-    try{$('#cl').value='';$('#cli').value='';$('#ccl').value=''}catch(_){}
+    stLimpa();
   }
   if(F.prov&&(LIST[F.cat]||[]).indexOf(F.prov)<0){
     if($('#fn').value===F.auto)$('#fn').value='';
