@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.373';
+(function(){var V='13.374';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -277,7 +277,6 @@ html.kbd body::after,body.sfull::after,body.so::after,html.lgon body::after{disp
 @keyframes fgir{0%,78%{transform:rotate(0)}94%,100%{transform:rotate(90deg)}}
 .page[hidden]{display:none}
 .page{animation:none} /* v13.184: troca de aba é corte seco (como o iPhone): antes a tela nova começava do escuro e clareava, o que virava piscada */
-@keyframes pgin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* painel de cadastro */
 .sheet[hidden]{display:none}
@@ -373,8 +372,8 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 #askyn .ab{width:100%;max-width:340px;background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid var(--line2);border-radius:24px;padding:22px 18px 16px;box-shadow:0 24px 60px rgba(0,0,0,.6);transform:scale(.94);transition:transform .2s cubic-bezier(.24,.92,.32,1)}#askyn.on .ab{transform:none}
 #askyn b{display:block;font:800 18px var(--fd)}#askyn p{margin:8px 0 4px;color:var(--mu);font-size:14px;line-height:1.45;word-break:break-word}
 #askyn .ar{display:flex;gap:10px;margin-top:12px}#askyn .ar .act{margin-top:0;flex:1}
-#paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.373: toque numa forma salva para editar */
-#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.373: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
+#paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.374: toque numa forma salva para editar */
+#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.374: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
 .row{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .row.lpon{background:linear-gradient(90deg,rgba(var(--ar),.14),rgba(var(--ar),.03));transform:scale(.988);transition:transform .2s,background .2s}
 #lpb{position:fixed;inset:0;z-index:120;background:rgba(2,3,6,.28)}
@@ -408,7 +407,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.373: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -461,8 +460,6 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast button{color:var(--gold2);font-weight:700}
 /* confete: cada bolinha é animada pelo compositor do iPhone (sem desenhar quadro a quadro no processador) */
-.fxb{position:fixed;left:0;top:0;width:0;height:0;pointer-events:none;z-index:80}
-.fxb i{position:absolute;left:0;top:0;border-radius:50%;pointer-events:none}
 
 
 /* empresas, selos e cartões */
@@ -495,7 +492,6 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .panel.stps .imgrow{gap:10px}
 .panel.stps #pimg{height:48px;font-size:14px}
 /* v13.237: no cadastro em passos não existe o ícone 'Outro' (sempre se escolhe uma opção da lista ou a própria foto/logo) */
-.panel.stps #pg .pt[data-p=""]{display:none}
 /* v13.237: no passo 2 'Quem é?' e 'Como você paga' são obrigatórios: sem escolher, o Continuar não avança, avisa e destaca o que falta */
 .serr{display:flex;align-items:center;gap:9px;margin:10px 2px 12px;padding:10px 12px;border-radius:14px;background:rgba(251,111,111,.10);border:1px solid rgba(251,111,111,.32);color:#ffb4b4;font:600 13px/1.3 var(--fb)}
 .serr::before{content:"!";flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(251,111,111,.9);color:#2a0a0a;font:800 12px/1 var(--fb)}
@@ -682,15 +678,7 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 .cc.t-black{--t:#f3d27a;background:radial-gradient(120% 90% at 100% 0%,rgba(243,210,122,.22),transparent 55%),linear-gradient(135deg,#2c2c35,#09090c)}
 .cc.t-platinum{--t:#1d2030;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.75),transparent 55%),linear-gradient(135deg,#e6e9f0,#8d95aa)}
 .cc.t-gold{--t:#2b1d00;background:radial-gradient(120% 90% at 100% 0%,rgba(255,255,255,.55),transparent 55%),linear-gradient(135deg,#f7de92,#b88729)}
-.cc-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.cc-bank{font:800 14.5px/1 var(--fd);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cc.t-black .cc-bank::before,.cc.t-platinum .cc-bank::before,.cc.t-gold .cc-bank::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:7px;box-shadow:0 0 0 2px rgba(255,255,255,.4)}
-.cc-nfc{width:20px;height:20px;opacity:.8;flex:none}
-.cc-chip{width:36px;height:27px;border-radius:7px;background:linear-gradient(135deg,#f7e6a6,#c49a45);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);position:relative}
-.cc-chip::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(0,0,0,.25)}
-.cc-chip::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(0,0,0,.25)}
 .cc-num{font:600 17px/1 var(--fd);letter-spacing:.14em;font-variant-numeric:tabular-nums;text-shadow:0 1px 0 rgba(0,0,0,.18)}
-.cc-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
 .cc-tier{font:700 10px/1 var(--fb);letter-spacing:.16em;text-transform:uppercase;opacity:.9}
 .cc-net{font:800 16px/1 var(--fd);letter-spacing:.01em}
 .cc-net.n-visa{font-style:italic;letter-spacing:.04em}
@@ -699,8 +687,6 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 .cc-net.n-amex{font-size:13px;letter-spacing:.08em}
 .cc-net.n-hiper{font-size:13px}
 .cc.mini{width:48px;flex:none;border-radius:7px;padding:4px 5px;box-shadow:0 6px 12px -6px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.25)}
-.cc.mini .cc-top,.cc.mini .cc-bot,.cc.mini .cc-num{display:none}
-.cc.mini .cc-chip{width:11px;height:8px;border-radius:2px;margin-top:2px}
 .cc.mini::after{display:none}
 .cards{--cw:min(272px,76vw);position:relative;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:6px calc(50% + 16px - var(--cw)/2) 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 .cards::-webkit-scrollbar{display:none}
@@ -731,7 +717,6 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 .pv .fbk{display:none;font:inherit}
 .pv.logo.bad{background:linear-gradient(145deg,color-mix(in srgb,var(--c) 86%,#fff),var(--c));color:var(--t)}
 .pv.logo.bad .fbk{display:block}
-.cc-bank{display:flex;align-items:center;min-width:0}
 .cc-n{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cc-logo{width:24px;height:24px;border-radius:7px;margin-right:8px;flex:none;display:block;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .cc.mini .cc-logo{display:none}
@@ -792,7 +777,6 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 .cc.w .cc-net.n-amex,.cc.w .cc-net.n-hiper{font-size:6.4cqw}
 .cc.w .cc-tier{font:300 3.5cqw/1 -apple-system,"SF Pro Display",system-ui,var(--fb);letter-spacing:.01em;text-transform:none;color:var(--t);opacity:.95}
 .cc.w:not(.t-standard):not(.t-platinum) .cc-net,.cc.w:not(.t-standard):not(.t-platinum) .cc-tier,.cc.w:not(.t-standard):not(.t-platinum) .cc-prod{background:linear-gradient(100deg,var(--a) 35%,#fff6d4 50%,var(--a) 65%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;background-position:100% 0}
-@keyframes ttext{0%,40%{background-position:130% 0}100%{background-position:-60% 0}}
 .cc.tpl{background:#000;box-shadow:0 24px 40px -20px rgba(0,0,0,.9)}
 .cc.tpl .cc-bg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;-webkit-user-drag:none}
 .cc-fx{position:absolute;inset:0;pointer-events:none;border-radius:inherit;overflow:hidden}
@@ -836,9 +820,7 @@ body.so .panel .cc-fx::after{animation:none}
 .panel .cc::after,.panel .cc-fx::after{animation:none!important;display:none}
 .cpi{contain:layout style}
 
-/* v13.237: cadastro em 3 passos (Tipo · Quem é · Detalhes) dentro da mesma janela. Cada passo mostra só o seu pedaço (o resto fica sem desenho, display:none), botão fixo embaixo e barra de progresso. Desligar: Ajustes > Cadastro em passos (volta ao formulário único de antes) */
-.sprog,.sst,.sq,.sbk,.snx{display:none}
-.sfoot{display:contents}
+/* v13.237: cadastro em 3 passos (Tipo · Quem é · Detalhes) dentro da mesma janela. Cada passo mostra só o seu pedaço (o resto fica sem desenho, display:none), botão fixo embaixo e barra de progresso. */
 .panel.stps{height:min(92dvh,calc(100dvh - env(safe-area-inset-top,0px) - 66px));display:flex;flex-direction:column;padding:10px 24px 0}
 .panel{overflow-x:hidden;overscroll-behavior-x:none}
 .panel.stps{align-items:stretch;touch-action:pan-y}
@@ -850,7 +832,6 @@ body.so .panel .cc-fx::after{animation:none}
 .sprog b.on{background:var(--gold);box-shadow:0 0 10px rgba(var(--ar),.55)}
 .panel.stps .sst{display:block;font:600 11px var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin:12px 0 4px}
 .panel.stps .sq{display:block;font:800 24px/1.15 var(--fd);letter-spacing:-.02em;margin:0 0 10px}
-.panel.stps #pl{display:none}
 .panel.stps[data-step="1"] :is(.s2,.s3,.s23),.panel.stps[data-step="2"] :is(.s1,.s3),.panel.stps[data-step="3"] :is(.s1,.s2){display:none!important}
 .panel.stps .sfoot{display:flex;gap:10px;position:sticky;bottom:0;margin-top:auto;padding:16px 0 calc(env(safe-area-inset-bottom,0px) + 14px);background:linear-gradient(0deg,var(--p2) 72%,rgba(0,0,0,0));z-index:5}
 .panel.stps .save{margin-top:0;flex:1;height:54px;border-radius:18px}
@@ -858,13 +839,12 @@ body.so .panel .cc-fx::after{animation:none}
 .panel.stps[data-step="3"] .snx{display:none}
 .panel.stps .sbk{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
 .panel.stps[data-step="1"] .sbk{display:none}
-/* v13.373: editando uma conta não há passos nem seta de voltar (dava para trocar a conta por cima): só Cancelar e Salvar alterações */
+/* v13.374: editando uma conta não há passos nem seta de voltar (dava para trocar a conta por cima): só Cancelar e Salvar alterações */
 .scn{display:none}
 .panel.stps.edt .sprog,.panel.stps.edt .sst,.panel.stps.edt .sq,.panel.stps.edt .sbk{display:none}
 .panel.stps.edt .scn{display:grid;place-items:center;flex:none;height:54px;padding:0 20px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);font:700 15px var(--fb)}
 .panel.stps.edt .ssum{margin-top:12px}
 
-.ssum{display:none}
 .panel.stps .ssum{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
 .ssum span{padding:5px 11px;border-radius:99px;background:rgba(var(--ar),.12);border:1px solid rgba(var(--ar),.3);font:600 12px var(--fb);color:var(--tx)}
 .ssum:empty{display:none!important}
@@ -935,11 +915,9 @@ body.dragging .pt:active,body.dragging .pt.on{transform:none}
 .spl-t{margin-top:14px;font:500 13.5px/1.55 var(--fb,system-ui);letter-spacing:.22em;text-transform:uppercase;color:#aab1c4;opacity:0}
 .spl.go .spl-t{animation:splf .5s 2s ease forwards}
 .spl-t b{display:block;font-weight:700;color:var(--gold)}
-@keyframes splm{0%{clip-path:inset(100% 0 0 0);transform:translateY(18px) scale(.9)}100%{clip-path:inset(-60% -60% -60% -60%);transform:none}}
 @keyframes splj{0%{filter:var(--mf) drop-shadow(0 0 0 rgba(var(--ar),0))}45%{filter:var(--mf) drop-shadow(0 0 26px rgba(var(--ar),.7))}100%{filter:var(--mf) drop-shadow(0 12px 22px rgba(0,0,0,.45))}}
 @keyframes splf{to{opacity:1}}
 @keyframes splg{0%{opacity:0;transform:scale(.7)}55%{opacity:1;transform:scale(1)}100%{opacity:.8;transform:scale(1.08)}}
-@keyframes spln{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.spl *,.spl::after{animation-duration:.01s!important;animation-delay:0s!important}}
 .spl canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 /* v13.77: abertura do app = continuação da imagem de início do iPhone: já nasce no último quadro (logo, nome e frase visíveis, igual à imagem), segura um instante e sai com um zoom suave */
@@ -1052,7 +1030,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <div class="sheet" id="sheet" hidden>
   <div class="scrim" id="scrim"></div>
   <header class="top sband" aria-hidden="true"><div class="brand"><div class="logo"><img data-mk alt=""></div><h1>Sobrou<span class="ex">!</span></h1></div><div class="hr"><span class="ver"></span><span class="pill">Premium</span></div></header>
-  <form class="panel" id="panel" autocomplete="off" novalidate>
+  <form class="panel stps" id="panel" autocomplete="off" novalidate>
     <div class="grab"></div>
     <div class="stitle"><h2 id="st">Nova conta</h2><button type="button" class="x" id="sx" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div class="sprog" id="sprog"><b></b><b></b><b></b></div><div class="sst" id="sst"></div><div class="sq" id="sq"></div><div class="ssum s3" id="ssum"></div>
@@ -1063,7 +1041,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
     <div class="lbl tbar s1"><span>Tipo</span><div class="segP" id="tm"><button type="button" data-o="az">A–Z</button><button type="button" data-o="custom">Minha ordem</button></div></div>
     <div class="phint s1" id="thint" hidden>Segure um tipo e arraste para onde quiser.</div>
     <div class="cats s1" id="fc"></div>
-    <div class="lbl s2" id="pl">Qual é a empresa?</div>
+    
     <input class="fld sm s2" id="ps" autocorrect="off" spellcheck="false" type="search" placeholder="Buscar banco, streaming, empresa..." autocomplete="off">
     <div class="pbar s2"><div class="segP" id="pm"><button type="button" data-o="az">A–Z</button><button type="button" data-o="custom">Minha ordem</button></div><div class="segP" id="pic" title="Estilo dos ícones"><button type="button" data-i="d">Escuro</button><button type="button" data-i="c">Claro</button></div></div>
     <div class="phint s2" id="phint" hidden></div>
@@ -1150,7 +1128,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.373';
+const VERSION='13.374';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1470,7 +1448,7 @@ const now0=new Date();
 let V={y:now0.getFullYear(),m:now0.getMonth()}; /* mês em exibição */
 let TAB='home', ANIM=true, NAVM=false;
 
-/* v13.373: valor por faixa — b.st=[{k:'AAAA-MM',a:centavos}]: o novo valor vale do mês k em diante e os meses anteriores continuam com o valor antigo */
+/* v13.374: valor por faixa — b.st=[{k:'AAAA-MM',a:centavos}]: o novo valor vale do mês k em diante e os meses anteriores continuam com o valor antigo */
 function stAmt(b,key){let a=b.amount;if(b.st)for(let i=0;i<b.st.length;i++){if(b.st[i].k<=key)a=b.st[i].a;else break}return a}
 const curAmt=b=>stAmt(b,'9999-99');
 function occ(b,y,m){
@@ -1902,7 +1880,6 @@ function renderSet(){
    '<div class="card"><h3>Estilo dos ícones</h3><div class="cap"><b>Escuro</b>: os ícones das empresas como aparecem no iPhone com a tela escura. <b>Claro</b>: como aparecem com a tela clara. '+(Object.keys(LOGOC).length?'Versão clara disponível para '+Object.keys(LOGOC).length+' de '+Object.keys(LOGOS).length+' ícones; os outros são iguais nos dois estilos. ':'A versão clara ainda não foi adicionada: por enquanto os dois estilos mostram os mesmos ícones. ')+'A tela recarrega ao trocar. Vale só para este aparelho.</div><div class="crow" id="bic">'+[['e','Escuro'],['c','Claro']].map(k=>'<button type="button" class="crb'+((k[0]==='c')===ICLIGHT()?' on':'')+'" data-i="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Efeitos especiais</h3><div class="cap">Giro 3D e brilho dos cartões, animações ao abrir as telas, desfoque da barra de baixo e abertura animada. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve; ligue de novo quando quiser comparar. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div></div>'+
    '<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>'+
-   '<div class="card"><h3>Cadastro em passos</h3><div class="cap">O botão + abre o cadastro em 3 passos curtos (Tipo, Escolha, Detalhes), com botão fixo embaixo. Desligue para voltar ao formulário único de antes.</div><div class="fxrow"><b>'+(STEPS()?'Ligado':'Desligado')+'</b><button type="button" class="swt" id="bst" role="switch" aria-checked="'+(STEPS()?'true':'false')+'" aria-label="Cadastro em passos"></button></div></div>'+
    '<div class="card"><h3>Backup</h3><div class="cap">Copie o backup e guarde no WhatsApp, Notas ou e-mail. Para restaurar, cole o texto abaixo.</div>'+
    '<button class="act" id="bcopy">Copiar backup</button><textarea class="fld bk" id="bpaste" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui o backup para restaurar"></textarea><button class="act" id="brest">Restaurar backup</button></div>'+
    '<div class="card"><h3>Atualização</h3><div class="cap">O app confere sozinho se há versão nova ao abrir. Seus dados não são apagados.</div><button class="act" id="bupd">Verificar atualização</button></div>'+
@@ -1915,7 +1892,6 @@ function renderSet(){
   if(window.__acc)window.__acc.bind();
   if(window.__diag)window.__diag.bind();
   $('#bspl').onclick=()=>window.showSplash&&window.showSplash();
-  $('#bst').onclick=()=>{const on=!STEPS();try{if(on)localStorage.removeItem('sobrou.steps');else localStorage.setItem('sobrou.steps','0')}catch(e){}renderSet();toast(on?'Cadastro em passos ligado':'Cadastro em passos desligado')};
   $('#bend').onclick=e=>{const b=e.target.closest('.crb');if(!b||(b.dataset.e==='firm')===window.__ENDF)return;try{localStorage.setItem('sobrou.ends',b.dataset.e==='firm'?'firm':'el')}catch(_){}toast('Pontas: '+(b.dataset.e==='firm'?'firme':'elástico')+'…');setTimeout(()=>location.reload(),350)};
   $('#bcr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
   $('#bic').onclick=e=>{const b=e.target.closest('.crb');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}toast('Ícones: '+(c?'claros':'escuros')+'…');setTimeout(()=>location.reload(),350)};
@@ -2261,7 +2237,7 @@ const PGC=new Map(),PGD=new Map();let PGK='';
 let PGW=null,PGWT=0;
 function pgdClear(){PGC.clear();PGD.clear();if(PGW)PGW.textContent=''}
 /* v13.111: monta os ícones dos OUTROS tipos de conta em segundo plano (fora da tela, um tipo a cada 300 ms, só enquanto a janela está aberta), para a 1ª troca de Boleto/Cartão/… já encontrar tudo pronto */
-function provNodes(cat){const t=document.createElement('div');t.innerHTML=orderedIds(cat).map(id=>{const p=PROV[id];return '<div role="button" class="pt" data-p="'+id+'">'+badge(p)+'<span>'+esc(p.n)+'</span>'+HZ+'</div>'}).join('')+'<div role="button" class="pt" data-p=""><div class="pv" style="--c:#2a3050;--t:#9aa3b8">···</div><span>Outro</span>'+HZ+'</div>';return [...t.children]}
+function provNodes(cat){const t=document.createElement('div');t.innerHTML=orderedIds(cat).map(id=>{const p=PROV[id];return '<div role="button" class="pt" data-p="'+id+'">'+badge(p)+'<span>'+esc(p.n)+'</span>'+HZ+'</div>'}).join('');return [...t.children]}
 function provWarm(){clearTimeout(PGWT);const cats=Object.keys(CAT).filter(c=>c!==F.cat);let i=0;
   const step=()=>{const sh=$('#sheet');if(!sh||sh.hidden||i>=cats.length)return;const c=cats[i++],dk=c+'|'+S.pord;
     try{if(!PGD.has(dk)){const nd=provNodes(c);PGD.set(dk,nd);
@@ -2290,7 +2266,6 @@ function appWarm(){
 }
 function renderProv(){
   window.__diagAct&&window.__diagAct('montando os ícones');
-  {const pl=$('#pl');if(pl)pl.textContent=PQ(F.cat)}
   const q=($('#ps').value||'').trim().toLowerCase();
   let ids;
   if(q){const nz=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),nq=nz(q);ids=Object.keys(PROV).filter(id=>!(F.cat==='cartao'&&HIDEP.has(id))&&nz(PROV[id].n+' '+(PROV[id].al||'')).indexOf(nq)>-1)}
@@ -2304,17 +2279,16 @@ function renderProv(){
   if(!g){g=ids.map(id=>{const p=PROV[id];return '<div role="button" class="pt'+(F.prov===id?' on':'')+'" data-p="'+id+'">'+badge(p)+'<span>'+esc(p.n)+'</span>'+HZ+'</div>'});
     if(!q){PGC.set(pk,g);if(PGC.size>8)PGC.delete(PGC.keys().next().value)}} /* v13.46: o cache guarda só os ícones; o "Outro" é somado depois (antes entrava no cache e aparecia duplicado) */
   /* "Outro" fica sempre no final de todos os ícones (e não pode ser arrastado) */
-  const outro='<div role="button" class="pt'+(!F.prov?' on':'')+'" data-p=""><div class="pv" style="--c:#2a3050;--t:#9aa3b8">···</div><span>Outro</span>'+HZ+'</div>';
-  const nada=(q&&!ids.length)?'<p class="hint" style="grid-column:1/-1">Nada encontrado. '+($('#panel').classList.contains('stps')?'Toque em Usar minha foto ou logo para cadastrar a sua.':'Use o campo de nome acima ou escolha Outro.')+'</p>':'';
+  const nada=(q&&!ids.length)?'<p class="hint" style="grid-column:1/-1">Nada encontrado. Toque em Usar minha foto ou logo para cadastrar a sua.</p>':'';
   /* v13.77: todos os ícones entram de uma vez (a v13.66 montava em partes e o resto aparecia atrasado; o cronômetro mostrou que montar tudo custa só ~5 ms) */
   if(!q){
     /* v13.110: os ícones ficam PRONTOS (elementos já criados e já decodificados) por tipo de conta; ao trocar, só se trocam os elementos de lugar e se marca o escolhido. Antes o HTML era lido e as ~45 imagens recriadas a cada toque (~50 ms de desenho do iPhone = engasgo) */
     const dk=F.cat+'|'+S.pord;let nd=PGD.get(dk);
-    if(!nd){const t=document.createElement('div');t.innerHTML=g.join('').replace(/ on"/g,'"')+outro.replace(/ on"/g,'"');nd=[...t.children];PGD.set(dk,nd);if(PGD.size>14)PGD.delete(PGD.keys().next().value)}
+    if(!nd){const t=document.createElement('div');t.innerHTML=g.join('').replace(/ on"/g,'"');nd=[...t.children];PGD.set(dk,nd);if(PGD.size>14)PGD.delete(PGD.keys().next().value)}
     nd.forEach(el=>el.classList.toggle('on',(el.dataset.p||'')===(F.prov||'')));
     PGK=pk;$('#pg').replaceChildren(...nd);icoDecode();return;
   }
-  PGK=pk;$('#pg').innerHTML=nada+g.join('')+outro;icoDecode();
+  PGK=pk;$('#pg').innerHTML=nada+g.join('');icoDecode();
 }
 /* "pago por transferência para": grade de bancos (monta uma vez; depois só marca o escolhido) */
 let BKB=false,BKOPEN=false;
@@ -2831,7 +2805,7 @@ function openSheet(id,key){
   /* monta tudo com a janela ainda fora da tela e só depois começa a subida: o trabalho pesado não cai no meio da animação */
   /* v13.87: um layout só: antes o scrollTop=0 aqui obrigava o iPhone a medir a janela com o conteúdo ANTIGO e logo depois tudo era trocado e medido de novo; agora volta ao topo depois de montar o conteúdo novo */
   sh.hidden=false;document.body.style.overflow='hidden';
-  pn.classList.toggle('stps',STEPS());pn.classList.toggle('edt',!!EDIT);if(STEPS())setStep(EDIT?3:1);
+  pn.classList.toggle('edt',!!EDIT);setStep(EDIT?3:1);
   PGK='';renderPay();renderProv();syncForm();pn.scrollTop=0;
   snapPanel();abrirAnim(pn);void sh.offsetWidth;sh.classList.add('open');provWarm();traceAbrir(pn);
   clearTimeout(window.__sft);window.__sft=setTimeout(()=>{if(sh.classList.contains('open'))document.body.classList.add('sfull')},640);
@@ -2849,9 +2823,9 @@ function closeSheet(){
 $('#scrim').onclick=closeSheet;$('#sx').onclick=closeSheet;
 /* v13.237: cadastro em passos */
 let SSTEP=1;
-function STEPS(){try{return localStorage.getItem('sobrou.steps')!=='0'}catch(e){return true}}
+try{localStorage.removeItem('sobrou.steps')}catch(e){} /* v13.374: o cadastro em passos é o único; descarta a antiga chave de “desligar” */
 function setStep(n,keep){
-  const pn=$('#panel');if(!pn.classList.contains('stps'))return;
+  const pn=$('#panel');
   const t0=performance.now(),prev=SSTEP;SSTEP=n;pn.dataset.step=n;
   if(!$('#sheet').hidden)requestAnimationFrame(()=>requestAnimationFrame(snapPanel));
   $$('#sprog b').forEach((b,i)=>b.classList.toggle('on',i<n));
@@ -2865,7 +2839,7 @@ function setStep(n,keep){
   try{requestAnimationFrame(()=>requestAnimationFrame(()=>{const d=performance.now()-t0;if(window.__diagNote&&d>45)window.__diagNote('passo '+prev+' → '+n+' demorou '+Math.round(d)+' ms para aparecer','passo')}))}catch(e){}
 }
 /* v13.237: tocar num tipo já avança para o passo 2; escolher um banco de cartão rola até os cartões dele */
-function stScroll(){const pn=$('#panel');if(!pn.classList.contains('stps')||SSTEP!==2)return;setTimeout(()=>cbFit('auto'),60);clearTimeout(stScroll._t);stScroll._t=setTimeout(()=>{try{const c=$('#cml');if(SSTEP===2&&F.cat==='cartao'&&c&&!c.hidden){pn.scrollTo({top:Math.max(0,c.getBoundingClientRect().top-pn.getBoundingClientRect().top+pn.scrollTop-70),behavior:NOFX()?'auto':'smooth'})}}catch(e){}},150)}
+function stScroll(){const pn=$('#panel');if(SSTEP!==2)return;setTimeout(()=>cbFit('auto'),60);clearTimeout(stScroll._t);stScroll._t=setTimeout(()=>{try{const c=$('#cml');if(SSTEP===2&&F.cat==='cartao'&&c&&!c.hidden){pn.scrollTo({top:Math.max(0,c.getBoundingClientRect().top-pn.getBoundingClientRect().top+pn.scrollTop-70),behavior:NOFX()?'auto':'smooth'})}}catch(e){}},150)}
 {const o=pgClick;pgClick=function(e){if(e&&e.target&&e.target.closest&&e.target.closest('.pt')&&Date.now()-LASTDRAG>=500){F.pvs=1;stErr('')}const r=o.apply(this,arguments);stScroll();return r}}
 /* v13.237: o que falta no passo 2 (Quem é? e Como você paga são obrigatórios) */
 function stErr(m,el){let e=$('#serr');if(!m){if(e)e.remove();return}
@@ -3443,7 +3417,7 @@ function askYN(title,msg,okLabel,cb){
   d.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a||e.target===d){const y=a&&a.dataset.a==='y';d.classList.remove('on');setTimeout(()=>d.remove(),180);if(y)cb()}});
   document.body.appendChild(d);void d.offsetWidth;d.classList.add('on')}
 function cpfOk(d){if(d.length!==11||/^(\d)\1{10}$/.test(d))return false;let a=0,b=0;for(let i=0;i<9;i++){a+=d[i]*(10-i)}a=(a*10)%11%10;if(a!==+d[9])return false;for(let i=0;i<10;i++){b+=d[i]*(11-i)}b=(b*10)%11%10;return b===+d[10]}
-/* v13.373: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
+/* v13.374: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
 function pixTipo(v){v=String(v||'').trim();if(!v)return '';const d=v.replace(/\D/g,'');
   if(v.indexOf('@')>0)return 'E-mail';
   if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v))return 'Chave aleatória';
@@ -3509,7 +3483,7 @@ function openDet(id,key){
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
   const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';clearTimeout(window.__dts);window.__dts=setTimeout(()=>{if($('#dt').classList.contains('open'))document.body.classList.add('so')},300);const pp=$('#dtp');pp.scrollTop=0;pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2||true);void d.offsetWidth;d.classList.add('open');requestAnimationFrame(()=>{pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2)})}
-function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remove('open');document.body.style.overflow='';if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so'); /* v13.373: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela */
+function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remove('open');document.body.style.overflow='';if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so'); /* v13.374: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela */
   setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
 $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
@@ -3577,12 +3551,12 @@ function statsFx(v){
     if(!arr){if(df<-4){y0=null;return}if(df<6)return;arr=true;pn.style.transition='none'}
     dy=Math.max(0,df);pn.style.transform='translateY('+dy+'px)'},{passive:true});
   const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;if(!era)return;pn.style.transition='';
-    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.373: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
+    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.374: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
   d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true});
 })();
 $('#panel').addEventListener('submit',e=>{
   e.preventDefault();
-  if($('#panel').classList.contains('stps')&&SSTEP<3){if(stFalta())return;setStep(SSTEP+1);return}
+  if(SSTEP<3){if(stFalta())return;setStep(SSTEP+1);return}
   if(!EDIT&&!F.tp){toast('Escolha o tipo da conta');return}
   if(!F.cents){
     const a=$('#amtbox'),pn=$('#panel'),y=Math.round(pn.scrollTop);
