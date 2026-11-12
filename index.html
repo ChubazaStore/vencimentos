@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.372';
+(function(){var V='13.373';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -373,8 +373,8 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 #askyn .ab{width:100%;max-width:340px;background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid var(--line2);border-radius:24px;padding:22px 18px 16px;box-shadow:0 24px 60px rgba(0,0,0,.6);transform:scale(.94);transition:transform .2s cubic-bezier(.24,.92,.32,1)}#askyn.on .ab{transform:none}
 #askyn b{display:block;font:800 18px var(--fd)}#askyn p{margin:8px 0 4px;color:var(--mu);font-size:14px;line-height:1.45;word-break:break-word}
 #askyn .ar{display:flex;gap:10px;margin-top:12px}#askyn .ar .act{margin-top:0;flex:1}
-#paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.372: toque numa forma salva para editar */
-#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.372: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
+#paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.373: toque numa forma salva para editar */
+#dt .panel.fit{touch-action:none;overflow:hidden} /* v13.373: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
 .row{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .row.lpon{background:linear-gradient(90deg,rgba(var(--ar),.14),rgba(var(--ar),.03));transform:scale(.988);transition:transform .2s,background .2s}
 #lpb{position:fixed;inset:0;z-index:120;background:rgba(2,3,6,.28)}
@@ -408,7 +408,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.372: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.373: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -858,6 +858,11 @@ body.so .panel .cc-fx::after{animation:none}
 .panel.stps[data-step="3"] .snx{display:none}
 .panel.stps .sbk{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
 .panel.stps[data-step="1"] .sbk{display:none}
+/* v13.373: editando uma conta não há passos nem seta de voltar (dava para trocar a conta por cima): só Cancelar e Salvar alterações */
+.scn{display:none}
+.panel.stps.edt .sprog,.panel.stps.edt .sst,.panel.stps.edt .sq,.panel.stps.edt .sbk{display:none}
+.panel.stps.edt .scn{display:grid;place-items:center;flex:none;height:54px;padding:0 20px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line2);color:var(--tx);font:700 15px var(--fb)}
+.panel.stps.edt .ssum{margin-top:12px}
 
 .ssum{display:none}
 .panel.stps .ssum{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
@@ -1130,7 +1135,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
     <textarea class="fld s3" id="fo" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Número do contrato, lembrete, combinado..."></textarea>
     <button type="button" class="act s3" id="fcopy" hidden>Copiar observação</button>
     <div id="extra" class="s3"></div>
-    <div class="sfoot" id="sfoot"><button type="button" class="sbk" id="sbk" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="save snx" id="snx">Continuar</button><button type="submit" class="save s3" id="fs">Adicionar conta</button></div>
+    <div class="sfoot" id="sfoot"><button type="button" class="sbk" id="sbk" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="scn" id="scn">Cancelar</button><button type="button" class="save snx" id="snx">Continuar</button><button type="submit" class="save s3" id="fs">Adicionar conta</button></div>
   </form>
 </div>
 <div class="sheet" id="dt" hidden>
@@ -1145,7 +1150,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.372';
+const VERSION='13.373';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1465,7 +1470,7 @@ const now0=new Date();
 let V={y:now0.getFullYear(),m:now0.getMonth()}; /* mês em exibição */
 let TAB='home', ANIM=true, NAVM=false;
 
-/* v13.372: valor por faixa — b.st=[{k:'AAAA-MM',a:centavos}]: o novo valor vale do mês k em diante e os meses anteriores continuam com o valor antigo */
+/* v13.373: valor por faixa — b.st=[{k:'AAAA-MM',a:centavos}]: o novo valor vale do mês k em diante e os meses anteriores continuam com o valor antigo */
 function stAmt(b,key){let a=b.amount;if(b.st)for(let i=0;i<b.st.length;i++){if(b.st[i].k<=key)a=b.st[i].a;else break}return a}
 const curAmt=b=>stAmt(b,'9999-99');
 function occ(b,y,m){
@@ -2826,7 +2831,7 @@ function openSheet(id,key){
   /* monta tudo com a janela ainda fora da tela e só depois começa a subida: o trabalho pesado não cai no meio da animação */
   /* v13.87: um layout só: antes o scrollTop=0 aqui obrigava o iPhone a medir a janela com o conteúdo ANTIGO e logo depois tudo era trocado e medido de novo; agora volta ao topo depois de montar o conteúdo novo */
   sh.hidden=false;document.body.style.overflow='hidden';
-  pn.classList.toggle('stps',STEPS());if(STEPS())setStep(EDIT?3:1);
+  pn.classList.toggle('stps',STEPS());pn.classList.toggle('edt',!!EDIT);if(STEPS())setStep(EDIT?3:1);
   PGK='';renderPay();renderProv();syncForm();pn.scrollTop=0;
   snapPanel();abrirAnim(pn);void sh.offsetWidth;sh.classList.add('open');provWarm();traceAbrir(pn);
   clearTimeout(window.__sft);window.__sft=setTimeout(()=>{if(sh.classList.contains('open'))document.body.classList.add('sfull')},640);
@@ -2879,6 +2884,7 @@ function stFalta(){
   return false}
 $('#snx').onclick=()=>{if(stFalta())return;stErr('');setStep(Math.min(3,SSTEP+1))};
 $('#sbk').onclick=()=>setStep(Math.max(1,SSTEP-1));
+$('#scn').onclick=()=>closeSheet();
 
 /* o valor é uma máscara de centavos: cada dígito entra SEMPRE no fim (5 → R$ 0,05), onde quer que o cursor esteja. Antes o app lia o texto
    inteiro depois de o iPhone inserir o dígito no cursor — com o cursor fora do fim (ou o app ocupado) o dígito caía no meio e o valor errava */
@@ -3437,7 +3443,7 @@ function askYN(title,msg,okLabel,cb){
   d.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a||e.target===d){const y=a&&a.dataset.a==='y';d.classList.remove('on');setTimeout(()=>d.remove(),180);if(y)cb()}});
   document.body.appendChild(d);void d.offsetWidth;d.classList.add('on')}
 function cpfOk(d){if(d.length!==11||/^(\d)\1{10}$/.test(d))return false;let a=0,b=0;for(let i=0;i<9;i++){a+=d[i]*(10-i)}a=(a*10)%11%10;if(a!==+d[9])return false;for(let i=0;i<10;i++){b+=d[i]*(11-i)}b=(b*10)%11%10;return b===+d[10]}
-/* v13.372: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
+/* v13.373: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
 function pixTipo(v){v=String(v||'').trim();if(!v)return '';const d=v.replace(/\D/g,'');
   if(v.indexOf('@')>0)return 'E-mail';
   if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v))return 'Chave aleatória';
@@ -3503,7 +3509,7 @@ function openDet(id,key){
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
   const d=$('#dt');d.hidden=false;document.body.style.overflow='hidden';clearTimeout(window.__dts);window.__dts=setTimeout(()=>{if($('#dt').classList.contains('open'))document.body.classList.add('so')},300);const pp=$('#dtp');pp.scrollTop=0;pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2||true);void d.offsetWidth;d.classList.add('open');requestAnimationFrame(()=>{pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2)})}
-function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remove('open');document.body.style.overflow='';if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so'); /* v13.372: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela */
+function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remove('open');document.body.style.overflow='';if(!$('#sheet').classList.contains('open'))document.body.classList.remove('so'); /* v13.373: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela */
   setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
 $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
@@ -3571,7 +3577,7 @@ function statsFx(v){
     if(!arr){if(df<-4){y0=null;return}if(df<6)return;arr=true;pn.style.transition='none'}
     dy=Math.max(0,df);pn.style.transform='translateY('+dy+'px)'},{passive:true});
   const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;if(!era)return;pn.style.transition='';
-    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.372: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
+    if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.373: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
   d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true});
 })();
 $('#panel').addEventListener('submit',e=>{
