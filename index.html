@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.376';
+(function(){var V='13.377';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -496,7 +496,6 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .serr{display:flex;align-items:center;gap:9px;margin:10px 2px 12px;padding:10px 12px;border-radius:14px;background:rgba(251,111,111,.10);border:1px solid rgba(251,111,111,.32);color:#ffb4b4;font:600 13px/1.3 var(--fb)}
 .serr::before{content:"!";flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(251,111,111,.9);color:#2a0a0a;font:800 12px/1 var(--fb)}
 .pt .hz{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;clip-path:inset(0 round 16px);touch-action:pan-y;-webkit-tap-highlight-color:transparent}
-.fld.sm{height:42px;margin-bottom:10px;-webkit-appearance:none;appearance:none}
 .imgrow{display:flex;gap:8px;align-items:center;margin-top:10px}
 .imgrow .act{margin:0;height:42px;font-size:13px;flex:1}
 .pprev img{display:block;width:42px;height:42px;border-radius:12px;object-fit:cover;border:1px solid var(--line2)}
@@ -1042,7 +1041,6 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
     <div class="phint s1" id="thint" hidden>Segure um tipo e arraste para onde quiser.</div>
     <div class="cats s1" id="fc"></div>
     
-    <input class="fld sm s2" id="ps" autocorrect="off" spellcheck="false" type="search" placeholder="Buscar banco, streaming, empresa..." autocomplete="off">
     <div class="pbar s2"><div class="segP" id="pm"><button type="button" data-o="az">A–Z</button><button type="button" data-o="custom">Minha ordem</button></div><div class="segP" id="pic" title="Estilo dos ícones"><button type="button" data-i="d">Escuro</button><button type="button" data-i="c">Claro</button></div></div>
     <div class="phint s2" id="phint" hidden></div>
     <div class="pgrid s2" id="pg"></div>
@@ -1128,7 +1126,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.376';
+const VERSION='13.377';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2226,11 +2224,11 @@ function orderedIds(cat){
   const pos={};(S.order[cat]||[]).forEach((id,i)=>{pos[id]=i});
   return base.sort((a,b)=>((a in pos)?pos[a]:1e6)-((b in pos)?pos[b]:1e6)||AZ(a,b));
 }
-function provBar(searching){
+function provBar(){
   const cu=S.pord==='custom';
   $$('#pm button').forEach(b=>b.classList.toggle('on',b.dataset.o===(cu?'custom':'az')));
   $$('#pic button').forEach(b=>b.classList.toggle('on',(b.dataset.i==='c')===ICLIGHT()));
-  const ph=$('#phint');ph.hidden=!!searching;
+  const ph=$('#phint');ph.hidden=false;
   ph.innerHTML=cu?'Segure um ícone e arraste para onde quiser. <button type="button" id="prst">Voltar para A–Z</button>':'Para arrumar os ícones do seu jeito, toque em <b>Minha ordem</b> e segure um ícone.';
 }
 const PGC=new Map(),PGD=new Map();let PGK='';
@@ -2266,29 +2264,17 @@ function appWarm(){
 }
 function renderProv(){
   window.__diagAct&&window.__diagAct('montando os ícones');
-  const q=($('#ps').value||'').trim().toLowerCase();
-  let ids;
-  if(q){const nz=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),nq=nz(q);ids=Object.keys(PROV).filter(id=>!(F.cat==='cartao'&&HIDEP.has(id))&&nz(PROV[id].n+' '+(PROV[id].al||'')).indexOf(nq)>-1)}
-  else{
-    ids=orderedIds(F.cat);
-  }
-  if(q)ids.sort(AZ);
-  provBar(!!q);
-  const pk=q?'':F.cat+'|'+(F.prov||'')+'|'+S.pord;
-  let g=!q&&PGC.get(pk);
+  const ids=orderedIds(F.cat);
+  provBar();
+  const pk=F.cat+'|'+(F.prov||'')+'|'+S.pord;
+  let g=PGC.get(pk);
   if(!g){g=ids.map(id=>{const p=PROV[id];return '<div role="button" class="pt'+(F.prov===id?' on':'')+'" data-p="'+id+'">'+badge(p)+'<span>'+esc(p.n)+'</span>'+HZ+'</div>'});
-    if(!q){PGC.set(pk,g);if(PGC.size>8)PGC.delete(PGC.keys().next().value)}} /* v13.46: o cache guarda só os ícones; o "Outro" é somado depois (antes entrava no cache e aparecia duplicado) */
-  /* "Outro" fica sempre no final de todos os ícones (e não pode ser arrastado) */
-  const nada=(q&&!ids.length)?'<p class="hint" style="grid-column:1/-1">Nada encontrado. Toque em Usar minha foto ou logo para cadastrar a sua.</p>':'';
-  /* v13.77: todos os ícones entram de uma vez (a v13.66 montava em partes e o resto aparecia atrasado; o cronômetro mostrou que montar tudo custa só ~5 ms) */
-  if(!q){
-    /* v13.110: os ícones ficam PRONTOS (elementos já criados e já decodificados) por tipo de conta; ao trocar, só se trocam os elementos de lugar e se marca o escolhido. Antes o HTML era lido e as ~45 imagens recriadas a cada toque (~50 ms de desenho do iPhone = engasgo) */
-    const dk=F.cat+'|'+S.pord;let nd=PGD.get(dk);
-    if(!nd){const t=document.createElement('div');t.innerHTML=g.join('').replace(/ on"/g,'"');nd=[...t.children];PGD.set(dk,nd);if(PGD.size>14)PGD.delete(PGD.keys().next().value)}
-    nd.forEach(el=>el.classList.toggle('on',(el.dataset.p||'')===(F.prov||'')));
-    PGK=pk;$('#pg').replaceChildren(...nd);icoDecode();return;
-  }
-  PGK=pk;$('#pg').innerHTML=nada+g.join('');icoDecode();
+    PGC.set(pk,g);if(PGC.size>8)PGC.delete(PGC.keys().next().value)}
+  /* v13.77: todos os ícones entram de uma vez. v13.110: os ícones ficam PRONTOS (elementos já criados e decodificados) por tipo de conta; ao trocar, só se trocam os elementos de lugar e se marca o escolhido (antes o HTML era lido e as ~45 imagens recriadas a cada toque = engasgo) */
+  const dk=F.cat+'|'+S.pord;let nd=PGD.get(dk);
+  if(!nd){const t=document.createElement('div');t.innerHTML=g.join('').replace(/ on"/g,'"');nd=[...t.children];PGD.set(dk,nd);if(PGD.size>14)PGD.delete(PGD.keys().next().value)}
+  nd.forEach(el=>el.classList.toggle('on',(el.dataset.p||'')===(F.prov||'')));
+  PGK=pk;$('#pg').replaceChildren(...nd);icoDecode();
 }
 /* "pago por transferência para": grade de bancos (monta uma vez; depois só marca o escolhido) */
 let BKB=false,BKOPEN=false;
@@ -2785,7 +2771,7 @@ function openSheet(id,key){
   EDIT=null;CPC.clear();$('#cm').innerHTML='';const sh=$('#sheet'),pn=$('#panel');
   const b=id?S.bills.find(v=>v.id===id):null;
   BKOPEN=false;F={cents:0,cat:'boleto',rep:'once',total:12,cur:1,prov:'',bank:'',via:'',brand:'visa',tier:'standard',ctype:'',model:'',last4:'',limit:0,close:0,img:'',auto:'',scope:'all',touched:false,mode:'bill',modeTouched:false,tp:false};
-  $('#fn').value='';$('#fo').value='';$('#fd').value=toISO(today0());CF='';CK='';CSEL='';CKS='';$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#bl').value='';$('#blm').hidden=true;$('#ps').value='';
+  $('#fn').value='';$('#fo').value='';$('#fd').value=toISO(today0());CF='';CK='';CSEL='';CKS='';$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#bl').value='';$('#blm').hidden=true;
   $('#extra').innerHTML='';F.pay=[];PAYK='pix';PEDX=-1;$('#pvl').value='';$('#pnm').value='';setPB('');
   if(b){
     const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
@@ -2898,7 +2884,7 @@ function stLimpa(){ /* v13.376: zera tudo o que foi escolhido no passo 2 (empres
   F.auto='';F.prov='';F.pvs=0;F.bank='';F.bks=0;F.via='';F.model='';F.last4='';
   F.img='';F.brand='visa';F.tier='standard';F.ctype='';F.limit=0;F.close=0; /* v13.259: a foto escolhida e os dados de cartão também são do tipo anterior */
   CF='';CK='';CSEL='';CKS='';BKOPEN=false;
-  try{$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#ps').value='';setPB('')}catch(_){}
+  try{$('#cl').value='';$('#cli').value='';$('#ccl').value='';setPB('')}catch(_){}
 }
 function fcSelect(b){
   const antes=F.cat;
@@ -2913,13 +2899,11 @@ function fcSelect(b){
     F.auto='';F.prov='';
   }else if(F.prov&&PROV[F.prov]&&$('#fn').value===F.auto){const nn=AN(PROV[F.prov],F.cat);$('#fn').value=nn;F.auto=nn}
   $$('#fc .cat').forEach(x=>x.classList.toggle('on',x===b));
-  $('#ps').value='';
   const my=++FCT;
   requestAnimationFrame(()=>setTimeout(()=>{if(my!==FCT)return;renderProv();syncForm()},0));
 }
 $('#fc').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;if(Date.now()-LASTDRAG<500)return;fcSelect(b)});
 let FCT=0;
-$('#ps').addEventListener('input',renderProv);
 document.addEventListener('selectstart',e=>{const t=e.target&&(e.target.nodeType===1?e.target:e.target.parentElement);if(t&&t.closest&&t.closest('input,textarea,[contenteditable],.dgp pre'))return;e.preventDefault()});
 document.addEventListener('contextmenu',e=>{const t=e.target;if(t&&t.closest&&t.closest('input,textarea'))return;e.preventDefault()});
 (function(){
@@ -2967,7 +2951,7 @@ const HP=function(k){
   const pt=e=>(e.touches&&e.touches[0])||(e.changedTouches&&e.changedTouches[0])||e;
   function start(e){
     const t=e.target.closest&&e.target.closest('.pt');
-    if(!t||!t.dataset.p||($('#ps').value||'').trim()||S.pord!=='custom')return; /* arrastar só no modo "Minha ordem" */
+    if(!t||!t.dataset.p||S.pord!=='custom')return; /* arrastar só no modo "Minha ordem" */
     const p=pt(e);st={tile:t,x0:p.clientX,y0:p.clientY,x:p.clientX,y:p.clientY,on:false,sc:$('#panel').scrollTop};
     clearTimeout(timer);timer=setTimeout(lift,HOLD);
   }
@@ -3184,7 +3168,7 @@ $('#phint').addEventListener('click',e=>{
 });
 function pgClick(e){
   const t=e.target.closest('.pt');if(!t)return;
-  const id=t.dataset.p, q=($('#ps').value||'').trim();
+  const id=t.dataset.p;
   if(Date.now()-LASTDRAG<500)return;
   let catChanged=false;
   if(id&&(LIST[F.cat]||[]).indexOf(id)<0&&PCAT[id]){
@@ -3192,7 +3176,7 @@ function pgClick(e){
     autoCat();
   }
   setProv(id);
-  if(q||catChanged){$('#ps').value='';renderProv()}
+  if(catChanged)renderProv();
   else $$('#pg .pt').forEach(x=>x.classList.toggle('on',x.dataset.p===(F.prov||'')));
   /* v13.127: o ícone marca primeiro (desenhado logo) e o resto do trabalho (nome, carrossel de cartões…) roda no quadro seguinte; antes tudo rodava antes de o ícone aparecer marcado. Se tocar em outro ícone antes, só vale o último */
   const my=++PGT2;requestAnimationFrame(()=>setTimeout(()=>{if(my===PGT2)syncForm()},0));

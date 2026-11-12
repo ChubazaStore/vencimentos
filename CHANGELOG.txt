@@ -1,5 +1,6 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+  v13.377 · 12/11/2026 · REMOVIDO o campo “Buscar banco, streaming, empresa…” do passo de escolha (todos os tipos de conta): os ícones já mostram o nome. Saiu também o código da busca (filtro, mensagem “Nada encontrado”, regras que dependiam do campo).
   v13.376 · 11/11/2026 · VOLTAR NO CADASTRO: ao tocar na seta de voltar do passo 2 para o passo 1 (conta nova), tudo o que foi escolhido no passo 2 é apagado (empresa/banco, cartão, foto, como paga, banco do pagamento), para qualquer tipo de conta; ao escolher o tipo de novo, nada vem marcado. Desfeita a descida automática da 13.375.
   v13.376 · 11/11/2026 · VOLTAR NO CADASTRO: ao tocar na seta de voltar do passo 2 para o passo 1 (conta nova), tudo o que foi escolhido no passo 2 é apagado (empresa/banco, cartão, foto, como paga, banco do pagamento), para qualquer tipo de conta; ao escolher o tipo de novo, nada vem marcado. Desfeita a descida automática da 13.375.
   v13.375 · 11/11/2026 · (1) Botões Cancelar (vermelho) e seta de voltar agora têm cor sólida, não mais transparentes. (2) Ao voltar e entrar de novo no passo da escolha de um Cartão com o banco já marcado, a tela desce sozinha até os cartões dele.
