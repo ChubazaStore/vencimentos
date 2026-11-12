@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+  v13.396 · 12/11/2026 · CADASTRO MAIS CLARO: o passo 2 agora é SÓ escolher a empresa/ícone. “Como você paga” (forma + banco) foi para o passo 3, junto com valor, vencimento e repetição, logo antes da observação. Ainda é obrigatório em conta nova: ao tocar em Adicionar conta sem escolher, o app rola até o campo e avisa. Na edição continua igual.
+  v13.395 · 12/11/2026 · SEM “COMO PAGAR” REPETIDO: nos tipos que já têm “Como você paga” (forma + banco) no alto (Tag, Luz·Água·Gás, Boleto, etc.), saiu o bloco “Como pagar (opcional)” de baixo (Pix/Boleto/Outro), que repetia a mesma ideia. Ele continua só no Cartão e na Transferência. Formas já salvas em contas antigas não são apagadas.
   v13.394 · 12/11/2026 · ÍCONE GARAGEM REFEITO (tema escuro e claro): recorte do chão marrom refeito, sem as sobras brancas/cinza na borda. Mesmos nomes de arquivo (i-garagem.webp e i-garagem-c.webp); cache de imagens renovado (cartoes-22).
   v13.393 · 12/11/2026 · ÍCONE NOVO “Garagem” (tipo Moradia): garagem isométrica com carro amarelo, nos dois temas (claro: i-garagem-c.webp, escuro: i-garagem.webp), ocupando quase todo o quadrado como os demais. Arquivos novos, sem trocar nenhum existente.
   v13.392 · 12/11/2026 · TAG: a conta mensal de Tag/Pedágio passa a ter o mesmo “Contas dos próximos meses” de Luz·Água·Gás (meses seguintes começam “A lançar”, dá para cadastrar sem valor).
