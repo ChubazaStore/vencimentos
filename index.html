@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.379';
+(function(){var V='13.380';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -226,6 +226,7 @@ body.so .pill::after{animation-play-state:paused}
 .row.paid .mid b{color:var(--mu);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
 .amt{flex:none;font:700 15px var(--fd);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .row.paid .amt{color:var(--mu)}
+.amt.lan{font:600 13px var(--fb);color:var(--mu);letter-spacing:0}
 
 .empty{margin-top:28px;text-align:center;padding:34px 20px;border-radius:26px;border:1px solid var(--line2);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));box-shadow:0 16px 30px -22px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.05)}
 /* v13.237: 1ª tela de quem acabou de entrar (nenhuma conta cadastrada ainda): boas-vindas premium com atalhos direto para o tipo de conta */
@@ -314,6 +315,8 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .chip.on{background:rgba(var(--ar),.14);border-color:rgba(var(--ar),.5);color:var(--gold2)}
 .dates input[type=date]{flex:1;min-width:150px;height:44px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:0 12px;outline:0;color:var(--tx)}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.seg button[hidden]{display:none}
+#fcz{grid-template-columns:1fr 1fr}
 .seg button{height:40px;border-radius:12px;font:600 13px var(--fb);color:var(--mu);transition:all .3s var(--ease)}
 /* v13.245: símbolos prontos (Phosphor Icons duotone, licença MIT; marca do PIX do Simple Icons, CC0) */
 .seg.fvp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0;border:0;background:none;border-radius:0;margin-bottom:10px;overflow:visible}
@@ -1090,6 +1093,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
       <button type="button" data-r="monthly">Todo mês</button>
       <button type="button" data-r="inst">Parcelada</button>
     </div>
+    <div id="czbox" hidden><div class="lbl" style="margin-top:14px">Faturas dos próximos meses</div><div class="seg" id="fcz"><button type="button" data-z="zero" class="on">Começam em R$ 0,00</button><button type="button" data-z="same">Repetir o valor</button></div><p class="hint" id="czh" style="margin:8px 2px 0"></p></div>
     <div class="inst" id="inst" hidden>
       <div class="stp"><div><small>Parcelas</small><div class="v num" id="vt">12</div></div><div class="bt"><button type="button" data-s="t-">−</button><button type="button" data-s="t+">+</button></div></div>
       <div class="stp" id="curbox"><div><small>Parcela atual</small><div class="v num" id="vc">1</div></div><div class="bt"><button type="button" data-s="c-">−</button><button type="button" data-s="c+">+</button></div></div>
@@ -1126,7 +1130,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.379';
+const VERSION='13.380';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1468,7 +1472,7 @@ function overdueAll(){
     const s=fromISO(b.due), si=s.getFullYear()*12+s.getMonth();
     for(let i=Math.max(si,ni-36);i<=ni;i++){
       const o=occ(b,Math.floor(i/12),i%12);
-      if(o&&!o.paid&&o.date<t) out.push(o);
+      if(o&&!o.paid&&o.date<t&&!(b.cat==='cartao'&&o.amt===0)) out.push(o);
     }
   });
   return out.sort((a,b)=>a.date-b.date);
@@ -1573,7 +1577,7 @@ function row(o,i){
     '<button type="button" class="chk" aria-label="Marcar como paga">'+CHECK+'</button>'+
     lead(o.b)+
     '<div class="mid"><i class="k">'+esc(catLbl(o.b,c))+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
-    '<div class="amt">'+brl(o.amt)+'</div></div>';
+    '<div class="amt'+(o.amt===0&&o.b.cat==='cartao'&&!o.paid?' lan">A lançar':'">'+brl(o.amt))+'</div></div>';
 }
 
 /* v13.270: "remendo" da lista ao pagar/desfazer. Em vez de apagar e recriar todas as linhas, mantém as que não mudaram (já desenhadas)
@@ -1639,7 +1643,7 @@ function cardGroups(mo){
   const g={}, kk=b=>(b.prov||b.name)+'|'+(b.model||'')+'|'+(b.last4||'');
   S.bills.filter(b=>b.cat==='cartao').forEach(b=>{const k=kk(b);if(!g[k])g[k]={b:b,occ:[]}});
   mo.forEach(o=>{if(o.b.cat==='cartao'){const k=kk(o.b);if(g[k])g[k].occ.push(o)}});
-  return Object.keys(g).map(k=>g[k]);
+  return Object.keys(g).map(k=>g[k]).filter(x=>x.occ.length>0); /* v13.380: o cartão só aparece nos meses em que tem fatura (encerrado ou removido não deixa mais a foto 'Sem fatura') */
 }
 function limHTML(g,t){
   const b=g.b,lim=b.limit||0,cl=b.close||0;
@@ -1732,9 +1736,10 @@ function cardsHTML(gs){
   return '<div class="sec cardsec"><h3>Cartões <em>'+gs.length+'</em></h3><div class="cards">'+gs.map((g,i)=>{
     const tot=sum(g.occ), allp=g.occ.length&&g.occ.every(o=>o.paid);
     const nx=g.occ.filter(o=>!o.paid).sort((a,b)=>a.date-b.date)[0];
-    const st=!g.occ.length?'<span>Sem fatura</span>':allp?'<span style="color:var(--ok)">Paga</span>':(nx.date<t?'<span style="color:var(--bad)">Atrasada</span>':'<span>'+whenText(nx)+'</span>');
+    const lan=g.occ.length&&tot===0&&!allp;
+    const st=!g.occ.length?'<span>Sem fatura</span>':lan?'<span>Fatura a lançar</span>':allp?'<span style="color:var(--ok)">Paga</span>':(nx.date<t?'<span style="color:var(--bad)">Atrasada</span>':'<span>'+whenText(nx)+'</span>');
     const lb=limHTML(g,t);
-    return '<div class="cw" data-id="'+g.b.id+'" data-key="'+mkey(V.y,V.m)+'" style="animation-delay:'+(i*60)+'ms">'+cardArt(g.b,false)+'<div class="meta"><b class="num">'+(g.occ.length?brl(tot):'—')+'</b>'+st+'</div>'+lb+'</div>';
+    return '<div class="cw" data-id="'+g.b.id+'" data-key="'+mkey(V.y,V.m)+'" style="animation-delay:'+(i*60)+'ms">'+cardArt(g.b,false)+'<div class="meta"><b class="num">'+(g.occ.length&&!lan?brl(tot):'—')+'</b>'+st+'</div>'+lb+'</div>';
   }).join('')+'</div></div>';
 }
 function renderHome(){
@@ -2149,6 +2154,7 @@ function togglePaid(id,key,x,y,direto){
   const b=S.bills.find(v=>v.id===id);if(!b)return;
   const k=id+'|'+key;if(PAYQ.has(k))return;
   const paying=!b.paid[key];
+  if(paying&&b.cat==='cartao'){const pk=key.split('-').map(Number),oc=occ(b,pk[0],pk[1]-1);if(oc&&oc.amt===0){toast('Informe o valor da fatura antes de marcar como paga');openSheet(b.id,key);return}} /* v13.380: fatura zerada (a lançar) não é paga: abre a edição para informar o valor */
   if(direto||RMq()){ /* sem animação (vindo da janela de edição ou movimento reduzido) */
     if(paying){b.paid[key]=toISO(new Date());save();renderAll();if(!direto)burst(x,y)}
     else{delete b.paid[key];save();renderAll()}
@@ -2680,8 +2686,15 @@ function syncForm(){
   $('#inst').hidden=F.rep!=='inst';
   $('#curbox').hidden=!!EDIT;
   $('#vt').textContent=F.total;$('#vc').textContent=F.cur;
-  $('#fdl').textContent=sp?'Data do gasto':(F.rep==='once'?'Vencimento':(F.rep==='monthly'?'Primeiro vencimento':'Vencimento da 1ª parcela'));
+  $('#fdl').textContent=sp?'Data do gasto':(F.rep==='once'?'Vencimento':(F.rep==='monthly'?(EDIT?'Dia do vencimento (todos os meses)':'Primeiro vencimento'):'Vencimento da 1ª parcela'));
   $('#scopebox').hidden=!(EDIT&&F.rep!=='once');
+  { /* v13.380: cartão: a fatura muda todo mês; Parcelada não se aplica; próximos meses começam em zero (a lançar) */
+    const ccz=F.cat==='cartao';
+    if(ccz&&!EDIT&&F.rep==='inst')F.rep='monthly';
+    const bi=$('#fr [data-r=inst]');if(bi)bi.hidden=ccz&&!(EDIT&&F.rep==='inst');$('#fr').style.gridTemplateColumns=(bi&&bi.hidden)?'1fr 1fr':'';
+    const zb=$('#czbox');if(zb){zb.hidden=!(ccz&&!EDIT&&F.rep==='monthly'&&F.mode!=='spent');
+      $$('#fcz button').forEach(b=>b.classList.toggle('on',b.dataset.z===F.cz));
+      $('#czh').textContent=F.cz==='zero'?'Cada fatura é de um mês: só este mês fica com o valor; do mês seguinte em diante aparece “A lançar” até você informar o valor.':'Os meses seguintes repetem o valor informado até você mudar.'}}
   $$('#fs2 button').forEach(b=>b.classList.toggle('on',b.dataset.sc===F.scope));
   try{$('#schint').textContent=F.scope==='one'?'O novo valor vale só neste mês.':F.scope==='fwd'?'O novo valor vale deste mês em diante; os meses anteriores continuam como estavam.':'O novo valor vale para todos os meses, inclusive os anteriores.'}catch(_){}
   const cc=F.cat==='cartao';
@@ -2771,7 +2784,7 @@ function abrirAnim(pn){
 function openSheet(id,key){
   EDIT=null;CPC.clear();$('#cm').innerHTML='';const sh=$('#sheet'),pn=$('#panel');
   const b=id?S.bills.find(v=>v.id===id):null;
-  BKOPEN=false;F={cents:0,cat:'boleto',rep:'once',total:12,cur:1,prov:'',bank:'',via:'',brand:'visa',tier:'standard',ctype:'',model:'',last4:'',limit:0,close:0,img:'',auto:'',scope:'all',touched:false,mode:'bill',modeTouched:false,tp:false};
+  BKOPEN=false;F={cents:0,cat:'boleto',rep:'once',total:12,cur:1,prov:'',bank:'',via:'',brand:'visa',tier:'standard',ctype:'',model:'',last4:'',limit:0,close:0,img:'',auto:'',scope:'all',touched:false,mode:'bill',modeTouched:false,tp:false,cz:'zero'};
   $('#fn').value='';$('#fo').value='';$('#fd').value=toISO(today0());CF='';CK='';CSEL='';CKS='';$('#cl').value='';$('#cli').value='';$('#ccl').value='';$('#bl').value='';$('#blm').hidden=true;
   $('#extra').innerHTML='';F.pay=[];PAYK='pix';PEDX=-1;$('#pvl').value='';$('#pnm').value='';setPB('');
   if(b){
@@ -3345,6 +3358,7 @@ $('#pfile').addEventListener('change',e=>{
   };
   r.readAsDataURL(f);e.target.value='';
 });
+$('#fcz').addEventListener('click',e=>{const b=e.target.closest('button');if(b){F.cz=b.dataset.z;syncForm()}});
 $('#fs2').addEventListener('click',e=>{const b=e.target.closest('button');if(b){F.scope=b.dataset.sc;syncForm()}});
 $('#fm').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
@@ -3567,7 +3581,11 @@ $('#panel').addEventListener('submit',e=>{
       else if(F.rep!=='once'&&F.scope==='fwd'){b.st=(b.st||[]).filter(t=>t.k!==EDIT.key);b.st.push({k:EDIT.key,a:F.cents});b.st.sort((x,y)=>x.k<y.k?-1:1);if(b.ov)delete b.ov[EDIT.key]}
       else{b.amount=F.cents;delete b.st;if(b.ov)delete b.ov[EDIT.key]}
     }
-    b.name=name;b.cat=F.cat;b.repeat=F.rep;b.due=due;b.day=fromISO(due).getDate();b.note=note;
+    const rep0=b.repeat,od=fromISO(b.due),nd=fromISO(due);
+    b.name=name;b.cat=F.cat;b.repeat=F.rep;b.note=note;
+    /* v13.380: conta mensal já existente: mudar a data só muda o DIA do vencimento. Antes a data nova virava o 'primeiro vencimento' e, escolhendo um mês mais à frente, os meses anteriores (com o histórico de pagos) sumiam */
+    if(rep0==='monthly'&&F.rep==='monthly'){b.day=nd.getDate();b.due=toISO(new Date(od.getFullYear(),od.getMonth(),Math.min(nd.getDate(),dim(od.getFullYear(),od.getMonth()))))}
+    else{b.due=due;b.day=nd.getDate()}
     if(F.rep==='inst')b.total=F.total;else delete b.total;
     if(b.spent){const dd=fromISO(due);b.repeat='once';delete b.total;b.paid={};b.paid[mkey(dd.getFullYear(),dd.getMonth())]=due}
     const cm={m:b.model,b:b.brand,t:b.tier,p:b.prov,i:b.img};
@@ -3592,6 +3610,7 @@ $('#panel').addEventListener('submit',e=>{
       }
     }
   }
+  if(F.cat==='cartao'&&F.rep==='monthly'&&F.mode!=='spent'&&F.cz==='zero'){const k0=mkey(s.getFullYear(),s.getMonth()),n1=new Date(s.getFullYear(),s.getMonth()+1,1);b.amount=0;b.st=[{k:k0,a:F.cents},{k:mkey(n1.getFullYear(),n1.getMonth()),a:0}]} /* v13.380: fatura de cartão: só o 1º mês leva o valor, os seguintes começam em zero */
   S.bills.push(b);save();
   const o=fromISO(due);V={y:o.getFullYear(),m:o.getMonth()};
   if(F.rep==='inst'&&F.cur>1){const t=today0();V={y:t.getFullYear(),m:t.getMonth()}}
