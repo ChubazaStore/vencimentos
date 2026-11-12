@@ -1,5 +1,6 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+  v13.387 · 12/11/2026 · BRILHO DO CARTÃO À ESCOLHA: em Ajustes, “Brilho do cartão” com 3 estilos: Faixa (o de sempre), Seda (luz larga e macia) e Borda (fio de luz no contorno, com parte clara e parte escura para aparecer também em cartão claro). Troca na hora, vale só para o aparelho, respeita “Efeitos especiais” desligados e movimento reduzido.
   v13.386 · 12/11/2026 · CARTÃO NA TELA INICIAL: tocar no cartão abre a janela na hora. Havia uma espera fixa de 0,52 s (para o brilho do cartão terminar) antes de abrir; agora abre no quadro seguinte e o brilho roda junto.
   v13.385 · 12/11/2026 · CARTÃO, “Como pagar”: acrescentada a forma “Dinheiro” (sem código, sem banco). Os botões voltaram ao tamanho padrão de 3 por linha, igual aos outros tipos; nomes curtos nos botões (“Déb. conta”, “Déb. auto”), e nas contas salvas aparecem por extenso (Débito em conta, Débito automático).
   v13.384 · 12/11/2026 · CARTÃO NA TELA INICIAL: tocar na imagem do cartão agora abre a mesma janela da lista de contas (Pagar, com as formas de pagamento e o botão Marcar como paga); antes abria direto a edição. Se a conta não tem forma de pagamento salva, abre a edição como na lista. O cartão abre a fatura do mês mostrado (a próxima a pagar).
