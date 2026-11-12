@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.380';
+(function(){var V='13.381';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1130,7 +1130,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.380';
+const VERSION='13.381';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1659,9 +1659,15 @@ function limHTML(g,t){
   }
   if(cl){
     let y=t.getFullYear(),m=t.getMonth(),c=new Date(y,m,Math.min(cl,dim(y,m)));
-    if(c<t){m++;c=new Date(y,m,Math.min(cl,dim(y,m)))}
-    const n=Math.round((c-t)/864e5),bd=new Date(c.getFullYear(),c.getMonth(),c.getDate()+1).getDate();
-    h+='<div class="tx"><span>'+(n===0?'Fecha hoje':n===1?'Fecha amanhã':'Fecha em '+n+' dias')+' · dia '+cl+'</span><span>Melhor compra: dia '+bd+'</span></div>';
+    const vi=V.y*12+V.m,ti=y*12+m; /* v13.381: a contagem só vale para o mês de hoje; mês passado = fatura já fechada; mês futuro = só o dia */
+    const bd0=new Date(V.y,V.m,Math.min(cl,dim(V.y,V.m))),bd=new Date(bd0.getFullYear(),bd0.getMonth(),bd0.getDate()+1).getDate();
+    if(vi<ti)h+='<div class="tx"><span>Fatura fechada · dia '+cl+'</span><span>Melhor compra: dia '+bd+'</span></div>';
+    else if(vi>ti)h+='<div class="tx"><span>Fecha no dia '+cl+'</span><span>Melhor compra: dia '+bd+'</span></div>';
+    else{
+      if(c<t){m++;c=new Date(y,m,Math.min(cl,dim(y,m)))}
+      const n=Math.round((c-t)/864e5),bd2=new Date(c.getFullYear(),c.getMonth(),c.getDate()+1).getDate();
+      h+='<div class="tx"><span>'+(n===0?'Fecha hoje':n===1?'Fecha amanhã':'Fecha em '+n+' dias')+' · dia '+cl+'</span><span>Melhor compra: dia '+bd2+'</span></div>';
+    }
   }
   return h+'</div>';
 }
