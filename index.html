@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.377';
+(function(){var V='13.379';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1126,7 +1126,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.377';
+const VERSION='13.379';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1418,6 +1418,7 @@ function cardArt(o,mini){
    '<span class="cc-r"><b class="cc-net n-'+br+'">'+BRANDS[br]+'</b>'+(tier==='standard'?'':'<i class="cc-tier">'+TIERS[tier]+'</i>')+'</span><i class="cc-fx"></i></div>';
 }
 const CTIPO={credito:'crédito',debito:'débito'};
+function catLbl(b,c){return b.cat==='cartao'&&CTIPO[b.ctype]?'Cartão de '+CTIPO[b.ctype]:c.l} /* v13.378: na lista o rótulo do cartão já diz crédito ou débito */
 function lead(b){
   const c=CAT[b.cat]||CAT.outros;
   if(okImg(b.img)) return '<div class="pv img"><img alt="" src="'+b.img+'"></div>';
@@ -1567,11 +1568,11 @@ function row(o,i){
   let meta=(o.b.spent?whenText(o).replace('paga em','gasto em'):whenText(o));
   if(o.b.repeat==='inst') meta+=' · '+o.n+'/'+o.b.total;
   else if(o.b.repeat==='monthly') meta+=' · mensal';
-  let pay='';if(o.b.cat!=='cartao'){pay=[VIA[o.b.via],PROV[o.b.bank]&&PROV[o.b.bank].n].filter(Boolean).join(' · ')}else if(CTIPO[o.b.ctype]){pay='Cartão de '+CTIPO[o.b.ctype]}
+  let pay='';if(o.b.cat!=='cartao'){pay=[VIA[o.b.via],PROV[o.b.bank]&&PROV[o.b.bank].n].filter(Boolean).join(' · ')}
   return '<div class="row'+(o.paid?' paid':'')+(late?' late':'')+(tod?' today':'')+(i>=10?' na':'')+'" data-id="'+o.b.id+'" data-key="'+o.key+'" style="--i:'+i+'">'+
     '<button type="button" class="chk" aria-label="Marcar como paga">'+CHECK+'</button>'+
     lead(o.b)+
-    '<div class="mid"><i class="k">'+esc(c.l)+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
+    '<div class="mid"><i class="k">'+esc(catLbl(o.b,c))+'</i><b>'+esc(o.b.name)+(o.b.pay&&o.b.pay.length?'<svg class="pk" viewBox="0 0 24 24" aria-label="Tem forma de pagamento salva"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg>':'')+'</b><span class="m">'+esc(meta)+'</span>'+(pay?'<span class="m p">'+esc(pay)+'</span>':'')+'</div>'+
     '<div class="amt">'+brl(o.amt)+'</div></div>';
 }
 
@@ -3464,7 +3465,7 @@ function openDet(id,key){
   DTID=id;DTKEY=key;const c=CAT[b.cat]||CAT.outros;
   let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';else if(b.repeat==='inst'&&o)w+=' · '+o.n+'/'+b.total;
   $('#dth').textContent='Pagar';
-  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(c.l)+'</i><b>'+esc(b.name)+'</b></div></div>'+
+  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c))+'</i><b>'+esc(b.name)+'</b></div></div>'+
    '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+'</div>'+
    '<div class="pcard"><h4>PAGAR</h4>'+payItems(b.pay,false)+'</div>'+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
@@ -3569,7 +3570,10 @@ $('#panel').addEventListener('submit',e=>{
     b.name=name;b.cat=F.cat;b.repeat=F.rep;b.due=due;b.day=fromISO(due).getDate();b.note=note;
     if(F.rep==='inst')b.total=F.total;else delete b.total;
     if(b.spent){const dd=fromISO(due);b.repeat='once';delete b.total;b.paid={};b.paid[mkey(dd.getFullYear(),dd.getMonth())]=due}
+    const cm={m:b.model,b:b.brand,t:b.tier,p:b.prov,i:b.img};
     putExtra(b);
+    /* v13.379: na edição o cartão (modelo, bandeira e nível) NÃO se escolhe: o seletor roda sozinho e podia trocar o modelo por outro (ex.: Gold → Infinite), o que fazia a tela inicial criar um segundo cartão e deixar o primeiro sem fatura. Agora a edição mantém o que a conta já tinha. */
+    if(b.cat==='cartao'&&cm.p===b.prov){if(cm.m!==undefined)b.model=cm.m;if(cm.b)b.brand=cm.b;if(cm.t)b.tier=cm.t}
     save();closeSheet();afterClose(()=>{renderAll();toast('Alterações salvas')});return;
   }
   if(F.mode==='spent')F.rep='once';
