@@ -15,7 +15,7 @@
 @font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:block;src:url(f-bricolage.woff2) format('woff2')}</style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.388';
+(function(){var V='13.390';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -789,19 +789,20 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 .cc-fx::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:42%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.2) 50%,transparent);transform:translateX(-140%) skewX(-18deg);animation:ccidle 10s 1.6s ease-in-out infinite}
 @keyframes ccidle{0%,62%{transform:translateX(-140%) skewX(-18deg)}100%{transform:translateX(340%) skewX(-18deg)}}
 
-/* v13.388: brilho do cartão à escolha (Ajustes): 0 faixa reta (atual), 1 seda, 6 luz na borda (iguais à página de testes) */
+/* v13.389: brilho do cartão à escolha (Ajustes): 0 faixa reta (atual), 1 seda, 6 luz na borda. Só transform/opacity animam */
 .cc-rg{display:none}
 html[data-bri="1"] .cc::after,html[data-bri="6"] .cc::after,html[data-bri="6"] .cc-fx::after{display:none!important}
-html[data-bri="1"] .cc-fx::after{top:-40%;bottom:-40%;width:70%;filter:blur(7px);mix-blend-mode:screen;background:linear-gradient(90deg,transparent 0%,rgba(255,238,200,.05) 22%,rgba(255,244,222,.22) 44%,rgba(255,255,255,.36) 50%,rgba(255,244,222,.22) 56%,rgba(255,238,200,.05) 78%,transparent 100%);transform:translateX(-130%) rotate(16deg);opacity:0;animation:ccsilk 6.5s 1.6s cubic-bezier(.45,.05,.25,1) infinite}
-@keyframes ccsilk{0%,55%{transform:translateX(-130%) rotate(16deg);opacity:0}62%{opacity:1}92%{opacity:1}100%{transform:translateX(190%) rotate(16deg);opacity:0}}
-html[data-bri="6"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:3px;overflow:hidden;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-html[data-bri="6"] .cc-rg.gl{opacity:.6;filter:blur(6px);padding:4px}
-html[data-bri="6"] .cc-rg u{position:absolute;left:50%;top:50%;width:260%;aspect-ratio:1;translate:-50% -50%;animation:ccgiro 5.5s linear infinite;will-change:transform;background:conic-gradient(from 0deg,transparent 0 195deg,rgba(120,78,6,.45) 232deg,rgba(104,64,0,.85) 282deg,#fff 322deg,rgba(255,226,150,0) 346deg,transparent 360deg)}
-@keyframes ccgiro{to{transform:rotate(360deg)}}
-.cards.cf .cw:not(.ctr) .cc-rg,.cards.cf .cw:not(.ctr) .cc-fx::after{display:none!important}
+html[data-bri="1"] .cc-fx::after{top:-40%;bottom:-40%;width:70%;background:linear-gradient(90deg,transparent,rgba(255,238,200,.06) 22%,rgba(255,244,222,.2) 42%,rgba(255,255,255,.3) 50%,rgba(255,244,222,.2) 58%,rgba(255,238,200,.06) 78%,transparent);transform:translateX(-130%) rotate(16deg);opacity:0;animation:ccsilk 8s 1.6s cubic-bezier(.45,.05,.25,1) infinite}
+@keyframes ccsilk{0%,58%{transform:translateX(-130%) rotate(16deg);opacity:0}64%{opacity:1}90%{opacity:1}100%{transform:translateX(190%) rotate(16deg);opacity:0}}
+@property --ccang{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes ccang{to{--ccang:360deg}}
+/* 6 = contorno deslizante (o mesmo "Contorno animado" do site de renda fixa): luz na cor do tema percorrendo a borda, com cauda escura para aparecer em cartão claro */
+html[data-bri="6"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:2.2px;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ccang 2.8s linear infinite;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 190deg,color-mix(in srgb,var(--gold2) 40%,#000) 240deg,color-mix(in srgb,var(--gold2) 55%,#000) 290deg,var(--gold2) 318deg,#fff 336deg,var(--gold) 348deg,transparent 360deg)}
+.cc-rg u{display:none}
+.cards.cf .cw:not(.ctr) .cc-rg{display:none!important}
 .panel .cc-rg,.cpk .cc-rg,.nofx .cc-rg{display:none!important}
-body.so .cc-rg u{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.cc-rg u{animation:none!important}}
+body.so .cc-rg{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.cc-rg{animation:none!important}}
 .cc.w{transition:transform .7s cubic-bezier(.2,1.4,.3,1),box-shadow .6s}
 .cc.w.mini{width:48px;border-radius:7px;padding:0;aspect-ratio:1.586;container-type:normal;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 12px -6px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.1)}
 .cc.w.mini>*:not(.cc-logo):not(.cc-bg):not(.cc-n){display:none}
@@ -1147,7 +1148,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.388';
+const VERSION='13.390';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1432,11 +1433,11 @@ function cardArt(o,mini){
   const num='<span class="cc-num">•••• '+l4+'</span>';
   const tp=tplFor(o,tier,br);
   if(tp){const u=imgU(tp.s);let su=u,rdc='';try{if(IMGR[u]&&BLOB[u]){su=BLOB[u];rdc=' rd'}}catch(e){}
-   return '<div class="cc w tpl'+rdc+(tp.v?' vert':'')+(mini?' mini':'')+'" style="--nt:'+(tp.c||'#fff')+';--rg:'+tp.rg+(tp.k?';--k1:#'+tp.k+';--k2:#'+tp.j:'')+(tp.q?';--lq:url('+tp.q+') center/100% 100% no-repeat':'')+'"><img class="cc-bg" alt="" draggable="false" decoding="async" src="'+su+'">'+(tp.n?num:'')+'<i class="cc-fx"><b class="cc-rg gl"><u></u></b><b class="cc-rg"><u></u></b></i></div>'}
+   return '<div class="cc w tpl'+rdc+(tp.v?' vert':'')+(mini?' mini':'')+'" style="--nt:'+(tp.c||'#fff')+';--rg:'+tp.rg+(tp.k?';--k1:#'+tp.k+';--k2:#'+tp.j:'')+(tp.q?';--lq:url('+tp.q+') center/100% 100% no-repeat':'')+'"><img class="cc-bg" alt="" draggable="false" decoding="async" src="'+su+'">'+(tp.n?num:'')+'<i class="cc-fx"><b class="cc-rg"><u></u></b></i></div>'}
   const prod=o.name&&p&&o.name.trim().toLowerCase()!==p.n.toLowerCase()&&o.name.length<=16?o.name:(tier==='standard'?'':TIERS[tier]);
   return '<div class="cc w t-'+tier+(mini?' mini':'')+'" style="--c:'+(p?p.c:'#3a4163')+(tier==='standard'&&p?';--t:'+p.t:'')+'"><i class="cc-ln"></i>'+
    (lg?'<img class="cc-logo" alt="" src="'+lg+'">':'<span class="cc-n">'+esc(nm)+'</span>')+'<span class="cc-prod">'+esc(prod)+'</span>'+num+
-   '<span class="cc-r"><b class="cc-net n-'+br+'">'+BRANDS[br]+'</b>'+(tier==='standard'?'':'<i class="cc-tier">'+TIERS[tier]+'</i>')+'</span><i class="cc-fx"><b class="cc-rg gl"><u></u></b><b class="cc-rg"><u></u></b></i></div>';
+   '<span class="cc-r"><b class="cc-net n-'+br+'">'+BRANDS[br]+'</b>'+(tier==='standard'?'':'<i class="cc-tier">'+TIERS[tier]+'</i>')+'</span><i class="cc-fx"><b class="cc-rg"><u></u></b></i></div>';
 }
 const CTIPO={credito:'crédito',debito:'débito'};
 function catLbl(b,c){return b.cat==='cartao'&&CTIPO[b.ctype]?'Cartão de '+CTIPO[b.ctype]:c.l} /* v13.378: na lista o rótulo do cartão já diz crédito ou débito */
@@ -1907,7 +1908,7 @@ function renderSet(){
    '<div class="lbl" style="margin-top:16px">Cor de destaque</div><div class="sw" id="swa">'+TH.AC.map((a,i)=>'<button type="button" class="swc" data-a="'+i+'" aria-label="'+a[0]+'" style="background:'+a[1]+'"></button>').join('')+'</div><button class="act" id="bspl" style="margin-top:16px">Ver animação de abertura</button></div>'+
    '<div class="card"><h3>Estilo dos ícones</h3><div class="cap"><b>Escuro</b>: os ícones das empresas como aparecem no iPhone com a tela escura. <b>Claro</b>: como aparecem com a tela clara. '+(Object.keys(LOGOC).length?'Versão clara disponível para '+Object.keys(LOGOC).length+' de '+Object.keys(LOGOS).length+' ícones; os outros são iguais nos dois estilos. ':'A versão clara ainda não foi adicionada: por enquanto os dois estilos mostram os mesmos ícones. ')+'A tela recarrega ao trocar. Vale só para este aparelho.</div><div class="crow" id="bic">'+[['e','Escuro'],['c','Claro']].map(k=>'<button type="button" class="crb'+((k[0]==='c')===ICLIGHT()?' on':'')+'" data-i="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Efeitos especiais</h3><div class="cap">Giro 3D e brilho dos cartões, animações ao abrir as telas, desfoque da barra de baixo e abertura animada. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve; ligue de novo quando quiser comparar. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div></div>'+
-   '<div class="card"><h3>Brilho do cartão</h3><div class="cap"><b>Faixa</b>: a faixa de luz reta de sempre. <b>Seda</b>: uma luz larga e macia que desliza. <b>Borda</b>: um fio de luz percorre o contorno do cartão. Troca na hora. Só vale para este aparelho.</div><div class="crow" id="bbr">'+[['0','Faixa'],['1','Seda'],['6','Borda']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
+   '<div class="card"><h3>Brilho do cartão</h3><div class="cap"><b>Faixa</b>: a faixa de luz reta de sempre. <b>Seda</b>: uma luz larga e macia que desliza. <b>Contorno</b>: uma luz desliza pela borda do cartão, como no site de renda fixa. Troca na hora. Só vale para este aparelho.</div><div class="crow" id="bbr">'+[['0','Faixa'],['1','Seda'],['6','Contorno']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div></div>'+
    '<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>'+
    '<div class="card"><h3>Backup</h3><div class="cap">Copie o backup e guarde no WhatsApp, Notas ou e-mail. Para restaurar, cole o texto abaixo.</div>'+
    '<button class="act" id="bcopy">Copiar backup</button><textarea class="fld bk" id="bpaste" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui o backup para restaurar"></textarea><button class="act" id="brest">Restaurar backup</button></div>'+
@@ -1925,7 +1926,7 @@ function renderSet(){
   $('#bcr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
   $('#bic').onclick=e=>{const b=e.target.closest('.crb');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}toast('Ícones: '+(c?'claros':'escuros')+'…');setTimeout(()=>location.reload(),350)};
   $('#bfx').onclick=()=>{const off=!NOFX();document.documentElement.classList.toggle('nofx',off);try{if(off)localStorage.setItem('sobrou.fx','0');else localStorage.removeItem('sobrou.fx')}catch(e){}renderSet();toast(off?'Efeitos especiais desligados':'Efeitos especiais ligados')};
-  $('#bbr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.dataset.b===BRI())return;document.documentElement.setAttribute('data-bri',b.dataset.b);try{if(b.dataset.b==='0')localStorage.removeItem('sobrou.bri');else localStorage.setItem('sobrou.bri',b.dataset.b)}catch(_){}$$('#bbr .crb').forEach(x=>x.classList.toggle('on',x===b));toast('Brilho: '+{'0':'faixa','1':'seda','6':'borda'}[b.dataset.b])};
+  $('#bbr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.dataset.b===BRI())return;document.documentElement.setAttribute('data-bri',b.dataset.b);try{if(b.dataset.b==='0')localStorage.removeItem('sobrou.bri');else localStorage.setItem('sobrou.bri',b.dataset.b)}catch(_){}$$('#bbr .crb').forEach(x=>x.classList.toggle('on',x===b));toast('Brilho: '+{'0':'faixa','1':'seda','6':'contorno'}[b.dataset.b])};
   $('#thm').onclick=e=>{const b=e.target.closest('.tp');if(!b)return;const p=TH.PR[+b.dataset.pr];TH.set(p[1],p[2]);thSync()};
   $('#swb').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(+b.dataset.b,TH.cur[1]);thSync()};
   $('#swa').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(TH.cur[0],+b.dataset.a);thSync()};
