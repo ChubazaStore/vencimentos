@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.422';
+(function(){var V='13.424';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -353,10 +353,10 @@ body.so .pill::after{animation-play-state:paused}
 /* v13.115: no iOS 26 o sistema borra ~40 px do topo do app instalado (efeito de borda de rolagem) e só deixa de borrar quando há uma barra FIXA, de largura total, de cor SÓLIDA e que ele consiga "ver" (com pointer-events:none ele ignorava). Por isso o tapa-relógio volta, agora tocável e opaco */
 .topbar{position:fixed;top:0;left:0;right:0;height:var(--st);background-color:var(--bg);opacity:1;z-index:40;pointer-events:auto;touch-action:none}
 /* barra e botão + (sem desfoque por trás: o desfoque era refeito a cada quadro enquanto a lista rolava por baixo) */
-.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 12px);width:calc(100% - 32px);max-width:420px;display:grid;grid-template-columns:repeat(3,1fr);padding:6px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.018) 60%),var(--card);border:1px solid var(--line2);box-shadow:0 18px 40px -10px rgba(0,0,0,.85),0 0 34px -16px rgba(var(--ar),.45),inset 0 1px 0 rgba(255,255,255,.1);z-index:20}
+.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 12px);width:calc(100% - 32px);max-width:420px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.018) 60%),var(--card);border:1px solid var(--line2);box-shadow:0 18px 40px -10px rgba(0,0,0,.85),0 0 34px -16px rgba(var(--ar),.45),inset 0 1px 0 rgba(255,255,255,.1);z-index:20}
 /* v13.161: com o teclado aberto, as abas e o botão + ficam escondidos (menos coisa para o iPhone redesenhar enquanto a tela sobe e desce) */
 html.kbd .tabs,html.kbd .fab{visibility:hidden}
-.tabs .ind{position:absolute;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/3);border-radius:20px;background:linear-gradient(180deg,rgba(var(--ar),.24),rgba(var(--ar),.1));box-shadow:inset 0 0 0 1px rgba(var(--ar),.34),inset 0 1px 0 rgba(255,255,255,.14),0 6px 16px -8px rgba(var(--ar),.6);transition:transform .28s var(--ease)}
+.tabs .ind{position:absolute;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/4);border-radius:20px;background:linear-gradient(180deg,rgba(var(--ar),.24),rgba(var(--ar),.1));box-shadow:inset 0 0 0 1px rgba(var(--ar),.34),inset 0 1px 0 rgba(255,255,255,.14),0 6px 16px -8px rgba(var(--ar),.6);transition:transform .28s var(--ease)}
 .tab{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 0 8px;color:var(--mu2);font:600 10.5px var(--fb);letter-spacing:.03em;transition:color .25s}
 .tab svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab svg{transition:transform .35s var(--ease)}
@@ -397,6 +397,8 @@ html.kbd body::after,body.sfull::after,body.so::after,html.lgon body::after{disp
 .amtbox input{width:100%;text-align:center;background:none;border:0;outline:0;font:800 44px/1.1 var(--fd);letter-spacing:-.03em;color:var(--tx);caret-color:var(--gold);font-variant-numeric:tabular-nums}
 .amtbox.shake{animation:shake .4s}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+/* v13.423: o iPhone pinta de amarelo o campo preenchido pela sugestão (contato/e-mail) e não tirava mais; pinta de volta com a cor do app */
+.fld:-webkit-autofill,.fld:-webkit-autofill:hover,.fld:-webkit-autofill:focus,.fld:-webkit-autofill:active{-webkit-box-shadow:0 0 0 1000px #1b1b1b inset!important;box-shadow:0 0 0 1000px #1b1b1b inset!important;-webkit-text-fill-color:var(--tx)!important;caret-color:var(--tx);transition:background-color 99999s ease-out}
 .fld{width:100%;height:50px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:0 14px;outline:0;transition:border-color .2s,background .2s}
 .fld:focus{border-color:rgba(var(--ar),.55);background:rgba(255,255,255,.07)}
 textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
@@ -463,7 +465,48 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 #dt .pcard h4{margin:10px 0 2px;font:700 12px var(--fb);letter-spacing:.14em;color:var(--ok)}
 #dt .dn{color:var(--tx,#ddd);font-size:15px;line-height:1.45;white-space:pre-wrap;word-break:break-word;margin:0 2px}
 #dt .dbt{display:flex;gap:10px;margin-top:16px}#dt .dbt .act{margin-top:0}#dt .dbt #dpay{flex:1.4}#dt .dbt #ded,#dt .dbt #dpp{flex:1}
-.pit.flash{animation:pflash 1s ease-out}@keyframes pflash{0%{box-shadow:0 0 0 0 rgba(52,211,153,.7);border-color:#34d399;background:rgba(52,211,153,.22)}60%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.pit.flash,.pcc.flash,.cfe.flash{animation:pflash 1s ease-out}@keyframes pflash{0%{box-shadow:0 0 0 0 rgba(52,211,153,.7);border-color:#34d399;background:rgba(52,211,153,.22)}60%{box-shadow:0 0 0 10px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+
+/* v13.424: cartão Pagar + Cofre */
+.pcards{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.pcc{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.pcc .pct{display:flex;align-items:center;gap:12px;padding:11px 14px}
+.pcc .pct.pn{background:rgba(255,255,255,.06);color:var(--tx)}
+.pcc .pv{width:48px;height:48px;border-radius:15px;font-size:15px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.pcc .pcm{min-width:0}.pcc .pcm small{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.pcc .pcm b{display:block;font:800 17px var(--fd);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcbd{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.pcl{font:700 10.5px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.pcn{font:700 17px var(--fd);margin-top:2px;overflow-wrap:anywhere}
+.pck{background:rgba(0,0,0,.28);border:1px dashed rgba(50,188,173,.4);border-radius:14px;padding:11px 13px;font-size:15px;line-height:1.35;overflow-wrap:anywhere}
+.pck.mono,.cfv.mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.02em}
+.pcy{height:50px;border-radius:15px;background:linear-gradient(90deg,#e6d78a,#c9ea4d);color:#14110a;font:800 15px var(--fb);width:100%;transition:background .25s,transform .25s}
+.pcy.done{background:linear-gradient(90deg,#6ee7b7,#34d399);transform:scale(1.02)}
+.pcr2{display:flex;gap:8px}
+.pcs{flex:1;min-width:0;height:42px;border-radius:13px;border:1px solid var(--line2,var(--line));background:rgba(255,255,255,.05);color:var(--tx);font:700 12.5px var(--fb);padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcc.flash{animation:pflash 1s ease-out}
+.cfch{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 4px;scrollbar-width:none}.cfch::-webkit-scrollbar{display:none}
+.cfc{flex:none;height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--mu);font:700 13px var(--fb)}
+.cfc i{font-style:normal;opacity:.7;margin-left:3px}
+.cfc.on{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#14110a;border-color:transparent}
+.cfh{margin:20px 4px 8px;font:700 11.5px var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}.cfh i{font-style:normal;opacity:.7}
+.cfe{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:12px;margin-top:8px;transition:border-color .2s,background .2s}
+.cfe.on{border-color:rgba(var(--ar),.45);background:rgba(var(--ar),.06)}
+.cft{display:flex;align-items:center;gap:12px}
+.cfe .pv{width:44px;height:44px;border-radius:14px;font-size:14px}
+.cfe .pic{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(50,188,173,.14);color:#32bcad;box-shadow:inset 0 0 0 1.5px rgba(50,188,173,.35)}
+.cfe .pic svg{width:22px;height:22px;fill:currentColor}.cfe .pic.b{background:rgba(242,201,76,.13);color:#f2c94c;box-shadow:inset 0 0 0 1.5px rgba(242,201,76,.35)}.cfe .pic.o{background:rgba(255,255,255,.07);color:var(--mu);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16)}
+.cfm{flex:1;min-width:0}.cfm b{display:block;font-size:15.5px;line-height:1.25;overflow-wrap:anywhere}
+.cfm .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
+.cfv{display:block;margin-top:3px;font-size:13px;color:var(--mu);overflow-wrap:anywhere}
+.cfe .pcp{flex:none;height:36px;padding:0 13px;border-radius:12px;background:linear-gradient(90deg,#e6d78a,#c9ea4d);color:#111;font:700 13px var(--fb)}
+.cfe .pcp.done{background:linear-gradient(90deg,#6ee7b7,#34d399)}
+.cfx{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.cfu{font:700 10.5px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.cfbs{display:flex;flex-wrap:wrap;gap:7px}.cfb{height:32px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--tx);font:600 13px var(--fb)}
+.cfempty{margin:26px 6px;text-align:center;color:var(--mu);font-size:13.5px;line-height:1.5}.cfempty b{display:block;color:var(--tx);font:700 17px var(--fd);margin-bottom:6px}
+.cfei{width:64px;height:64px;margin:0 auto 14px;border-radius:20px;display:grid;place-items:center;background:rgba(var(--ar),.12);box-shadow:inset 0 0 0 1px rgba(var(--ar),.3)}
+.cfei svg{width:30px;height:30px;fill:none;stroke:var(--gold2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pit .pcp{transition:background .25s,transform .25s}.pit .pcp.done{background:linear-gradient(90deg,#6ee7b7,#34d399);transform:scale(1.06)}
 @media(prefers-reduced-motion:reduce){.pit.flash{animation:none}.pit .pcp.done{transform:none}}
 #dt .scrim{background:rgba(2,3,6,.58)!important;transition:opacity .28s!important}
@@ -1130,6 +1173,14 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
       <div id="pan"></div>
     </section>
 
+    <section class="page" id="p-cof" hidden>
+      <h2 class="pg-title">Cofre</h2>
+      <p class="pg-sub">Chaves Pix, boletos, contas e débitos de todas as suas contas, num lugar só.</p>
+      <div class="sbar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="cfq" type="search" placeholder="Buscar chave, banco ou conta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Buscar no cofre" name="sb-cfq" data-lpignore="true" data-1p-ignore></div>
+      <div id="cfch" class="cfch"></div>
+      <div id="cflist"></div>
+    </section>
+
     <section class="page" id="p-set" hidden>
       <h2 class="pg-title">Ajustes</h2>
       <p class="pg-sub">Suas contas ficam salvas na sua conta do Sobrou! e neste aparelho.</p>
@@ -1144,6 +1195,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
   <div class="ind" id="ind"></div>
   <button class="tab on" data-tab="home"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M3.8 6l1.2 1.2L7 5M3.8 12l1.2 1.2L7 11M3.8 18l1.2 1.2L7 17"/></svg>Contas</button>
   <button class="tab" data-tab="pan"><svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>Panorama</button>
+  <button class="tab" data-tab="cof"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></svg>Cofre</button>
   <button class="tab" data-tab="set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Ajustes</button>
 </nav>
 
@@ -1218,8 +1270,8 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
     <div class="lbl s3" id="pklbl">Como pagar (opcional)</div>
     <div id="paybox" class="s3">
       <div class="seg fvp" id="pk"><button type="button" data-pk="pix"><span class="k"><svg viewBox="0 0 24 24"><path d="M5.283 18.36a3.505 3.505 0 0 0 2.493-1.032l3.6-3.6a.684.684 0 0 1 .946 0l3.613 3.613a3.504 3.504 0 0 0 2.493 1.032h.71l-4.56 4.56a3.647 3.647 0 0 1-5.156 0L4.85 18.36ZM18.428 5.627a3.505 3.505 0 0 0-2.493 1.032l-3.613 3.614a.67.67 0 0 1-.946 0l-3.6-3.6A3.505 3.505 0 0 0 5.283 5.64h-.434l4.573-4.572a3.646 3.646 0 0 1 5.156 0l4.559 4.559ZM1.068 9.422 3.79 6.699h1.492a2.483 2.483 0 0 1 1.744.722l3.6 3.6a1.73 1.73 0 0 0 2.443 0l3.614-3.613a2.482 2.482 0 0 1 1.744-.723h1.767l2.737 2.737a3.646 3.646 0 0 1 0 5.156l-2.736 2.736h-1.768a2.482 2.482 0 0 1-1.744-.722l-3.613-3.613a1.77 1.77 0 0 0-2.444 0l-3.6 3.6a2.483 2.483 0 0 1-1.744.722H3.791l-2.723-2.723a3.646 3.646 0 0 1 0-5.156"/></svg></span><span class="t">Pix</span></button><button type="button" data-pk="barras"><span class="k"><svg viewBox="0 0 256 256"><path d="M224,48V208H32V48Z" opacity="0.2"/><path d="M232,48V88a8,8,0,0,1-16,0V56H184a8,8,0,0,1,0-16h40A8,8,0,0,1,232,48ZM72,200H40V168a8,8,0,0,0-16,0v40a8,8,0,0,0,8,8H72a8,8,0,0,0,0-16Zm152-40a8,8,0,0,0-8,8v32H184a8,8,0,0,0,0,16h40a8,8,0,0,0,8-8V168A8,8,0,0,0,224,160ZM32,96a8,8,0,0,0,8-8V56H72a8,8,0,0,0,0-16H32a8,8,0,0,0-8,8V88A8,8,0,0,0,32,96ZM80,80a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,80,80Zm104,88V88a8,8,0,0,0-16,0v80a8,8,0,0,0,16,0ZM144,80a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,144,80Zm-32,0a8,8,0,0,0-8,8v80a8,8,0,0,0,16,0V88A8,8,0,0,0,112,80Z"/></svg></span><span class="t">Boleto</span></button><button type="button" data-pk="debconta" hidden><span class="k"><svg viewBox="0 0 24 24"><path d="M12 2 2 8v2h20V8L12 2Zm-8 9v7h3v-7H4Zm6 0v7h3v-7h-3Zm6 0v7h3v-7h-3ZM2 20v2h20v-2H2Z"/></svg></span><span class="t">Déb. conta</span></button><button type="button" data-pk="debauto" hidden><span class="k"><svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3a8 8 0 0 0-5.66 13.66l1.46-1.46A6 6 0 0 1 12 6Zm5.66 2.34-1.46 1.46A6 6 0 0 1 12 18v-3l-4 4 4 4v-3a8 8 0 0 0 5.66-13.66Z"/></svg></span><span class="t">Déb. auto</span></button><button type="button" data-pk="dinheiro" hidden><span class="k"><svg viewBox="0 0 256 256"><path d="M160,128a32,32,0,1,1-32-32A32,32,0,0,1,160,128Zm40-64a48.85,48.85,0,0,0,40,40V64Zm0,128h40V152A48.85,48.85,0,0,0,200,192ZM16,152v40H56A48.85,48.85,0,0,0,16,152Zm0-48A48.85,48.85,0,0,0,56,64H16Z" opacity="0.2"/><path d="M128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152ZM240,56H16a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H240a8,8,0,0,0,8-8V64A8,8,0,0,0,240,56ZM24,72H45.37A40.81,40.81,0,0,1,24,93.37Zm0,112V162.63A40.81,40.81,0,0,1,45.37,184Zm208,0H210.63A40.81,40.81,0,0,1,232,162.63Zm0-38.35A56.78,56.78,0,0,0,193.65,184H62.35A56.78,56.78,0,0,0,24,145.65v-35.3A56.78,56.78,0,0,0,62.35,72h131.3A56.78,56.78,0,0,0,232,110.35Zm0-52.28A40.81,40.81,0,0,1,210.63,72H232Z"/></svg></span><span class="t">Dinheiro</span></button><button type="button" data-pk="outro"><span class="k"><svg viewBox="0 0 256 256"><circle cx="56" cy="128" r="20"/><circle cx="128" cy="128" r="20"/><circle cx="200" cy="128" r="20"/></svg></span><span class="t">Outro</span></button></div>
-      <input class="fld" id="pvl" autocorrect="off" spellcheck="false" autocomplete="off" autocapitalize="off" type="text" maxlength="700" placeholder="Chave Pix (CPF, e-mail, telefone…)" style="margin-top:10px">
-      <input class="fld" id="pnm" autocorrect="off" spellcheck="false" autocomplete="off" type="text" maxlength="40" placeholder="Nome de quem recebe (opcional)" style="margin-top:8px">
+      <input class="fld" id="pvl" name="sb-pvl" data-lpignore="true" data-1p-ignore autocorrect="off" spellcheck="false" autocomplete="off" autocapitalize="off" type="text" maxlength="700" placeholder="Chave Pix (CPF, e-mail, telefone…)" style="margin-top:10px">
+      <input class="fld" id="pnm" name="sb-pnm" data-lpignore="true" data-1p-ignore autocorrect="off" spellcheck="false" autocomplete="off" type="text" maxlength="40" placeholder="Nome de quem recebe (opcional)" style="margin-top:8px">
       <div class="pvw" id="pvw" hidden role="status"></div>
       <div id="bkb">
         <div class="lbl" id="bkl" style="margin-top:14px">Banco</div>
@@ -1251,7 +1303,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.422';
+const VERSION='13.424';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2123,15 +2175,15 @@ function renderSet(){
 }
 
 /* ---------- navegação ---------- */
-function renderAll(){ if(TAB==='home')renderHome(); else if(TAB==='pan')renderPan(); else renderSet(); }
+function renderAll(){ if(TAB==='home')renderHome(); else if(TAB==='pan')renderPan(); else if(TAB==='cof')renderCofre(); else renderSet(); }
 const SCR={};
 function setTab(t){
   const prev=TAB;if(t!==prev)SCR[prev]=window.scrollY;
   TAB=t;
   $$('.page').forEach(p=>p.hidden=p.id!=='p-'+t);
   $$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  $('#ind').style.transform='translateX('+(['home','pan','set'].indexOf(t)*100)+'%)';
-  $('#fab').style.display=t==='set'?'none':'';
+  $('#ind').style.transform='translateX('+(['home','pan','cof','set'].indexOf(t)*100)+'%)';
+  $('#fab').style.display=(t==='set'||t==='cof')?'none':'';
   if(t==='home'){ANIM=true;if(t!==prev)NAVM=true} /* v13.184: voltar para Contas não recria os cartões (a foto piscava borrada) nem refaz a entrada das contas */
   renderAll();scrollTo(0,t!==prev?(SCR[t]||0):0);
 }
@@ -3709,6 +3761,74 @@ function pixTipo(v){v=String(v||'').trim();if(!v)return '';const d=v.replace(/\D
   if(/^\d{11}$/.test(v))return cpfOk(v)?'CPF':'Telefone';
   return '';}
 function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;const tp=x.k==='pix'?pixTipo(x.v):'';return '<div class="pit'+(withRm&&i===PEDX?' ed':'')+'"'+(withRm?' data-ed="'+i+'"':'')+'><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm">'+(x.k==='pix'?'<i class="ptag">Pix'+(tp?' · '+esc(tp):'')+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':(t.bk?'<i class="ptag">'+esc(t.l)+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':''))+'<b>'+esc(x.n||t.l)+'</b>'+(x.v?'<span>'+esc(x.v)+'</span>':'')+'</div>'+(x.v?'<button type="button" class="pcp" data-cp="'+i+'">Copiar</button>':'')+(withRm?'<button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">×</button>':'')+'</div>'}).join('')}
+/* v13.424: janela Pagar em cartão com a cor do banco + Cofre (todas as formas de pagamento num lugar só) */
+/* atalhos para abrir o app de cada instituição no iPhone. Se um não abrir, o app avisa e a chave já fica copiada */
+const APPLINK={nubank:'nubank://',itau:'itauapp://',bradesco:'bradesco://',santander:'santander://',bb:'bbapp://',caixa:'caixa://',inter:'bancointer://',c6:'c6bank://',btg:'btgpactual://',picpay:'picpay://',mercadopago:'mercadopago://',neon:'neon://',xp:'xpinvestimentos://',sicredi:'sicredi://',sicoob:'sicoob://',next:'next://',bmg:'bmg://',safra:'safra://',bv:'bv://',pan:'bancopan://',genial:'genial://',rico:'rico://',agora:'agora://',ion:'ion://'};
+const bankOf=(b,x)=>(x&&x.b)||b.bank||(BANKPROV.indexOf(b.cat)>=0?b.prov:'')||'';
+function shareText(x,bid){const t=PGT[x.k]||PGT.outro,tp=x.k==='pix'?pixTipo(x.v):'';return t.l+(tp?' ('+tp+')':'')+(x.n?' · '+x.n:'')+(bid&&PROV[bid]?' · '+PROV[bid].n:'')+'\n'+x.v}
+function doShare(x,bid){const tx=shareText(x,bid);if(navigator.share){navigator.share({text:tx}).catch(()=>{});return}copyTxt(tx,'Copiado para compartilhar')}
+function openApp(id,val){
+  const u=APPLINK[id],nm=bkName(id);
+  if(!u){toast('Abra o app do '+nm+' manualmente');return}
+  try{if(val&&navigator.clipboard)navigator.clipboard.writeText(val).catch(()=>{})}catch(e){}
+  let left=false;const onv=()=>{if(document.hidden)left=true};document.addEventListener('visibilitychange',onv);
+  toast(val?'Copiado. Abrindo o '+nm+'…':'Abrindo o '+nm+'…');
+  try{location.href=u}catch(e){}
+  setTimeout(()=>{document.removeEventListener('visibilitychange',onv);if(!left&&!document.hidden)toast('Não consegui abrir o '+nm+'. Abra o app por aqui mesmo'+(val?': a chave já está copiada':''))},1600)}
+const PCPT={pix:'Copiar chave Pix',barras:'Copiar código'};
+function payCard(x,i,bid){
+  const t=PGT[x.k]||PGT.outro,p=bid&&PROV[bid],tp=x.k==='pix'?pixTipo(x.v):'';
+  const tag=x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l;
+  const top=p?'<div class="pct" style="background:linear-gradient(120deg,'+p.c+',color-mix(in srgb,'+p.c+' 80%,#000));color:'+p.t+'">'+badge(p)+'<div class="pcm"><small>'+esc(tag)+'</small><b>'+esc(p.n)+'</b></div></div>'
+    :'<div class="pct pn"><div class="pic'+t.c+'">'+t.ic+'</div><div class="pcm"><small>Pagar com</small><b>'+esc(t.l)+'</b></div></div>';
+  const can=!!(p&&APPLINK[bid]&&x.v);
+  return '<div class="pcc">'+top+'<div class="pcbd">'+(x.n?'<div><div class="pcl">'+(x.k==='pix'||x.k==='outro'?'Quem recebe':'Nome')+'</div><div class="pcn">'+esc(x.n)+'</div></div>':'')+
+    (x.v?'<div class="pck'+(x.k==='barras'?' mono':'')+'">'+esc(x.v)+'</div><button type="button" class="pcy" data-cp="'+i+'">⧉ '+esc(PCPT[x.k]||'Copiar dados')+'</button><div class="pcr2">'+(can?'<button type="button" class="pcs" data-open="'+esc(bid)+'" data-i="'+i+'">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+'<button type="button" class="pcs" data-sh="'+i+'">⤴ Compartilhar</button></div>':'')+
+    '</div></div>'}
+function payCards(b){return '<div class="pcards">'+b.pay.map((x,i)=>payCard(x,i,bankOf(b,x))).join('')+'</div>'}
+/* ---------- Cofre ---------- */
+let CFQ='',CFT='all',CFO=null,CFB=false;
+const CFG=[['pix','Chaves Pix',['pix']],['barras','Boletos',['barras']],['outro','Contas e transferências',['outro']],['deb','Débitos',['debconta','debauto']],['din','Dinheiro',['dinheiro']]];
+function cfEntries(){
+  const m=new Map();
+  S.bills.forEach(b=>{(b.pay||[]).forEach(x=>{
+    const key=x.v?x.k+'|'+String(x.v).replace(/\s+/g,'').toLowerCase():'n|'+b.id+'|'+x.k;
+    let e=m.get(key);if(!e){e={id:'e'+m.size,x:x,bank:'',bills:[]};m.set(key,e)}
+    const bk=bankOf(b,x);if(bk&&!e.bank)e.bank=bk;if(!e.x.n&&x.n)e.x=Object.assign({},e.x,{n:x.n});
+    if(e.bills.indexOf(b)<0)e.bills.push(b)})});
+  return [...m.values()]}
+function cfMask(v){v=String(v);if(v.indexOf('@')>0){const a=v.split('@');return a[0].slice(0,2)+'•••@'+a.slice(1).join('@')}
+  if(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(v))return '•••.'+v.slice(4,7)+'.•••-••';
+  if(v.length<=6)return '••••••';return v.slice(0,3)+'••••••'+v.slice(-3)}
+function cfKey(b){const n=today0();return b.repeat==='once'?String(b.due).slice(0,7):n.getFullYear()+'-'+(n.getMonth()+1)}
+function renderCofre(){
+  const q=$('#cfq');if(!q)return;
+  if(!CFB){CFB=true;
+    q.addEventListener('input',()=>{CFQ=q.value;CFO=null;renderCofre()});
+    $('#cfch').addEventListener('click',e=>{const c=e.target.closest('[data-g]');if(!c)return;CFT=c.dataset.g;CFO=null;renderCofre()});
+    $('#cflist').addEventListener('click',e=>{
+      const en=e.target.closest('.cfe');if(!en)return;const E=cfEntries().find(z=>z.id===en.dataset.e);if(!E)return;
+      const cp=e.target.closest('[data-cfc]');if(cp){copyTxt(E.x.v,(PGT[E.x.k]||PGT.outro).ms,cp);return}
+      const op=e.target.closest('[data-cfo]');if(op){openApp(E.bank,E.x.v);return}
+      const sh=e.target.closest('[data-cfs]');if(sh){doShare(E.x,E.bank);return}
+      const bl=e.target.closest('[data-cfb]');if(bl){const b=S.bills.find(v=>v.id===bl.dataset.cfb);if(b)openDet(b.id,cfKey(b));return}
+      const ed=e.target.closest('[data-cfe]');if(ed){const b=S.bills.find(v=>v.id===ed.dataset.cfe);if(b)openSheet(b.id,cfKey(b));return}
+      CFO=CFO===E.id?null:E.id;renderCofre()})}
+  const all=cfEntries(),ql=CFQ.trim().toLowerCase();
+  const hit=E=>!ql||[E.x.n,E.x.v,(PGT[E.x.k]||{}).l,E.bank&&bkName(E.bank)].concat(E.bills.map(b=>b.name)).join(' ').toLowerCase().indexOf(ql)>=0;
+  const grp=CFG.map(g=>({k:g[0],t:g[1],list:all.filter(E=>g[2].indexOf(E.x.k)>=0&&hit(E))})).filter(g=>g.list.length);
+  const tot=grp.reduce((n,g)=>n+g.list.length,0);
+  $('#cfch').innerHTML=all.length?'<button type="button" class="cfc'+(CFT==='all'?' on':'')+'" data-g="all">Tudo <i>'+tot+'</i></button>'+grp.map(g=>'<button type="button" class="cfc'+(CFT===g.k?' on':'')+'" data-g="'+g.k+'">'+esc(g.t.split(' ')[0])+' <i>'+g.list.length+'</i></button>').join(''):'';
+  if(!all.length){$('#cflist').innerHTML='<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></svg></div><b>Seu cofre está vazio</b><p>Ao cadastrar uma conta, preencha a forma de pagar (chave Pix, código do boleto, agência e conta). Tudo aparece aqui, sem repetir.</p></div>';return}
+  const show=grp.filter(g=>CFT==='all'||g.k===CFT);
+  if(!show.length){$('#cflist').innerHTML='<div class="cfempty"><b>Nada encontrado</b><p>Tente outra palavra ou limpe a busca.</p></div>';return}
+  $('#cflist').innerHTML=show.map(g=>'<div class="cfh">'+esc(g.t)+' <i>'+g.list.length+'</i></div>'+g.list.map(E=>{
+    const x=E.x,t=PGT[x.k]||PGT.outro,p=E.bank&&PROV[E.bank],tp=x.k==='pix'?pixTipo(x.v):'',on=CFO===E.id;
+    const tag=(x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+(p?' · '+p.n:'');
+    const ttl=x.n||(x.k==='pix'?'Chave Pix':t.l);
+    const lead=p?badge(p):'<div class="pic'+t.c+'">'+t.ic+'</div>';
+    return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div>'+
+      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div><div class="pcr2">'+(p&&APPLINK[E.bank]&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Editar</button></div></div>':'')+'</div>'}).join('')).join('')}
 /* v13.420: fora de Cartão/Transferência, a forma escolhida em "Como você paga" decide sozinha quais campos aparecem (sem segundo seletor) */
 const VIAPK={pix:'pix',boleto:'barras',transf:'outro'};
 const VIATX={pix:{l:'Chave Pix para pagar',ph:'Chave Pix (CPF, e-mail, telefone…)',np:'Nome de quem recebe (opcional)'},boleto:{l:'Código de barras do boleto',ph:'Cole o código de barras do boleto',np:'Nome (opcional)'},transf:{l:'Dados da transferência',ph:'Agência, conta e CPF/CNPJ de quem recebe',np:'Nome de quem recebe (opcional)'}};
@@ -3744,7 +3864,7 @@ function payAdd(){
   $('#pvl').value='';$('#pnm').value='';setPB('');PAYK='';renderPay();return true}
 function copyFx(btn,lab){
   if(!btn||!btn.isConnected)return;
-  const it=btn.closest('.pit');
+  const it=btn.closest('.pit,.pcc,.cfe');
   if(!btn._o){btn._o=btn.textContent;btn.style.minWidth=btn.offsetWidth+'px'}
   btn.textContent=lab||'✓ Copiado';btn.classList.add('done');clearTimeout(btn._t);btn._t=setTimeout(()=>{btn.textContent=btn._o;btn.classList.remove('done');btn._o=null;btn.style.minWidth=''},1600);
   if(it){it.classList.remove('flash');void it.offsetWidth;it.classList.add('flash');setTimeout(()=>it.classList.remove('flash'),1000)}
@@ -3780,7 +3900,7 @@ function openDet(id,key){
   $('#dth').textContent='Pagar';
   $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c))+'</i><b>'+esc(b.name)+'</b></div></div>'+
    '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div>'+
-   '<div class="pcard"><h4>PAGAR</h4>'+payItems(b.pay,false)+'</div>'+
+   payCards(b)+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+(o&&!o.paid&&o.full>0?'<button type="button" class="act" id="dpp">Parcial</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
   const d=$('#dt');d.hidden=false;clearTimeout(window.__dts);window.__dts=setTimeout(()=>{if($('#dt').classList.contains('open'))document.body.classList.add('so')},300);const pp=$('#dtp');pp.scrollTop=0;pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2||true);void d.offsetWidth;d.classList.add('open');requestAnimationFrame(()=>{pp.classList.toggle('fit',pp.scrollHeight<=pp.clientHeight+2)})}
@@ -3790,6 +3910,8 @@ $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
   const c=e.target.closest('[data-cp]');
   if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);return}
+  const po=e.target.closest('[data-open]');if(po){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+po.dataset.i];if(x)openApp(po.dataset.open,x.v);return}
+  const ps=e.target.closest('[data-sh]');if(ps){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+ps.dataset.sh];if(x)doShare(x,bankOf(b,x));return}
   if(e.target.closest('#ded')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openSheet(id,k),RMq()?0:200);return}
   if(e.target.closest('#dpp')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openPP(id,k),RMq()?0:240);return}
   const dp=e.target.closest('#dpay');
