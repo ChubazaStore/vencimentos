@@ -27,6 +27,7 @@
 .ppd .ppx{position:absolute;inset:0;background:rgba(0,0,0,.55)}
 .ppc{position:relative;width:min(520px,100%);background:var(--card);border:1px solid var(--line2);border-radius:26px 26px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));transform:translateY(40px);transition:transform .28s var(--ease)}
 .ppd.open .ppc{transform:none}
+.ppc .grab{margin:-8px auto 14px}
 .ppc h4{font:700 18px var(--fd);margin:0 0 6px}
 .ppc .ppn{margin:0;color:var(--mu);font-size:13px;line-height:1.5}.ppc .ppn b{color:var(--tx,inherit)}
 .ppc .fld{font-size:18px;font-weight:600}
@@ -58,8 +59,9 @@
 @media (prefers-reduced-motion:reduce){.ppd,.ppc,.hlp,.wlc,.wld i{transition:none}}
 
 /* v13.405: cabeçalho da conta com o ícone grande da empresa (nova conta e edição) */
-.ssum .shero{flex:1 1 100%;display:flex;align-items:center;gap:16px;padding:16px;border-radius:26px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 24%,transparent),rgba(255,255,255,.03) 70%);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
-.ssum .shero .pv,.ssum .shero .ico{flex:none;width:64px;height:64px;border-radius:21px;font-size:23px;box-shadow:0 10px 24px -12px color-mix(in srgb,var(--c) 70%,#000)}
+.ssum .shero{flex:1 1 100%;display:flex;align-items:center;gap:16px;padding:16px;border-radius:26px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)} /* v13.417: cores do tema (antes a cor da empresa/categoria, que mudava a cada conta) */
+.ssum .shero .pv,.ssum .shero .ico{flex:none;width:64px;height:64px;border-radius:21px;font-size:23px;box-shadow:0 10px 24px -12px rgba(0,0,0,.6)}
+.ssum .shero .ico{--c:var(--gold)!important}
 .ssum .shero .ico svg{width:32px;height:32px}
 .ssum .shero .sh-t{min-width:0;flex:1}
 .ssum .shero i{display:block;font:700 10.5px var(--fb);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
@@ -110,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.415';
+(function(){var V='13.417';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -377,7 +379,7 @@ html.kbd body::after,body.sfull::after,body.so::after,html.lgon body::after{disp
 /* painel de cadastro */
 .sheet[hidden]{display:none}
 .sheet{position:fixed;inset:0;z-index:50}
-.sheet:not(.open),.sheet:not(.open) *,#dt:not(.open),#dt:not(.open) *{pointer-events:none!important} /* v13.415: enquanto a janela desce (fechando) ela não pega mais toques: dá para rolar a lista na hora e a janela não reaparece */
+.sheet:not(.open),.sheet:not(.open) *,#dt:not(.open),#dt:not(.open) *,#askyn:not(.on),#askyn:not(.on) *,.pin:not(.open),.pin:not(.open) *{pointer-events:none!important} /* v13.415: enquanto a janela desce (fechando) ela não pega mais toques: dá para rolar a lista na hora e a janela não reaparece */
 .scrim{touch-action:none;position:absolute;inset:0;background:rgba(3,4,8,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;transition:opacity .35s}
 .panel{position:absolute;left:0;right:0;margin:0 auto;bottom:0;width:100%;max-width:560px;max-height:min(94dvh,calc(100dvh - env(safe-area-inset-top,0px) - 66px));overflow-y:auto;overscroll-behavior-y:none;transform:translateY(102%);transition:transform .45s cubic-bezier(.24,.92,.32,1);background:linear-gradient(180deg,var(--p1),var(--p2));border:1px solid var(--line2);border-bottom:0;border-radius:30px 30px 0 0;padding:10px 18px calc(env(safe-area-inset-bottom,0px) + 22px);box-shadow:0 -30px 60px rgba(0,0,0,.5)}
 .sheet.open .scrim{opacity:1} .sheet.open .panel{transform:var(--snp,none)}
@@ -1247,7 +1249,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.415';
+const VERSION='13.417';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3669,7 +3671,7 @@ function askYN(title,msg,okLabel,cb){
   const old=$('#askyn');if(old)old.remove();
   const d=document.createElement('div');d.id='askyn';d.setAttribute('role','alertdialog');
   d.innerHTML='<div class="ab"><b>'+esc(title)+'</b><p>'+esc(msg)+'</p><div class="ar"><button type="button" class="act" data-a="n">Cancelar</button><button type="button" class="act danger" data-a="y">'+esc(okLabel||'Remover')+'</button></div></div>';
-  d.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a||e.target===d){const y=a&&a.dataset.a==='y';d.classList.remove('on');setTimeout(()=>d.remove(),180);if(y)cb()}});
+  d.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(a||e.target===d){if(d._fim)return;d._fim=1;const y=a&&a.dataset.a==='y';d.classList.remove('on');setTimeout(()=>d.remove(),180);if(y)cb()}}); /* v13.416: um segundo toque durante o esmaecer não repete a ação */
   document.body.appendChild(d);void d.offsetWidth;d.classList.add('on')}
 function cpfOk(d){if(d.length!==11||/^(\d)\1{10}$/.test(d))return false;let a=0,b=0;for(let i=0;i<9;i++){a+=d[i]*(10-i)}a=(a*10)%11%10;if(a!==+d[9])return false;for(let i=0;i<10;i++){b+=d[i]*(11-i)}b=(b*10)%11%10;return b===+d[10]}
 /* v13.374: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela */
@@ -3792,18 +3794,35 @@ document.addEventListener('pointermove',e=>{if(LPT&&(Math.abs(e.clientX-LPX)>9||
 ['pointerup','pointercancel','scroll','touchmove'].forEach(n=>document.addEventListener(n,lpCancel,{passive:true,capture:true}));
 document.addEventListener('contextmenu',e=>{if(e.target.closest&&e.target.closest('#list .row'))e.preventDefault()});
 /* v13.400: pagamento parcial: registra quanto já foi pago de uma conta; o que falta continua na lista (e no limite do cartão) */
+/* v13.417: o pagamento parcial também fecha arrastando para baixo, com a mesma alça (cresce e fica branca ao tocar) das outras janelas */
+function ppDrag(d){
+  const pc=d.querySelector('.ppc'),gr=pc.querySelector('.grab'),gp=on=>{if(gr)gr.classList.toggle('gp',on)};let y0=null,dy=0,arr=false,lt=0,ly=0,vy=0;
+  d.addEventListener('touchstart',e=>{
+    if(!d.classList.contains('open')){y0=null;arr=false;gp(false);return}
+    const t=e.target;let hot=false;
+    if(e.touches.length===1&&t&&t.closest){if(t.closest('.ppx'))hot=true;else if(t.closest('.grab,h4')||(e.touches[0].clientY<pc.getBoundingClientRect().top+64&&!t.closest('input,button')))hot=true}
+    if(hot){y0=e.touches[0].clientY;dy=0;arr=false;lt=performance.now();ly=y0;vy=0;gp(true)}else{y0=null;arr=false;gp(false)}},{passive:true});
+  d.addEventListener('touchmove',e=>{
+    if(y0===null)return;if(!d.classList.contains('open')){y0=null;arr=false;gp(false);return}
+    const yy=e.touches[0].clientY,df=yy-y0,n=performance.now();
+    if(n>lt){vy=(yy-ly)/(n-lt);lt=n;ly=yy}
+    if(!arr){if(df<-4){y0=null;gp(false);return}if(df<6)return;arr=true;pc.style.transition='none'}
+    dy=Math.max(0,df);pc.style.transform='translateY('+dy+'px)'},{passive:true});
+  const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;gp(false);if(!era)return;pc.style.transition='';pc.style.transform='';if(c)ppClose()};
+  d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true});
+}
 function ppClose(){const d=$('#ppd');if(d){d.classList.remove('open');setTimeout(()=>d.remove(),260)}}
 function openPP(id,key){
   const b=S.bills.find(v=>v.id===id);if(!b)return;
   const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));if(!o||o.paid||!(o.full>0))return;
   ppClose();lpClose();
   const d=document.createElement('div');d.id='ppd';d.className='ppd';
-  d.innerHTML='<div class="ppx"></div><div class="ppc" role="dialog" aria-label="Pagamento parcial"><h4>Pagamento parcial</h4><p class="ppn">'+esc(b.name)+' · valor da conta <b class="num">'+brl(o.full)+'</b>'+(o.pp>0?'<br>Já pago: <b class="num">'+brl(o.pp)+'</b> · falta <b class="num">'+brl(o.amt)+'</b>':'')+'</p>'+
+  d.innerHTML='<div class="ppx"></div><div class="ppc" role="dialog" aria-label="Pagamento parcial"><div class="grab"></div><h4>Pagamento parcial</h4><p class="ppn">'+esc(b.name)+' · valor da conta <b class="num">'+brl(o.full)+'</b>'+(o.pp>0?'<br>Já pago: <b class="num">'+brl(o.pp)+'</b> · falta <b class="num">'+brl(o.amt)+'</b>':'')+'</p>'+
    '<label class="lbl" for="ppv" style="margin-top:12px">Quanto você pagou agora?</label><input class="fld" id="ppv" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="R$ 0,00">'+
    '<div class="ppq"><button type="button" data-q="2">Metade do que falta</button><button type="button" data-q="1">Tudo que falta</button></div><div class="pperr" id="pperr"></div>'+
    '<div class="ppr"><button type="button" class="act" id="ppc">Cancelar</button><button type="button" class="act ok" id="ppok">Registrar</button></div>'+
    (o.pp>0?'<button type="button" class="ppz" id="ppz">Apagar os pagamentos parciais desta conta</button>':'')+'</div>';
-  document.body.appendChild(d);void d.offsetWidth;d.classList.add('open');
+  document.body.appendChild(d);void d.offsetWidth;d.classList.add('open');ppDrag(d);
   const inp=$('#ppv');
   d.querySelector('.ppx').onclick=ppClose;$('#ppc').onclick=ppClose;
   d.querySelectorAll('.ppq button').forEach(x=>x.onclick=()=>{const v=x.dataset.q==='2'?Math.round(o.amt/2):o.amt;inp.value=(v/100).toFixed(2).replace('.',',')});
@@ -3860,18 +3879,18 @@ function statsFx(v){
     requestAnimationFrame(f)})}
 /* arrastar a janela "Pagar" para baixo fecha */
 (function(){
-  const d=$('#dt'),pn=$('#dtp');let y0=null,dy=0,arr=false,lt=0,ly=0,vy=0;
+  const d=$('#dt'),pn=$('#dtp'),gr=pn.querySelector('.grab'),gp=on=>{if(gr)gr.classList.toggle('gp',on)};let y0=null,dy=0,arr=false,lt=0,ly=0,vy=0; /* v13.417: a alça cresce e fica branca enquanto o dedo está nela, igual à janela de conta */
   d.addEventListener('touchstart',e=>{
-    if(!d.classList.contains('open')){y0=null;arr=false;return} /* v13.415: idem para a janela Pagar */
+    if(!d.classList.contains('open')){y0=null;arr=false;gp(false);return} /* v13.415: idem para a janela Pagar */
     const t=e.target;let hot=false;
     if(e.touches.length===1&&t&&t.closest){if(t.closest('#dtscrim'))hot=true;else if(pn.scrollTop<=0&&(t.closest('.grab,.stitle')||e.touches[0].clientY<pn.getBoundingClientRect().top+96))hot=true}
-    if(hot){y0=e.touches[0].clientY;dy=0;arr=false;lt=performance.now();ly=y0;vy=0}else{y0=null;arr=false}},{passive:true});
+    if(hot){y0=e.touches[0].clientY;dy=0;arr=false;lt=performance.now();ly=y0;vy=0;gp(true)}else{y0=null;arr=false;gp(false)}},{passive:true});
   d.addEventListener('touchmove',e=>{
-    if(y0===null)return;if(!d.classList.contains('open')){y0=null;arr=false;return}const yy=e.touches[0].clientY,df=yy-y0,n=performance.now();
+    if(y0===null)return;if(!d.classList.contains('open')){y0=null;arr=false;gp(false);return}const yy=e.touches[0].clientY,df=yy-y0,n=performance.now();
     if(n>lt){vy=(yy-ly)/(n-lt);lt=n;ly=yy}
-    if(!arr){if(df<-4){y0=null;return}if(df<6)return;arr=true;pn.style.transition='none'}
+    if(!arr){if(df<-4){y0=null;gp(false);return}if(df<6)return;arr=true;pn.style.transition='none'}
     dy=Math.max(0,df);pn.style.transform='translateY('+dy+'px)'},{passive:true});
-  const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;if(!era)return;pn.style.transition='';
+  const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;gp(false);if(!era)return;pn.style.transition='';
     if(c){closeDet();pn.style.transform=''}else pn.style.transform=''}; /* v13.374: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms */
   d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true});
 })();
