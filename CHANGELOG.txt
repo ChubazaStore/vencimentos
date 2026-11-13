@@ -1,5 +1,15 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.447 · Limpeza do código: removidos os 264 comentários de versão (/* v13.xxx ... */) de dentro do index.html; o texto de todos foi guardado no fim deste arquivo, na seção "NOTAS TÉCNICAS MOVIDAS DO CÓDIGO". Conferido por programa: o código (todas as instruções e textos) ficou idêntico, só os comentários saíram. Sem mudança visível.
+
+v13.446 · Limpeza: removidos os estilos e a verificação que sobraram do aviso "Você pagou?" (retirado na 13.438). Sem mudança visível.
+
+v13.445 · Ajustes > Efeitos especiais: texto reescrito explicando o que para ao desligar (giro 3D, brilho e contorno dos cartões, animações, desfoque), o que se ganha (rolagem mais lisa, menos esforço do aparelho e bateria) e o que não muda.
+
+v13.444 · Cofre: no filtro "Favoritos" a estrela agora fica ao lado do texto (antes ficava em cima), alinhada com os outros filtros.
+
+v13.443 · Tocar no valor para copiar: removido o aviso "Valor copiado" que aparecia no meio da tela; fica só o "✓ Valor copiado" embaixo do valor.
+
 v13.442 · Trocar o estilo dos ícones (claro/escuro) em Ajustes: o app agora baixa em segundo plano as duas versões dos ícones das suas contas e bancos, e na hora da troca espera ficarem prontas, então não aparecem mais um a um nem demoram. Vale também para a logo dos cartões sem arte própria.
 
 v13.441 · Janela Pagar: a faixa do banco diz só "Pagar com Pix/boleto" e o tipo exato (CPF, e-mail, código de barras) vai num rótulo acima da chave; no boleto "Nome" vira "Beneficiário"; tocar no valor copia o número (ex.: 1250,50).
@@ -666,3 +676,270 @@ v13.433 · Contorno do cartão com duas luzes (substituído na 13.434 por opçã
    - Panorama dos próximos meses, por tipo e compromissos de longo prazo
    - Backup por copiar/colar, dados salvos no próprio aparelho
    - Instalável na tela de início do iPhone
+
+# ===== NOTAS TÉCNICAS MOVIDAS DO CÓDIGO (v13.447) =====
+# Explicações que ficavam como comentário dentro do index.html, na ordem em que apareciam no arquivo.
+- v13.400: busca, parcial, multa, tutorial, boas-vindas
+- v13.405: cabeçalho da conta com o ícone grande da empresa (nova conta e edição)
+- v13.417: cores do tema (antes a cor da empresa/categoria, que mudava a cada conta)
+- v13.407 (prévia): ajustes de consistência
+- v13.116: barra do relógio SÓLIDA (igual ao app do calendário): a tela começa abaixo do relógio e nada rola por baixo dele, então o iOS 26 não aplica o desfoque de borda
+- v13.175: o logo vem PRÉ-COLORIDO na cor de destaque do tema (i-sobrou-mark-0..9.webp; antes um filtro de cor deixava o Lima neon amarelo-oliva)
+- v13.237: celular sempre em pé. O iPhone nem sempre respeita o bloqueio do manifesto; se o aparelho girar de lado, uma tela cobre tudo pedindo para voltar à vertical
+- v13.237: durante o giro (e 1,3 s depois) as animações contínuas do cabeçalho e do botão + ficam paradas: o iPhone descarta as camadas delas ao girar e as redesenha uma a uma (o cabeçalho piscava)
+- v13.237: o fundo (brilho do tema + faixa do topo) saiu de 'background-attachment:fixed' (o iPhone redesenha esse fundo a cada quadro da rolagem, pesando só nas telas longas: Panorama e Ajustes) e virou uma camada fixa própria, desenhada uma vez
+- v13.77: campos de texto com 16 px: com menos de 16 px o iPhone dá ZOOM na tela ao tocar no campo (e tira o zoom ao fechar o teclado) e isso redesenhava a janela inteira (engasgos de 54–122 ms medidos ao tocar em campo de texto e ao fechar o teclado)
+- v13.237: removido o content-visibility dos quadros do Panorama: o iPhone só desenhava cada quadro quando ele entrava na tela e recalculava a altura da página durante a rolagem (pulos e rolagem lenta)
+- v13.237: 1ª tela de quem acabou de entrar (nenhuma conta cadastrada ainda): boas-vindas premium com atalhos direto para o tipo de conta
+- v13.115: no iOS 26 o sistema borra ~40 px do topo do app instalado (efeito de borda de rolagem) e só deixa de borrar quando há uma barra FIXA, de largura total, de cor SÓLIDA e que ele consiga "ver" (com pointer-events:none ele ignorava). Por isso o tapa-relógio volta, agora tocável e opaco
+- v13.161: com o teclado aberto, as abas e o botão + ficam escondidos (menos coisa para o iPhone redesenhar enquanto a tela sobe e desce)
+- v13.184: troca de aba é corte seco (como o iPhone): antes a tela nova começava do escuro e clareava, o que virava piscada
+- v13.415: enquanto a janela desce (fechando) ela não pega mais toques: dá para rolar a lista na hora e a janela não reaparece
+- v13.237: a janela fica numa camada própria da placa de vídeo enquanto estiver na tela: sem isso o iPhone a redesenhava no fim da subida (o 'tremor' lá no topo) e a cauda longa da curva andava 1 px por quadro
+- v13.242: ao tocar e segurar a parte de cima da janela, o traço fica branco e um pouco maior (como no iPhone), indicando que dá para arrastar para fechar
+- v13.423: o iPhone pinta de amarelo o campo preenchido pela sugestão (contato/e-mail) e não tirava mais; pinta de volta com a cor do app
+- v13.245: símbolos prontos (Phosphor Icons duotone, licença MIT; marca do PIX do Simple Icons, CC0)
+- v13.424: cartão Pagar + Cofre
+- v13.444: estrela e texto do chip Favoritos na mesma linha
+- v13.374: toque numa forma salva para editar
+- v13.374: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido
+- v13.437: sem o encolher (scale) nem o degradê, que deixavam a ponta da esquerda sem cor ao segurar
+- v13.374: ícone da conta no tamanho cheio (antes 40 px)
+- v13.183: acabamento premium igual nas três telas (Contas, Panorama, Ajustes). Tudo estático (degradê, relevo e sombra): sem desfoque e sem animação nova, para não pesar
+- v13.78: nomes sob os ícones quebram em até 2 linhas (antes eram cortados com "…") e em telas estreitas a fonte e o ícone diminuem um pouco
+- v13.86: ícones fora da tela não são desenhados até aparecerem (continuam carregados); a altura reservada vira a medida real depois do primeiro desenho
+- v13.95: removido o content-visibility dos ícones (v13.86): o tempo de montar os ícones não melhorou e o iPhone passava a desenhar cada fileira só quando ela entrava na tela, durante a rolagem
+- v13.237: grade de ícones (passo 2) mais leve de desenhar: sem sombra difusa embaixo de cada ícone (mais de 100 sombras com desfoque) e sem recorte arredondado por ícone (o arredondamento passa para a própria imagem); o visual fica praticamente igual
+- v13.237: no cadastro em passos não existe o ícone 'Outro' (sempre se escolhe uma opção da lista ou a própria foto/logo)
+- v13.237: no passo 2 'Quem é?' e 'Como você paga' são obrigatórios: sem escolher, o Continuar não avança, avisa e destaca o que falta
+- v13.250: filtro de bandeira dos cartões em PÍLULA, com as proporções da pílula GOL/Smiles (2,37 : 1, círculo de 89% da altura à esquerda). Tudo em %, então todas as bandeiras ficam na MESMA linha, sem rolar, e a pílula se ajusta ao número delas. Escolhida: círculo branco com ✓; as outras: círculo vazio
+- v13.36: os cartões só viram camada enquanto o carrossel anda de lado (a rolagem vertical da janela fica sem camadas)
+- v13.179: valor, situação e limite do cartão aparecem JUNTO com o deslize (acompanham a posição do cartão), em vez de esperar o carrossel parar (~0,5 s)
+- v13.182: janela mais larga: o valor do cartão que chega aparece aos poucos enquanto o outro some (antes ficava um instante sem nenhum valor)
+- v13.77: sem o 3D os vizinhos ficam menores (só escala, sem camada) e o espaço entre os cartões aumenta
+- v13.77: ao montar/trocar de bandeira o carrossel aparece já no lugar, sem crescer nem encaixar à vista
+- v13.301: carrossel novo (html.pro): um cartão por gesto, tamanho preso à rolagem (compositor), sem transição de tempo
+- v13.301: primeiro e último cartão: do lado de fora da ponta (zona do elástico) o efeito fica PARADO (sem variar o tamanho): medido no vídeo, ali o tamanho oscilava ~1,5% enquanto o dedo segurava, e isso era a tremida
+- v13.302: (a) vão dos cartões do lado no 3D do seletor: só quando o nível é maior que "Atual" (classe gapn) os cartões usam as animações abaixo, com um deslocamento em direção ao centro (--sh, no #cm); no nível "Atual" nada muda
+- v13.329: durante a troca de bandeira o texto novo NÃO pode ter transição de opacidade (o .16s acima fazia o nome novo ficar visível por 2-3 quadros em cima do antigo antes de sumir: piscada/pulo)
+- v13.36: o número (••••) do cartão no seletor não servia para nada e só aparecia depois que o cartão parava
+- v13.26: seletor em grade de 2 colunas — nada rola na horizontal dentro da janela; o cartão escolhido ganha um contorno dourado
+- v13.182: depois da 1ª entrada a animação sai: ao voltar do segundo plano o app refaz o carrossel (display:none→volta) e isso reiniciava a entrada (cartão escuro, subindo 14 px e com texto duplicado)
+- v13.412: o texto de reserva (ex.: “Ya”) aparecia embaixo do ícone no cabeçalho da conta, porque regras como “.shero b” e “#dt .dh b” (display:block) valiam também para ele
+- v13.389: brilho do cartão à escolha (Ajustes): 0 faixa reta (atual), 1 seda, 6 luz na borda. Só transform/opacity animam
+- v13.175: antes de a foto chegar, o cartão mostra uma versão minúscula (borrada) da PRÓPRIA arte, embutida no app (~0,5 KB por cartão), em vez de um fundo de cor lisa
+- v13.180: a miniatura fica SEMPRE por baixo da foto: se o iPhone descartar a foto decodificada (voltar do segundo plano), aparece a arte borrada em vez de um cartão escuro
+- v13.432: guia de instalação (tela de início)
+- v13.124: a cor de destaque percorre a borda inteira (topo e laterais), não só o topo
+- v13.122: o espaço acima da janela mostra o cabeçalho do app (logo, Sobrou!, versão e selo Premium), parado, só aparece junto com o fundo da janela
+- v13.121: o espaço acima da janela ganha um brilho suave na cor do tema e a borda de cima da janela fica na cor de destaque (desenho estático; a altura da janela NÃO muda)
+- v13.118: fundo da janela OPACO (antes 80%): a tela de trás aparecia fraca e sumia de repente quando o app a escondia
+- v13.237: dentro da janela os cartões (escolha de modelo e prévia) não têm mais o brilho infinito: eram dezenas de animações rodando durante a rolagem
+- v13.237: cadastro em 3 passos (Tipo · Quem é · Detalhes) dentro da mesma janela. Cada passo mostra só o seu pedaço (o resto fica sem desenho, display:none), botão fixo embaixo e barra de progresso.
+- v13.374: editando uma conta não há passos nem seta de voltar (dava para trocar a conta por cima): só Cancelar e Salvar alterações
+- v13.130: sem pulo/encolher: só a cor/borda muda ao tocar
+- v13.126: o ícone reage NA HORA ao toque (encolhe um pouco), antes só marcava depois de soltar
+- v13.237: abertura nova: partículas (canvas) se juntam e formam o logo; o logo real surge nítido, onda de luz, reflexo, nome e frase
+- v13.237: selo Premium (só assinantes), saída do logo voando até o cabeçalho
+- v13.175: reflexo de luz que atravessa o logo (só opacidade/posição, recortado no formato do logo)
+- v13.77: abertura do app = continuação da imagem de início do iPhone: já nasce no último quadro (logo, nome e frase visíveis, igual à imagem), segura um instante e sai com um zoom suave
+- v13.64: sombras dos cartões removidas (teste de fluidez); botão "Sombras dos cartões" no Diagnóstico traz de volta (sobrou.sh='on')
+- v13.247: marcas das bandeiras (Visa, Mastercard, Elo, Amex, Hipercard) do pacote 'payment-icons' (licença MPL-2.0: https://github.com/activemerchant/payment_icons), sem o fundo original e recortadas na marca; o fundo em degradê de cada uma é desenhado em CSS no mesmo estilo dos ícones dos bancos
+- v13.332: empresas novas (ícones i-<id>.webp)
+- v13.347: empresa nova (Agibank)
+- v13.332: estilo dos ícones. Claro = i-<id>-c.webp (PADRÃO desde a v13.351). Escuro = os arquivos i-<id>.webp, só para os que têm versão clara (lista LOGOC; os demais continuam iguais nos dois estilos). Escolha em Ajustes, guardada em sobrou.ic ('c' claro, 'd' escuro; sem valor = claro)
+- v13.403: opções avançadas (carrossel, diagnóstico) escondidas: toque 5 vezes na versão, no fim de Ajustes
+- v13.442: pré-carrega os ícones dos dois estilos (claro/escuro) das contas e bancos em uso: ao trocar o estilo em Ajustes eles já estão prontos e não "acendem" um a um
+- v13.125: banco SEM cartões cadastrados mostra UM só cartão genérico Visa (menos coisa para o iPhone montar). Só ao EDITAR uma conta que já tinha outra bandeira, mostra o genérico dessa bandeira para não perdê-la. Quando houver cartões de verdade, é só cadastrar em MODELS/TPLS.
+- v13.391: contas de valor que muda todo mês (cartão e Luz·Água·Gás): meses seguintes começam em R$ 0,00 (a lançar)
+- v13.378: na lista o rótulo do cartão já diz crédito ou débito
+- v13.352: cartão mostra o ícone do banco, não a arte do cartão
+- v13.418: segurança. Dados vindos de backup, nuvem ou armazenamento nunca são confiáveis: id só com letras/números/_.-, categoria só as conhecidas e campos numéricos sempre números (antes, texto malicioso nesses campos era executado como código ao desenhar a tela)
+- v13.329: o Santander Free virou 2 modelos (Visa e Mastercard) e o SX saiu: contas antigas passam para o Free da mesma bandeira
+- v13.426: formas de pagamento (Cofre) vindas de backup/nuvem também são limpas
+- v13.428: Termos de Uso e Política de Privacidade dentro do app. Preencha LEGAL com os dados de quem vende (nome ou razão social, CPF/CNPJ, e-mail); vazio, o texto usa frases genéricas
+- v13.432: onde abrir telas por cima: dentro da tela de login só se ela estiver à mostra (senão ficavam invisíveis); no resto, no corpo da página
+- v13.426: backup completo = contas + metas + ordens + Cofre (as formas de pagamento ficam dentro das contas, favoritos incluídos) + aparência. O PIN nunca vai no arquivo
+- v13.374: valor por faixa — b.st=[{k:'AAAA-MM',a:centavos}]: o novo valor vale do mês k em diante e os meses anteriores continuam com o valor antigo
+- v13.400: pagamento parcial: amt = o que FALTA; full = valor inteiro da conta
+- v13.400: estimativa de multa e juros em conta atrasada (não vale para cartão; é só uma estimativa, o valor real é o do boleto/fatura)
+- v13.401: valores fixos da lei para boleto/conta atrasada: multa de 2% (CDC, art. 52 §1º) + juros de mora de 1% ao mês, por dia de atraso
+- v13.260: efeitos de pagar/desfazer. As peças (clarão, 2 anéis, 12 estrelinhas; seta e anel do "rebobinar") são criadas UMA vez e reaproveitadas em cada toque (antes eram 15+ elementos novos por toque). Um aquecimento invisível roda 1 vez ao abrir o app para o 1º toque já encontrar tudo pronto. Cores do tema pelo CSS.
+- v13.271: 3 conjuntos de peças (antes 1). Dois toques seguidos usam conjuntos diferentes: o efeito do 1º não é mais cortado nem arrastado para o lugar do 2º. Efeitos mais curtos (até ~0,6 s): terminam enquanto a conta ainda está no lugar (a conta só sai aos 0,55 s + 0,17 s).
+- v13.329: depois do efeito a caixa some de vez (fica visibility:hidden, nada para reaparecer sozinho)
+- v13.329: FXW=1 só durante o aquecimento: as peças ficam com 1% de opacidade elas mesmas (não só a caixa); FXV = última vez que o app voltou do segundo plano
+- v13.329: recém-voltou do segundo plano: espera (foi aí que o efeito vermelho de desfazer apareceu sozinho)
+- v13.270: "remendo" da lista ao pagar/desfazer. Em vez de apagar e recriar todas as linhas, mantém as que não mudaram (já desenhadas) e mexe só no que mudou: a linha tocada, os títulos/contagens e as seções que aparecem/somem. Se algo fugir do esperado, devolve false e a lista é refeita como antes.
+- v13.270: no relatório, o MESMO trabalho levou 1–2 ms em toques rápidos e 5–6 ms quando o app ficava parado durante a espera (e o quadro de ~40 ms só aparecia nesse caso): o iPhone baixa a velocidade do processador quando não há nada para fazer. Durante a espera e a saída (~0,7 s) o app mantém um trabalho leve de ~4 ms por quadro para o processador chegar à troca já acelerado. Dá para desligar no Diagnóstico para comparar.
+- v13.270: no pagar/desfazer o cartão do topo (anel, número grande, mês) NÃO é recriado: só o texto "Próxima…" e os 3 totais mudam; o número e o anel continuam animando do valor anterior. Se algo não bater, recria como antes.
+- v13.407: valores grandes (ex.: R$ 15.318,38) encolhem um pouco em vez de ficar cortados com “…”
+- v13.380: o cartão só aparece nos meses em que tem fatura (encerrado ou removido não deixa mais a foto 'Sem fatura')
+- v13.399: separa o que é deste mês do que ficou em aberto de meses anteriores
+- v13.381: a contagem só vale para o mês de hoje; mês passado = fatura já fechada; mês futuro = só o dia
+- v13.330: só dois carrosséis. 3D (giro preso à rolagem, precisa do Safari 26+) e Simples (cartões planos, rolagem e encaixe do iPhone, quase nenhum código). Automático: 3D onde o aparelho suporta, Simples nos outros. Ajustes → Carrossel de cartões permite fixar um deles (sobrou.car3)
+- v13.301: o giro 3D é um carrossel à parte (rolagem nativa + giro preso à rolagem): ligar um desliga os outros
+- v13.301: pontas elásticas por padrão de novo (o piscar do tamanho na zona do elástico foi removido); Firme continua como opção
+- v13.301: sem escolha feita, o 3D abre com pontas firmes (o elástico + giro preso à rolagem tremia ao segurar o dedo além da ponta) e os demais com elástico
+- v13.301: pontas do carrossel: elástico (padrão) ou firme (para seco na ponta, sem puxar o cartão para fora)
+- v13.108: sombras dos cartões sempre removidas (opção apagada)
+- v13.301: gravador de tremida do carrossel (só age com o diagnóstico ligado): anota quando a rolagem muda de sentido 3+ vezes em 350 ms ou dá salto de 120+ px de uma vez, com a posição (ponta inicial/final/fora da ponta) e o modo
+- v13.180: trocar de mês NÃO conta nem varre o anel (virava piscada ao passar vários meses): o valor e o anel já entram no valor final
+- v13.178: trocar de mês NÃO recria os cartões (a foto era recarregada e piscava): a arte fica no lugar e só o valor/situação e o limite trocam, com um esmaecer rápido
+- v13.273: pagar/desfazer com o topo fora da tela: o número grande e a % não contam (500 ms de texto mudando a cada quadro, sem ninguém ver)
+- v13.184: fotos dos cartões da tela inicial ficam decodificadas e prontas (se o cartão for recriado, a foto entra direto)
+- v13.408: imagem do mês para compartilhar
+- v13.432: guia para instalar o Sobrou! na tela de início (iPhone: passos com desenhos; Android: botão de instalar)
+- v13.429: relatório do mês em PDF (feito aqui mesmo, sem internet): resumo, total por tipo e lista de contas com a situação de cada uma
+- v13.354: mês anterior por tipo, para mostrar a variação
+- v13.425: com PIN ligado, o Cofre pede o PIN
+- v13.184: voltar para Contas não recria os cartões (a foto piscava borrada) nem refaz a entrada das contas
+- v13.237: tocar na aba que já está aberta não reconstrói a tela (piscava): só volta ao topo, como no iPhone
+- v13.237: tocar na aba em que você já está volta ao topo. Antes cada toque reiniciava a rolagem suave do iPhone (que é lenta) e, tocando várias vezes, a tela subia aos poucos. Agora é uma subida única e rápida; toques durante a subida são ignorados
+- v13.386: abre na hora (antes esperava 520 ms o efeito de brilho do cartão terminar)
+- v13.384: tocar no cartão abre a mesma janela da lista (Pagar, ou edição se a conta não tem forma de pagamento salva)
+- v13.260: pagar / desfazer em etapas, sem pulos. 1) toque: a bolinha enche (ou esvazia) na própria linha e o efeito sai dela; a lista fica PARADA por 0,55 s (os dados já são salvos na hora); 2) a conta desliza para o lado e some no lugar dela (0,17 s); 3) a lista é refeita e cada linha desliza só a diferença de posição dentro da sua caixa; as caixas só mudam de ALTURA (assim nada soma dois movimentos); 4) a conta aparece no lugar novo. Se uma seção aparece/some (1ª paga do mês, última a pagar...), ela abre/fecha com deslize. Movimento reduzido: troca direta.
+- v13.260: diagnóstico do pagar/desfazer. Só trabalha com o Diagnóstico LIGADO (desligado não mede nada). Mede: quadros lentos em cada fase (espera, saída, troca, entrada), tempo de código de cada etapa, e, a cada quadro da troca, a posição das linhas para achar PULOS (linha que anda para um lado e volta, ou salta de uma vez) e SOBREPOSIÇÃO de linhas. Ler posições a cada quadro pode somar um pouco de custo: só no modo diagnóstico.
+- v13.301: contas de lotes que trocaram há pouco: outro lote que ainda está sendo observado não conta o deslize delas como pulo/sobreposição
+- v13.275: cada toque é aceito NA HORA (bolinha, efeito e dado salvo), como nos apps profissionais; nunca é ignorado nem forçado a esperar. A lista, porém, só muda em LOTES, um de cada vez e sem sobreposição: quando a espera da 1ª conta termina, todas as contas já tocadas saem juntas e a lista é refeita UMA vez (um deslize só). Toque durante um lote espera o lote terminar. Enquanto a conta espera, a lista continua mostrando o estado antigo dela (PAYFZ), então nada pula; o efeito acompanha a bolinha mesmo se a linha se mexer.
+- v13.301: mede sempre com tudo parado (uma linha no meio de um deslize daria um ponto de partida errado)
+- v13.301: troca 1 por 1 (ex.: "A pagar" some e "Tudo pago" aparece): a caixa nova NÃO anima altura (antes: altura+bordas+sombra a cada quadro, e no vídeo o iPhone repetia 2 quadros); ela nasce no tamanho final só com fade e o espaço da que saiu fecha só a diferença
+- v13.273: só aparece (sem subir 14 px): ela já sobe junto com o grupo de cima que encolhe, e as duas subidas juntas pareciam a caixa "crescer e diminuir" no fim da lista
+- v13.273: a seção que some (ex.: "Pagas" quando a última volta) não some de uma vez: o elemento antigo vai para dentro do espaço e esmaece enquanto o espaço fecha
+- v13.301: as linhas deslizam por layout (top), no MESMO relógio da altura dos grupos: com transform (compositor) e altura (processador) em relógios diferentes, qualquer quadro atrasado do iPhone fazia as duas saírem de compasso e as linhas tremiam
+- v13.400: ao marcar como paga, some o pagamento parcial
+- v13.380: fatura zerada (a lançar) não é paga: abre a edição para informar o valor
+- v13.237: pergunta do passo 2 conforme o tipo (antes era sempre 'Quem é?')
+- v13.397: pergunta do passo 2 conforme o que a lista mostra
+- v13.259: um único comparador de texto reutilizado (antes cada comparação criava um novo: era o item mais pesado de montar a lista de ícones, inclusive no 'aquecimento' em segundo plano que podia cair no meio de um toque). Mesma ordem de antes.
+- v13.259: estes ícones não aparecem mais na escolha do tipo CARTÃO (AliExpress, Centauro, Netshoes, íon Itaú, Shopee, Smiles, Mercado Livre); nos outros tipos continuam. Contas antigas continuam funcionando
+- v13.111: monta os ícones dos OUTROS tipos de conta em segundo plano (fora da tela, um tipo a cada 300 ms, só enquanto a janela está aberta), para a 1ª troca de Boleto/Cartão/… já encontrar tudo pronto
+- v13.143: com o app parado (sem dedo na tela, sem janela aberta, app visível), deixa PRONTOS os ícones dos 3 tipos mais usados, um a cada ~450 ms. Assim o 1º toque no + já encontra tudo montado (antes montava na hora: parte dos ~30 ms de código ao abrir). Para sozinho se o dedo encostar, a janela abrir ou o app sair de cena.
+- v13.77: todos os ícones entram de uma vez. v13.110: os ícones ficam PRONTOS (elementos já criados e decodificados) por tipo de conta; ao trocar, só se trocam os elementos de lugar e se marca o escolhido (antes o HTML era lido e as ~45 imagens recriadas a cada toque = engasgo)
+- v13.398: o bloco de chave Pix / código do boleto voltou em todos os tipos; só o nome muda fora do Cartão
+- v13.421: o banco fica junto dos dados da forma escolhida
+- v13.302: nome/bolinhas do 3D do seletor por linhas de tempo (um nome por cartão, sobrepostos; cada um aparece quando o seu cartão passa pelo centro)
+- v13.302: linha de bandeiras rolável: centraliza a bandeira marcada (a posição de antes é mantida para a rolagem até ela ser suave)
+- v13.302: no 3D do seletor, nome e bolinhas seguem a rolagem sozinhos (CSS); aqui só marca qual é o atual
+- v13.63: 3D leve: só o cartão do centro e os 2 de cada lado (5) ganham o giro/camada; os outros ficam sem animação nem camada (estão fora da tela). Antes todos os ~13 cartões tinham camada e isso engasgava a rolagem da janela
+- v13.331: Simples: o nome e as bolinhas trocam NA HORA em que outro cartão passa pelo centro, durante o arrasto (como no 3D). Só uma conta leve (até 13 cartões) e só mexe no texto quando o cartão do centro muda; no 3D isso é feito pelo CSS
+- v13.302: botão neon do vão dos cartões do lado (só no 3D do seletor) e setas da linha de bandeiras
+- v13.108: o socorro vem DESLIGADO (só observa e anota no relatório); liga no Diagnóstico
+- v13.77: arrasto rápido (150 px ou mais) com a janela parada: socorre aos 140 ms em vez de 250 ms
+- v13.36: ao voltar do segundo plano o iOS descarta as imagens já decodificadas. O app achava que os ícones continuavam prontos (ICDEC) e eles voltavam a ser decodificados no meio da rolagem, com o iPhone sem acompanhar o dedo (no relatório, todos os socorros vieram depois de "voltou ao app"). Agora zera a lista e decodifica de novo aos poucos (3 por quadro): ícones da janela, cartões do seletor e imagens perto da tela.
+- v13.112: ao voltar do segundo plano o app NÃO faz serviço (decodificar imagens, refazer carrossel) enquanto o dedo está na tela ou acabou de rolar: espera ficar livre (até 8 s)
+- v13.117: não decodifica as grades guardadas fora da tela (#pgw)
+- v13.237: com a janela de Nova conta aberta NÃO refaz a rolagem (esconder/mostrar a rolagem piscava a tela ao voltar do segundo plano)
+- v13.77: depois de ficar em segundo plano o iPhone descarta as camadas/telas desenhadas dos cartões: apareciam pretos, pequenos sem crescer e com o 1º cartão preso grande. Ao voltar, o carrossel que está na tela é "refeito" (sai e volta do layout no mesmo quadro, mantendo a posição) e o cartão do centro é remarcado
+- v13.237: na janela aberta o carrossel não sai do layout (era isso que piscava)
+- v13.237: girar o celular o iOS esconde e mostra a página (o diagnóstico anota 'saiu/voltou ao app' a cada giro) e as rotinas de 'voltar do segundo plano' (redecodificar imagens, refazer carrosséis, recalcular tudo) rodavam ~0,1 s depois da volta, bem na hora em que o cabeçalho apagava por 3 quadros. Depois de um giro elas não rodam: nada foi descartado
+- v13.180: as fotos dos cartões visíveis voltam na hora, antes de qualquer outro serviço
+- v13.108: troca de bandeira/banco SUAVE. O carrossel antigo é copiado (fantasma) por cima do novo e some em 240 ms (só opacidade, feita pelo navegador): o novo já está no lugar certo embaixo e a troca vira uma dissolução em vez de um "pulo". Sem carrossel antigo (1ª vez), o novo aparece com fade-in
+- v13.329: o fantasma era posto com medidas INTEIRAS (offsetTop/Left) e o carrossel/texto reais ficam em posições com fração (ex.: 551,16 px); o fantasma ficava até meio pixel mais baixo e, ao sumir, o cartão e o nome pareciam descer e voltar (tremida). Agora usa a posição exata (com fração)
+- v13.301: o texto do cartão (nome, bandeira, pontinhos) também ganha fantasma: ele trocava NA HORA enquanto o cartão antigo ainda ficava ~80 ms na tela, e a diferença parecia uma tremida
+- v13.310: o nome/subtítulo/bolinhas do fantasma mostram a marca .cur, que no 3D do seletor só é atualizada quando a rolagem para (140 ms depois). Tocando na bandeira com o carrossel ainda andando, o fantasma mostrava o nome do cartão ANTERIOR (ex.: "Quartz" sobre o cartão Black). Agora a marca do fantasma é posta pelo cartão que está de fato no centro neste instante.
+- v13.108: a troca é "esmaecer e aparecer": o carrossel NOVO fica invisível enquanto se ajusta (posição, tamanhos, encaixe, 1ª foto) e só aparece quando está pronto, junto com o fantasma do antigo sumindo. Qualquer ajuste do iPhone acontece escondido.
+- v13.301: o esmaecer da troca de cartão: 130 ms com 'ease-out' fazia ~60% da mudança (bege → escuro) em UM quadro (no vídeo: diferença 52 num quadro e 12, 10, 7, 4 nos seguintes), parecendo um corte/piscada; agora 240 ms 'ease-in-out' (a mudança se espalha por ~14 quadros) e a espera mínima antes de trocar caiu de 50 para 16 ms (o cartão novo já está pronto na memória)
+- v13.329: na troca, só o nome, a bandeira em texto e as bolinhas esmaecem (um some e SÓ DEPOIS o outro aparece, sem ficarem um por cima do outro); o botão do ângulo (36) NÃO esmaece mais (ele fazia parte da cópia e piscava/tremia a cada troca)
+- v13.329: o que é IGUAL no antigo e no novo (ex.: o nome "Santander FREE" ao trocar Visa→Mastercard) não esmaece mais: antes sumia e voltava, parecendo piscar/tremer; só esmaece o que muda
+- v13.160: com o fantasma do antigo por cima, o carrossel NOVO aparece inteiro (100%) por baixo na hora e só o antigo esmaece; antes os dois esmaeciam juntos e no meio da troca o fundo escuro aparecia através dos cartões (piscada). Sem fantasma (1ª vez), o novo aparece com fade-in como antes
+- v13.329: TROCA SECA (escolhida no teste): o cartão novo (já pronto por baixo) e o texto novo entram de uma vez e o fantasma do antigo sai no mesmo quadro, sem dissolução (a dissolução entre um cartão claro e um escuro passava por tons bege e parecia um piscar)
+- v13.126: 50 ms mínimos (antes 100), máx. 320 ms (antes 380), fade de 130 ms (antes 200): o cartão novo aparece em ~180 ms em vez de ~335 ms
+- v13.108: fila ÚNICA de imagens de cartão. Cada foto é baixada e decodificada FORA da tela (new Image), no máximo 4 por vez, com relógio de segurança (antes, se o iPhone cancelasse um download, a vaga ficava presa e as outras fotos NUNCA apareciam). Foto já pronta aparece junto com o cartão, sem passar pelo fundo de cor.
+- v13.175: lê a foto DIRETO da memória de imagens do app (Cache API), sem passar pelo sw.js. O iPhone "dorme" o sw.js e acordá-lo levava ~1 s no 1º cartão depois de um tempo parado (Porto 1007 ms, Caixa 1159 ms). Se a foto não estiver guardada, usa o caminho de antes.
+- v13.175: fotos dos cartões prontas ANTES de você precisar, SEM trabalho na tela: o app só entrega a lista ao sw.js (que roda em outra "thread") e ele baixa as ~58 fotos (~3,4 MB, uma vez só), uma por vez, pulando as que já estão guardadas. Ao encostar o dedo no ícone do banco, já começa a preparar as 3 primeiras fotos daquele banco (antes só começava depois do toque terminar).
+- v13.380: cartão: a fatura muda todo mês; Parcelada não se aplica; próximos meses começam em zero (a lançar)
+- v13.124: banco SEM cartões cadastrados mostra só 1 cartão genérico (da bandeira escolhida nos botões de bandeira), em vez de 5
+- v13.248: banco cujos cartões são todos de UMA bandeira também mostra a bandeira (Caixa: Elo, Bradesco: Visa); banco sem cartões próprios (genérico) não
+- v13.175: kch = trocou de banco/bandeira de verdade
+- v13.96: ao trocar de bandeira/banco o carrossel antigo podia ainda estar andando (inércia do iPhone ou encaixe do app): a inércia continuava sobre os cartões NOVOS (eles "faziam o movimento do cartão anterior") e depois o app corrigia deslizando (-5 a -63 px). Agora a inércia é cortada na hora: encaixe do app parado + rolagem horizontal travada e carrossel tirado/recolocado do layout (isso encerra a inércia do iPhone), e só 2 quadros depois volta ao normal
+- v13.175: o esmaecer/aparecer só roda quando o carrossel MUDOU (banco/bandeira). Antes rodava em TODO toque do formulário (Hoje/Amanhã, Única/Parcelada, +/−, texto…) e o cartão piscava
+- v13.233/236: mede a subida da janela só para o diagnóstico (ritmo dos quadros + posições da própria animação; sem leitura de layout para não atrapalhar)
+- v13.237: o diagnóstico mostrou a janela parando em 71,5 px (meio pixel): o iPhone redesenhava o texto e dava um 'estalo' ao fim da subida. Aqui a posição final é ajustada para cair exatamente num pixel da tela (até 0,17 px, invisível)
+- v13.237: a subida da janela passou a ser animada pelo próprio app (antes era uma transição do navegador). O vídeo mostrou que o iPhone cortava o fim da transição: a janela parava ainda em movimento (~2,7 px no último quadro), e dava a sensação de 'bater em algo'. Agora o app controla cada quadro: curva que chega a zero sem corte, posição sempre em pixel inteiro da tela e o quadro final exato
+- v13.241: a subida volta a ser a transição do sistema (CSS), escolhida pelo dono entre 4 estilos testados no aparelho ("a mais fluida"). Só falta marcar a janela como aberta (pausa a tela de trás) quando a subida termina
+- v13.408: últimos 6 meses da conta (valor, no prazo / atrasado / em aberto)
+- v13.87: um layout só: antes o scrollTop=0 aqui obrigava o iPhone a medir a janela com o conteúdo ANTIGO e logo depois tudo era trocado e medido de novo; agora volta ao topo depois de montar o conteúdo novo
+- v13.413: sem travar o corpo da página (overflow) ao abrir a janela: no iPhone isso mudava a rolagem da lista e ela dava um salto ao fechar
+- v13.175: sem foco automático no Valor ao abrir (o iPhone não abre o teclado por foco automático; o campo ficava "já focado" e o toque seguia o caminho nativo, que desloca a tela ~7 pt quando o teclado aparece)
+- v13.237: cadastro em passos
+- v13.374: o cadastro em passos é o único; descarta a antiga chave de “desligar”
+- v13.405: ícone grande da empresa + nome + resumo no alto do passo 3 e da edição
+- v13.237: só refaz o seletor quando o tipo é Cartão (nos outros tipos não há seletor, e o syncForm custava ~17 ms a cada troca de passo)
+- v13.237: sem esmaecer na troca de passo: o esmaecer promovia os itens a camadas e, ao terminar, o iPhone redesenhava o texto e as bordas (o campo de busca parecia mexer um pouco)
+- v13.237: tocar num tipo já avança para o passo 2; escolher um banco de cartão rola até os cartões dele
+- v13.237: o que falta no passo 2 (Quem é? e Como você paga são obrigatórios)
+- v13.301: a conta nova não vem com tipo marcado
+- v13.396: o passo 2 é só escolher a empresa/ícone; “Como você paga” agora fica no passo 3 (validado ao adicionar)
+- v13.376: voltar ao passo 1 apaga o que foi escolhido no passo 2
+- v13.140/141: tocar num campo de texto da janela foca com preventScroll, pra o iPhone não deslocar a janela ao abrir/fechar o teclado (funcionou no valor; agora em todos os campos). O 1º toque foca (cursor no fim); com o campo já focado, o toque segue o caminho normal (pra poder mexer no cursor).
+- v13.142: vale para o app inteiro (login, Ajustes, metas, backup), não só a janela de nova conta; senha fica de fora (preenchimento automático do iPhone)
+- v13.175: campo já focado, mas SEM teclado na tela (foco automático): trata como 1º toque (preventScroll); com o teclado aberto, o toque segue normal para mexer no cursor
+- v13.376: zera tudo o que foi escolhido no passo 2 (empresa/banco, foto, cartão, como paga)
+- v13.259: a foto escolhida e os dados de cartão também são do tipo anterior
+- v13.259: ao TROCAR de tipo numa conta nova, a escolha do tipo anterior (ex.: Banco do Brasil do Boleto) não vai junto para o passo 2 do novo tipo. Na edição de uma conta existente continua como antes.
+- v13.237: durante a volta da horizontal quem corrige é a rotina da rotação (sem refazer a camada da tela, que fazia o cabeçalho piscar)
+- v13.79: com um campo de texto em foco (teclado / Face ID de preencher senha) o iPhone mexe sozinho na área visível; corrigir a posição agora brigava com ele e a tela tremia sem parar
+- v13.442
+- v13.137: tempo de segurar para começar a arrastar (era 450 ms)
+- v13.132: toque curto seleciona já no touchend (o iPhone só manda o "click" depois); o click que vem em seguida é ignorado
+- v13.131: sem realce ao segurar (só o toque seleciona, igual aos tipos)
+- v13.339: se tudo cabe na janela, trava a rolagem (nada para ver); se sobrar pouco, compacta um pouco os tipos; só rola quando realmente passa
+- v13.127: o ícone marca primeiro (desenhado logo) e o resto do trabalho (nome, carrossel de cartões…) roda no quadro seguinte; antes tudo rodava antes de o ícone aparecer marcado. Se tocar em outro ícone antes, só vale o último
+- v13.45: trocar de banco volta ao 1º cartão (antes o modelo escolhido no banco anterior era mantido se o novo banco também o tivesse)
+- v13.309: trocar de bandeira com o carrossel ainda andando (inércia do dedo): o carrossel NOVO herdava o movimento e saía andando sozinho do 1º para o 2º cartão (vídeo da 13.308). Agora, depois da troca, por 0,6 s o app confere a cada quadro se o carrossel continua no cartão marcado e, se ele andou sozinho (sem dedo), recoloca (mexer na posição interrompe a inércia); se insistir, trava a rolagem por 150 ms. Um toque do dedo no carrossel encerra a vigilância.
+- v13.311: espera o carrossel assentar: empurra suave para o cartão mais perto do centro (cancela a inércia) e chama cb quando a rolagem fica quieta por 60 ms ou no scrollend (no máximo 500 ms)
+- v13.145: tocar na bandeira que já está marcada não faz nada (antes remontava o carrossel e ele piscava)
+- v13.145: se o carrossel ainda está andando (inércia do dedo), primeiro ele é parado onde está (2 quadros) e só então troca; antes a troca acontecia com ele em movimento e ele "tremia" e era empurrado pro lado
+- v13.311: com o carrossel ainda andando, NÃO para seco (parava fora do centro e o cartão dava um salto de uns 16 px no quadro da troca, e a inércia ainda empurrava o carrossel novo); a bandeira marca na hora, o carrossel termina de assentar no cartão mais perto (rolagem suave curta, que também interrompe a inércia) e só então começa a troca (esmaecer) com tudo parado no centro
+- v13.144: no carrossel, tocar no cartão do lado não troca mais (o salto/pisca era dessa troca); só arrastar com o dedo
+- v13.311: CMDX = sentido do movimento (para assentar no cartão da frente, sem voltar)
+- v13.161: marca html.kbd enquanto um campo de texto está em foco
+- v13.429: o que o código do boleto conta (valor, vencimento e o banco emissor ou o tipo de conta); o nome de quem recebe NÃO vem no código
+- v13.431: conta de consumo (código de 48 números): o código diz o tipo (energia, água, telecom, multa, imposto); o app marca o tipo e sugere o nome sozinho, sem perder valor, vencimento nem o código
+- v13.383: dinheiro não tem banco
+- v13.356: COMO PAGAR (Pix, código de barras, outro) + tela de detalhes com botão Copiar
+- v13.382: nenhuma forma vem marcada (antes o Pix vinha marcado e parecia salvo)
+- v13.416: um segundo toque durante o esmaecer não repete a ação
+- v13.422: confere se a chave Pix digitada faz sentido (dígitos do CPF/CNPJ, DDD do telefone, e-mail completo). Devolve '' se estiver certa ou vazia, ou a frase do aviso
+- v13.426: forma normalizada da chave para achar repetidas (CPF/telefone sem pontuação, e-mail em minúsculas, +55 ignorado)
+- v13.374: descobre que tipo de chave Pix é (CPF, CNPJ, e-mail, telefone ou aleatória) para mostrar na tela
+- v13.424: janela Pagar em cartão com a cor do banco + Cofre (todas as formas de pagamento num lugar só)
+- v13.420: fora de Cartão/Transferência, a forma escolhida em "Como você paga" decide sozinha quais campos aparecem (sem segundo seletor)
+- v13.426: aviso de chave/boleto repetido: acha a mesma forma em outra conta (ou já salva nesta)
+- v13.430: lê o "Pix copia e cola" (padrão do Banco Central, com conferência do CRC): nome de quem recebe, chave, cidade e valor
+- v13.427: usar uma chave que já existe no Cofre com um toque (preenche nome, banco e favorita, e já guarda nesta conta)
+- v13.437: sem fill o anel voltava parado (quadrado verde) até a limpeza
+- v13.374: o desfoque da barra de abas volta já no começo do fechar (com a janela ainda cobrindo a barra); antes voltava só no fim e a última conta sumia de repente por baixo dela
+- v13.360: segurar na conta (menu rápido), totais que rolam, arrastar a janela Pagar para fechar, filtro por tipo
+- v13.400: pagamento parcial: registra quanto já foi pago de uma conta; o que falta continua na lista (e no limite do cartão)
+- v13.417: o pagamento parcial também fecha arrastando para baixo, com a mesma alça (cresce e fica branca ao tocar) das outras janelas
+- v13.400: tutorial "Como funciona" (Ajustes) e boas-vindas de 3 telas
+- v13.414: sem travar o corpo (overflow)
+- v13.417: a alça cresce e fica branca enquanto o dedo está nela, igual à janela de conta
+- v13.415: idem para a janela Pagar
+- v13.374: solta o inline junto com o fechar: antes o transform ficava preso e a janela parava no ponto e só pulava depois de 460 ms
+- v13.382: a forma marcada em 'Como pagar' sempre é salva ou avisa: antes, marcar Boleto sem digitar o código era ignorado em silêncio e ao reabrir parecia Pix
+- v13.380: conta mensal já existente: mudar a data só muda o DIA do vencimento. Antes a data nova virava o 'primeiro vencimento' e, escolhendo um mês mais à frente, os meses anteriores (com o histórico de pagos) sumiam
+- v13.379: na edição o cartão (modelo, bandeira e nível) NÃO se escolhe: o seletor roda sozinho e podia trocar o modelo por outro (ex.: Gold → Infinite), o que fazia a tela inicial criar um segundo cartão e deixar o primeiro sem fatura. Agora a edição mantém o que a conta já tinha.
+- v13.431: aviso de conta repetida: mesmo nome, valor e vencimento de uma que já existe
+- v13.380: fatura de cartão: só o 1º mês leva o valor, os seguintes começam em zero
+- v13.237: a troca para Contas acontece JÁ, atrás da janela que está fechando (antes esperava a janela sumir: aparecia o Panorama e só depois as Contas)
+- v13.123: agora o "arrastar para fechar" também começa (1) nos primeiros ~96 px da janela, não só no título/alça, (2) no cabeçalho e no fundo acima da janela, e (3) fecha também com um arrasto curto mas RÁPIDO (antes só se passasse de 110 px)
+- v13.415: janela já fechando: o toque não pode “agarrar” e trazer a janela de volta
+- v13.277: no vídeo/relatório, a 1ª troca depois de abrir o app era a única com um quadro perdido (~40 ms) e "refazer a lista" levava 8–14 ms (nas seguintes, 2–4 ms): o código ainda estava "frio". Com o app parado, uma única vez, roda a troca da lista SEM mudar nada (mesmos dados) para o iPhone deixar esse caminho aquecido. Não roda se houver dedo na tela, janela aberta, conta esperando ou o app fora de cena.
+- v13.77: lista para o cronômetro do Diagnóstico trocar as funções por versões medidas
+- v13.419: o teste grátis agora também fica registrado no servidor (campo t)
+- v13.419: sem registro no servidor = ainda não começou o teste lá. Cria UMA vez (as regras do Firebase não deixam o cliente criar de novo nem alterar): fim = o que sobrar dos 7 dias contados do cadastro, no máximo 7 dias a partir de agora
+- v13.80: com a tela de Entrar aberta a página de trás é congelada (sem rolar, sem desenhar) e o tamanho da tela de Entrar é travado: com o teclado / Face ID de "Preencher Senha" o iPhone mexe na área visível e rola a página; a tela de trás reagia e a de Entrar (centralizada) pulava e piscava
+- v13.419: renovar = deixa de ser teste
+- v13.77: cronômetro por etapa do código. Cada função importante é embrulhada e anota quando começou e terminou; o relatório mostra, em cada engasgo, quais etapas rodaram e quanto do tempo foi código medido (o resto é desenho/layout do iPhone)
+- v13.95: ritmo da rolagem: por tipo de rolagem, quadros contados, quadros lentos (>=25 ms = 1+ quadro perdido, >=33 ms = 2+) e o pior
+- v13.227/229: abertura premium. Partículas (canvas) com rastro, poeira dourada, reflexo de lente e ondas; o logo real surge nítido; nome com brilho metálico; selo Premium (assinantes); saída: o logo voa até o cabeçalho. Mede quadros lentos para o diagnóstico
+- v13.243: os brilhos e a poeira cobrem a tela inteira (antes só uma faixa de 12% a 74% da altura): mais partículas, espalhadas de ponta a ponta
+- v13.77: quem ainda não entrou (primeiro acesso ou saiu da conta) vai direto para a tela de login/cadastro, sem a abertura
+- v13.175: a abertura aparece em TODA abertura do app (logado ou não) e depois vem o login ou as Contas; depois de fazer login não repete (só um fade)
+- v13.175: a imagem de início do iPhone agora é só o fundo liso (#0a0c13), igual ao fundo desta abertura: a troca é invisível e o logo anima sobre o mesmo fundo (como no app do Porto). Sem 2ª tela, sem deslocamento.
+- v13.237: ao voltar da horizontal o app voltava com a tela deslocada (a rolagem mudava durante a rotação do iPhone). Guarda a posição enquanto está em pé, cobre a volta com o fundo liso por ~0,7 s (a animação de giro do iPhone fica escondida) e devolve a posição antes de mostrar o app
+- v13.237: o relatório da v13.237 mostrou que a página travada NÃO impede o pulo: ~0,3 s depois da volta (orientationchange → vvscroll 62 → 0) o iPhone desloca a tela 62 px por 1 quadro (rolagem 0 → 62 → 0, cabeçalho 14 → -48 → 14) mesmo com o body fixo. Só uma cobertura esconde esse quadro. Ela cobre desde a volta até 80 ms depois do último aviso do iPhone (mín. 0,4 s, máx. 1,2 s) e some em 0,18 s
+- v13.237: gravação do giro para o diagnóstico: eventos com a hora (ms desde o início do giro) e, a cada quadro por 1,5 s depois da volta, a posição/visibilidade do cabeçalho, a rolagem e o tamanho da tela. Sai UMA linha no relatório ('giro: ...')
+- v13.329: no iPhone as bandeiras (com filtro cinza) só apareciam depois do 1º toque; força um redesenho quando entram na tela ou são refeitas
