@@ -56,10 +56,61 @@
 .wld{display:flex;gap:7px;justify-content:center;margin:26px 0 22px}.wld i{width:8px;height:8px;border-radius:8px;background:rgba(255,255,255,.2);transition:all .25s}.wld i.on{width:24px;background:var(--gold)}
 .wlk .cta{width:100%;justify-content:center;height:52px}.wls{margin-top:12px;min-height:34px;color:var(--mu);font:600 13.5px var(--fb)}
 @media (prefers-reduced-motion:reduce){.ppd,.ppc,.hlp,.wlc,.wld i{transition:none}}
+
+/* v13.405: cabeçalho da conta com o ícone grande da empresa (nova conta e edição) */
+.ssum .shero{flex:1 1 100%;display:flex;align-items:center;gap:16px;padding:16px;border-radius:26px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 24%,transparent),rgba(255,255,255,.03) 70%);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.ssum .shero .pv,.ssum .shero .ico{flex:none;width:64px;height:64px;border-radius:21px;font-size:23px;box-shadow:0 10px 24px -12px color-mix(in srgb,var(--c) 70%,#000)}
+.ssum .shero .ico svg{width:32px;height:32px}
+.ssum .shero .sh-t{min-width:0;flex:1}
+.ssum .shero i{display:block;font:700 10.5px var(--fb);font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+.ssum .shero b{display:block;margin-top:3px;font:800 21px/1.15 var(--fd,var(--fb));letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ssum .shero small{display:block;margin-top:4px;font:500 12.5px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ===== v13.407 (prévia): melhorias visuais ===== */
+.row.paid .mid b{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.32);text-decoration-thickness:1.5px}
+.row.paid .amt{color:var(--ok);opacity:.85}
+.cheer{display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 16px}
+.cheer svg{width:56px;height:56px}.cheer svg *{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.amtbox:focus-within input{text-shadow:0 0 26px rgba(var(--ar),.5)}
+.amtbox:focus-within{background:radial-gradient(60% 70% at 50% 55%,rgba(var(--ar),.10),transparent)}
+.tab.on svg{fill:rgba(var(--ar),.24)}
+@keyframes slr{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+@keyframes sll{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+#list.slr .sec:not(.cardsec){animation:slr .3s var(--ease)}#list.sll .sec:not(.cardsec){animation:sll .3s var(--ease)}
+.ssum .shero .shc{flex:none;width:112px;height:auto;aspect-ratio:1.586;border-radius:9px;box-shadow:0 12px 26px -10px rgba(0,0,0,.7);object-fit:cover}
+@media (prefers-reduced-motion:reduce){#list.slr .sec,#list.sll .sec{animation:none}}
+
+/* v13.407 (prévia): ajustes de consistência */
+.lim .tx{flex-wrap:wrap;row-gap:2px}.lim .tx span{white-space:nowrap}
+
+/* ===== v13.408 ===== */
+.lanb{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin:4px 0 14px;padding:12px 14px;border-radius:20px;background:linear-gradient(135deg,rgba(250,204,21,.14),rgba(255,255,255,.03));border:1px solid rgba(250,204,21,.32)}
+.lanb .lanb-i{flex:none;width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:rgba(250,204,21,.16);color:#facc15}.lanb .lanb-i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lanb .lanb-t{flex:1;min-width:0}.lanb b{display:block;font:700 14px var(--fb)}.lanb small{display:block;margin-top:2px;font:500 12px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lanb .lanb-g{flex:none;font:700 12.5px var(--fb);padding:8px 13px;border-radius:12px;background:#facc15;color:#2a2200}
+.hist{margin:0 0 14px;padding:14px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.hist .hh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.hist .hh b{font:700 13px var(--fb)}.hist .hh span{font:500 12px var(--fb);color:var(--mu)}
+.hist .hb{display:flex;gap:6px;align-items:flex-end;justify-content:space-between;margin-top:12px;height:100px}
+.hist .hc{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;min-width:0}
+.hist .hc em{font:600 10px var(--fb);font-style:normal;color:var(--mu);white-space:nowrap}
+.hist .hc i{display:block;width:100%;max-width:34px;border-radius:8px 8px 4px 4px;background:var(--ok)}
+.hist .hc.late i{background:var(--bad)}.hist .hc.od i{background:rgba(255,255,255,.22)}
+.hist .hc span{font:600 10.5px var(--fb);color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.hist .hl{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;font:500 11px var(--fb);color:var(--mu)}
+.hist .hl span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:5px;background:var(--ok)}.hist .hl .late::before{background:var(--bad)}.hist .hl .od::before{background:rgba(255,255,255,.3)}
+.pin{position:fixed;inset:0;z-index:9990;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px;background:var(--bg,#0b0d14);opacity:0;transition:opacity .22s}.pin.open{opacity:1}
+.pin h3{font:800 22px var(--fd,var(--fb));margin:8px 0 0}.pin p{margin:0;color:var(--mu);font-size:14px;min-height:20px;text-align:center}
+.pin .pnd{display:flex;gap:16px;margin:22px 0 26px}.pin .pnd i{width:15px;height:15px;border-radius:50%;border:2px solid var(--mu2);transition:all .15s}.pin .pnd i.on{background:var(--gold);border-color:var(--gold)}
+.pin .pnd.shk{animation:shake .4s}
+.pin .pnk{display:grid;grid-template-columns:repeat(3,76px);gap:14px 20px}
+.pin .pnk button{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--line);font:600 28px var(--fb)}.pin .pnk button:active{background:rgba(255,255,255,.16)}
+.pin .pnk .e{visibility:hidden}.pin .pnk .bk{font-size:22px;background:none;border-color:transparent}
+.pin .pnl{margin-top:22px;display:flex;gap:18px}.pin .pnl button{color:var(--mu);font:600 13.5px var(--fb);padding:8px}
+.shr{display:flex;align-items:center;gap:12px;margin:12px 0 0}
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.404';
+(function(){var V='13.409';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1076,7 +1127,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 
     <section class="page" id="p-set" hidden>
       <h2 class="pg-title">Ajustes</h2>
-      <p class="pg-sub">Seus dados ficam guardados neste aparelho.</p>
+      <p class="pg-sub">Suas contas ficam salvas na sua conta do Sobrou! e neste aparelho.</p>
       <div id="set"></div>
     </section>
   </main>
@@ -1194,7 +1245,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.404';
+const VERSION='13.409';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1710,6 +1761,7 @@ function heroSet(HH){
   }
   hero.innerHTML=HH;
 }
+function fitStats(){try{document.querySelectorAll('#hero .stats .st b').forEach(b=>{b.style.fontSize='';let f=14;while(b.scrollWidth>b.clientWidth&&f>10.5){f-=.5;b.style.fontSize=f+'px'}})}catch(e){}} /* v13.407: valores grandes (ex.: R$ 15.318,38) encolhem um pouco em vez de ficar cortados com “…” */
 function section(cls,title,arr,start){
   if(!arr.length) return '';
   return '<div class="sec '+cls+'"><h3>'+title+' <em>'+arr.length+'</em><span class="num">'+brl(sum(arr))+'</span></h3><div class="group">'+arr.map((o,i)=>row(o,start+i)).join('')+'</div></div>';
@@ -1848,7 +1900,7 @@ function renderHome(){
    '<circle class="tr" cx="52" cy="52" r="'+R+'" fill="none" stroke-width="9"/><circle class="pr" id="rpr" cx="52" cy="52" r="'+R+'" fill="none" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-p0/100)).toFixed(1)+'"/></svg>'+
    '<div class="ct"><div><span id="rpc" data-v="'+p0+'">'+p0+'%</span><small>pago</small></div></div></div></div>'+
    '<div class="stats"><div class="st"><span>Total</span><b class="num">'+brl(total)+'</b></div><div class="st ok"><span>Pago</span><b class="num">'+brl(paid)+'</b></div><div class="st'+(od.length?' bad':'')+'"><span>Atrasadas</span><b class="num">'+(od.length?brl(sum(od)):'—')+'</b></div></div>';
-  heroSet(HH);statsFx([total,paid,sum(od)]);
+  heroSet(HH);statsFx([total,paid,sum(od)]);fitStats();setTimeout(fitStats,700);
   const ch=FQ?'':cardsHTML(cardGroups(mo));
   let h='';
   if(!mo.length&&!od.length&&!S.bills.length){
@@ -1859,15 +1911,18 @@ function renderHome(){
     h+='<div class="empty"><svg width="76" height="76" viewBox="0 0 76 76" fill="none"><rect x="10" y="14" width="56" height="52" rx="14" style="fill:var(--card2)" stroke="rgba(255,255,255,.14)" stroke-width="2"/><path d="M10 29h56" stroke="rgba(255,255,255,.14)" stroke-width="2"/><path d="M24 8v12M52 8v12" style="stroke:var(--gold)" stroke-width="4" stroke-linecap="round"/><path d="M27 47l8 8 15-17" style="stroke:var(--gold2)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg><h4>Nenhuma conta em '+MES[V.m]+'</h4><p>Toque em adicionar e cadastre boletos, cartões, financiamentos ou assinaturas em poucos segundos.</p><button class="cta" data-add="1">Adicionar conta</button></div>';
   } else {
     if(FCAT)h+='<div class="fchip"><span>Só <b>'+esc((CAT[FCAT]||CAT.outros).l)+'</b> em '+MES[V.m]+'</span><button type="button" data-fclr="1" aria-label="Mostrar todas">× Todas</button></div>';
+    if(!FCAT&&!fq){const sn={},lan=[];[...od,...mo].forEach(o=>{const q=o.b.id+'|'+o.key;if(!sn[q]&&isZC(o.b.cat)&&o.amt===0&&!o.paid){sn[q]=1;lan.push(o)}});
+      if(lan.length)h+='<button type="button" class="lanb" data-lan="'+lan[0].b.id+'|'+lan[0].key+'"><span class="lanb-i"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 16.5v.01"/><circle cx="12" cy="12" r="9"/></svg></span><span class="lanb-t"><b>'+lan.length+(lan.length>1?' contas esperando valor':' conta esperando valor')+'</b><small>'+esc(lan.map(o=>o.b.name).slice(0,4).join(', '))+(lan.length>4?'…':'')+'</small></span><span class="lanb-g">Lançar</span></button>'}
     h+=section('late','Atrasadas',odL,0);
     h+=section('','A pagar',upL,odL.length);
-    if(!FCAT&&mo.length&&!up.length&&!od.length) h+='<div class="cheer">Tudo pago em '+MES[V.m]+'. Tá em dia.</div>';
+    if(!FCAT&&mo.length&&!up.length&&!od.length) h+='<div class="cheer"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"/><path d="M21 33l8 8 15-17"/><path d="M8 12l4 4M56 12l-4 4M32 3v5M6 44l5-2M58 44l-5-2"/></svg><span>Tudo pago em '+MES[V.m]+'. Tá em dia.</span></div>';
     if(FQ)h+='<div class="fchip"><span>Busca: <b>'+esc(FQ.trim())+'</b> em '+MES[V.m]+'</span><button type="button" data-fqclr="1" aria-label="Limpar busca">× Limpar</button></div>';
     if((FCAT||fq)&&!odL.length&&!upL.length&&!pdL.length) h+='<p class="fnone">'+(fq?'Nenhuma conta encontrada em '+MES[V.m]+'.':'Nenhuma conta desse tipo em '+MES[V.m]+'.')+'</p>';
     h+=section('done','Pagas',pdL,odL.length+upL.length);
   }
   const L=$('#list'),oldSec=L.querySelector('.sec.cardsec'),oc=oldSec&&oldSec.querySelector('.cards'),osl=(oc&&hk===HKEY)?oc.scrollLeft:0;
   L.className=(ANIM&&!NAVM)?'':'noanim';
+  if(NAVM&&NAVD&&!RMq()&&!NOFX()){L.classList.add(NAVD>0?'slr':'sll');clearTimeout(L._sl);L._sl=setTimeout(()=>L.classList.remove('slr','sll'),420)}NAVD=0;
   let kept=false;
   if(NAVM&&ch&&oldSec&&(ch.match(/data-id="[^"]*"/g)||[]).join()===[].map.call(oldSec.querySelectorAll('.cw'),x=>'data-id="'+x.dataset.id+'"').join()){
     /* v13.178: trocar de mês NÃO recria os cartões (a foto era recarregada e piscava): a arte fica no lugar e só o valor/situação e o limite trocam, com um esmaecer rápido */
@@ -1901,6 +1956,33 @@ function renderHome(){
 }
 
 /* ---------- panorama ---------- */
+async function shareResumo(){ /* v13.408: imagem do mês para compartilhar */
+  const t=today0(),mo=monthOccs(V.y,V.m).sort((a,b)=>a.date-b.date),tot=fsum(mo),pg=got(mo),rest=tot-pg,nOd=mo.filter(o=>!o.paid&&o.date<t).length;
+  const rows=mo.slice(0,10),W=1080,H=640+rows.length*100+(mo.length>10?70:0)+110;
+  const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d'),cs=getComputedStyle(document.documentElement),cv=(n,d)=>(cs.getPropertyValue(n).trim()||d);
+  const bg=cv('--bg','#0b0d14'),gold=cv('--gold2',cv('--gold','#d4ff4a')),tx=cv('--tx','#eef0f7'),mu=cv('--mu','#8c93aa'),ok='#34d399',bad='#ff6b6b',F='-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif';
+  const rr=(x,y,w,h,r)=>{g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()};
+  g.fillStyle=bg;g.fillRect(0,0,W,H);
+  g.fillStyle='rgba(255,255,255,.05)';rr(40,40,W-80,H-80,48);g.fill();g.strokeStyle='rgba(255,255,255,.10)';g.lineWidth=2;g.stroke();
+  g.textBaseline='alphabetic';g.fillStyle=gold;g.font='800 54px '+F;g.fillText('Sobrou!',96,138);
+  g.fillStyle=mu;g.font='600 34px '+F;g.textAlign='right';g.fillText(MES[V.m]+' '+V.y,W-96,138);g.textAlign='left';
+  g.fillStyle=mu;g.font='700 28px '+F;g.fillText('FALTA PAGAR',96,230);
+  g.fillStyle=tx;g.font='800 104px '+F;g.fillText(brl(rest),96,334);
+  const box=(x,l,v,col)=>{g.fillStyle='rgba(255,255,255,.06)';rr(x,376,282,118,28);g.fill();g.fillStyle=mu;g.font='700 22px '+F;g.fillText(l,x+26,420);g.fillStyle=col;g.font='800 36px '+F;g.fillText(v,x+26,468)};
+  box(96,'TOTAL',brl(tot),tx);box(398,'PAGO',brl(pg),ok);box(700,'ATRASADAS',nOd?String(nOd)+(nOd>1?' contas':' conta'):'nenhuma',nOd?bad:tx);
+  let y=574;g.fillStyle=mu;g.font='700 24px '+F;g.fillText('CONTAS DO MÊS',96,y);y+=24;
+  rows.forEach(o=>{const late=!o.paid&&o.date<t;g.fillStyle='rgba(255,255,255,.08)';g.fillRect(96,y,W-192,2);
+    g.fillStyle=o.paid?ok:late?bad:mu;g.beginPath();g.arc(112,y+52,12,0,7);g.fill();
+    g.fillStyle=o.paid?mu:tx;g.font='600 36px '+F;let nm=o.b.name;while(g.measureText(nm).width>560&&nm.length>4)nm=nm.slice(0,-2);if(nm!==o.b.name)nm+='…';g.fillText(nm,148,y+50);
+    g.fillStyle=mu;g.font='500 25px '+F;g.fillText((o.paid?'paga':late?'atrasada':'vence dia '+o.date.getDate()),148,y+84);
+    g.textAlign='right';g.fillStyle=o.paid?mu:tx;g.font='700 38px '+F;g.fillText(o.amt===0&&isZC(o.b.cat)&&!o.paid?'a lançar':brl(o.full),W-96,y+58);g.textAlign='left';y+=100});
+  if(mo.length>10){g.fillStyle=mu;g.font='500 28px '+F;g.fillText('+ '+(mo.length-10)+' contas',96,y+46)}
+  g.fillStyle=mu;g.font='500 24px '+F;g.textAlign='center';g.fillText('Feito com o Sobrou! · controle de contas',W/2,H-82);g.textAlign='left';
+  const blob=await new Promise(r=>c.toBlob(r,'image/png'));if(!blob){toast('Não consegui gerar a imagem');return}
+  const nm='sobrou-resumo-'+V.y+'-'+p2(V.m+1)+'.png',f=new File([blob],nm,{type:'image/png'});
+  try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Resumo de '+MES[V.m]});return}}catch(e){if(e&&e.name==='AbortError')return}
+  const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=nm;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Imagem salva: '+nm);
+}
 function renderPan(){
   const t=today0(), ty=t.getFullYear(), tm=t.getMonth();
   const mths=[];for(let i=0;i<6;i++){const d=new Date(ty,tm+i,1),o=monthOccs(d.getFullYear(),d.getMonth());mths.push({l:MS[d.getMonth()],tot:fsum(o),pd:got(o),cur:i===0})}
@@ -1944,6 +2026,7 @@ function renderPan(){
   $('#pan').innerHTML=
    galert+'<div class="card"><h3>Próximos 6 meses</h3><div class="cap">Total de contas por mês. A parte verde já foi paga.</div><div class="bars">'+bars+'</div><div class="lg"><span><i style="background:var(--ok)"></i>Pago</span><span><i style="background:rgba(255,255,255,.2)"></i>A pagar</span></div></div>'+
    '<div class="kpi"><div><span>Fixo por mês</span><b class="num">'+brl(commit)+'</b></div><div><span>Dívida parcelada</span><b class="num">'+brl(remain)+'</b></div></div>'+
+   '<button class="act" id="bshare" type="button" style="margin-top:12px">Compartilhar resumo de '+MES[V.m]+' (imagem)</button>'+
    goals+evo+
    '<div class="card"><h3>Por tipo em '+MES[V.m]+'</h3><div class="cap">Para onde o dinheiro do mês está indo. A seta compara com o mês anterior. Toque num tipo para ver só essas contas.</div>'+cats+'</div>'+
    '<div class="card"><h3>Por empresa em '+MES[V.m]+'</h3><div class="cap">Onde o dinheiro do mês foi, empresa por empresa.</div>'+comp+'</div>'+
@@ -1951,6 +2034,7 @@ function renderPan(){
   $$('#pan .segE button').forEach(b=>b.onclick=()=>{EV=+b.dataset.n;renderPan()});
   $$('#pan .hb[data-fc]').forEach(b=>b.onclick=()=>{FCAT=b.dataset.fc;setTab('home')});
   $$('#pan .gl .x').forEach(b=>b.onclick=()=>{delete S.goals[b.dataset.g];save();renderPan()});
+  const bsh=$('#bshare');if(bsh)bsh.onclick=shareResumo;
   const ts=$('#tsave');if(ts)ts.onclick=()=>{const v=moneyC($('#tval').value);if(!v){toast('Digite o orçamento do mês');return}S.goals._tot=v;save();toast('Orçamento salvo');renderPan()};
   const gs=$('#gsave');if(gs)gs.onclick=()=>{
     const s=$('#gval').value.replace(/[^\d,.]/g,'').replace(/\./g,'').replace(',','.'),v=Math.round(parseFloat(s)*100);
@@ -1973,20 +2057,24 @@ function renderSet(){
    '<div class="card"><h3>Efeitos</h3><div class="cap">Giro 3D, brilho dos cartões, animações ao abrir as telas e desfoque da barra de baixo. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div>'+
    '<div class="lbl" style="margin-top:16px">Brilho do cartão</div><div class="crow" id="bbr" style="margin-top:0">'+[['0','Faixa'],['1','Seda'],['6','Contorno']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Faixa</b>: faixa de luz reta. <b>Seda</b>: luz larga e macia que desliza. <b>Contorno</b>: luz que desliza pela borda do cartão.</div></div>'+
    (DEV()?'<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>':'')+
-   '<div class="card"><h3>Como o Sobrou! funciona</h3><div class="cap">Um passo a passo curto de cada parte do app: cadastrar, pagar, pagar só uma parte, cartões, metas e mais.</div><button class="act" id="bhelp">Abrir o tutorial</button><button class="act" id="bwlc">Rever as boas-vindas</button></div>'+
-   '<div class="card"><h3>Backup</h3><div class="cap">Salve um arquivo de backup e guarde no iCloud, Arquivos, WhatsApp ou e-mail. Para restaurar, abra o arquivo. Faça de vez em quando: seus dados ficam só neste aparelho.</div>'+
+   (function(){const on=!!pinGet();return '<div class="card"><h3>Trava do app</h3><div class="cap">Opcional. Peça um PIN de 4 números sempre que abrir o app ou voltar depois de 1 minuto fora. Vale só neste aparelho.</div><div class="fxrow"><b>'+(on?'PIN ligado':'PIN desligado')+'</b><button type="button" class="swt" id="bpin" role="switch" aria-checked="'+on+'" aria-label="Trava por PIN"></button></div>'+(on?'<button class="act" id="bpinc" type="button">Alterar PIN</button>':'')+'</div>'})()+
+   '<div class="card"><h3>Como o Sobrou! funciona</h3><div class="cap">Um passo a passo curto de cada parte do app: cadastrar, pagar, pagar só uma parte, cartões, metas e mais.</div><button class="act" id="bhelp">Abrir o tutorial</button>'+(window.__sobrouSup&&window.__sobrouSup()?'<button class="act" id="bsup">Falar com o suporte</button>':'')+'<button class="act" id="bwlc">Rever as boas-vindas</button></div>'+
+   '<div class="card"><h3>Backup</h3><div class="cap">Salve um arquivo de backup e guarde no iCloud, Arquivos, WhatsApp ou e-mail. Para restaurar, abra o arquivo. Faça de vez em quando: é uma cópia extra de segurança, além do que já fica salvo na sua conta.</div>'+
    '<button class="act ok" id="bfile">Salvar backup em arquivo</button><button class="act" id="bopen">Abrir arquivo de backup</button><input type="file" id="bin" accept=".json,application/json,text/plain" hidden>'+
    '<div class="lbl" style="margin-top:18px">Ou por texto</div>'+
    '<button class="act" id="bcopy">Copiar backup</button><textarea class="fld bk" id="bpaste" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="Cole aqui o backup para restaurar"></textarea><button class="act" id="brest">Restaurar backup</button></div>'+
    '<div class="card"><h3>Atualização</h3><div class="cap">O app confere sozinho se há versão nova ao abrir. Seus dados não são apagados.</div><button class="act" id="bupd">Verificar atualização</button></div>'+
    (window.__diag&&DEV()?window.__diag.card():'')+
-   '<div class="card"><h3>Dados</h3><div class="cap">'+S.bills.length+(S.bills.length===1?' conta cadastrada':' contas cadastradas')+' neste aparelho. O aplicativo da tela de início tem os próprios dados, separados do Safari.</div><button class="act danger" id="bwipe">Apagar tudo</button></div>'+
+   '<div class="card"><h3>Dados</h3><div class="cap">'+S.bills.length+(S.bills.length===1?' conta cadastrada':' contas cadastradas')+'. Elas ficam salvas na sua conta do Sobrou! e neste aparelho.</div><button class="act danger" id="bwipe">Apagar tudo</button></div>'+
    '<p class="hint" id="vhint" style="text-align:center;margin-top:22px;user-select:none;-webkit-user-select:none">Sobrou! v'+VERSION+(DEV()?' · avançado':'')+'</p>';
   const thSync=()=>{const c=TH.cur;$$('#swb .swc').forEach(b=>b.classList.toggle('on',+b.dataset.b===c[0]));$$('#swa .swc').forEach(b=>b.classList.toggle('on',+b.dataset.a===c[1]));$$('#thm .tp').forEach(b=>{const p=TH.PR[+b.dataset.pr];b.classList.toggle('on',p[1]===c[0]&&p[2]===c[1])})};
   thSync();
   if(window.__acc)window.__acc.bind();
   if(window.__diag&&DEV())window.__diag.bind();
-  $('#bhelp').onclick=()=>openHelp();$('#bwlc').onclick=()=>openWelcome(true);
+  $('#bpin').onclick=()=>{if(pinGet())pinAsk('Desligar o PIN',()=>{try{localStorage.removeItem(PINK)}catch(e){}renderSet();toast('PIN desligado')});else pinCreate(()=>{renderSet();toast('PIN ligado')})};
+  const bpc=$('#bpinc');if(bpc)bpc.onclick=()=>pinAsk('Alterar o PIN',()=>pinCreate(()=>toast('PIN alterado')));
+  $('#bhelp').onclick=()=>openHelp();
+  const bsu=$('#bsup');if(bsu)bsu.onclick=()=>{try{window.open(window.__sobrouSup(),'_blank','noopener')}catch(e){}};$('#bwlc').onclick=()=>openWelcome(true);
   ($('#bend')||{}).onclick=e=>{const b=e.target.closest('.crb');if(!b||(b.dataset.e==='firm')===window.__ENDF)return;try{localStorage.setItem('sobrou.ends',b.dataset.e==='firm'?'firm':'el')}catch(_){}toast('Pontas: '+(b.dataset.e==='firm'?'firme':'elástico')+'…');setTimeout(()=>location.reload(),350)};
   ($('#bcr')||{}).onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
   $('#bfx').onclick=()=>{const off=!NOFX();document.documentElement.classList.toggle('nofx',off);try{if(off)localStorage.setItem('sobrou.fx','0');else localStorage.removeItem('sobrou.fx')}catch(e){}renderSet();toast(off?'Efeitos especiais desligados':'Efeitos especiais ligados')};
@@ -2044,11 +2132,12 @@ $('#fab').onclick=()=>openSheet(null);
 document.addEventListener('click',e=>{
   if(Date.now()-LPFIRED<700&&e.target.closest&&e.target.closest('#list .row')){e.preventDefault();return}
   if(e.target.closest&&e.target.closest('[data-fclr]')){FCAT='';ANIM=false;renderHome();return}
+  const ln=e.target.closest&&e.target.closest('[data-lan]');if(ln){const q=ln.dataset.lan.split('|');openSheet(q[0],q[1]);return}
   const n=e.target.closest('[data-nav]');
   if(n){
     const v=n.dataset.nav,t=today0();
     if(v==='today'){V={y:t.getFullYear(),m:t.getMonth()}} else {const d=new Date(V.y,V.m+Number(v),1);V={y:d.getFullYear(),m:d.getMonth()}}
-    ANIM=true;NAVM=true;renderHome();return;
+    NAVD=v==='today'?0:Number(v);ANIM=true;NAVM=true;renderHome();return;
   }
   const ac=e.target.closest('[data-addc]');if(ac){openSheet(null);try{const el=document.querySelector('#fc .cat[data-c="'+ac.dataset.addc+'"]');if(el)el.click()}catch(_){}return}
   if(e.target.closest('[data-add]')){openSheet(null);return}
@@ -2873,6 +2962,65 @@ function abrirAnim(pn){
   /* v13.241: a subida volta a ser a transição do sistema (CSS), escolhida pelo dono entre 4 estilos testados no aparelho ("a mais fluida"). Só falta marcar a janela como aberta (pausa a tela de trás) quando a subida termina */
   pn._pos=[];pn._fim=0;pn._sty=2;
   setTimeout(()=>{if(OPA===id&&pn.parentNode.classList.contains('open'))document.body.classList.add('so')},460)}
+
+/* ===== v13.408: trava opcional por PIN (só neste aparelho) ===== */
+const PINK='sobrou.pin';
+const pinGet=()=>{try{return JSON.parse(localStorage.getItem(PINK)||'null')}catch(e){return null}};
+async function pinHash(pin,salt){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+':'+pin));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){let h=5381;const t=salt+':'+pin;for(let i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))|0;return 'f'+h}}
+async function pinSet(pin){const salt=Math.random().toString(36).slice(2);try{localStorage.setItem(PINK,JSON.stringify({s:salt,h:await pinHash(pin,salt)}))}catch(e){}}
+async function pinOk(pin){const d=pinGet();return !!d&&d.h===await pinHash(pin,d.s)}
+/* abre o teclado do PIN. o={title,sub,cancel,forgot}; onPin(pin) devolve true para fechar, ou false/texto para mostrar erro */
+function pinPad(o,onPin){
+  const old=document.getElementById('pinov');if(old)old.remove();
+  const d=document.createElement('div');d.id='pinov';d.className='pin';let v='',busy=0;
+  d.innerHTML='<h3>'+esc(o.title)+'</h3><p id="pins">'+esc(o.sub||'')+'</p><div class="pnd" id="pind"><i></i><i></i><i></i><i></i></div><div class="pnk">'+[1,2,3,4,5,6,7,8,9].map(n=>'<button type="button" data-k="'+n+'">'+n+'</button>').join('')+'<button type="button" class="e" tabindex="-1"></button><button type="button" data-k="0">0</button><button type="button" class="bk" data-k="b" aria-label="Apagar">⌫</button></div><div class="pnl">'+(o.cancel?'<button type="button" id="pinc">Cancelar</button>':'')+(o.forgot?'<button type="button" id="pinf">Esqueci o PIN</button>':'')+'</div>';
+  document.body.appendChild(d);void d.offsetWidth;d.classList.add('open');
+  const dots=()=>d.querySelectorAll('#pind i').forEach((e,i)=>e.classList.toggle('on',i<v.length));
+  const close=()=>{document.removeEventListener('keydown',kd,true);d.classList.remove('open');setTimeout(()=>d.remove(),240)};
+  const msg=t=>{d.querySelector('#pins').textContent=t};
+  const press=async k=>{
+    if(busy)return;
+    if(k==='b'){v=v.slice(0,-1);dots();return}
+    if(v.length>=4)return;v+=k;dots();
+    if(v.length<4)return;
+    busy=1;const r=await onPin(v);
+    if(r===true){close();return}
+    const pd=d.querySelector('#pind');pd.classList.add('shk');setTimeout(()=>pd.classList.remove('shk'),420);if(typeof r==='string')msg(r);
+    setTimeout(()=>{v='';dots();busy=0},420);
+  };
+  const kd=e=>{if(e.key>='0'&&e.key<='9'){e.preventDefault();e.stopPropagation();press(e.key)}else if(e.key==='Backspace'){e.preventDefault();e.stopPropagation();press('b')}};
+  document.addEventListener('keydown',kd,true);
+  d.onclick=e=>{const b=e.target.closest('[data-k]');if(b){press(b.dataset.k);return}
+    if(e.target.closest('#pinc')){close();return}
+    if(e.target.closest('#pinf')){const f=e.target.closest('#pinf');if(!f.dataset.s){f.dataset.s=1;f.textContent='Toque de novo para sair da conta';setTimeout(()=>{f.dataset.s='';f.textContent='Esqueci o PIN'},4000);return}
+      try{localStorage.removeItem(PINK)}catch(x){}if(window.__sobrouLogout)window.__sobrouLogout();else location.reload()}};
+  return close;
+}
+let PINT0=0,PINBAD=0,PINWAIT=0;
+function pinLock(){
+  if(!pinGet()||document.getElementById('pinov'))return;
+  pinPad({title:'Digite seu PIN',sub:'O Sobrou! está bloqueado',forgot:true},async pin=>{
+    if(Date.now()<PINWAIT)return 'Muitas tentativas. Aguarde '+Math.ceil((PINWAIT-Date.now())/1000)+'s';
+    if(await pinOk(pin)){PINBAD=0;return true}
+    PINBAD++;if(PINBAD>=5){PINBAD=0;PINWAIT=Date.now()+30000;return 'Muitas tentativas. Aguarde 30s'}
+    return 'PIN incorreto';
+  });
+}
+function pinCreate(done){
+  let first='';
+  pinPad({title:'Crie um PIN',sub:'4 números para abrir o app',cancel:true},async pin=>{
+    if(!first){first=pin;setTimeout(()=>pinPad({title:'Repita o PIN',sub:'Digite os mesmos 4 números',cancel:true},async p2=>{if(p2!==first)return 'Não conferiu. Tente de novo';await pinSet(p2);done&&done();return true}),260);return true}
+    return true});
+}
+function pinAsk(title,done){pinPad({title:title,sub:'Digite o PIN atual',cancel:true},async pin=>{if(await pinOk(pin)){setTimeout(done,260);return true}return 'PIN incorreto'})}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')PINT0=Date.now();else if(pinGet()&&PINT0&&Date.now()-PINT0>60000)pinLock()});
+pinLock();
+function histHTML(b,key){ /* v13.408: últimos 6 meses da conta (valor, no prazo / atrasado / em aberto) */
+  const q=key.split('-').map(Number),rows=[],t=today0();
+  for(let k=5;k>=0;k--){const d=new Date(q[0],q[1]-1-k,1),o=occ(b,d.getFullYear(),d.getMonth());if(o&&o.full>0)rows.push({l:MS[d.getMonth()],v:o.full,st:o.paid?(String(o.paid)>toISO(o.date)?'late':'ok'):(o.date<t?'od':'')})}
+  if(rows.length<2)return '';
+  const mx=Math.max(...rows.map(r=>r.v)),avg=Math.round(rows.reduce((a,r)=>a+r.v,0)/rows.length);
+  return '<div class="hist"><div class="hh"><b>Últimos meses</b><span>média '+brl(avg)+'</span></div><div class="hb">'+rows.map(r=>'<div class="hc '+r.st+'"><em class="num">'+short(r.v)+'</em><i style="height:'+Math.max(8,Math.round(r.v/mx*52))+'px"></i><span>'+r.l+'</span></div>').join('')+'</div><div class="hl"><span>pago no prazo</span><span class="late">pago atrasado</span><span class="od">em aberto</span></div></div>'}
 function openSheet(id,key){
   EDIT=null;CPC.clear();$('#cm').innerHTML='';const sh=$('#sheet'),pn=$('#panel');
   const b=id?S.bills.find(v=>v.id===id):null;
@@ -2886,7 +3034,7 @@ function openSheet(id,key){
     F.tp=true;F.pay=(b.pay||[]).map(x=>{const o={k:x.k,n:x.n||'',v:x.v};if(x.b)o.b=x.b;return o});
     $('#fn').value=b.name;$('#fo').value=b.note||'';$('#fd').value=b.due;$('#cl').value=F.last4;$('#cli').value=F.limit?brl(F.limit):'';$('#ccl').value=F.close||'';
     $('#st').textContent='Editar conta';$('#fs').textContent='Salvar alterações';
-    let ex='';
+    let ex=histHTML(b,key);
     if(o&&!o.paid&&o.full>0) ex+='<button type="button" class="act" id="xpp">Registrar pagamento parcial</button>';
     if(o) ex+='<button type="button" class="act ok" id="xpay">'+(o.paid?'Desfazer pagamento deste mês':'Marcar este mês como paga')+'</button>';
     if(b.repeat!=='once') ex+='<button type="button" class="act" id="xend">Encerrar a partir deste mês</button>';
@@ -2914,9 +3062,24 @@ function closeSheet(){
   $('#panel').style.transform='';
 }
 $('#scrim').onclick=closeSheet;$('#sx').onclick=closeSheet;
+$('#fn').addEventListener('input',()=>{try{const e=$('#shn');if(e){const p=PROV[F.prov],c=CAT[F.cat]||CAT.outros;e.textContent=($('#fn').value||'').trim()||(p&&p.n)||c.l}}catch(x){}}); /* o nome no cabeçalho acompanha o que a pessoa digita */
 /* v13.237: cadastro em passos */
 let SSTEP=1;
 try{localStorage.removeItem('sobrou.steps')}catch(e){} /* v13.374: o cadastro em passos é o único; descarta a antiga chave de “desligar” */
+function heroHTML(){ /* v13.405: ícone grande da empresa + nome + resumo no alto do passo 3 e da edição */
+  const c=CAT[F.cat]||CAT.outros,p=PROV[F.prov],bk=F.bank&&PROV[F.bank],nm=($('#fn').value||'').trim();
+  let ic;
+  if(okImg(F.img))ic='<div class="pv img"><img alt="" src="'+F.img+'"></div>';
+  else if(F.cat==='cartao'&&(()=>{const t=TPLS.find(x=>x.p===F.prov&&x.m===F.model&&(!F.brand||x.b===F.brand)&&(!F.tier||x.t===F.tier))||TPLS.find(x=>x.p===F.prov&&x.m===F.model);if(t){ic='<img class="shc" alt="" src="'+t.s+'">';return true}return false})()){}
+  else if(p)ic=badge(p);
+  else if(F.cat!=='cartao'&&bk&&bankOk(F.cat))ic=badge(bk);
+  else ic='<div class="ico" style="--c:'+c.c+'">'+svg(F.cat in IC?F.cat:'outros')+'</div>';
+  const cl=F.cat==='cartao'&&CTIPO[F.ctype]?'Cartão de '+CTIPO[F.ctype]:c.l;
+  const title=nm||(p&&p.n)||c.l;
+  const sub=[p&&p.n!==title?p.n:'',F.cat==='cartao'&&F.last4?'final '+F.last4:'',bk&&bk!==p?bk.n:''].filter(Boolean).join(' · ')||(EDIT?'Editando esta conta':'Nova conta');
+  const mes=EDIT&&EDIT.key?MES[+EDIT.key.split('-')[1]-1]+' '+EDIT.key.split('-')[0]:'';
+  return '<div class="shero" style="--c:'+(p?p.c:c.c)+'">'+ic+'<div class="sh-t"><i>'+esc(cl)+(mes?' · '+esc(mes):'')+'</i><b id="shn">'+esc(title)+'</b><small>'+esc(sub)+'</small></div></div>';
+}
 function setStep(n,keep){
   const pn=$('#panel');
   const t0=performance.now(),prev=SSTEP;SSTEP=n;pn.dataset.step=n;
@@ -2927,7 +3090,7 @@ function setStep(n,keep){
   if(n===2&&F.cat==='cartao'){try{const tr=$('#cm');if(tr)tr._k=null;CK='';syncForm()}catch(e){}} /* v13.237: só refaz o seletor quando o tipo é Cartão (nos outros tipos não há seletor, e o syncForm custava ~17 ms a cada troca de passo) */
   stErr('');try{const h=$('#bkh');if(h)h.textContent=EDIT?'Forma e banco desta conta; o ícone do banco aparece na conta quando ela não tem um logo próprio.':'Obrigatório. Escolha a forma e o banco; o ícone do banco aparece na conta quando ela não tem um logo próprio.'}catch(e){}
   if(!keep)pn.scrollTop=0;
-  try{const sm=$('#ssum');if(n===3){const parts=String((window.__diagF&&window.__diagF())||'').split(' · ').filter(Boolean);sm.innerHTML=parts.map(x=>'<span>'+esc(x)+'</span>').join('')}else sm.innerHTML=''}catch(e){}
+  try{const sm=$('#ssum');if(n===3){sm.innerHTML=heroHTML()}else sm.innerHTML=''}catch(e){}
   /* v13.237: sem esmaecer na troca de passo: o esmaecer promovia os itens a camadas e, ao terminar, o iPhone redesenhava o texto e as bordas (o campo de busca parecia mexer um pouco) */
   try{requestAnimationFrame(()=>requestAnimationFrame(()=>{const d=performance.now()-t0;if(window.__diagNote&&d>45)window.__diagNote('passo '+prev+' → '+n+' demorou '+Math.round(d)+' ms para aparecer','passo')}))}catch(e){}
 }
@@ -3589,7 +3752,7 @@ $('#dt').addEventListener('click',e=>{
   if(dp){if(dp._busy)return;dp._busy=1;const id=DTID,k=DTKEY,pg=dp.textContent.indexOf('Desfazer')<0;copyFx(dp,pg?'✓ Paga':'✓ Pagamento desfeito');setTimeout(()=>{togglePaid(id,k,innerWidth/2,innerHeight*.6,true);requestAnimationFrame(()=>requestAnimationFrame(()=>setTimeout(closeDet,RMq()?0:60)))},RMq()?0:620)}
 });
 /* v13.360: segurar na conta (menu rápido), totais que rolam, arrastar a janela Pagar para fechar, filtro por tipo */
-var FQ='',FCAT='',LPFIRED=0,LPT=null,LPX=0,LPY=0,HST=null;
+var NAVD=0,FQ='',FCAT='',LPFIRED=0,LPT=null,LPX=0,LPY=0,HST=null;
 function lpClose(){const m=$('#lpm'),b=$('#lpb');if(m)m.remove();if(b)b.remove();$$('#list .row.lpon').forEach(r=>r.classList.remove('lpon'))}
 function lpOpen(r){
   const id=r.dataset.id,key=r.dataset.key,b=S.bills.find(v=>v.id===id);if(!b)return;
@@ -3659,7 +3822,7 @@ function openPP(id,key){
   $('#list').addEventListener('click',e=>{if(e.target.closest('[data-fqclr]')){i.value='';FQ='';renderHome()}});
 })();
 /* v13.400: tutorial "Como funciona" (Ajustes) e boas-vindas de 3 telas */
-const HELPT=[["Cadastrar uma conta", "Toque no botão <b>+</b>. São 3 passos: <b>1</b> o tipo (boleto, cartão, assinatura…), <b>2</b> a empresa ou o cartão, <b>3</b> valor, vencimento, como você paga e, se quiser, o código do Pix ou do boleto. Em contas que se repetem, escolha <b>Mensal</b> ou <b>Parcelada</b>."], ["Marcar como paga", "Toque na bolinha à esquerda da conta. Para desfazer, toque de novo. <b>Segure</b> o dedo sobre a conta para abrir o menu rápido: copiar Pix/boleto, marcar como paga, pagamento parcial e editar. Toque na conta para ver os detalhes e os códigos de pagamento."], ["Pagamento parcial", "Pagou só uma parte? Segure a conta e escolha <b>Pagamento parcial</b> (ou use o botão <b>Parcial</b> nos detalhes). Digite quanto pagou: a conta continua na lista só com o que <b>falta</b>, e o topo da tela já soma o que foi pago. Quando você pagar o resto, ela vira paga."], ["Cartão de crédito e débito", "Cadastre o cartão com o limite e o dia do fechamento. O app mostra quanto do limite está usado, o que é do mês e o que ficou de meses anteriores. A fatura dos meses seguintes começa em <b>R$ 0,00 · A lançar</b>: informe o valor quando souber."], ["Luz, água, gás e Tag", "Como o valor muda todo mês, você cadastra uma vez e os meses seguintes aparecem como <b>A lançar</b>. Quando a conta chegar, toque nela, informe o valor e pronto. Não dá para marcar como paga sem saber o valor."], ["Pix e código de boleto", "No passo 3 do cadastro guarde a chave Pix ou o código de barras. Na lista, um ícone de chave mostra quais contas têm código. Toque na conta e em <b>Copiar</b>, ou segure para copiar direto do menu."], ["Contas atrasadas e multa", "Contas vencidas e não pagas ficam em <b>Atrasadas</b>, em vermelho, em qualquer mês. O app estima a multa (2%) e os juros de mora (1% ao mês, por dia de atraso), que são os valores previstos em lei para boletos e contas, e mostra a estimativa abaixo do valor. O valor exato é o do boleto ou da fatura; para cartão o app não estima, porque os juros do rotativo mudam de banco para banco."], ["Buscar e filtrar", "Com 5 ou mais contas aparece a <b>busca</b> abaixo do resumo: procure por nome, empresa, banco ou observação. No <b>Panorama</b>, toque num tipo (ex.: Moradia) para ver só essas contas."], ["Panorama e metas", "O Panorama mostra os próximos meses, para onde o dinheiro vai e quanto falta pagar de parcelas. Em <b>Metas do mês</b> defina um <b>orçamento total</b> e limites por tipo: o app avisa ao chegar em 80% e quando passar."], ["Meses e navegação", "Use as setas no topo para ver outros meses. <b>Voltar a hoje</b> traz o mês atual. Encerrar uma conta: abra a conta e toque em <b>Encerrar a partir deste mês</b>."], ["Aparência e ícones", "Em <b>Ajustes</b> escolha tema, cores, ícones claros ou escuros, o brilho do cartão e o carrossel. Se o aparelho for antigo e engasgar, desligue os <b>Efeitos especiais</b>."], ["Backup e seus dados", "Seus dados ficam neste aparelho. Em <b>Ajustes → Backup</b>, copie o backup e guarde no WhatsApp, Notas ou e-mail. Para restaurar, cole o texto no mesmo lugar. Fazer o backup de vez em quando evita perder tudo se trocar de celular."], ["Instalar no iPhone", "Abra o endereço no <b>Safari</b>, toque em <b>Compartilhar</b> e em <b>Adicionar à Tela de Início</b>. Depois abra pelo ícone, como um aplicativo."]];
+const HELPT=[["Cadastrar uma conta", "Toque no botão <b>+</b>. São 3 passos: <b>1</b> o tipo (boleto, cartão, assinatura…), <b>2</b> a empresa ou o cartão, <b>3</b> valor, vencimento, como você paga e, se quiser, o código do Pix ou do boleto. Em contas que se repetem, escolha <b>Mensal</b> ou <b>Parcelada</b>."], ["Marcar como paga", "Toque na bolinha à esquerda da conta. Para desfazer, toque de novo. <b>Segure</b> o dedo sobre a conta para abrir o menu rápido: copiar Pix/boleto, marcar como paga, pagamento parcial e editar. Toque na conta para ver os detalhes e os códigos de pagamento."], ["Pagamento parcial", "Pagou só uma parte? Segure a conta e escolha <b>Pagamento parcial</b> (ou use o botão <b>Parcial</b> nos detalhes). Digite quanto pagou: a conta continua na lista só com o que <b>falta</b>, e o topo da tela já soma o que foi pago. Quando você pagar o resto, ela vira paga."], ["Cartão de crédito e débito", "Cadastre o cartão com o limite e o dia do fechamento. O app mostra quanto do limite está usado, o que é do mês e o que ficou de meses anteriores. A fatura dos meses seguintes começa em <b>R$ 0,00 · A lançar</b>: informe o valor quando souber."], ["Luz, água, gás e Tag", "Como o valor muda todo mês, você cadastra uma vez e os meses seguintes aparecem como <b>A lançar</b>. Quando a conta chegar, toque nela, informe o valor e pronto. Não dá para marcar como paga sem saber o valor."], ["Pix e código de boleto", "No passo 3 do cadastro guarde a chave Pix ou o código de barras. Na lista, um ícone de chave mostra quais contas têm código. Toque na conta e em <b>Copiar</b>, ou segure para copiar direto do menu."], ["Contas atrasadas e multa", "Contas vencidas e não pagas ficam em <b>Atrasadas</b>, em vermelho, em qualquer mês. O app estima a multa (2%) e os juros de mora (1% ao mês, por dia de atraso), que são os valores previstos em lei para boletos e contas, e mostra a estimativa abaixo do valor. O valor exato é o do boleto ou da fatura; para cartão o app não estima, porque os juros do rotativo mudam de banco para banco."], ["Buscar e filtrar", "Com 5 ou mais contas aparece a <b>busca</b> abaixo do resumo: procure por nome, empresa, banco ou observação. No <b>Panorama</b>, toque num tipo (ex.: Moradia) para ver só essas contas."], ["Panorama e metas", "O Panorama mostra os próximos meses, para onde o dinheiro vai e quanto falta pagar de parcelas. Em <b>Metas do mês</b> defina um <b>orçamento total</b> e limites por tipo: o app avisa ao chegar em 80% e quando passar."], ["Meses e navegação", "Use as setas no topo para ver outros meses. <b>Voltar a hoje</b> traz o mês atual. Encerrar uma conta: abra a conta e toque em <b>Encerrar a partir deste mês</b>."], ["Aviso de valor a lançar","Quando luz, água, gás, Tag ou cartão estão esperando o valor do mês, aparece um aviso amarelo no topo da lista. Toque em <b>Lançar</b> para abrir a conta e digitar o valor."],["Histórico da conta","Ao editar uma conta mensal, aparecem os <b>últimos 6 meses</b>: quanto foi cada mês, a média e se foi pago no prazo (verde), pago atrasado (vermelho) ou ficou em aberto. Ótimo para luz, água e gás."],["Compartilhar o resumo do mês","No <b>Panorama</b>, toque em <b>Compartilhar resumo</b> para gerar uma imagem do mês (quanto falta, o que foi pago e as contas) e mandar por WhatsApp ou salvar."],["Trava com PIN (opcional)","Em <b>Ajustes → Trava do app</b> você pode ligar um PIN de 4 números. Ele é pedido ao abrir o app e ao voltar depois de 1 minuto fora. É opcional e vale só neste aparelho. Se esquecer, use <b>Esqueci o PIN</b> para sair da conta e entrar de novo."],["Aparência e ícones", "Em <b>Ajustes</b> escolha tema, cores, ícones claros ou escuros, o brilho do cartão e o carrossel. Se o aparelho for antigo e engasgar, desligue os <b>Efeitos especiais</b>."], ["Backup e seus dados", "Suas contas ficam salvas na sua conta do Sobrou! e também neste aparelho, então dá para entrar de novo se trocar de celular. Em <b>Ajustes → Backup</b>, salve um arquivo de backup e guarde no iCloud, Arquivos ou WhatsApp: é uma cópia extra de segurança. Para restaurar, abra o arquivo no mesmo lugar."], ["Instalar no iPhone", "Abra o endereço no <b>Safari</b>, toque em <b>Compartilhar</b> e em <b>Adicionar à Tela de Início</b>. Depois abra pelo ícone, como um aplicativo."]];
 function openHelp(){
   const o=document.getElementById('hlp');if(o)o.remove();
   const d=document.createElement('div');d.id='hlp';d.className='hlp';
@@ -3671,7 +3834,7 @@ function openHelp(){
 const WLC=[
  ['M7 3.5h10a2.5 2.5 0 0 1 2.5 2.5v14l-3-2-2.2 2-2.3-2-2.3 2L8 18l-3 2V6A2.5 2.5 0 0 1 7.5 3.5z','Cadastre suas contas','Boletos, cartões, assinaturas, luz, água, financiamentos. Escolha o tipo, a empresa e o vencimento em 3 passos rápidos.'],
  ['M5 12.5l4.2 4.2L19 7','Marque o que já pagou','Toque na bolinha da conta para marcar como paga. Segure para copiar o Pix, pagar só uma parte ou editar. O topo mostra sempre quanto falta.'],
- ['M5 20V11M12 20V4M19 20v-6','Veja o mês e planeje','O Panorama mostra para onde o dinheiro vai. Defina um orçamento do mês e receba aviso antes de estourar. Tudo fica guardado neste aparelho.']];
+ ['M5 20V11M12 20V4M19 20v-6','Veja o mês e planeje','O Panorama mostra para onde o dinheiro vai. Defina um orçamento do mês e receba aviso antes de estourar. Tudo fica salvo na sua conta.']];
 function openWelcome(manual){
   if(document.getElementById('wlc'))return;
   let i=0;const d=document.createElement('div');d.id='wlc';d.className='wlc';
@@ -4082,7 +4245,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   /* ----- sessão ----- */
   function wipe(){
     A=null;tok='';clearTimeout(pushT);
-    ['vencimentos.v1','vencimentos.theme',AK,LK,DK,UK].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+    ['vencimentos.v1','vencimentos.theme','sobrou.pin',AK,LK,DK,UK].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
     try{sessionStorage.removeItem('spl')}catch(e){}
   }
   async function logout(){
@@ -4090,6 +4253,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     else if(localStorage.getItem(DK)&&!window.__lgForce){window.__lgForce=1;toast('Sem internet: há dados sem salvar. Toque de novo para sair mesmo assim');setTimeout(()=>{window.__lgForce=0},4000);return}
     wipe();location.reload();
   }
+  window.__sobrouLogout=logout;window.__sobrouSup=()=>SUPORTE;
   async function enter(kind,email,pw){
     const j=await post(IDT+(kind==='new'?'signUp':'signInWithPassword')+'?key='+FB.key,{email:email,password:pw,returnSecureToken:true});
     tok=j.idToken;tokExp=Date.now()+(+j.expiresIn||3600)*1000;
