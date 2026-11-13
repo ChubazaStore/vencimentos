@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.418';
+(function(){var V='13.419';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1249,7 +1249,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.418';
+const VERSION='13.419';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4188,7 +4188,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   function status(){
     const n=Date.now();
     if(isAdmin())return {k:'adm'};
-    if(LIC.ate>n)return {k:'ok',ate:LIC.ate};
+    if(LIC.ate>n)return LIC.t?{k:'trial',ate:LIC.ate}:{k:'ok',ate:LIC.ate}; /* v13.419: o teste grátis agora também fica registrado no servidor (campo t) */
     const te=(LIC.created||A&&A.created||0)+TRIAL_DIAS*864e5;
     if(te>n)return {k:'trial',ate:te};
     return {k:'exp'};
@@ -4197,8 +4197,14 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   const dt=ms=>new Date(ms).toLocaleDateString('pt-BR');
   async function checkLic(){
     try{
-      const j=await fs('GET','/licencas/'+encodeURIComponent(A.email));
+      let j=await fs('GET','/licencas/'+encodeURIComponent(A.email));
+      /* v13.419: sem registro no servidor = ainda não começou o teste lá. Cria UMA vez (as regras do Firebase não deixam o cliente criar de novo nem alterar): fim = o que sobrar dos 7 dias contados do cadastro, no máximo 7 dias a partir de agora */
+      if(!j&&!isAdmin()){
+        try{const fim=Math.min((LIC.created||A.created||Date.now())+TRIAL_DIAS*864e5,Date.now()+TRIAL_DIAS*864e5);
+          j=await fs('POST','/licencas?documentId='+encodeURIComponent(A.email),{fields:{ate:{integerValue:String(Math.round(fim))},t:{booleanValue:true}}})}catch(e){}
+      }
       LIC.ate=j&&j.fields?num(j.fields.ate):0;
+      LIC.t=!!(j&&j.fields&&j.fields.t&&j.fields.t.booleanValue);
       jset(LK,LIC);online=true;
     }catch(e){if(e.http)LIC.ate=LIC.ate||0}
     gate();
@@ -4228,7 +4234,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
       online=true;pushing=false;uiSync();return true;
     }catch(e){
       pushing=false;uiSync();
-      if(e.http===403)toast('Sem permissão para salvar na nuvem');
+      if(e.http===403){toast('Assinatura vencida: a nuvem fica pausada até renovar');try{checkLic()}catch(_){}}
       return false;
     }
   }
@@ -4433,7 +4439,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
         try{
           let cur=0;const j=await fs('GET','/licencas/'+encodeURIComponent(em));if(j&&j.fields)cur=num(j.fields.ate);
           const ate=add?Math.max(Date.now(),cur)+DIAS_MES*864e5:0;
-          await fs('PATCH','/licencas/'+encodeURIComponent(em)+'?updateMask.fieldPaths=ate',{fields:{ate:{integerValue:String(ate)}}});
+          await fs('PATCH','/licencas/'+encodeURIComponent(em)+'?updateMask.fieldPaths=ate&updateMask.fieldPaths=t',{fields:{ate:{integerValue:String(ate)},t:{booleanValue:false}}}); /* v13.419: renovar = deixa de ser teste */
           toast(add?'Liberado até '+dt(ate):'Cliente bloqueado');list();
         }catch(e){toast('Erro ao salvar (regras do Firestore?)')}
       };
