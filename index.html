@@ -8,7 +8,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<script>try{if(localStorage.getItem('sobrou.fx')==='0')document.documentElement.classList.add('nofx');var _b=localStorage.getItem('sobrou.bri');document.documentElement.setAttribute('data-bri',_b==='1'||_b==='6'?_b:'0')}catch(e){}</script>
+<script>try{if(localStorage.getItem('sobrou.fx')==='0')document.documentElement.classList.add('nofx');var _b=localStorage.getItem('sobrou.bri');document.documentElement.setAttribute('data-bri',_b==='1'||_b==='6'||_b==='7'?_b:'0')}catch(e){}</script>
 <style>html{background:#0a0c13}
 /* fontes guardadas no próprio GitHub (nada de Google): f-figtree.woff2 e f-bricolage.woff2 */
 @font-face{font-family:'Figtree';font-style:normal;font-weight:300 900;font-display:swap;src:url(f-figtree.woff2) format('woff2')}
@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.432';
+(function(){var V='13.435';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -580,7 +580,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px;padding:16px;border-radius:26px;margin:6px 0 10px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}#dt .dh>div:last-child{min-width:0}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -961,13 +961,14 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 
 /* v13.389: brilho do cartão à escolha (Ajustes): 0 faixa reta (atual), 1 seda, 6 luz na borda. Só transform/opacity animam */
 .cc-rg{display:none}
-html[data-bri="1"] .cc::after,html[data-bri="6"] .cc::after,html[data-bri="6"] .cc-fx::after{display:none!important}
+html[data-bri="1"] .cc::after,html[data-bri="6"] .cc::after,html[data-bri="7"] .cc::after,html[data-bri="6"] .cc-fx::after,html[data-bri="7"] .cc-fx::after{display:none!important}
 html[data-bri="1"] .cc-fx::after{top:-40%;bottom:-40%;width:70%;background:linear-gradient(90deg,transparent,rgba(255,238,200,.06) 22%,rgba(255,244,222,.2) 42%,rgba(255,255,255,.3) 50%,rgba(255,244,222,.2) 58%,rgba(255,238,200,.06) 78%,transparent);transform:translateX(-130%) rotate(16deg);opacity:0;animation:ccsilk 8s 1.6s cubic-bezier(.45,.05,.25,1) infinite}
 @keyframes ccsilk{0%,58%{transform:translateX(-130%) rotate(16deg);opacity:0}64%{opacity:1}90%{opacity:1}100%{transform:translateX(190%) rotate(16deg);opacity:0}}
 @property --ccang{syntax:'<angle>';initial-value:0deg;inherits:false}
 @keyframes ccang{to{--ccang:360deg}}
 /* 6 = contorno deslizante (o mesmo "Contorno animado" do site de renda fixa): luz na cor do tema percorrendo a borda, com cauda escura para aparecer em cartão claro */
-html[data-bri="6"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:2.2px;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ccang 2.8s linear infinite;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 190deg,color-mix(in srgb,var(--gold2) 40%,#000) 240deg,color-mix(in srgb,var(--gold2) 55%,#000) 290deg,var(--gold2) 318deg,#fff 336deg,var(--gold) 348deg,transparent 360deg)}
+html[data-bri="6"] .cc-rg,html[data-bri="7"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:2.2px;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ccang 2.8s linear infinite;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 190deg,color-mix(in srgb,var(--gold2) 40%,#000) 240deg,color-mix(in srgb,var(--gold2) 55%,#000) 290deg,var(--gold2) 318deg,#fff 336deg,var(--gold) 348deg,transparent 360deg)}
+html[data-bri="7"] .cc-rg{animation-duration:3.6s;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 95deg,color-mix(in srgb,var(--gold2) 40%,#000) 120deg,color-mix(in srgb,var(--gold2) 55%,#000) 145deg,var(--gold2) 159deg,#fff 168deg,var(--gold) 174deg,transparent 180deg,transparent 275deg,color-mix(in srgb,var(--gold2) 40%,#000) 300deg,color-mix(in srgb,var(--gold2) 55%,#000) 325deg,var(--gold2) 339deg,#fff 348deg,var(--gold) 354deg,transparent 360deg)}
 .cc-rg u{display:none}
 .cards.cf .cw:not(.ctr) .cc-rg{display:none!important}
 .panel .cc-rg,.cpk .cc-rg,.nofx .cc-rg{display:none!important}
@@ -1370,7 +1371,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.432';
+const VERSION='13.435';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1737,7 +1738,7 @@ function bkCount(bills){let c=0,p=0,f=0;const seen={};(bills||[]).forEach(b=>{if
 function bkApply(a){if(!a||typeof a!=='object')return;
   try{if(Array.isArray(a.theme)&&a.theme.length===2&&a.theme[0]>=0&&a.theme[0]<10&&a.theme[1]>=0&&a.theme[1]<10&&window.THEME)window.THEME.set(a.theme[0]|0,a.theme[1]|0)}catch(e){}
   try{if(a['sobrou.fx']==='0'){localStorage.setItem('sobrou.fx','0');document.documentElement.classList.add('nofx')}else if('sobrou.fx' in a||'theme' in a){localStorage.removeItem('sobrou.fx');document.documentElement.classList.remove('nofx')}}catch(e){}
-  try{const b=a['sobrou.bri'];if(b==='1'||b==='6'){localStorage.setItem('sobrou.bri',b);document.documentElement.setAttribute('data-bri',b)}else{localStorage.removeItem('sobrou.bri');document.documentElement.setAttribute('data-bri','0')}}catch(e){}
+  try{const b=a['sobrou.bri'];if(b==='1'||b==='6'||b==='7'){localStorage.setItem('sobrou.bri',b);document.documentElement.setAttribute('data-bri',b)}else{localStorage.removeItem('sobrou.bri');document.documentElement.setAttribute('data-bri','0')}}catch(e){}
   try{if(a['sobrou.ic']==='d')localStorage.setItem('sobrou.ic','d');else localStorage.removeItem('sobrou.ic')}catch(e){}}
 let EV=6;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(window.__sync)window.__sync()}
@@ -2330,7 +2331,7 @@ function renderSet(){
    '<div class="lbl" style="margin-top:16px">Cor de fundo</div><div class="sw" id="swb">'+TH.BG.map((b,i)=>'<button type="button" class="swc" data-b="'+i+'" aria-label="'+b[0]+'" style="background:'+TH.hsl(b[1],b[2]===0?0:Math.max(b[2],30),i===1?4:16)+'"></button>').join('')+'</div>'+
    '<div class="lbl" style="margin-top:16px">Cor de destaque</div><div class="sw" id="swa">'+TH.AC.map((a,i)=>'<button type="button" class="swc" data-a="'+i+'" aria-label="'+a[0]+'" style="background:'+a[1]+'"></button>').join('')+'</div></div>'+
    '<div class="card"><h3>Efeitos</h3><div class="cap">Giro 3D, brilho dos cartões, animações ao abrir as telas e desfoque da barra de baixo. Se o app engasgar no seu aparelho, desligue para deixar tudo mais leve. Vale só para este aparelho.</div><div class="fxrow"><b>'+(NOFX()?'Desligados':'Ligados')+'</b><button type="button" class="swt" id="bfx" role="switch" aria-checked="'+(NOFX()?'false':'true')+'" aria-label="Efeitos especiais"></button></div>'+
-   '<div class="lbl" style="margin-top:16px">Brilho do cartão</div><div class="crow" id="bbr" style="margin-top:0">'+[['0','Faixa'],['1','Seda'],['6','Contorno']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Faixa</b>: faixa de luz reta. <b>Seda</b>: luz larga e macia que desliza. <b>Contorno</b>: luz que desliza pela borda do cartão.</div></div>'+
+   '<div class="lbl" style="margin-top:16px">Brilho do cartão</div><div class="crow" id="bbr" style="margin-top:0">'+[['0','Faixa'],['1','Seda'],['6','Contorno'],['7','Contorno duplo']].map(k=>'<button type="button" class="crb'+(BRI()===k[0]?' on':'')+'" data-b="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Faixa</b>: faixa de luz reta. <b>Seda</b>: luz larga e macia que desliza. <b>Contorno</b>: uma luz que desliza pela borda do cartão. <b>Contorno duplo</b>: duas luzes opostas percorrendo a borda.</div></div>'+
    (DEV()?'<div class="card"><h3>Carrossel de cartões</h3><div class="cap"><b>Automático</b>: o app escolhe o melhor para o seu aparelho. <b>3D</b>: os cartões giram ao passar (precisa de iPhone com iOS 26 ou mais novo).'+(SDA?'':' <b>Este aparelho não suporta o 3D.</b>')+' <b>Simples</b>: cartões planos, o mais leve possível, funciona em qualquer aparelho. A tela recarrega ao trocar.</div><div class="crow" id="bcr">'+[['auto','Automático'],['3d','3D'],['simples','Simples']].map(k=>'<button type="button" class="crb'+(CARP===k[0]?' on':'')+'"'+(k[0]==='3d'&&!SDA?' disabled style="opacity:.4"':'')+' data-k="'+k[0]+'">'+k[1]+'</button>').join('')+'</div><div class="lbl" style="margin-top:14px">Pontas (primeiro e último cartão)</div><div class="crow" id="bend">'+[['el','Elástico'],['firm','Firme']].map(x=>'<button type="button" class="crb'+((x[0]==='firm')===window.__ENDF?' on':'')+'" data-e="'+x[0]+'">'+x[1]+'</button>').join('')+'</div><div class="cap" style="margin:8px 0 0"><b>Elástico</b>: o cartão estica ao puxar além da ponta e volta. <b>Firme</b>: para seco na ponta.</div></div>':'')+
    (function(){const on=!!pinGet();return '<div class="card"><h3>Trava do app</h3><div class="cap">Opcional. Peça um PIN de 4 números sempre que abrir o app ou voltar depois de 1 minuto fora. Vale só neste aparelho.</div><div class="fxrow"><b>'+(on?'PIN ligado':'PIN desligado')+'</b><button type="button" class="swt" id="bpin" role="switch" aria-checked="'+on+'" aria-label="Trava por PIN"></button></div>'+(on?'<button class="act" id="bpinc" type="button">Alterar PIN</button>':'')+'</div>'})()+
    '<div class="card"><h3>Como o Sobrou! funciona</h3><div class="cap">Um passo a passo curto de cada parte do app: cadastrar, pagar, pagar só uma parte, cartões, metas e mais.</div><button class="act" id="bhelp">Abrir o tutorial</button>'+(window.__sobrouSup&&window.__sobrouSup()?'<button class="act" id="bsup">Falar com o suporte</button>':'')+'<button class="act" id="bwlc">Rever as boas-vindas</button></div>'+
@@ -2354,7 +2355,7 @@ function renderSet(){
   ($('#bend')||{}).onclick=e=>{const b=e.target.closest('.crb');if(!b||(b.dataset.e==='firm')===window.__ENDF)return;try{localStorage.setItem('sobrou.ends',b.dataset.e==='firm'?'firm':'el')}catch(_){}toast('Pontas: '+(b.dataset.e==='firm'?'firme':'elástico')+'…');setTimeout(()=>location.reload(),350)};
   ($('#bcr')||{}).onclick=e=>{const b=e.target.closest('.crb');if(!b||b.disabled||b.dataset.k===CARP)return;try{if(b.dataset.k==='auto')localStorage.removeItem('sobrou.car3');else localStorage.setItem('sobrou.car3',b.dataset.k)}catch(_){}toast('Carrossel: '+{auto:'automático','3d':'3D',simples:'simples'}[b.dataset.k]+'…');setTimeout(()=>location.reload(),350)};
   $('#bfx').onclick=()=>{const off=!NOFX();document.documentElement.classList.toggle('nofx',off);try{if(off)localStorage.setItem('sobrou.fx','0');else localStorage.removeItem('sobrou.fx')}catch(e){}renderSet();toast(off?'Efeitos especiais desligados':'Efeitos especiais ligados')};
-  $('#bbr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.dataset.b===BRI())return;document.documentElement.setAttribute('data-bri',b.dataset.b);try{if(b.dataset.b==='0')localStorage.removeItem('sobrou.bri');else localStorage.setItem('sobrou.bri',b.dataset.b)}catch(_){}$$('#bbr .crb').forEach(x=>x.classList.toggle('on',x===b));toast('Brilho: '+{'0':'faixa','1':'seda','6':'contorno'}[b.dataset.b])};
+  $('#bbr').onclick=e=>{const b=e.target.closest('.crb');if(!b||b.dataset.b===BRI())return;document.documentElement.setAttribute('data-bri',b.dataset.b);try{if(b.dataset.b==='0')localStorage.removeItem('sobrou.bri');else localStorage.setItem('sobrou.bri',b.dataset.b)}catch(_){}$$('#bbr .crb').forEach(x=>x.classList.toggle('on',x===b));toast('Brilho: '+{'0':'faixa','1':'seda','6':'contorno','7':'contorno duplo'}[b.dataset.b])};
   $('#thm').onclick=e=>{const b=e.target.closest('.tp');if(!b)return;const p=TH.PR[+b.dataset.pr];TH.set(p[1],p[2]);thSync()};
   $('#swb').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(+b.dataset.b,TH.cur[1]);thSync()};
   $('#swa').onclick=e=>{const b=e.target.closest('.swc');if(!b)return;TH.set(TH.cur[0],+b.dataset.a);thSync()};

@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.435 · Janela Pagar: o ícone e o nome da conta agora ficam dentro de uma moldura (cartão com borda e fundo na cor do tema), igual ao cabeçalho da janela Editar conta.
+
+v13.434 · Brilho do cartão (Ajustes): voltou o "Contorno" de uma luz só e foi acrescentada a nova opção "Contorno duplo" (duas luzes opostas percorrendo a borda) para escolher.
+
+v13.433 · Contorno do cartão com duas luzes (substituído na 13.434 por opção separada).
+
   v13.432 · 13/11/2026 · GUIA PARA INSTALAR NA TELA DE INÍCIO: (1) Tela passo a passo com desenhos (Compartilhar > Adicionar à Tela de Início > Adicionar) para iPhone, com seta animada apontando o botão de compartilhar no Safari; no Android, botão 'Instalar agora' quando o navegador permite, ou os passos do Chrome. (2) Se o app foi aberto em outro navegador ou dentro do WhatsApp/Instagram, avisa e oferece 'Copiar link para colar no Safari'. (3) Faixa 'Instale o Sobrou!' que aparece de vez em quando (no máximo 3 vezes, uma a cada 3 dias) fora do app instalado, com 'Já instalei, não mostrar mais'. (4) Em Ajustes, o aviso antigo virou o botão 'Ver como instalar'. (5) Lembra que, ao abrir pelo ícone, é preciso entrar de novo com o mesmo e-mail e senha: as contas aparecem na hora.
   (v13.432 também corrige: os Termos de Uso e a Privacidade abertos pelos Ajustes (v13.428) ficavam escondidos atrás da tela de login depois de entrar; agora abrem por cima de tudo.)
   v13.431 · 13/11/2026 · TIPO PELO BOLETO + CONTA REPETIDA: (1) Ao colar o código de uma conta de consumo (48 números) numa conta do tipo Boleto, o app marca o tipo sozinho (energia e água: Luz·Água·Gás, telecom: Internet, multa: Transporte, imposto e taxas: Impostos) e sugere o nome (ex.: Energia elétrica), sem perder valor, vencimento nem o código. (2) Ao adicionar uma conta com o mesmo nome, valor e vencimento de outra que já existe, o app pergunta antes de salvar ('Conta repetida?'); gastos já feitos e cartões ficam de fora.
