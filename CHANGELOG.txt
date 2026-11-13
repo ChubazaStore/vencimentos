@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.442 · Trocar o estilo dos ícones (claro/escuro) em Ajustes: o app agora baixa em segundo plano as duas versões dos ícones das suas contas e bancos, e na hora da troca espera ficarem prontas, então não aparecem mais um a um nem demoram. Vale também para a logo dos cartões sem arte própria.
+
+v13.441 · Janela Pagar: a faixa do banco diz só "Pagar com Pix/boleto" e o tipo exato (CPF, e-mail, código de barras) vai num rótulo acima da chave; no boleto "Nome" vira "Beneficiário"; tocar no valor copia o número (ex.: 1250,50).
+
+v13.440 · Janela Pagar: a etiqueta do vencimento fica verde também quando a conta ainda está longe de vencer (antes ficava na cor do tema, azul em alguns temas).
+
 v13.439 · Janela Pagar: valor e vencimento agora ficam dentro do cartão do topo; o vencimento vira uma etiqueta que muda de cor (verde em dia/paga, amarelo vence hoje ou amanhã, vermelho atrasada); em conta parcelada aparece "Parcela n/total".
 
 v13.438 · Removido o aviso "Você pagou?" que aparecia ao voltar do app do banco (não servia para nada).

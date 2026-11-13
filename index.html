@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.439';
+(function(){var V='13.442';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -580,7 +580,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px;padding:16px;border-radius:26px;margin:6px 0 10px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}#dt .dh{flex-wrap:wrap}#dt .dh>div:nth-child(2){min-width:0;flex:1}#dt .dh .dvr{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(var(--ar),.25)}#dt .dh .dvr .dv{margin:0;font-size:30px;line-height:1}#dt .dh .dvr .dw{margin:0;font:700 12.5px var(--fb);color:var(--tx);background:rgba(var(--ar),.16);border:1px solid rgba(var(--ar),.35);border-radius:999px;padding:7px 12px 7px 10px;display:flex;align-items:center;gap:7px}#dt .dh .dvr .dw::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold2,#c9ea4d);flex:none}#dt .dh .dw.ok{--u:var(--ok)}#dt .dh .dw.warn{--u:var(--warn)}#dt .dh .dw.bad{--u:var(--bad)}#dt .dh .dw.ok,#dt .dh .dw.warn,#dt .dh .dw.bad{background:color-mix(in srgb,var(--u) 18%,transparent);border-color:color-mix(in srgb,var(--u) 50%,transparent)}#dt .dh .dw.ok::before,#dt .dh .dw.warn::before,#dt .dh .dw.bad::before{background:var(--u)}#dt .dh small{display:block;margin-top:4px;font:500 12.5px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px;padding:16px;border-radius:26px;margin:6px 0 10px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}#dt .dh{flex-wrap:wrap}#dt .dh>div:nth-child(2){min-width:0;flex:1}#dt .dh .dvr{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(var(--ar),.25)}#dt .dh .dvr .dv{margin:0;font-size:30px;line-height:1}#dt .dvc{display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer}#dt .dvc .dvi{font:700 11px var(--fb);letter-spacing:.08em;text-transform:uppercase;color:var(--gold2,#c9ea4d);opacity:.9}#dt .dvc.done .dvi{color:var(--ok)}.pkl{margin:2px 0 -3px}#dt .dh .dvr .dw{margin:0;font:700 12.5px var(--fb);color:var(--tx);background:rgba(var(--ar),.16);border:1px solid rgba(var(--ar),.35);border-radius:999px;padding:7px 12px 7px 10px;display:flex;align-items:center;gap:7px}#dt .dh .dvr .dw::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold2,#c9ea4d);flex:none}#dt .dh .dw.ok{--u:var(--ok)}#dt .dh .dw.warn{--u:var(--warn)}#dt .dh .dw.bad{--u:var(--bad)}#dt .dh .dw.ok,#dt .dh .dw.warn,#dt .dh .dw.bad{background:color-mix(in srgb,var(--u) 18%,transparent);border-color:color-mix(in srgb,var(--u) 50%,transparent)}#dt .dh .dw.ok::before,#dt .dh .dw.warn::before,#dt .dh .dw.bad::before{background:var(--u)}#dt .dh small{display:block;margin-top:4px;font:500 12.5px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -1371,7 +1371,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.439';
+const VERSION='13.442';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1501,6 +1501,12 @@ function logo(id){let v=LOGOS[id];if(v&&v.charAt(0)==='@')v=LOGOS[v.slice(1)];if
 const ICOK={},ICMISS={};
 /* ícones que já abriram antes aparecem direto, sem o "acender" (são dezenas de camadas a menos para o iPhone montar ao abrir a janela) */
 try{JSON.parse(localStorage.getItem('sobrou.icok')||'[]').forEach(u=>{ICOK[u]=1})}catch(e){}
+/* v13.442: pré-carrega os ícones dos dois estilos (claro/escuro) das contas e bancos em uso: ao trocar o estilo em Ajustes eles já estão prontos e não "acendem" um a um */
+function icUrls(){const ids={};try{S.bills.forEach(b=>{if(b.prov)ids[b.prov]=1;if(b.bank)ids[b.bank]=1;(b.pay||[]).forEach(x=>{if(x.b)ids[x.b]=1})})}catch(e){}
+  const out=[];Object.keys(ids).forEach(id=>{let v=LOGOS[id];if(v&&v.charAt(0)==='@')v=LOGOS[v.slice(1)];if(!/^i-[a-z0-9_-]+\.webp$/.test(v||''))return;out.push(imgU(v));if(LOGOC[v])out.push(imgU(v.replace(/\.webp$/,'-c.webp')))});return out}
+function icPre(done,ms){const us=icUrls().filter(u=>!ICOK[u]);if(!us.length){done&&done();return}let n=us.length,fin=0;const end=()=>{if(fin)return;fin=1;done&&done()};
+  us.forEach(u=>{const i=new Image();const ok=()=>{if(i.naturalWidth)ICOK[u]=1;if(--n<=0)end()};i.onload=ok;i.onerror=ok;i.src=u});
+  if(done)setTimeout(end,ms||1200)}
 let ICOKT=0;function icokSave(){clearTimeout(ICOKT);ICOKT=setTimeout(()=>{try{localStorage.setItem('sobrou.icok',JSON.stringify(Object.keys(ICOK).slice(-400)))}catch(e){}},1500)}
 function badge(p){
   const g=logo(p.id);
@@ -3474,6 +3480,7 @@ document.addEventListener('contextmenu',e=>{const t=e.target;if(t&&t.closest&&t.
   window.fixTop=fix;
   try{(window.requestIdleCallback||setTimeout)(()=>setTimeout(()=>{try{(window.__appWarm||appWarm)()}catch(e){}},2500),{timeout:6000})}catch(e){}
   setTimeout(()=>{try{window.__imgPre()}catch(e){}},8000);
+  [9000,25000].forEach(ms=>setTimeout(()=>{try{(window.requestIdleCallback||setTimeout)(()=>icPre())}catch(e){}},ms)); /* v13.442 */
   document.addEventListener('focusout',()=>{setTimeout(fix,350)});
   ['pageshow','focus','resize','orientationchange'].forEach(n=>window.addEventListener(n,()=>{fix();setTimeout(fix,120);setTimeout(fix,450)}));
   document.addEventListener('visibilitychange',()=>{if(!document.hidden){fix();setTimeout(fix,120);setTimeout(fix,450)}});
@@ -3711,7 +3718,7 @@ const HP=function(k){
   new MutationObserver(q).observe(P,{attributes:true,attributeFilter:['class','data-step'],childList:true,subtree:true});
   addEventListener('resize',q);addEventListener('orientationchange',q);
 })();
-$('#pic').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}pgdClear();renderProv();try{renderAll()}catch(_){}});
+$('#pic').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.i==='c';if(c===ICLIGHT())return;try{localStorage.setItem('sobrou.ic',c?'c':'d')}catch(_){}icPre(()=>{pgdClear();renderProv();try{renderAll()}catch(_){}},1200)});
 $('#pm').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.pord=b.dataset.o==='custom'?'custom':'az';save();pgdClear();renderProv()});
 $('#phint').addEventListener('click',e=>{
   if(e.target.id==='prst'){delete S.order[F.cat];S.pord='az';save();pgdClear();renderProv();toast('Ordem A–Z restaurada')}
@@ -4025,12 +4032,12 @@ function openApp(id,val){
 const PCPT={pix:'Copiar chave Pix',barras:'Copiar código'};
 function payCard(x,i,bid){
   const t=PGT[x.k]||PGT.outro,p=bid&&PROV[bid],tp=x.k==='pix'?pixTipo(x.v):'';
-  const tag=x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l;
+  const tag=x.k==='pix'?'Pagar com Pix':x.k==='barras'?'Pagar com boleto':t.l;
   const top=p?'<div class="pct" style="background:linear-gradient(120deg,'+p.c+',color-mix(in srgb,'+p.c+' 80%,#000));color:'+p.t+'">'+badge(p)+'<div class="pcm"><small>'+esc(tag)+'</small><b>'+esc(p.n)+'</b></div></div>'
     :'<div class="pct pn"><div class="pic'+t.c+'">'+t.ic+'</div><div class="pcm"><small>Pagar com</small><b>'+esc(t.l)+'</b></div></div>';
   const can=!!(p&&APPLINK[bid]&&x.v);
-  return '<div class="pcc">'+top+'<div class="pcbd">'+(x.n?'<div><div class="pcl">'+(x.k==='pix'||x.k==='outro'?'Quem recebe':'Nome')+'</div><div class="pcn">'+esc(x.n)+'</div></div>':'')+
-    (x.v?'<div class="pck'+(x.k==='barras'?' mono':'')+'">'+esc(x.v)+'</div><button type="button" class="pcy" data-cp="'+i+'">⧉ '+esc(PCPT[x.k]||'Copiar dados')+'</button><div class="pcr2">'+(can?'<button type="button" class="pcs" data-open="'+esc(bid)+'" data-i="'+i+'">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+'<button type="button" class="pcs" data-sh="'+i+'">⤴ Compartilhar</button></div>':'')+
+  return '<div class="pcc">'+top+'<div class="pcbd">'+(x.n?'<div><div class="pcl">'+(x.k==='pix'||x.k==='outro'?'Quem recebe':x.k==='barras'?'Beneficiário':'Nome')+'</div><div class="pcn">'+esc(x.n)+'</div></div>':'')+
+    (x.v?'<div class="pcl pkl">'+esc(x.k==='pix'?'Chave Pix'+(tp?' · '+tp:''):x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><div class="pck'+(x.k==='barras'?' mono':'')+'">'+esc(x.v)+'</div><button type="button" class="pcy" data-cp="'+i+'">⧉ '+esc(PCPT[x.k]||'Copiar dados')+'</button><div class="pcr2">'+(can?'<button type="button" class="pcs" data-open="'+esc(bid)+'" data-i="'+i+'">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+'<button type="button" class="pcs" data-sh="'+i+'">⤴ Compartilhar</button></div>':'')+
     '</div></div>'}
 function payCards(b){return '<div class="pcards">'+b.pay.map((x,i)=>payCard(x,i,bankOf(b,x))).join('')+'</div>'}
 /* ---------- Cofre ---------- */
@@ -4238,10 +4245,10 @@ function openDet(id,key){
   const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
   DTID=id;DTKEY=key;const c=CAT[b.cat]||CAT.outros;
   const dp=PROV[b.prov],dk=PROV[bankOf(b,b.pay[0])],dsub=[dp&&dp.n!==b.name?dp.n:'',b.cat==='cartao'&&b.last4?'final '+b.last4:'',dk&&dk!==dp?dk.n:'',b.repeat==='inst'&&o&&b.total?'Parcela '+o.n+'/'+b.total:''].filter(Boolean).join(' · ');
-  const dd0=o&&!o.paid?ddiff(o.date,today0()):9,dcls=o&&o.paid?'ok':dd0<0?'bad':dd0<=1?'warn':'';
+  const dd0=o&&!o.paid?ddiff(o.date,today0()):9,dcls=o&&o.paid?'ok':dd0<0?'bad':dd0<=1?'warn':'ok';
   let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';;
   $('#dth').textContent='Pagar';
-  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c)+' · '+MES[+key.split('-')[1]-1]+' '+key.split('-')[0])+'</i><b>'+esc(b.name)+'</b>'+(dsub?'<small>'+esc(dsub)+'</small>':'')+'</div><div class="dvr"><div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw '+dcls+'">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div></div></div>'+
+  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c)+' · '+MES[+key.split('-')[1]-1]+' '+key.split('-')[0])+'</i><b>'+esc(b.name)+'</b>'+(dsub?'<small>'+esc(dsub)+'</small>':'')+'</div><div class="dvr"><button type="button" class="dvc" data-cv="'+(o?o.amt:b.amount)+'"><span class="dv num">'+brl(o?o.amt:b.amount)+'</span><span class="dvi">⧉ Copiar valor</span></button><div class="dw '+dcls+'">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div></div></div>'+
    payCards(b)+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+(o&&!o.paid&&o.full>0?'<button type="button" class="act" id="dpp">Parcial</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
@@ -4250,6 +4257,8 @@ function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remo
   setTimeout(()=>{if(!d.classList.contains('open'))d.hidden=true},430)}
 $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
+  const cv=e.target.closest('[data-cv]');
+  if(cv){const t=(Number(cv.dataset.cv)/100).toFixed(2).replace('.',',');copyTxt(t,'Valor copiado');const l=cv.querySelector('.dvi');if(l&&!cv.classList.contains('done')){const o0=l.textContent;cv.classList.add('done');l.textContent='✓ Valor copiado';try{navigator.vibrate&&navigator.vibrate(18)}catch(_){}setTimeout(()=>{cv.classList.remove('done');l.textContent=o0},1800)}return}
   const c=e.target.closest('[data-cp]');
   if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x){copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c)}return}
   const po=e.target.closest('[data-open]');if(po){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+po.dataset.i];if(x){openApp(po.dataset.open,x.v)}return}
