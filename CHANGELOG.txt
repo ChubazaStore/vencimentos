@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.436 · Janela Pagar: o cartão do topo agora traz também o mês (ex.: TRANSPORTE · NOVEMBRO 2026) e uma linha com o banco/empresa, como o da janela Editar conta.
+
 v13.435 · Janela Pagar: o ícone e o nome da conta agora ficam dentro de uma moldura (cartão com borda e fundo na cor do tema), igual ao cabeçalho da janela Editar conta.
 
 v13.434 · Brilho do cartão (Ajustes): voltou o "Contorno" de uma luz só e foi acrescentada a nova opção "Contorno duplo" (duas luzes opostas percorrendo a borda) para escolher.
