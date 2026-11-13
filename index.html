@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.436';
+(function(){var V='13.439';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -545,7 +545,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 #paybox .pit[data-ed]{cursor:pointer}#paybox .pit.ed{border-color:rgba(50,188,173,.75);box-shadow:0 0 0 1px rgba(50,188,173,.45)} /* v13.374: toque numa forma salva para editar */
 #dt .panel.fit{touch-action:none;overflow:hidden} /* v13.374: janela curta (sem rolagem) não deixa o iPhone disputar o gesto com a página: o arrastar para fechar fica fluido */
 .row{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
-.row.lpon{background:linear-gradient(90deg,rgba(var(--ar),.14),rgba(var(--ar),.03));transform:scale(.988);transition:transform .2s,background .2s}
+.row.lpon{background:rgba(var(--ar),.12);transition:background .2s} /* v13.437: sem o encolher (scale) nem o degradê, que deixavam a ponta da esquerda sem cor ao segurar */
 #lpb{position:fixed;inset:0;z-index:120;background:rgba(2,3,6,.28)}
 .lpm{position:fixed;z-index:121;width:236px;padding:6px;border-radius:20px;background:#1c1c20;border:1px solid var(--line2);box-shadow:0 18px 50px rgba(0,0,0,.6);transform-origin:var(--ox,50%) var(--oy,0);animation:lpin .2s cubic-bezier(.2,.9,.3,1)}
 @keyframes lpin{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
@@ -580,7 +580,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pm b{font-size:15.5px;line-height:1.25}.pit .pm span{margin-top:2px;line-height:1.3}
 .pit .pcp,.pit .prm{align-self:center}
 .pit .ptag{display:block;font:700 10.5px var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#32bcad;font-style:normal;margin-bottom:3px}
-#dt .dh{gap:16px;padding:16px;border-radius:26px;margin:6px 0 10px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}#dt .dh>div:last-child{min-width:0}#dt .dh small{display:block;margin-top:4px;font:500 12.5px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
+#dt .dh{gap:16px;padding:16px;border-radius:26px;margin:6px 0 10px;background:linear-gradient(135deg,rgba(var(--ar),.20),rgba(255,255,255,.03) 70%);border:1px solid rgba(var(--ar),.38);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}#dt .dh{flex-wrap:wrap}#dt .dh>div:nth-child(2){min-width:0;flex:1}#dt .dh .dvr{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 10px;margin-top:4px;padding-top:12px;border-top:1px solid rgba(var(--ar),.25)}#dt .dh .dvr .dv{margin:0;font-size:30px;line-height:1}#dt .dh .dvr .dw{margin:0;font:700 12.5px var(--fb);color:var(--tx);background:rgba(var(--ar),.16);border:1px solid rgba(var(--ar),.35);border-radius:999px;padding:7px 12px 7px 10px;display:flex;align-items:center;gap:7px}#dt .dh .dvr .dw::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold2,#c9ea4d);flex:none}#dt .dh .dw.ok{--u:var(--ok)}#dt .dh .dw.warn{--u:var(--warn)}#dt .dh .dw.bad{--u:var(--bad)}#dt .dh .dw.ok,#dt .dh .dw.warn,#dt .dh .dw.bad{background:color-mix(in srgb,var(--u) 18%,transparent);border-color:color-mix(in srgb,var(--u) 50%,transparent)}#dt .dh .dw.ok::before,#dt .dh .dw.warn::before,#dt .dh .dw.bad::before{background:var(--u)}#dt .dh small{display:block;margin-top:4px;font:500 12.5px var(--fb);color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#dt .dh .pv,#dt .dh .ico{width:64px;height:64px;border-radius:22px;flex:none;margin:0} /* v13.374: ícone da conta no tamanho cheio (antes 40 px) */
 #dt .dh .ico svg{width:30px;height:30px}
 /* panorama e ajustes */
 .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px}
@@ -1371,7 +1371,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.436';
+const VERSION='13.439';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4147,19 +4147,6 @@ async function smartPaste(){let t='';try{t=await navigator.clipboard.readText()}
   $('#pvl').value=v;PIXW='';$('#pvl').dispatchEvent(new Event('input'));
   toast(k==='pix'?(/^000201/.test(sq)?'Pix copia e cola reconhecido':'Chave Pix reconhecida'):'Boleto reconhecido')}
 document.addEventListener('click',e=>{if(e.target.closest('#psmart'))smartPaste()});
-/* "Você pagou?": depois de copiar ou abrir o app do banco, ao voltar o app pergunta se já pode marcar a conta como paga */
-let PAYARM=null,HIDAT=0;
-function payAskArm(id,key){PAYARM={id:id,key:key,t:Date.now()}}
-function payAskShow(b,o,key){const old=$('#pgq');if(old)old.remove();const d=document.createElement('div');d.id='pgq';d.setAttribute('role','alertdialog');
-  d.innerHTML='<b>Você pagou?</b><p>'+esc(b.name)+' · '+brl(o.amt)+'</p><div class="r"><button type="button" data-n="1">Ainda não</button><button type="button" class="y" data-y="1">Sim, paguei</button></div>';
-  d.addEventListener('click',e=>{const y=e.target.closest('[data-y]'),n=e.target.closest('[data-n]');if(!y&&!n)return;d.remove();if(y){const dt=$('#dt');const open=dt&&dt.classList.contains('open');togglePaid(b.id,key,innerWidth/2,innerHeight*.6,open);if(open)setTimeout(closeDet,RMq()?0:200)}});
-  document.body.appendChild(d);setTimeout(()=>{if(d.isConnected)d.remove()},25000)}
-document.addEventListener('visibilitychange',()=>{
-  if(document.visibilityState==='hidden'){HIDAT=Date.now();return}
-  if(!PAYARM||!HIDAT)return;const away=Date.now()-HIDAT,a=PAYARM;HIDAT=0;
-  if(Date.now()-a.t>30*60000){PAYARM=null;return}if(away<3000)return;PAYARM=null;
-  const b=S.bills.find(v=>v.id===a.id),o=b&&occ(b,...a.key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
-  if(!o||o.paid)return;payAskShow(b,o,a.key)});
 function keyDup(){const k=PAYK,v=normV(k,$('#pvl').value);if(!DUPL[k]||v.length<5)return null;
   const me=EDIT?EDIT.id:'',here=(F.pay||[]).some((x,i)=>i!==PEDX&&x.k===k&&normV(k,x.v)===v),o=[];
   S.bills.forEach(b=>{if(b.id===me)return;const it=(b.pay||[]).find(x=>x.k===k&&normV(k,x.v)===v);if(it&&!o.some(z=>z.b.name===b.name))o.push({b:b,it:it})});
@@ -4225,7 +4212,7 @@ function copyFx(btn,lab){
   const r=btn.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,box=document.createElement('div');
   box.style.cssText='position:fixed;left:0;top:0;width:0;height:0;z-index:200;pointer-events:none';document.body.appendChild(box);
   const ring=document.createElement('i');ring.style.cssText='position:absolute;left:'+(cx-r.width/2)+'px;top:'+(cy-r.height/2)+'px;width:'+r.width+'px;height:'+r.height+'px;border-radius:14px;border:2px solid #7ee8b0;box-sizing:border-box';box.appendChild(ring);
-  ring.animate([{transform:'scale(1)',opacity:.9},{transform:'scale(1.9,2.3)',opacity:0}],{duration:650,easing:'cubic-bezier(.2,.7,.3,1)'});
+  ring.animate([{transform:'scale(1)',opacity:.9},{transform:'scale(1.9,2.3)',opacity:0}],{duration:650,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'}); /* v13.437: sem fill o anel voltava parado (quadrado verde) até a limpeza */
   const cols=['#c9ea4d','#7ee8b0','#34d399','#e6d78a','#ffffff'];
   for(let i=0;i<14;i++){const a=Math.PI*2*i/14+Math.random()*.4,d=34+Math.random()*44,z=4+Math.random()*5,p=document.createElement('i');
     p.style.cssText='position:absolute;left:'+(cx-z/2)+'px;top:'+(cy-z/2)+'px;width:'+z+'px;height:'+z+'px;border-radius:'+(i%3?'50%':'2px')+';background:'+cols[i%cols.length];box.appendChild(p);
@@ -4250,11 +4237,11 @@ function openDet(id,key){
   if(!b||!b.pay||!b.pay.length){openSheet(id,key);return}
   const o=occ(b,...key.split('-').map((v,i)=>i?Number(v)-1:Number(v)));
   DTID=id;DTKEY=key;const c=CAT[b.cat]||CAT.outros;
-  const dp=PROV[b.prov],dk=PROV[bankOf(b,b.pay[0])],dsub=[dp&&dp.n!==b.name?dp.n:'',b.cat==='cartao'&&b.last4?'final '+b.last4:'',dk&&dk!==dp?dk.n:''].filter(Boolean).join(' · ');
-  let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';else if(b.repeat==='inst'&&o)w+=' · '+o.n+'/'+b.total;
+  const dp=PROV[b.prov],dk=PROV[bankOf(b,b.pay[0])],dsub=[dp&&dp.n!==b.name?dp.n:'',b.cat==='cartao'&&b.last4?'final '+b.last4:'',dk&&dk!==dp?dk.n:'',b.repeat==='inst'&&o&&b.total?'Parcela '+o.n+'/'+b.total:''].filter(Boolean).join(' · ');
+  const dd0=o&&!o.paid?ddiff(o.date,today0()):9,dcls=o&&o.paid?'ok':dd0<0?'bad':dd0<=1?'warn':'';
+  let w=o?whenText(o):'';if(b.repeat==='monthly')w+=' · mensal';;
   $('#dth').textContent='Pagar';
-  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c)+' · '+MES[+key.split('-')[1]-1]+' '+key.split('-')[0])+'</i><b>'+esc(b.name)+'</b>'+(dsub?'<small>'+esc(dsub)+'</small>':'')+'</div></div>'+
-   '<div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div>'+
+  $('#dtc').innerHTML='<div class="dh">'+lead(b)+'<div><i class="k">'+esc(catLbl(b,c)+' · '+MES[+key.split('-')[1]-1]+' '+key.split('-')[0])+'</i><b>'+esc(b.name)+'</b>'+(dsub?'<small>'+esc(dsub)+'</small>':'')+'</div><div class="dvr"><div class="dv num">'+brl(o?o.amt:b.amount)+'</div><div class="dw '+dcls+'">'+esc(w)+(o&&o.pp>0?' · já pagou '+brl(o.pp)+' de '+brl(o.full):'')+(o&&!o.paid&&penOf(o)>0?' · com multa/juros ≈ '+brl(o.amt+penOf(o)):'')+'</div></div></div>'+
    payCards(b)+
    (b.note?'<div class="lbl">Observação</div><p class="dn">'+esc(b.note)+'</p>':'')+
    '<div class="dbt">'+(o?'<button type="button" class="act ok" id="dpay">'+(o.paid?'Desfazer pagamento':'Marcar como paga')+'</button>':'')+(o&&!o.paid&&o.full>0?'<button type="button" class="act" id="dpp">Parcial</button>':'')+'<button type="button" class="act" id="ded">Editar</button></div>';
@@ -4264,9 +4251,9 @@ function closeDet(){const d=$('#dt');clearTimeout(window.__dts);d.classList.remo
 $('#dtscrim').onclick=closeDet;$('#dtx').onclick=closeDet;
 $('#dt').addEventListener('click',e=>{
   const c=e.target.closest('[data-cp]');
-  if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x){copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);payAskArm(DTID,DTKEY)}return}
-  const po=e.target.closest('[data-open]');if(po){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+po.dataset.i];if(x){openApp(po.dataset.open,x.v);payAskArm(DTID,DTKEY)}return}
-  const ps=e.target.closest('[data-sh]');if(ps){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+ps.dataset.sh];if(x){doShare(x,bankOf(b,x));payAskArm(DTID,DTKEY)}return}
+  if(c){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+c.dataset.cp];if(x){copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c)}return}
+  const po=e.target.closest('[data-open]');if(po){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+po.dataset.i];if(x){openApp(po.dataset.open,x.v)}return}
+  const ps=e.target.closest('[data-sh]');if(ps){const b=S.bills.find(v=>v.id===DTID),x=b&&b.pay[+ps.dataset.sh];if(x){doShare(x,bankOf(b,x))}return}
   if(e.target.closest('#ded')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openSheet(id,k),RMq()?0:200);return}
   if(e.target.closest('#dpp')){const id=DTID,k=DTKEY;closeDet();setTimeout(()=>openPP(id,k),RMq()?0:240);return}
   const dp=e.target.closest('#dpay');
@@ -4299,7 +4286,7 @@ function lpOpen(r){
   m.onclick=e=>{
     const a=e.target.closest('[data-lp]');if(!a)return;const k=a.dataset.lp;
     if(k.slice(0,2)==='fv'){const E=(window.__lpf||[])[+k.slice(2)];if(E)copyTxt(E.x.v,'',a);setTimeout(lpClose,700);return}
-    if(k[0]==='c'&&k[1]==='p'){const x=b.pay[+k.slice(2)];if(x){copyTxt(x.v,'',a);payAskArm(id,key)}setTimeout(lpClose,700);return}
+    if(k[0]==='c'&&k[1]==='p'){const x=b.pay[+k.slice(2)];if(x){copyTxt(x.v,'',a)}setTimeout(lpClose,700);return}
     lpClose();
     if(k==='pay')setTimeout(()=>togglePaid(id,key,LPX,LPY),RMq()?0:120);
     else if(k==='pp')setTimeout(()=>openPP(id,key),RMq()?0:120);

@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.439 · Janela Pagar: valor e vencimento agora ficam dentro do cartão do topo; o vencimento vira uma etiqueta que muda de cor (verde em dia/paga, amarelo vence hoje ou amanhã, vermelho atrasada); em conta parcelada aparece "Parcela n/total".
+
+v13.438 · Removido o aviso "Você pagou?" que aparecia ao voltar do app do banco (não servia para nada).
+
+v13.437 · Corrigido o "quadrado verde" que ficava parado por um instante depois de Copiar (menu de segurar e botões de copiar): o anel da animação voltava a aparecer ao terminar. Ao segurar numa conta, a seleção amarela não encolhe mais nem deixa a ponta da esquerda sem cor.
+
 v13.436 · Janela Pagar: o cartão do topo agora traz também o mês (ex.: TRANSPORTE · NOVEMBRO 2026) e uma linha com o banco/empresa, como o da janela Editar conta.
 
 v13.435 · Janela Pagar: o ícone e o nome da conta agora ficam dentro de uma moldura (cartão com borda e fundo na cor do tema), igual ao cabeçalho da janela Editar conta.
