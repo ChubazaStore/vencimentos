@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.465 · Restaurado: o logo da abertura volta a voar até o canto superior esquerdo (inclusive ao tocar para pular). Mantido: o brilho prateado não fica mais parado no meio da tela. Travada da borda do cartão: o aquecimento dos efeitos (feito sozinho uns 5 s depois de abrir) agora roda aos poucos, um conjunto por vez, em vez de tudo de uma vez.
+
 v13.464 · Corrigido: na abertura, depois que o logo voava para o cabeçalho, ficava para trás um "fantasma" prateado do logo (o brilho que passa sobre ele) no meio da tela, que só sumia depois. Agora o brilho desaparece junto com o voo.
 
 v13.463 · Corrigido: o brilho que gira na borda do cartão travava e dava um salto (agora roda por transformação, sem redesenhar o gradiente a cada quadro). Corrigido: ao tocar para pular a abertura antes de o logo se formar, aparecia um logo prateado no meio da tela; agora a abertura só some suave.

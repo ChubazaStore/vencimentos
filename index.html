@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.464';
+(function(){var V='13.465';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1126,7 +1126,6 @@ body.dragging .pt:active,body.dragging .pt.on{transform:none}
 @keyframes sppa{from{opacity:0;transform:translateX(-50%) scale(.9)}to{opacity:1;transform:translateX(-50%) scale(1)}}
 @keyframes sppm{to{transform:translateX(420%)}}
 .spl.skp .spl-mw::after,.spl.fly .spl-mw::after{display:none!important}
-.spl.skn .spl-mw,.spl.skn canvas,.spl.skn::after{visibility:hidden!important}
 .spl.fly{background-color:transparent}
 .spl.fly .spl-n,.spl.fly .spl-t,.spl.fly .spl-pm{opacity:0!important;transition:opacity .28s ease}
 .spl.fly::after{animation:splgo .45s ease forwards!important}
@@ -1371,7 +1370,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.464';
+const VERSION='13.465';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1861,10 +1860,13 @@ function fxUn(x,y,w){
 function fxWarm(){ /* roda uma vez, quase invisível (1%), no meio da tela, só para o navegador preparar as camadas dos 3 conjuntos */
   try{const sh=$('#sheet');if(sh&&!sh.hidden)return;
     if(document.hidden||performance.now()-FXV<4000){setTimeout(fxWarm,4000);return} 
-    FXW=1;
-    try{for(let k=0;k<FXP.NS;k++)fxOk(-420,innerHeight/2,1);
-    for(let k=0;k<FXP.NS;k++)fxUn(-420,innerHeight/2,1)}finally{FXW=0}
-    setTimeout(fxHideAll,1300)}catch(_){}
+    /* um conjunto por vez, com pausa entre eles: tudo de uma vez travava a animação da borda do cartão */
+    let k=0;const tot=FXP.NS*2,one=()=>{
+      if(document.hidden){setTimeout(one,1500);return}
+      const sh2=$('#sheet');if(sh2&&!sh2.hidden){setTimeout(one,1500);return}
+      FXW=1;try{if(k<FXP.NS)fxOk(-420,innerHeight/2,1);else fxUn(-420,innerHeight/2,1)}finally{FXW=0}
+      k++;if(k<tot)setTimeout(one,700);else setTimeout(fxHideAll,1300)};
+    one()}catch(_){}
 }
 function burst(x,y){if(RMq())return;fxOk(x,y)}
 let tt;
@@ -5224,9 +5226,9 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     }
     /* saída: o logo voa e encolhe até o logo do cabeçalho; sem cabeçalho visível, só some em fade */
     function voar(sk){
-      if(fl||el.dataset.d)return;fl=1;let nov=0;if(sk){skp=1;el.classList.add('skp');let op=0;try{op=parseFloat(getComputedStyle(img).opacity)||0}catch(_){}if(op<.6){nov=1;el.classList.add('skn')}else{img.style.animation='none';img.style.opacity='1';img.style.filter='var(--mf) drop-shadow(0 12px 22px rgba(0,0,0,.45))'}}
+      if(fl||el.dataset.d)return;fl=1;if(sk){skp=1;el.classList.add('skp');img.style.animation='none';img.style.opacity='1';img.style.filter='var(--mf) drop-shadow(0 12px 22px rgba(0,0,0,.45))'}
       let ok=0;try{const h=document.querySelector('.brand .logo>img'),r=img.getBoundingClientRect();
-        if(h&&!nov&&!document.documentElement.classList.contains('lgon')){const b=h.getBoundingClientRect();
+        if(h&&!document.documentElement.classList.contains('lgon')){const b=h.getBoundingClientRect();
           if(b.width>8&&b.top>=0&&b.top<240&&r.width>8){const sc=b.width/r.width,dx=b.left+b.width/2-(r.left+r.width/2),dy=b.top+b.height/2-(r.top+r.height/2);
             img.animate([{transform:'none'},{transform:'translate('+dx+'px,'+dy+'px) scale('+sc+')'}],{duration:560,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});ok=1;setTimeout(()=>{try{const d=document.createElement('div'),c=ar;d.style.cssText='position:fixed;z-index:10000;pointer-events:none;border-radius:50%;width:30px;height:30px;left:'+(b.left+b.width/2-15)+'px;top:'+(b.top+b.height/2-15)+'px;border:1.5px solid rgba('+c+',.85);box-shadow:0 0 14px rgba('+c+',.6)';document.body.appendChild(d);d.animate([{transform:'scale(.5)',opacity:.95},{transform:'scale(2.8)',opacity:0}],{duration:650,easing:'ease-out'}).onfinish=()=>d.remove()}catch(_){}},540)}}}catch(_){}
       el.classList.add('fly');setTimeout(()=>el.dispatchEvent(new Event('flydone')),ok?580:300)}
