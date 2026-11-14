@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.462';
+(function(){var V='13.464';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -966,16 +966,16 @@ html:root .cpn,html:root .cps{transition:opacity .16s}
 html[data-bri="1"] .cc::after,html[data-bri="6"] .cc::after,html[data-bri="7"] .cc::after,html[data-bri="6"] .cc-fx::after,html[data-bri="7"] .cc-fx::after{display:none!important}
 html[data-bri="1"] .cc-fx::after{top:-40%;bottom:-40%;width:70%;background:linear-gradient(90deg,transparent,rgba(255,238,200,.06) 22%,rgba(255,244,222,.2) 42%,rgba(255,255,255,.3) 50%,rgba(255,244,222,.2) 58%,rgba(255,238,200,.06) 78%,transparent);transform:translateX(-130%) rotate(16deg);opacity:0;animation:ccsilk 8s 1.6s cubic-bezier(.45,.05,.25,1) infinite}
 @keyframes ccsilk{0%,58%{transform:translateX(-130%) rotate(16deg);opacity:0}64%{opacity:1}90%{opacity:1}100%{transform:translateX(190%) rotate(16deg);opacity:0}}
-@property --ccang{syntax:'<angle>';initial-value:0deg;inherits:false}
-@keyframes ccang{to{--ccang:360deg}}
+@keyframes ccrot{to{transform:translate(-50%,-50%) rotate(360deg)}}
 /* 6 = contorno deslizante (o mesmo "Contorno animado" do site de renda fixa): luz na cor do tema percorrendo a borda, com cauda escura para aparecer em cartão claro */
-html[data-bri="6"] .cc-rg,html[data-bri="7"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:2.2px;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ccang 2.8s linear infinite;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 190deg,color-mix(in srgb,var(--gold2) 40%,#000) 240deg,color-mix(in srgb,var(--gold2) 55%,#000) 290deg,var(--gold2) 318deg,#fff 336deg,var(--gold) 348deg,transparent 360deg)}
-html[data-bri="7"] .cc-rg{animation-duration:3.6s;background:conic-gradient(from var(--ccang),transparent 0deg,transparent 95deg,color-mix(in srgb,var(--gold2) 40%,#000) 120deg,color-mix(in srgb,var(--gold2) 55%,#000) 145deg,var(--gold2) 159deg,#fff 168deg,var(--gold) 174deg,transparent 180deg,transparent 275deg,color-mix(in srgb,var(--gold2) 40%,#000) 300deg,color-mix(in srgb,var(--gold2) 55%,#000) 325deg,var(--gold2) 339deg,#fff 348deg,var(--gold) 354deg,transparent 360deg)}
+html[data-bri="6"] .cc-rg,html[data-bri="7"] .cc-rg{display:block;position:absolute;inset:0;border-radius:inherit;padding:2.2px;pointer-events:none;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);overflow:hidden;background:none}
+html[data-bri="6"] .cc-rg::before,html[data-bri="7"] .cc-rg::before{content:"";position:absolute;left:50%;top:50%;width:135%;aspect-ratio:1;transform:translate(-50%,-50%);will-change:transform;animation:ccrot 2.8s linear infinite;background:conic-gradient(from 0deg,transparent 0deg,transparent 190deg,color-mix(in srgb,var(--gold2) 40%,#000) 240deg,color-mix(in srgb,var(--gold2) 55%,#000) 290deg,var(--gold2) 318deg,#fff 336deg,var(--gold) 348deg,transparent 360deg)}
+html[data-bri="7"] .cc-rg::before{animation-duration:3.6s;background:conic-gradient(from 0deg,transparent 0deg,transparent 95deg,color-mix(in srgb,var(--gold2) 40%,#000) 120deg,color-mix(in srgb,var(--gold2) 55%,#000) 145deg,var(--gold2) 159deg,#fff 168deg,var(--gold) 174deg,transparent 180deg,transparent 275deg,color-mix(in srgb,var(--gold2) 40%,#000) 300deg,color-mix(in srgb,var(--gold2) 55%,#000) 325deg,var(--gold2) 339deg,#fff 348deg,var(--gold) 354deg,transparent 360deg)}
 .cc-rg u{display:none}
 .cards.cf .cw:not(.ctr) .cc-rg{display:none!important}
 .panel .cc-rg,.cpk .cc-rg,.nofx .cc-rg{display:none!important}
-body.so .cc-rg{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.cc-rg{animation:none!important}}
+body.so .cc-rg::before{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.cc-rg::before{animation:none!important}}
 .cc.w{transition:transform .7s cubic-bezier(.2,1.4,.3,1),box-shadow .6s}
 .cc.w.mini{width:48px;border-radius:7px;padding:0;aspect-ratio:1.586;container-type:normal;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 12px -6px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.1)}
 .cc.w.mini>*:not(.cc-logo):not(.cc-bg):not(.cc-n){display:none}
@@ -1125,6 +1125,8 @@ body.dragging .pt:active,body.dragging .pt.on{transform:none}
 .spl.go .spl-pm::after{animation:sppm .9s 3s ease-in-out forwards}
 @keyframes sppa{from{opacity:0;transform:translateX(-50%) scale(.9)}to{opacity:1;transform:translateX(-50%) scale(1)}}
 @keyframes sppm{to{transform:translateX(420%)}}
+.spl.skp .spl-mw::after,.spl.fly .spl-mw::after{display:none!important}
+.spl.skn .spl-mw,.spl.skn canvas,.spl.skn::after{visibility:hidden!important}
 .spl.fly{background-color:transparent}
 .spl.fly .spl-n,.spl.fly .spl-t,.spl.fly .spl-pm{opacity:0!important;transition:opacity .28s ease}
 .spl.fly::after{animation:splgo .45s ease forwards!important}
@@ -1369,7 +1371,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.462';
+const VERSION='13.464';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -5222,9 +5224,9 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     }
     /* saída: o logo voa e encolhe até o logo do cabeçalho; sem cabeçalho visível, só some em fade */
     function voar(sk){
-      if(fl||el.dataset.d)return;fl=1;if(sk){skp=1;img.style.animation='none';img.style.opacity='1';img.style.filter='var(--mf) drop-shadow(0 12px 22px rgba(0,0,0,.45))'}
+      if(fl||el.dataset.d)return;fl=1;let nov=0;if(sk){skp=1;el.classList.add('skp');let op=0;try{op=parseFloat(getComputedStyle(img).opacity)||0}catch(_){}if(op<.6){nov=1;el.classList.add('skn')}else{img.style.animation='none';img.style.opacity='1';img.style.filter='var(--mf) drop-shadow(0 12px 22px rgba(0,0,0,.45))'}}
       let ok=0;try{const h=document.querySelector('.brand .logo>img'),r=img.getBoundingClientRect();
-        if(h&&!document.documentElement.classList.contains('lgon')){const b=h.getBoundingClientRect();
+        if(h&&!nov&&!document.documentElement.classList.contains('lgon')){const b=h.getBoundingClientRect();
           if(b.width>8&&b.top>=0&&b.top<240&&r.width>8){const sc=b.width/r.width,dx=b.left+b.width/2-(r.left+r.width/2),dy=b.top+b.height/2-(r.top+r.height/2);
             img.animate([{transform:'none'},{transform:'translate('+dx+'px,'+dy+'px) scale('+sc+')'}],{duration:560,easing:'cubic-bezier(.65,0,.2,1)',fill:'forwards'});ok=1;setTimeout(()=>{try{const d=document.createElement('div'),c=ar;d.style.cssText='position:fixed;z-index:10000;pointer-events:none;border-radius:50%;width:30px;height:30px;left:'+(b.left+b.width/2-15)+'px;top:'+(b.top+b.height/2-15)+'px;border:1.5px solid rgba('+c+',.85);box-shadow:0 0 14px rgba('+c+',.6)';document.body.appendChild(d);d.animate([{transform:'scale(.5)',opacity:.95},{transform:'scale(2.8)',opacity:0}],{duration:650,easing:'ease-out'}).onfinish=()=>d.remove()}catch(_){}},540)}}}catch(_){}
       el.classList.add('fly');setTimeout(()=>el.dispatchEvent(new Event('flydone')),ok?580:300)}

@@ -1,5 +1,9 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.464 · Corrigido: na abertura, depois que o logo voava para o cabeçalho, ficava para trás um "fantasma" prateado do logo (o brilho que passa sobre ele) no meio da tela, que só sumia depois. Agora o brilho desaparece junto com o voo.
+
+v13.463 · Corrigido: o brilho que gira na borda do cartão travava e dava um salto (agora roda por transformação, sem redesenhar o gradiente a cada quadro). Corrigido: ao tocar para pular a abertura antes de o logo se formar, aparecia um logo prateado no meio da tela; agora a abertura só some suave.
+
 v13.462 · Corrigido: ao editar uma conta de cartão com forma de pagamento salva, o rótulo "Como pagar" sumia e os botões (Pix, Boleto…) ficavam grudados no campo de cima. Testadas 266 combinações (19 categorias × 7 formas de pagamento × mensal/única): sem outros erros.
 
 v13.461 · Cofre: a bolinha com seta do canto superior direito estava grudada no botão Copiar. A bolinha ficou um pouco menor (22 px) e mais para o canto, e Copiar e estrela desceram 9 px, deixando cerca de 22 px de respiro entre os dois; o card sem Copiar (débito em conta etc.) mantém a estrela abaixo da seta.
