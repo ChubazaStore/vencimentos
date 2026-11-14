@@ -1,0 +1,24 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Teste de atalhos (rodada 3)</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#0b1110;color:#eef2f0;font:15px/1.4 -apple-system,system-ui,sans-serif;padding:max(16px,env(safe-area-inset-top)) 16px 120px}
+h1{font-size:20px;margin:6px 0}p{color:#9aa8a3;margin:4px 0 14px}
+.b{background:#141c1a;border:1px solid #243029;border-radius:16px;padding:12px;margin-bottom:10px}
+.b h2{font-size:16px;margin:0 0 8px;display:flex;justify-content:space-between}
+.s{display:flex;flex-wrap:wrap;gap:8px}
+.t{font:inherit;color:#eef2f0;background:#1d2825;border:1px solid #2f3d37;border-radius:12px;padding:10px 12px;min-height:44px}
+.t.ok{background:#14532d;border-color:#22c55e}.t.no{opacity:.55}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:12px 16px max(12px,env(safe-area-inset-bottom));background:#0b1110ee;border-top:1px solid #243029}
+.bar button{width:100%;font:inherit;font-weight:700;border:0;border-radius:14px;padding:14px;background:#d9f04a;color:#111}
+</style></head><body>
+<h1>Teste de atalhos (rodada 3)</h1>
+<p>Toque em cada botão. Se o app do banco abrir, volte para esta página: o botão fica verde. Se o iPhone mostrar "endereço inválido", é só fechar o aviso. No fim, toque em Copiar resultado e cole no chat.</p>
+<div id="l"></div><div class="bar"><button id="c">Copiar resultado</button></div>
+<script>
+var L={'next':['next://','nextapp://','banconext://','next-app://','nextbradesco://'],'Sicoob':['sicoob://','sicoobmoov://','sicoobapp://','moov://','sicoobpf://','sicoobmobile://'],'Agibank':['agibank://','agi://','agiapp://','agibankapp://','bancoagibank://'],'Bmg':['bmg://','bmgbank://','bancobmg://','bmgmobile://','bmgapp://'],'BV':['bv://','bancobv://','bvapp://','bvmobile://','bvbanco://'],'BRB':['brb://','bancobrb://','brbapp://','brbmobile://','brbbank://'],'PayPal':['paypal://','paypalapp://','paypalbr://'],'Sicredi':['sicredi://','sicrediapp://','sicredimobile://','sicredipf://','sicrediapp-pf://'],'Safra':['safra://','safraapp://','bancosafra://','safrapessoal://','safrapf://'],'Daycoval':['daycoval://','bancodaycoval://','daycovalapp://','daycovalpf://','daycovalmobile://'],'Nomad':['nomad://','nomadapp://','getnomad://','nomadbank://','nomadglobal://'],'Novo CAIXA':['caixa://','novocaixa://','caixanovo://','soucaixa://','caixatem://','caixaapp://'],'Banco PAN':['bancopan://','pan://','panapp://','pandigital://','bancopanapp://'],'InfinitePay':['infinitepay://','infinitepayapp://','infinite://','cloudwalk://','infinitepay-app://'],'Nubank':['nubank://','nuapp://','nu://','nubr://','nubank-app://','nubank://home'],'C6 Bank':['c6bank://','c6://','c6app://','c6bank-app://','c6pay://','c6bankapp://'],'Mercado Pago':['mercadopago://','mercadopago://home','mp://','meli://','mercadopagoapp://','mpago://'],'Telegram (controle)':['tg://']};
+var R={},cur=null,t0=0,box=document.getElementById('l');
+Object.keys(L).forEach(function(n){var d=document.createElement('div');d.className='b';d.innerHTML='<h2>'+n+'</h2><div class="s"></div>';var s=d.lastChild;L[n].forEach(function(u){var b=document.createElement('button');b.className='t';b.textContent=u;b.onclick=function(){cur=b;b._k=n+' '+u;t0=Date.now();var go=Date.now();location.href=u;setTimeout(function(){if(cur===b&&!b._ok)b.classList.add('no')},1800)};s.appendChild(b)});box.appendChild(d)});
+function hit(){if(cur&&Date.now()-t0<20000&&!cur._ok){cur._ok=1;cur.classList.remove('no');cur.classList.add('ok');R[cur._k]=1}}
+document.addEventListener('visibilitychange',function(){if(document.hidden)hit()});window.addEventListener('pagehide',hit);window.addEventListener('blur',function(){setTimeout(function(){if(document.hidden)hit()},50)});
+document.getElementById('c').onclick=function(){var o=Object.keys(R),tx=o.length?'ABRIRAM:\n'+o.join('\n'):'Nenhum abriu';try{navigator.clipboard.writeText(tx).then(function(){document.getElementById('c').textContent='Copiado ('+o.length+')'})}catch(e){prompt('Copie:',tx)}};
+</script></body></html>

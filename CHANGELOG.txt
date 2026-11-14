@@ -1,5 +1,9 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.479 · Novos bancos na lista do Cofre e das contas: Sofisa Direto, BRB, Daycoval e Nomad (com selo provisório até chegarem os logos oficiais); Santander Corretora, 99, InfinitePay e PayPal agora também aparecem na escolha do banco. Corrigido um banco duplicado (Santander Corretora). Nova página de teste testa-bancos3.html com endereços para Next, Sicoob, Agibank, Bmg, BV, BRB, PayPal, Sicredi, Safra, Daycoval, Nomad, Novo CAIXA, PAN, InfinitePay, Nubank, C6 e Mercado Pago.
+
+v13.478 · Botão Abrir do Cofre: agora abre direto o app de Santander, íon Itaú, Neon, Sofisa Direto, Santander Corretora e Mercado Livre (endereços testados no iPhone), além de BB, Inter, BTG, PicPay e Rico, que já abriam. Bradesco, XP, Genial, Porto, Ágora e Caixa não aceitam abrir por link: o botão leva à página do app na App Store, onde aparece Abrir. Novos bancos na lista: Sofisa Direto, Santander Corretora e 99Pay (99Pay sem atalho conhecido, avisa para abrir manualmente).
+
 v13.477 · Segunda página de teste (testa-bancos2.html) com mais endereços para os bancos instalados no iPhone (Itaú, Bradesco, Santander, Caixa, XP, Genial, Ágora, íon, Neon, Porto, Sofisa, 99, Santander Corretora, Mercado Livre, Livelo, Nubank). O app em si não mudou.
 
 v13.476 · Novo arquivo testa-bancos.html (página de teste, fora do app) para descobrir quais atalhos abrem o app de cada banco no iPhone. O app em si não mudou.
