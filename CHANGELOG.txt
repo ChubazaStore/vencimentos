@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.482 · Ícone do banco Caixa trocado pelo do app Novo CAIXA (versão escura e clara). O nome continua Caixa.
+
+v13.481 · Logos de BRB, Daycoval, Nomad e Sofisa Direto (a partir dos ícones do iPhone), em versão escura e, onde o ícone muda, versão clara. Substituem os selos provisórios.
+
+v13.480 · Botão Abrir: agora abre direto o app de Next, Sicoob, Agibank, BRB, PayPal, Nomad, C6 e Mercado Pago (testados no iPhone). Bmg, BV, Sicredi, Safra, PAN, InfinitePay, Nubank e Caixa não aceitam abrir por link e levam à página do app na App Store. Daycoval fica com aviso de abrir manualmente.
+
 v13.479 · Novos bancos na lista do Cofre e das contas: Sofisa Direto, BRB, Daycoval e Nomad (com selo provisório até chegarem os logos oficiais); Santander Corretora, 99, InfinitePay e PayPal agora também aparecem na escolha do banco. Corrigido um banco duplicado (Santander Corretora). Nova página de teste testa-bancos3.html com endereços para Next, Sicoob, Agibank, Bmg, BV, BRB, PayPal, Sicredi, Safra, Daycoval, Nomad, Novo CAIXA, PAN, InfinitePay, Nubank, C6 e Mercado Pago.
 
 v13.478 · Botão Abrir do Cofre: agora abre direto o app de Santander, íon Itaú, Neon, Sofisa Direto, Santander Corretora e Mercado Livre (endereços testados no iPhone), além de BB, Inter, BTG, PicPay e Rico, que já abriam. Bradesco, XP, Genial, Porto, Ágora e Caixa não aceitam abrir por link: o botão leva à página do app na App Store, onde aparece Abrir. Novos bancos na lista: Sofisa Direto, Santander Corretora e 99Pay (99Pay sem atalho conhecido, avisa para abrir manualmente).
