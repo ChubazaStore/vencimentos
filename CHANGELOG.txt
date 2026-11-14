@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.474 · Cofre redesenhado: "Nova chave" agora é uma folha premium (prévia do cartão ao vivo, tipos em blocos com ícone, detecção do tipo da chave — CPF, e-mail, telefone, nº de dígitos do boleto —, estrela de favorito e botão grande "Guardar no cofre"). A lixeira agora fica sempre visível no topo de cada chave (com confirmação).
+
 v13.473 · Cofre: (1) a estrela de favorito agora anima (gira e acende) antes de a lista se reorganizar, igual ao cadastro de conta; (2) novo botão "Nova chave": guarda direto no Cofre qualquer tipo (Pix, Boleto, Contas, Déb. automático, Déb. em conta, Dinheiro), sem precisar de uma conta; (3) lixeira "Excluir" no cartão aberto, com confirmação. Se a chave estiver em contas, avisa e remove delas também. As chaves avulsas entram no backup, na restauração e na sincronização.
 
 v13.472 · Menos trabalho na rolagem: os brilhos decorativos (cabeçalho, pílula de status, botão +, reflexo dos cartões) ficam em pausa enquanto você rola a tela ou com uma janela aberta, e voltam 0,2 s depois de parar. A borda animada do cartão continua girando. Revisão das leituras de tamanho de tela: sem novos pontos de travada além do ajuste de altura já corrigido na 13.471.

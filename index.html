@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.473';
+(function(){var V='13.474';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -497,9 +497,26 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .cfs{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:var(--mu);transition:color .2s,background .2s,transform .3s var(--ease)}
 .cfs svg,.cff svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;vertical-align:-3px}
 .cfs svg{transition:transform .35s var(--ease),fill .25s}.cfs.on{color:#f2c94c;background:rgba(242,201,76,.16);box-shadow:inset 0 0 0 1px rgba(242,201,76,.5)}.cfs.on svg{fill:currentColor;transform:rotate(72deg) scale(1.15);filter:drop-shadow(0 0 6px rgba(242,201,76,.6))}
-.cfnew{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;margin:4px 0 2px;border-radius:14px;border:1px dashed var(--line2,var(--line));background:rgba(255,255,255,.04);color:var(--tx);font:700 13.5px var(--fb)}.cfnew svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}.cfnew:active{transform:scale(.98)}
-.cfnf{margin:6px 0 4px;padding:14px;border-radius:18px;border:1px solid var(--line2,var(--line));background:rgba(255,255,255,.04)}.cfnk{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}.cfnk .cfc{flex:none}.cfnf .cfl{margin-top:10px}.cfnf .pcr2{margin-top:12px}
-.pcs.del{display:flex;align-items:center;justify-content:center;gap:6px;flex:none;padding:0 14px;color:#fb8f8f;transition:background .2s,color .2s,box-shadow .2s}.pcs.del svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.pcs.del .lid{transform-origin:5px 7px;transition:transform .3s var(--ease)}.pcs.del:active,.pcs.del.pr{color:#fb6f6f;background:rgba(251,111,111,.16);box-shadow:inset 0 0 0 1px rgba(251,111,111,.5)}.pcs.del:active .lid,.pcs.del.pr .lid{transform:translateY(-2px) rotate(-18deg)}html.nofx .pcs.del .lid{transition:none}
+.cfnew{display:flex;align-items:center;gap:14px;width:100%;margin:6px 0 2px;padding:12px 14px;border-radius:20px;border:1px solid color-mix(in srgb,var(--gold) 38%,transparent);background:linear-gradient(120deg,color-mix(in srgb,var(--gold) 16%,transparent),rgba(255,255,255,.03));text-align:left;color:var(--tx);transition:transform .2s var(--ease),border-color .2s}.cfnew:active{transform:scale(.985)}
+.cfni{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#10131c;box-shadow:0 6px 18px color-mix(in srgb,var(--gold) 35%,transparent)}.cfni svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.cfnt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.cfnt b{font:800 15.5px var(--fb)}.cfnt i{font:500 12.5px var(--fb);font-style:normal;color:var(--mu)}.cfnc{flex:none;width:20px;height:20px;fill:none;stroke:var(--mu);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cfdl{position:absolute;top:6px;right:36px;z-index:2;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--mu);transition:background .2s,color .2s,box-shadow .2s}.cfdl svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.cfdl .lid{transform-origin:5px 7px;transition:transform .3s var(--ease)}.cfdl:active,.cfdl.pr{color:#fb6f6f;background:rgba(251,111,111,.16);box-shadow:inset 0 0 0 1px rgba(251,111,111,.5)}.cfdl:active .lid,.cfdl.pr .lid{transform:translateY(-2px) rotate(-18deg)}html.nofx .cfdl .lid{transition:none}
+.cfdl::after{content:"";position:absolute;inset:-10px}
+.cfns{position:fixed;inset:0;z-index:70}.cfns:not(.open){pointer-events:none}.cfns:not(.open) *{pointer-events:none!important}
+.cfn-scrim{position:absolute;inset:0;background:rgba(3,4,8,.66);opacity:0;transition:opacity .35s}.cfns.open .cfn-scrim{opacity:1}
+.cfn-p{position:absolute;left:0;right:0;bottom:0;max-height:94dvh;overflow-y:auto;overscroll-behavior:contain;padding:8px 18px calc(22px + env(safe-area-inset-bottom,0px));border-radius:28px 28px 0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 10%,var(--card)),var(--card) 38%);border:1px solid var(--line2,var(--line));border-bottom:0;box-shadow:0 -20px 60px rgba(0,0,0,.5);transform:translateY(105%);transition:transform .45s var(--ease)}.cfns.open .cfn-p{transform:none}
+.cfn-grab{width:40px;height:5px;border-radius:3px;background:rgba(255,255,255,.18);margin:0 auto 12px}
+.cfn-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.cfn-h i{display:block;font:700 11px var(--fb);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--gold2)}.cfn-h b{display:block;font:800 24px var(--fb);margin-top:2px}
+.cfn-x{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--tx)}.cfn-x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+.cfn-pv{margin:0 0 6px;padding:14px;border-radius:20px;border:1px solid color-mix(in srgb,var(--gold) 30%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 12%,transparent),rgba(255,255,255,.03))}.cfn-pv .cft>.cfs{margin-top:0}.cfn-pv .ph{opacity:.45}
+.cfn-lab{margin:16px 2px 8px;font:700 10.5px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}.cfn-lab em{font-style:normal;font-weight:600;letter-spacing:.04em;text-transform:none;opacity:.7;margin-left:4px}
+.cfn-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cfn-t{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--tx);transition:transform .25s var(--ease),border-color .2s,background .2s,box-shadow .2s}.cfn-t .pic{width:38px;height:38px}.cfn-t b{font:700 12px var(--fb);text-align:center;line-height:1.2}
+.cfn-t.on{border-color:color-mix(in srgb,var(--gold) 70%,transparent);background:color-mix(in srgb,var(--gold) 14%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 14%,transparent),0 8px 22px color-mix(in srgb,var(--gold) 18%,transparent);transform:translateY(-1px)}.cfn-t:active{transform:scale(.96)}
+.cfn-fw{position:relative}.cfn-fw .fld{padding-right:104px}.cfn-det{position:absolute;right:10px;top:50%;transform:translateY(-50%);padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold2);font:700 11.5px var(--fb);letter-spacing:.02em;max-width:96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cfn-go{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;margin-top:20px;border-radius:18px;background:linear-gradient(90deg,var(--gold2),var(--gold));color:#10131c;font:800 16px var(--fb);box-shadow:0 10px 28px color-mix(in srgb,var(--gold) 38%,transparent);transition:transform .2s var(--ease)}.cfn-go:active{transform:scale(.98)}.cfn-go svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+body.cfn-on{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.cfn-p,.cfn-scrim{transition:none}}html.nofx .cfn-p{transition:none}
 .cff svg{width:15px;height:15px}.cfc.cff.on svg{fill:currentColor}
 .cfh svg{width:13px;height:13px;fill:#f2c94c;stroke:none;vertical-align:-1px;margin-right:6px}
 
@@ -1376,7 +1393,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 (function(){
 'use strict';
 const NOWARM=false;
-const VERSION='13.473';
+const VERSION='13.474';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4081,21 +4098,56 @@ function cfMask(v){v=String(v);if(v.indexOf('@')>0){const a=v.split('@');return 
   if(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(v))return '•••.'+v.slice(4,7)+'.•••-••';
   if(v.length<=6)return '••••••';return v.slice(0,3)+'••••••'+v.slice(-3)}
 function cfKey(b){const n=today0();return b.repeat==='once'?String(b.due).slice(0,7):n.getFullYear()+'-'+(n.getMonth()+1)}
+
+/* ---------- Nova chave (folha do Cofre) ---------- */
+let CFNEL=null;
+function cfnTipoTxt(k,v){if(!v)return '';if(k==='pix')return pixTipo(v)||'';if(k==='barras'){const d=v.replace(/\D/g,'').length;return d+' dígitos'}return ''}
+function cfnPrev(){
+  const el=CFNEL;if(!el||!CFN)return;const k=CFN.k,t=PGT[k]||PGT.outro,v=(CFN.v||'').trim(),n=(CFN.n||'').trim();
+  el.querySelectorAll('[data-nk]').forEach(b=>{const on=b.dataset.nk===k;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+  const lab=k==='pix'?'Chave Pix':k==='barras'?'Código de barras':k==='outro'?'Dados da conta ou transferência':'Detalhes';
+  el.querySelector('#cnl').textContent=lab+(t.opt?' (opcional)':'');
+  const iv=el.querySelector('#cnv');iv.placeholder=t.ph||'Chave ou código';
+  const dt=cfnTipoTxt(k,v),de=el.querySelector('#cnd');de.textContent=dt;de.hidden=!dt;
+  const tp=k==='pix'?pixTipo(v):'';
+  el.querySelector('#cnpv').innerHTML='<div class="cft"><div class="pic'+t.c+'">'+t.ic+'</div><div class="cfm"><i class="ptag">'+esc(k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+'</i><b'+(n?'':' class="ph"')+'>'+esc(n||(k==='pix'?'Chave Pix':t.l))+'</b>'+(v?'<span class="cfv'+(k==='barras'?' mono':'')+'">'+esc(cfMask(v))+'</span>':'<span class="cfv ph">Sua chave aparece aqui</span>')+'</div><button type="button" class="cfs'+(CFN.f?' on':'')+'" data-nf="1" aria-label="Favorita" aria-pressed="'+!!CFN.f+'">'+SVGSTAR+'</button></div>'}
+function cfnOpen(){
+  CFN={k:'pix',v:'',n:'',f:0};CFW='';
+  if(!CFNEL){const d=document.createElement('div');d.id='cfns';d.className='cfns';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-label','Nova chave');
+    d.innerHTML='<div class="cfn-scrim" data-x="1"></div><div class="cfn-p"><div class="cfn-grab"></div>'+
+    '<div class="cfn-h"><div><i>Cofre</i><b>Nova chave</b></div><button type="button" class="cfn-x" data-x="1" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
+    '<div class="cfn-pv cfe" id="cnpv"></div>'+
+    '<div class="cfn-lab">Tipo</div><div class="cfn-types">'+CFG.map(g=>{const k=g[2][0],t=PGT[k]||PGT.outro;return '<button type="button" class="cfn-t" data-nk="'+k+'" aria-pressed="false"><span class="pic'+t.c+'">'+t.ic+'</span><b>'+esc(g[3])+'</b></button>'}).join('')+'</div>'+
+    '<div class="cfn-lab" id="cnl">Chave Pix</div><div class="cfn-fw"><input class="fld" id="cnv" name="sb-cnv" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Chave Pix"><span class="cfn-det" id="cnd" hidden></span></div>'+
+    '<div class="cfn-lab">Nome <em>opcional</em></div><input class="fld" id="cnn" name="sb-cnn" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="Para identificar, ex.: Aluguel, Maria…"><div class="pvw" id="cnw" hidden></div>'+
+    '<button type="button" class="cfn-go" id="cnsv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>Guardar no cofre</button></div>';
+    document.body.appendChild(d);CFNEL=d;
+    d.addEventListener('click',e=>{
+      if(e.target.closest('[data-x]')){cfnClose();return}
+      const nk=e.target.closest('[data-nk]');if(nk){CFN.k=nk.dataset.nk;CFW='';d.querySelector('#cnw').hidden=true;cfnPrev();return}
+      const nf=e.target.closest('[data-nf]');if(nf){CFN.f=CFN.f?0:1;nf.classList.toggle('on',!!CFN.f);nf.setAttribute('aria-pressed',!!CFN.f);try{navigator.vibrate&&navigator.vibrate(12)}catch(_){}return}
+      if(e.target.closest('#cnsv'))cfnSave()});
+    d.querySelector('#cnv').addEventListener('input',e=>{CFN.v=e.target.value;CFW='';d.querySelector('#cnw').hidden=true;cfnPrev()});
+    d.querySelector('#cnn').addEventListener('input',e=>{CFN.n=e.target.value;cfnPrev()});
+    d.addEventListener('keydown',e=>{if(e.key==='Escape')cfnClose()});
+  }
+  CFNEL.querySelector('#cnv').value='';CFNEL.querySelector('#cnn').value='';CFNEL.querySelector('#cnw').hidden=true;CFNEL.querySelector('.cfn-p').scrollTop=0;
+  cfnPrev();document.body.classList.add('cfn-on');void CFNEL.offsetWidth;CFNEL.classList.add('open')}
+function cfnClose(){const d=CFNEL;if(!d)return;d.classList.remove('open');document.body.classList.remove('cfn-on');try{document.activeElement&&document.activeElement.blur()}catch(_){}}
+function cfnSave(){
+  const d=CFNEL,k=CFN.k,t=PGT[k]||PGT.outro,v=CFN.v.trim().slice(0,700),n=CFN.n.trim().slice(0,40);
+  if(!v&&!t.opt){toast('Digite a chave ou o código');d.querySelector('#cnv').focus();return}
+  if(!v&&!n){toast('Dê um nome para guardar');d.querySelector('#cnn').focus();return}
+  if(v&&cfEntries().some(E=>E.x.k===k&&E.x.v&&normV(k,E.x.v)===normV(k,v))){toast('Essa chave já está no cofre');return}
+  const w=k==='pix'?pixCheck(v):'';if(w&&CFW!==v){CFW=v;const ew=d.querySelector('#cnw');ew.hidden=false;ew.textContent='⚠ '+w;toast('Confira a chave. Toque de novo para guardar assim mesmo');return}
+  const it={id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:k,n:n,v:v};if(CFN.f)it.f=1;
+  S.cofre=S.cofre||[];S.cofre.push(it);save();CFW='';CFT=CFN.f?'fav':'all';CFO=null;cfnClose();toast('Chave guardada no cofre');renderCofre()}
 function renderCofre(){
   const q=$('#cfq');if(!q)return;
   if(!CFB){CFB=true;
     q.addEventListener('input',()=>{CFQ=q.value;CFO=null;renderCofre()});
     $('#cfch').addEventListener('click',e=>{const c=e.target.closest('[data-g]');if(!c)return;CFT=c.dataset.g;CFO=null;renderCofre()});
-    $('#cfadd').addEventListener('click',e=>{
-      if(e.target.closest('#cfnew')){CFN={k:'pix'};renderCofre();setTimeout(()=>{const i=$('#cnv');i&&i.focus({preventScroll:false})},80);return}
-      if(e.target.closest('#cncn')){CFN=null;renderCofre();return}
-      const nk=e.target.closest('[data-nk]');if(nk){const v=($('#cnv')||{}).value||'',n=($('#cnn')||{}).value||'';CFN={k:nk.dataset.nk,v:v,n:n};renderCofre();return}
-      if(e.target.closest('#cnsv')){const k=CFN.k,t=PGT[k]||PGT.outro,v=$('#cnv').value.trim().slice(0,700),n=$('#cnn').value.trim().slice(0,40);
-        if(!v&&!t.opt){toast('Digite a chave ou o código');return}
-        if(!v&&!n){toast('Dê um nome para guardar');return}
-        if(v&&cfEntries().some(E=>E.x.k===k&&E.x.v&&normV(k,E.x.v)===normV(k,v))){toast('Essa chave já está no cofre');return}
-        const w=k==='pix'?pixCheck(v):'';if(w&&CFW!==v){CFW=v;const ew=$('#cnw');ew.hidden=false;ew.textContent='⚠ '+w;toast('Confira a chave. Toque de novo para guardar assim mesmo');return}
-        S.cofre=S.cofre||[];S.cofre.push({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:k,n:n,v:v});save();CFN=null;CFW='';CFT='all';CFO=null;toast('Chave guardada no cofre');renderCofre()}});
+    $('#cfadd').addEventListener('click',e=>{if(e.target.closest('#cfnew'))cfnOpen()});
     $('#cflist').addEventListener('click',e=>{
       const en=e.target.closest('.cfe');if(!en)return;const E=cfEntries().find(z=>z.id===en.dataset.e);if(!E)return;
       if(e.target.closest('.cfed')&&!e.target.closest('button'))return;
@@ -4116,13 +4168,7 @@ function renderCofre(){
       const bl=e.target.closest('[data-cfb]');if(bl){const b=S.bills.find(v=>v.id===bl.dataset.cfb);if(b)openDet(b.id,cfKey(b));return}
       const ed=e.target.closest('[data-cfe]');if(ed){const b=S.bills.find(v=>v.id===ed.dataset.cfe);if(b)openSheet(b.id,cfKey(b));return}
       CFO=CFO===E.id?null:E.id;CFED=null;renderCofre()})}
-  const ad=$('#cfadd');
-  if(ad){if(!CFN)ad.innerHTML='<button type="button" id="cfnew" class="cfnew"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Nova chave</button>';
-    else if(!ad.querySelector('#cnsv')||ad.dataset.k!==CFN.k){const t=PGT[CFN.k]||PGT.outro;ad.dataset.k=CFN.k;
-      ad.innerHTML='<div class="cfnf"><div class="cfu">Guardar no cofre</div><div class="cfnk">'+CFG.map(g=>'<button type="button" class="cfc'+(g[2][0]===CFN.k?' on':'')+'" data-nk="'+g[2][0]+'">'+esc(g[3])+'</button>').join('')+'</div>'+
-      '<div class="cfl">'+(CFN.k==='pix'?'Chave Pix':CFN.k==='barras'?'Código de barras':'Dados')+(t.opt?' (opcional)':'')+'</div><input class="fld" id="cnv" name="sb-cnv" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(CFN.v||'')+'" placeholder="'+esc(t.ph||'Chave ou código')+'">'+
-      '<div class="cfl">Nome (opcional)</div><input class="fld" id="cnn" name="sb-cnn" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(CFN.n||'')+'" placeholder="'+esc(t.np||'Nome de quem recebe (opcional)')+'"><div class="pvw" id="cnw" hidden></div>'+
-      '<div class="pcr2"><button type="button" class="pcs" id="cncn">Cancelar</button><button type="button" class="pcs ok" id="cnsv">Guardar</button></div></div>'}}
+  const ad=$('#cfadd');if(ad&&!ad.firstChild)ad.innerHTML='<button type="button" id="cfnew" class="cfnew"><span class="cfni"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span class="cfnt"><b>Nova chave</b><i>Pix, boleto, conta ou débito</i></span><svg class="cfnc" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>';
   const all=cfEntries(),ql=CFQ.trim().toLowerCase();
   const hit=E=>!ql||[E.x.n,E.x.v,(PGT[E.x.k]||{}).l,E.bank&&bkName(E.bank)].concat(E.bills.map(b=>b.name)).join(' ').toLowerCase().indexOf(ql)>=0;
   const sortF=l=>l.slice().sort((a,b)=>(b.fav-a.fav));
@@ -4137,8 +4183,8 @@ function renderCofre(){
     const tag=(x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+(p?' · '+p.n:'');
     const ttl=x.n||(x.k==='pix'?'Chave Pix':t.l);
     const lead=p?badge(p):'<div class="pic'+t.c+'">'+t.ic+'</div>';
-    return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
-      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button>'+(E.bills.length?'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button>':'')+'<button type="button" class="pcs del" data-cfd="1" aria-label="Excluir chave">'+SVGTRASH+'<span>Excluir</span></button></div>')+'</div>':'')+'</div>'};
+    return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><button type="button" class="cfdl" data-cfd="1" aria-label="Excluir chave">'+SVGTRASH+'</button><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
+      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button>'+(E.bills.length?'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button>':'')+'</div>')+'</div>':'')+'</div>'};
   const sec=(t,l,ic)=>'<div class="cfh">'+(ic||'')+esc(t)+' <i>'+l.length+'</i></div>'+l.map(card).join('');
   let h='';
   if(CFT==='fav'){h=favs.length?sec('Favoritos',favs,SVGSTAR):'<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><path d="M12 3.3l2.55 5.36 5.85.75-4.3 4.06 1.1 5.82L12 16.4l-5.2 2.89 1.1-5.82-4.3-4.06 5.85-.75z"/></svg></div><b>Nenhum favorito ainda</b><p>Toque na estrela de uma chave para ela ficar sempre no topo. Também dá para favoritar ao cadastrar a conta.</p></div>'}
