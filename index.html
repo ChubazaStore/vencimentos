@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.465';
+(function(){var V='13.466';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1370,7 +1370,8 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.465';
+const NOWARM=true; /* VERSÃO DE TESTE 13.466: sem nenhuma tarefa de aquecimento, para isolar a travada da borda do cartão */
+const VERSION='13.466';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3463,8 +3464,8 @@ document.addEventListener('contextmenu',e=>{const t=e.target;if(t&&t.closest&&t.
     }catch(e){}
   }
   window.fixTop=fix;
-  try{(window.requestIdleCallback||setTimeout)(()=>setTimeout(()=>{try{(window.__appWarm||appWarm)()}catch(e){}},2500),{timeout:6000})}catch(e){}
-  setTimeout(()=>{try{window.__imgPre()}catch(e){}},8000);
+  if(!NOWARM)try{(window.requestIdleCallback||setTimeout)(()=>setTimeout(()=>{try{(window.__appWarm||appWarm)()}catch(e){}},2500),{timeout:6000})}catch(e){}
+  if(!NOWARM)setTimeout(()=>{try{window.__imgPre()}catch(e){}},8000);
   [9000,25000].forEach(ms=>setTimeout(()=>{try{(window.requestIdleCallback||setTimeout)(()=>icPre())}catch(e){}},ms)); 
   document.addEventListener('focusout',()=>{setTimeout(fix,350)});
   ['pageshow','focus','resize','orientationchange'].forEach(n=>window.addEventListener(n,()=>{fix();setTimeout(fix,120);setTimeout(fix,450)}));
@@ -4547,7 +4548,7 @@ function prewarm(){
     }).catch(()=>{});
   }catch(e){}
 }
-setTimeout(prewarm,9000);
+if(!NOWARM)setTimeout(prewarm,9000);
 /* confere só o arquivo minúsculo v.txt (uns 5 bytes); o index.html inteiro só é baixado se houver versão nova */
 function checkUpdate(manual){
   if(!/^https?:/.test(location.protocol)){if(manual)toast('Sem conexão com o site');return}
@@ -4607,7 +4608,7 @@ window.__app={get:()=>S,toast:toast,renderAll:()=>renderAll(),
   put:(o)=>{S={bills:Array.isArray(o&&o.bills)?o.bills:[],goals:(o&&o.goals&&typeof o.goals==='object')?o.goals:{},order:(o&&o.order&&typeof o.order==='object')?o.order:{},pord:(o&&o.pord==='custom')?'custom':'az'};normS();const tr=tipRestore();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}renderAll();try{renderCats()}catch(e){}if(tr)setTimeout(save,80)}};
 $('#ver').textContent='v'+VERSION;document.querySelectorAll('.sband .ver').forEach(e=>e.textContent='v'+VERSION);
 setTab('home');
-setTimeout(()=>{try{if(!RMq())(window.requestIdleCallback||setTimeout)(fxWarm,0)}catch(e){}},5200);
+if(!NOWARM)setTimeout(()=>{try{if(!RMq())(window.requestIdleCallback||setTimeout)(fxWarm,0)}catch(e){}},5200);
 
 function payBootWarm(n){
   try{
