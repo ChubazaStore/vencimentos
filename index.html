@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.474';
+(function(){var V='13.476';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -510,7 +510,11 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .cfn-x{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--tx)}.cfn-x svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
 .cfn-pv{margin:0 0 6px;padding:14px;border-radius:20px;border:1px solid color-mix(in srgb,var(--gold) 30%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 12%,transparent),rgba(255,255,255,.03))}.cfn-pv .cft>.cfs{margin-top:0}.cfn-pv .ph{opacity:.45}
 .cfn-lab{margin:16px 2px 8px;font:700 10.5px var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}.cfn-lab em{font-style:normal;font-weight:600;letter-spacing:.04em;text-transform:none;opacity:.7;margin-left:4px}
-.cfn-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cfn-types{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.cfn-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line);margin-bottom:2px}.cfn-seg button{height:42px;border-radius:12px;color:var(--mu);font:700 13px var(--fb);transition:background .25s var(--ease),color .2s,box-shadow .2s}.cfn-seg button.on{background:linear-gradient(90deg,var(--gold2),var(--gold));color:#10131c;box-shadow:0 4px 14px color-mix(in srgb,var(--gold) 30%,transparent)}
+.cfn-two{display:grid;grid-template-columns:1fr 1.3fr;gap:10px}.cfn-two .cfn-lab{margin-top:14px}
+.cfn-bs{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:56px;padding:0 14px 0 10px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--tx)}.cfn-bv{display:flex;align-items:center;gap:10px;min-width:0;font:700 14.5px var(--fb)}.cfn-bv .pv{width:34px;height:34px;border-radius:11px;font-size:12px;flex:none}.cfn-bv .mu{color:var(--mu);font-weight:600;padding-left:6px}.cfn-bs i{flex:none;font:700 12.5px var(--fb);font-style:normal;color:var(--gold2)}
+.cfn-bg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;max-height:250px;overflow-y:auto;padding:2px}.cfn-bg .pv{width:44px;height:44px;border-radius:15px;font-size:14px}
 .cfn-t{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px 10px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--tx);transition:transform .25s var(--ease),border-color .2s,background .2s,box-shadow .2s}.cfn-t .pic{width:38px;height:38px}.cfn-t b{font:700 12px var(--fb);text-align:center;line-height:1.2}
 .cfn-t.on{border-color:color-mix(in srgb,var(--gold) 70%,transparent);background:color-mix(in srgb,var(--gold) 14%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 14%,transparent),0 8px 22px color-mix(in srgb,var(--gold) 18%,transparent);transform:translateY(-1px)}.cfn-t:active{transform:scale(.96)}
 .cfn-fw{position:relative}.cfn-fw .fld{padding-right:104px}.cfn-det{position:absolute;right:10px;top:50%;transform:translateY(-50%);padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold2);font:700 11.5px var(--fb);letter-spacing:.02em;max-width:96px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1393,7 +1397,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 (function(){
 'use strict';
 const NOWARM=false;
-const VERSION='13.474';
+const VERSION='13.476';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4091,7 +4095,7 @@ function cfEntries(){
     if(e.bills.indexOf(b)<0&&!e.bills.some(z=>z.name===b.name))e.bills.push(b)})});
   (S.cofre||[]).forEach(x=>{
     const key=x.v?x.k+'|'+normV(x.k,x.v):'n|c|'+x.id;
-    let e=m.get(key);if(!e){e={id:'e'+m.size,x:x,bank:'',bills:[],refs:[]};m.set(key,e)}e.refs.push(x);if(!e.x.n&&x.n)e.x=Object.assign({},e.x,{n:x.n})});
+    let e=m.get(key);if(!e){e={id:'e'+m.size,x:x,bank:'',bills:[],refs:[]};m.set(key,e)}e.refs.push(x);if(x.b&&!e.bank)e.bank=x.b;if(!e.x.n&&x.n)e.x=Object.assign({},e.x,{n:x.n})});
   m.forEach(e=>{e.fav=e.refs.some(r=>r.f)});
   return [...m.values()]}
 function cfMask(v){v=String(v);if(v.indexOf('@')>0){const a=v.split('@');return a[0].slice(0,2)+'•••@'+a.slice(1).join('@')}
@@ -4100,47 +4104,81 @@ function cfMask(v){v=String(v);if(v.indexOf('@')>0){const a=v.split('@');return 
 function cfKey(b){const n=today0();return b.repeat==='once'?String(b.due).slice(0,7):n.getFullYear()+'-'+(n.getMonth()+1)}
 
 /* ---------- Nova chave (folha do Cofre) ---------- */
-let CFNEL=null;
+let CFNEL=null,CFEC='corrente';
+const CFNT=[['pix','Pix'],['debauto','Débito automático']];
+function debTxt(x,mask){const a=x.ag||'',c=x.cc||'',cm=mask&&c.length>3?'•'.repeat(c.length-2)+c.slice(-2):c;return 'Ag '+a+' · Conta '+cm+' · '+(x.ct==='poupanca'?'Poupança':'Corrente')}
+function cfShowV(x,on){return x.k==='debauto'&&x.cc?debTxt(x,!on):(on?x.v:cfMask(x.v))}
+function cfnBank(){const el=CFNEL;if(!el)return;const bp=CFN.b&&PROV[CFN.b];el.querySelector('#cnbv').innerHTML=bp?badge(bp)+'<span>'+esc(bp.n)+'</span>':'<span class="mu">Escolher banco</span>';el.querySelector('#cnbg').hidden=!CFN.bo;el.querySelector('#cnba').textContent=CFN.bo?'Fechar':(bp?'Trocar':'Escolher');
+  el.querySelectorAll('#cnbg .pt').forEach(x=>x.classList.toggle('on',x.dataset.cb===(CFN.b||'')))}
 function cfnTipoTxt(k,v){if(!v)return '';if(k==='pix')return pixTipo(v)||'';if(k==='barras'){const d=v.replace(/\D/g,'').length;return d+' dígitos'}return ''}
 function cfnPrev(){
-  const el=CFNEL;if(!el||!CFN)return;const k=CFN.k,t=PGT[k]||PGT.outro,v=(CFN.v||'').trim(),n=(CFN.n||'').trim();
+  const el=CFNEL;if(!el||!CFN)return;const k=CFN.k,t=PGT[k]||PGT.outro,dx={ag:(CFN.ag||'').trim(),cc:(CFN.cc||'').trim(),ct:CFN.ct},v=k==='debauto'?((dx.ag||dx.cc)?debTxt(dx,false):''):(CFN.v||'').trim(),n=(CFN.n||'').trim(),bn=CFN.b&&PROV[CFN.b]?PROV[CFN.b].n:'';
   el.querySelectorAll('[data-nk]').forEach(b=>{const on=b.dataset.nk===k;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
-  const lab=k==='pix'?'Chave Pix':k==='barras'?'Código de barras':k==='outro'?'Dados da conta ou transferência':'Detalhes';
-  el.querySelector('#cnl').textContent=lab+(t.opt?' (opcional)':'');
-  const iv=el.querySelector('#cnv');iv.placeholder=t.ph||'Chave ou código';
+  const deb=k==='debauto';el.querySelector('#cnpx').hidden=deb;el.querySelector('#cndb').hidden=!deb;
+  el.querySelector('#cnbl').textContent=deb?'Banco':'Banco (opcional)';cfnBank();
+  el.querySelectorAll('[data-ct]').forEach(b=>{const on=b.dataset.ct===CFN.ct;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
   const dt=cfnTipoTxt(k,v),de=el.querySelector('#cnd');de.textContent=dt;de.hidden=!dt;
   const tp=k==='pix'?pixTipo(v):'';
-  el.querySelector('#cnpv').innerHTML='<div class="cft"><div class="pic'+t.c+'">'+t.ic+'</div><div class="cfm"><i class="ptag">'+esc(k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+'</i><b'+(n?'':' class="ph"')+'>'+esc(n||(k==='pix'?'Chave Pix':t.l))+'</b>'+(v?'<span class="cfv'+(k==='barras'?' mono':'')+'">'+esc(cfMask(v))+'</span>':'<span class="cfv ph">Sua chave aparece aqui</span>')+'</div><button type="button" class="cfs'+(CFN.f?' on':'')+'" data-nf="1" aria-label="Favorita" aria-pressed="'+!!CFN.f+'">'+SVGSTAR+'</button></div>'}
+  el.querySelector('#cnpv').innerHTML='<div class="cft"><div class="pic'+t.c+'">'+t.ic+'</div><div class="cfm"><i class="ptag">'+esc((k==='pix'?'Pix'+(tp?' · '+tp:''):t.l+' · '+(CFN.ct==='poupanca'?'poupança':'corrente'))+(bn?' · '+bn:''))+'</i><b'+(n?'':' class="ph"')+'>'+esc(n||(k==='pix'?'Chave Pix':t.l))+'</b>'+(v?'<span class="cfv">'+esc(k==='debauto'?debTxt(dx,true):cfMask(v))+'</span>':'<span class="cfv ph">'+(k==='debauto'?'Agência e conta aparecem aqui':'Sua chave aparece aqui')+'</span>')+'</div><button type="button" class="cfs'+(CFN.f?' on':'')+'" data-nf="1" aria-label="Favorita" aria-pressed="'+!!CFN.f+'">'+SVGSTAR+'</button></div>'}
 function cfnOpen(){
-  CFN={k:'pix',v:'',n:'',f:0};CFW='';
+  CFN={k:'pix',v:'',n:'',f:0,ag:'',cc:'',ct:'corrente',b:'',bo:false};CFW='';
   if(!CFNEL){const d=document.createElement('div');d.id='cfns';d.className='cfns';d.setAttribute('role','dialog');d.setAttribute('aria-modal','true');d.setAttribute('aria-label','Nova chave');
     d.innerHTML='<div class="cfn-scrim" data-x="1"></div><div class="cfn-p"><div class="cfn-grab"></div>'+
     '<div class="cfn-h"><div><i>Cofre</i><b>Nova chave</b></div><button type="button" class="cfn-x" data-x="1" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
     '<div class="cfn-pv cfe" id="cnpv"></div>'+
-    '<div class="cfn-lab">Tipo</div><div class="cfn-types">'+CFG.map(g=>{const k=g[2][0],t=PGT[k]||PGT.outro;return '<button type="button" class="cfn-t" data-nk="'+k+'" aria-pressed="false"><span class="pic'+t.c+'">'+t.ic+'</span><b>'+esc(g[3])+'</b></button>'}).join('')+'</div>'+
-    '<div class="cfn-lab" id="cnl">Chave Pix</div><div class="cfn-fw"><input class="fld" id="cnv" name="sb-cnv" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Chave Pix"><span class="cfn-det" id="cnd" hidden></span></div>'+
-    '<div class="cfn-lab">Nome <em>opcional</em></div><input class="fld" id="cnn" name="sb-cnn" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="Para identificar, ex.: Aluguel, Maria…"><div class="pvw" id="cnw" hidden></div>'+
+    '<div class="cfn-lab">Tipo</div><div class="cfn-types">'+CFNT.map(g=>{const k=g[0],t=PGT[k]||PGT.outro;return '<button type="button" class="cfn-t" data-nk="'+k+'" aria-pressed="false"><span class="pic'+t.c+'">'+t.ic+'</span><b>'+esc(g[1])+'</b></button>'}).join('')+'</div>'+
+    '<div id="cnbk"><div class="cfn-lab" id="cnbl">Banco</div><button type="button" class="cfn-bs" id="cnbs"><span class="cfn-bv" id="cnbv"></span><i id="cnba">Escolher</i></button><div class="cfn-bg" id="cnbg" hidden></div></div>'+
+    '<div id="cnpx"><div class="cfn-lab">Chave Pix</div><div class="cfn-fw"><input class="fld" id="cnv" name="sb-cnv" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="CPF, e-mail, telefone ou chave aleatória"><span class="cfn-det" id="cnd" hidden></span></div></div>'+
+    '<div id="cndb" hidden><div class="cfn-lab">Tipo de conta</div><div class="cfn-seg"><button type="button" data-ct="corrente">Conta corrente</button><button type="button" data-ct="poupanca">Conta poupança</button></div>'+
+    '<div class="cfn-two"><div><div class="cfn-lab">Agência</div><input class="fld" id="cnag" name="sb-cnag" inputmode="numeric" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" spellcheck="false" maxlength="8" placeholder="0000"></div><div><div class="cfn-lab">Conta com dígito</div><input class="fld" id="cncc" name="sb-cncc" inputmode="numeric" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" spellcheck="false" maxlength="14" placeholder="00000-0"></div></div></div>'+
+    '<div class="cfn-lab">Nome <em>opcional</em></div><input class="fld" id="cnn" name="sb-cnn" data-lpignore="true" data-1p-ignore autocomplete="off" placeholder="Para identificar, ex.: Maria, Conta principal"><div class="pvw" id="cnw" hidden></div>'+
     '<button type="button" class="cfn-go" id="cnsv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>Guardar no cofre</button></div>';
     document.body.appendChild(d);CFNEL=d;
     d.addEventListener('click',e=>{
       if(e.target.closest('[data-x]')){cfnClose();return}
       const nk=e.target.closest('[data-nk]');if(nk){CFN.k=nk.dataset.nk;CFW='';d.querySelector('#cnw').hidden=true;cfnPrev();return}
+      if(e.target.closest('#cnbs')){CFN.bo=!CFN.bo;cfnBank();return}
+      const cb=e.target.closest('[data-cb]');if(cb){CFN.b=cb.dataset.cb;CFN.bo=false;cfnPrev();return}
+      const ct=e.target.closest('[data-ct]');if(ct){CFN.ct=ct.dataset.ct;cfnPrev();return}
       const nf=e.target.closest('[data-nf]');if(nf){CFN.f=CFN.f?0:1;nf.classList.toggle('on',!!CFN.f);nf.setAttribute('aria-pressed',!!CFN.f);try{navigator.vibrate&&navigator.vibrate(12)}catch(_){}return}
       if(e.target.closest('#cnsv'))cfnSave()});
     d.querySelector('#cnv').addEventListener('input',e=>{CFN.v=e.target.value;CFW='';d.querySelector('#cnw').hidden=true;cfnPrev()});
     d.querySelector('#cnn').addEventListener('input',e=>{CFN.n=e.target.value;cfnPrev()});
+    d.querySelector('#cnag').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9xX-]/g,'');CFN.ag=e.target.value;cfnPrev()});
+    d.querySelector('#cncc').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9xX-]/g,'');CFN.cc=e.target.value;cfnPrev()});
+    d.querySelector('#cnbg').innerHTML='<div role="button" class="pt" data-cb=""><div class="pv" style="--c:#2a3050;--t:#9aa3b8">···</div><span>Nenhum</span></div>'+BK.slice().sort(AZ).map(id=>{const p=PROV[id];return '<div role="button" class="pt" data-cb="'+id+'">'+badge(p)+'<span>'+esc(p.n)+'</span></div>'}).join('');
     d.addEventListener('keydown',e=>{if(e.key==='Escape')cfnClose()});
+    /* arrastar para baixo fecha (igual às outras janelas): começa no puxador, no título ou na área escura de fora */
+    {const pn=d.querySelector('.cfn-p');let y0=null,dy=0,arr=false,lt=0,ly=0,vy=0;
+      d.addEventListener('touchstart',e=>{
+        if(!d.classList.contains('open')){y0=null;arr=false;return}
+        const t=e.target;let hot=false;
+        if(e.touches.length===1&&t&&t.closest){if(t.closest('.cfn-scrim'))hot=true;else if(pn.scrollTop<=0&&(t.closest('.cfn-grab,.cfn-h')||e.touches[0].clientY<pn.getBoundingClientRect().top+84))hot=true}
+        if(hot){y0=e.touches[0].clientY;dy=0;arr=false;lt=performance.now();ly=y0;vy=0}else{y0=null;arr=false}},{passive:true});
+      d.addEventListener('touchmove',e=>{
+        if(y0===null)return;if(!d.classList.contains('open')){y0=null;arr=false;return}
+        const yy=e.touches[0].clientY,df=yy-y0,n=performance.now();if(n>lt){vy=(yy-ly)/(n-lt);lt=n;ly=yy}
+        if(!arr){if(df<-4){y0=null;return}if(df<6)return;arr=true;pn.style.transition='none'}
+        dy=Math.max(0,df);pn.style.transform='translateY('+dy+'px)'},{passive:true});
+      const solta=()=>{const era=arr,c=arr&&(dy>110||(dy>40&&vy>0.6));y0=null;arr=false;if(!era)return;pn.style.transition='';
+        if(c){cfnClose();pn.style.transform=''}else pn.style.transform=''};
+      d.addEventListener('touchend',solta,{passive:true});d.addEventListener('touchcancel',solta,{passive:true})}
   }
-  CFNEL.querySelector('#cnv').value='';CFNEL.querySelector('#cnn').value='';CFNEL.querySelector('#cnw').hidden=true;CFNEL.querySelector('.cfn-p').scrollTop=0;
+  CFNEL.querySelector('#cnv').value='';CFNEL.querySelector('#cnn').value='';CFNEL.querySelector('#cnag').value='';CFNEL.querySelector('#cncc').value='';CFNEL.querySelector('#cnw').hidden=true;CFNEL.querySelector('.cfn-p').scrollTop=0;
   cfnPrev();document.body.classList.add('cfn-on');void CFNEL.offsetWidth;CFNEL.classList.add('open')}
 function cfnClose(){const d=CFNEL;if(!d)return;d.classList.remove('open');document.body.classList.remove('cfn-on');try{document.activeElement&&document.activeElement.blur()}catch(_){}}
 function cfnSave(){
-  const d=CFNEL,k=CFN.k,t=PGT[k]||PGT.outro,v=CFN.v.trim().slice(0,700),n=CFN.n.trim().slice(0,40);
-  if(!v&&!t.opt){toast('Digite a chave ou o código');d.querySelector('#cnv').focus();return}
-  if(!v&&!n){toast('Dê um nome para guardar');d.querySelector('#cnn').focus();return}
+  const d=CFNEL,k=CFN.k,t=PGT[k]||PGT.outro,n=CFN.n.trim().slice(0,40);let v=CFN.v.trim().slice(0,700),ex={};
+  if(k==='debauto'){const ag=(CFN.ag||'').trim(),cc=(CFN.cc||'').trim();
+    if(!CFN.b){toast('Escolha o banco');CFN.bo=true;cfnBank();return}
+    if(!/\d/.test(ag)){toast('Digite a agência');d.querySelector('#cnag').focus();return}
+    if(!/\d/.test(cc)){toast('Digite a conta com o dígito');d.querySelector('#cncc').focus();return}
+    ex={ag:ag,cc:cc,ct:CFN.ct==='poupanca'?'poupanca':'corrente'};v=debTxt(ex,false)}
+  else if(!v){toast('Digite a chave ou o código');d.querySelector('#cnv').focus();return}
+  if(CFN.b)ex.b=CFN.b;
   if(v&&cfEntries().some(E=>E.x.k===k&&E.x.v&&normV(k,E.x.v)===normV(k,v))){toast('Essa chave já está no cofre');return}
   const w=k==='pix'?pixCheck(v):'';if(w&&CFW!==v){CFW=v;const ew=d.querySelector('#cnw');ew.hidden=false;ew.textContent='⚠ '+w;toast('Confira a chave. Toque de novo para guardar assim mesmo');return}
-  const it={id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:k,n:n,v:v};if(CFN.f)it.f=1;
+  const it=Object.assign({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:k,n:n,v:v},ex);if(CFN.f)it.f=1;
   S.cofre=S.cofre||[];S.cofre.push(it);save();CFW='';CFT=CFN.f?'fav':'all';CFO=null;cfnClose();toast('Chave guardada no cofre');renderCofre()}
 function renderCofre(){
   const q=$('#cfq');if(!q)return;
@@ -4151,13 +4189,19 @@ function renderCofre(){
     $('#cflist').addEventListener('click',e=>{
       const en=e.target.closest('.cfe');if(!en)return;const E=cfEntries().find(z=>z.id===en.dataset.e);if(!E)return;
       if(e.target.closest('.cfed')&&!e.target.closest('button'))return;
-      const kb=e.target.closest('[data-cfk]');if(kb){CFED=E.id;CFW='';renderCofre();return}
+      const kb=e.target.closest('[data-cfk]');if(kb){CFED=E.id;CFW='';CFEC=E.x.ct==='poupanca'?'poupanca':'corrente';renderCofre();return}
+      const sg=e.target.closest('[data-cfct]');if(sg){CFEC=sg.dataset.cfct;en.querySelectorAll('[data-cfct]').forEach(b=>b.classList.toggle('on',b.dataset.cfct===CFEC));return}
       const kc=e.target.closest('[data-cfcn]');if(kc){CFED=null;renderCofre();return}
-      const ks=e.target.closest('[data-cfsv]');if(ks){const v=$('#cfev').value.trim().slice(0,700),n=$('#cfen').value.trim().slice(0,40);if(!v){toast('Digite a chave ou o código');return}
+      const ks=e.target.closest('[data-cfsv]');if(ks&&E.x.k==='debauto'&&E.x.cc){const ag=$('#cfeag').value.trim(),cc=$('#cfecc').value.trim(),n=$('#cfen').value.trim().slice(0,40);
+        if(!/\d/.test(ag)){toast('Digite a agência');return}if(!/\d/.test(cc)){toast('Digite a conta com o dígito');return}
+        const dd={ag:ag,cc:cc,ct:CFEC};dd.v=debTxt(dd,false);
+        const go2=()=>{E.refs.forEach(r=>{Object.assign(r,dd);r.n=n});save();CFED=null;CFO=null;toast(E.bills.length<=1?'Conta atualizada':'Atualizada nas '+E.bills.length+' contas');renderCofre()};
+        if(E.bills.length>1)askYN('Trocar em '+E.bills.length+' contas?',E.bills.map(b=>b.name).slice(0,6).join(', ')+'. Os dados mudam em todas.','Trocar',go2);else go2();return}
+      if(ks){const v=$('#cfev').value.trim().slice(0,700),n=$('#cfen').value.trim().slice(0,40);if(!v){toast('Digite a chave ou o código');return}
         const w=E.x.k==='pix'?pixCheck(v):'';if(w&&CFW!==v){CFW=v;const ew=$('#cfew');ew.hidden=false;ew.textContent='⚠ '+w;toast('Confira a chave. Toque de novo para guardar assim mesmo');return}
         const go=()=>{E.refs.forEach(r=>{r.v=v;r.n=n});save();CFED=null;CFO=null;toast(E.bills.length===1?'Chave atualizada':'Atualizada nas '+E.bills.length+' contas');renderCofre()};
         if(E.bills.length>1)askYN('Trocar em '+E.bills.length+' contas?',E.bills.map(b=>b.name).slice(0,6).join(', ')+(E.bills.length>6?' e mais':'')+'. A chave e o nome mudam em todas.','Trocar',go);else go();return}
-      const cp=e.target.closest('[data-cfc]');if(cp){copyTxt(E.x.v,(PGT[E.x.k]||PGT.outro).ms,cp);return}
+      const cp=e.target.closest('[data-cfc]');if(cp){copyTxt(E.x.v,E.x.k==='debauto'?'Agência e conta copiadas':(PGT[E.x.k]||PGT.outro).ms,cp);return}
       const op=e.target.closest('[data-cfo]');if(op){openApp(E.bank,E.x.v);return}
       const fv=e.target.closest('[data-cff]');if(fv){const on=!E.fav;E.fav=on;E.refs.forEach(r=>{if(on)r.f=1;else delete r.f});save();fv.classList.toggle('on',on);fv.setAttribute('aria-pressed',on);try{navigator.vibrate&&navigator.vibrate(12)}catch(_){}clearTimeout(fv._t);fv._t=setTimeout(renderCofre,RMq()?0:420);return} /* a estrela anima no próprio botão e só depois a lista é redesenhada */
       const dl=e.target.closest('[data-cfd]');if(dl){dl.classList.add('pr');setTimeout(()=>{const nb=E.bills.length,t=(PGT[E.x.k]||PGT.outro).l+(E.x.n?' · '+E.x.n:'')+(E.x.v?' — '+(E.x.v.length>40?E.x.v.slice(0,40)+'…':E.x.v):'');
@@ -4183,8 +4227,8 @@ function renderCofre(){
     const tag=(x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+(p?' · '+p.n:'');
     const ttl=x.n||(x.k==='pix'?'Chave Pix':t.l);
     const lead=p?badge(p):'<div class="pic'+t.c+'">'+t.ic+'</div>';
-    return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><button type="button" class="cfdl" data-cfd="1" aria-label="Excluir chave">'+SVGTRASH+'</button><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
-      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button>'+(E.bills.length?'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button>':'')+'</div>')+'</div>':'')+'</div>'};
+    return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(cfShowV(x,on))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><button type="button" class="cfdl" data-cfd="1" aria-label="Excluir chave">'+SVGTRASH+'</button><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
+      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id&&x.k==='debauto'&&x.cc?'<div class="cfed"><div class="cfu">'+(E.bills.length<=1?'Editar conta':'Editar conta · vale para as '+E.bills.length+' contas')+'</div><div class="cfn-seg"><button type="button" class="'+(CFEC==='corrente'?'on':'')+'" data-cfct="corrente">Conta corrente</button><button type="button" class="'+(CFEC==='poupanca'?'on':'')+'" data-cfct="poupanca">Conta poupança</button></div><div class="cfn-two"><div><div class="cfl">Agência</div><input class="fld" id="cfeag" inputmode="numeric" maxlength="8" autocomplete="off" data-lpignore="true" data-1p-ignore value="'+esc(x.ag||'')+'"></div><div><div class="cfl">Conta com dígito</div><input class="fld" id="cfecc" inputmode="numeric" maxlength="14" autocomplete="off" data-lpignore="true" data-1p-ignore value="'+esc(x.cc||'')+'"></div></div><div class="cfl">Nome (opcional)</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Ex.: Conta principal"><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length>1?'Salvar nas '+E.bills.length+' contas':'Salvar')+'</button></div></div>':CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button>'+(E.bills.length?'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button>':'')+'</div>')+'</div>':'')+'</div>'};
   const sec=(t,l,ic)=>'<div class="cfh">'+(ic||'')+esc(t)+' <i>'+l.length+'</i></div>'+l.map(card).join('');
   let h='';
   if(CFT==='fav'){h=favs.length?sec('Favoritos',favs,SVGSTAR):'<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><path d="M12 3.3l2.55 5.36 5.85.75-4.3 4.06 1.1 5.82L12 16.4l-5.2 2.89 1.1-5.82-4.3-4.06 5.85-.75z"/></svg></div><b>Nenhum favorito ainda</b><p>Toque na estrela de uma chave para ela ficar sempre no topo. Também dá para favoritar ao cadastrar a conta.</p></div>'}

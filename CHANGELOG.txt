@@ -1,5 +1,9 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.476 · Novo arquivo testa-bancos.html (página de teste, fora do app) para descobrir quais atalhos abrem o app de cada banco no iPhone. O app em si não mudou.
+
+v13.475 · Cofre, nova chave: agora só Pix e Débito automático. O débito tem escolha do banco, campos próprios de agência e conta com dígito e a opção Conta corrente / Conta poupança (a chave Pix também aceita banco, opcional). Dá para editar esses dados depois no cartão. A folha de nova chave agora fecha arrastando para baixo, como as outras janelas.
+
 v13.474 · Cofre redesenhado: "Nova chave" agora é uma folha premium (prévia do cartão ao vivo, tipos em blocos com ícone, detecção do tipo da chave — CPF, e-mail, telefone, nº de dígitos do boleto —, estrela de favorito e botão grande "Guardar no cofre"). A lixeira agora fica sempre visível no topo de cada chave (com confirmação).
 
 v13.473 · Cofre: (1) a estrela de favorito agora anima (gira e acende) antes de a lista se reorganizar, igual ao cadastro de conta; (2) novo botão "Nova chave": guarda direto no Cofre qualquer tipo (Pix, Boleto, Contas, Déb. automático, Déb. em conta, Dinheiro), sem precisar de uma conta; (3) lixeira "Excluir" no cartão aberto, com confirmação. Se a chave estiver em contas, avisa e remove delas também. As chaves avulsas entram no backup, na restauração e na sincronização.
