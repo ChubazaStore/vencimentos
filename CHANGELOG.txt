@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.457 · Cadastro > forma de pagamento: as animações da estrela e da lixeira do card não apareciam porque a lista era redesenhada no mesmo instante do toque (o botão novo já nascia no estado final). Agora a estrela gira/brilha no próprio botão e a lista só é atualizada 0,4 s depois; a lixeira fica vermelha com a tampa levantando por 0,3 s e só então abre a pergunta "Remover esta forma de pagamento?" (o botão volta ao normal se você cancelar). Sem espera quando o movimento está reduzido.
+
 v13.456 · Pagar > "Abrir Itaú": o atalho itauapp:// era um palpite e não abria o app. O Itaú agora abre a página do app na App Store (id 474505665, conferido no site do banco): a chave é copiada e, com o app instalado, basta tocar em Abrir. O Nubank continua tentando o atalho nubank:// e, se não abrir em 1,6 s, cai na App Store (id 814456780). Demais bancos seguem como antes.
 
 v13.455 · Cadastro de conta > forma de pagamento: o botão "Favoritar" só aparece quando há uma chave digitada/colada (com animação de entrada) e a marca feita antes de tocar em "Usar" é mantida ao escolher uma chave do Cofre; no card da chave escolhida, a estrela fica dourada com o mesmo giro e brilho do botão (e favorita ou desfavorita ao tocar). O botão "×" do card virou uma lixeira: cinza em repouso e, ao tocar, vermelha com a tampa levantando (sem animação com efeitos desligados ou movimento reduzido); a confirmação "Remover esta forma de pagamento?" continua.
