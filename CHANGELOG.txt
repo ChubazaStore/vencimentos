@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.454 · Cadastro de conta: removido o botão "+ Adicionar outra forma de pagamento" (uma conta se paga de uma forma só). Ao escolher outra forma ou outra chave numa conta que já tem uma, a nova substitui a anterior (o título avisa "Forma atual · será trocada pela nova"). Contas antigas que já têm mais de uma forma continuam como estão.
+
+v13.453 · Campos preenchidos pelo autopreenchimento do iPhone (sugestão do teclado): em vez de ficarem cinza-escuros fixos (#1b1b1b), agora usam a mesma cor dos outros campos conforme o tema escolhido.
+
+v13.452 · Cadastro de conta: removido o aviso "Adicionada do Cofre" que aparecia ao tocar em "Usar" numa chave já cadastrada; a própria chave aparecendo no lugar dos campos já mostra que foi escolhida.
+
 v13.451 · Cadastro de conta: o título "Como você paga" virou "Escolha a forma de pagamento" e o parágrafo explicativo abaixo dele (sobre dados, banco e ícone) foi removido; a tela já mostra os campos de cada forma logo depois de escolher.
 
 v13.450 · Indicador de abrir/fechar: os cards do Cofre ganham uma bolinha com seta no canto superior direito (aponta para baixo fechado, gira 180° e fica verde aberto; sem animação com efeitos desligados ou movimento reduzido), e as seções da Ajuda trocam o "+"/"–" pela mesma bolinha com seta. Cadastro de conta > forma de pagamento: ao tocar em "Usar" (chave do Cofre) a chave escolhida passa a ocupar o lugar dos campos vazios (os campos, a lista do Cofre e o bloco de banco somem), com o nome inteiro e o e-mail/chave inteiro em uma linha logo abaixo; tocar nela edita, e o botão "+ Adicionar outra forma de pagamento" reabre os campos (limite de 6). Os campos também reaparecem ao tocar em um tipo ou ao remover/editar a chave. Removido o botão "Colar o que copiei" (e o código dele).

@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.451';
+(function(){var V='13.454';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -398,7 +398,7 @@ html.kbd body::after,body.sfull::after,body.so::after,html.lgon body::after{disp
 .amtbox.shake{animation:shake .4s}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 
-.fld:-webkit-autofill,.fld:-webkit-autofill:hover,.fld:-webkit-autofill:focus,.fld:-webkit-autofill:active{-webkit-box-shadow:0 0 0 1000px #1b1b1b inset!important;box-shadow:0 0 0 1000px #1b1b1b inset!important;-webkit-text-fill-color:var(--tx)!important;caret-color:var(--tx);transition:background-color 99999s ease-out}
+.fld:-webkit-autofill,.fld:-webkit-autofill:hover,.fld:-webkit-autofill:focus,.fld:-webkit-autofill:active{-webkit-box-shadow:0 0 0 1000px color-mix(in srgb,#fff 5%,color-mix(in srgb,var(--p1),var(--p2)))inset!important;box-shadow:0 0 0 1000px color-mix(in srgb,#fff 5%,color-mix(in srgb,var(--p1),var(--p2)))inset!important;-webkit-text-fill-color:var(--tx)!important;caret-color:var(--tx);transition:background-color 99999s ease-out}
 .fld{width:100%;height:50px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:0 14px;outline:0;transition:border-color .2s,background .2s}
 .fld:focus{border-color:rgba(var(--ar),.55);background:rgba(255,255,255,.07)}
 textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
@@ -507,7 +507,7 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .cfh{margin:20px 4px 8px;font:700 11.5px var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}.cfh i{font-style:normal;opacity:.7}
 .cfe{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:12px;margin-top:8px;transition:border-color .2s,background .2s}
 .cfe.on{border-color:rgba(var(--ar),.45);background:rgba(var(--ar),.06)}
-.cft{display:flex;align-items:center;gap:12px}.cfe{position:relative}.cft>.cfs:last-child{margin-top:26px}#paybox .pit{flex-wrap:wrap;row-gap:0}#paybox .pit .pkey{flex:0 0 calc(100% - 54px);margin:2px 0 0 54px;font-size:12.5px;line-height:1.3;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.padn{display:block;width:100%;margin-top:8px;padding:13px;border-radius:16px;border:1.5px dashed rgba(var(--ar),.5);background:transparent;color:var(--gold2);font:700 14px var(--fb)}.padn:active{background:rgba(var(--ar),.1)}.cfind{position:absolute;top:7px;right:9px;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--tx);opacity:.9;pointer-events:none;transition:transform .35s cubic-bezier(.2,.9,.3,1),background .2s,color .2s}.cfind svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.cfe.on .cfind{transform:rotate(180deg);background:rgba(var(--ar),.22);color:var(--gold2)}@media(prefers-reduced-motion:reduce){.cfind{transition:none}}html.nofx .cfind{transition:none}
+.cft{display:flex;align-items:center;gap:12px}.cfe{position:relative}.cft>.cfs:last-child{margin-top:26px}#paybox .pit{flex-wrap:wrap;row-gap:0}#paybox .pit .pkey{flex:0 0 calc(100% - 54px);margin:2px 0 0 54px;font-size:12.5px;line-height:1.3;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cfind{position:absolute;top:7px;right:9px;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.08);color:var(--tx);opacity:.9;pointer-events:none;transition:transform .35s cubic-bezier(.2,.9,.3,1),background .2s,color .2s}.cfind svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}.cfe.on .cfind{transform:rotate(180deg);background:rgba(var(--ar),.22);color:var(--gold2)}@media(prefers-reduced-motion:reduce){.cfind{transition:none}}html.nofx .cfind{transition:none}
 .cfe .pv{width:44px;height:44px;border-radius:14px;font-size:14px}
 .cfe .pic{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(50,188,173,.14);color:#32bcad;box-shadow:inset 0 0 0 1.5px rgba(50,188,173,.35)}
 .cfe .pic svg{width:22px;height:22px;fill:currentColor}.cfe .pic.b{background:rgba(242,201,76,.13);color:#f2c94c;box-shadow:inset 0 0 0 1.5px rgba(242,201,76,.35)}.cfe .pic.o{background:rgba(255,255,255,.07);color:var(--mu);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16)}
@@ -1367,7 +1367,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.451';
+const VERSION='13.454';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -4130,7 +4130,7 @@ function pdup(){const e=$('#pdup');if(!e)return;const d=keyDup();if(!d){e.hidden
 
 function useKey(it){PADDN=true;const v=String(it.v||'').trim();PIXW=v;$('#pvl').value=v;$('#pnm').value=it.n||'';PFAV=!!it.f;
   if(it.b&&PROV[it.b]){if(payAuto()){F.bank=it.b;try{renderBank()}catch(_){}}else setPB(it.b)}
-  if(payAdd())toast('Adicionada do Cofre')}
+  payAdd()}
 function sugList(){const k=PAYK;if(!DUPL[k])return [];const q=$('#pvl').value.trim().toLowerCase(),qn=normV(k,q),mine={},seen={},o=[];
   (F.pay||[]).forEach((x,i)=>{if(i!==PEDX&&x.k===k&&x.v)mine[normV(k,x.v)]=1});
   S.bills.forEach(b=>{if(EDIT&&b.id===EDIT.id)return;(b.pay||[]).forEach(x=>{if(x.k!==k||!x.v)return;const nv=normV(k,x.v);if(mine[nv])return;let e=seen[nv];if(!e){e=seen[nv]={it:x,n:0,f:!!x.f};o.push(e)}e.n++;if(x.f)e.f=true;if(!e.it.n&&x.n)e.it=Object.assign({},e.it,{n:x.n})})});
@@ -4161,7 +4161,7 @@ function renderPay(){
   { const pf=$('#pfav');pf.hidden=!t||hid;pf.classList.toggle('on',PFAV);pf.setAttribute('aria-pressed',PFAV);pf.querySelector('b').textContent=PFAV?'Favorita':'Favoritar'; }
   $('#pbkw').hidden=hid||auto||!(t&&(PAYK==='pix'||t.bk));
   $('#padd').textContent=PEDX>=0?'Atualizar forma de pagamento':'Salvar forma de pagamento';
-  $('#plist').classList.toggle('ch',hid);$('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:12px">'+(hid?'Escolhida para esta conta':'Já salva nesta conta')+' · toque para editar</div>'+payItems(F.pay,true)+(hid&&F.pay.length<6?'<button type="button" class="padn" id="padn">+ Adicionar outra forma de pagamento</button>':''):'';
+  $('#plist').classList.toggle('ch',hid);$('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:12px">'+(hid?'Escolhida para esta conta · toque para editar':(F.pay.length===1&&PEDX<0?'Forma atual · será trocada pela nova':'Já salva nesta conta · toque para editar'))+'</div>'+payItems(F.pay,true)+'':'';
 }
 let PIXW='';
 function payAdd(){
@@ -4170,7 +4170,7 @@ function payAdd(){
   if(PAYK==='pix'){const w=pixCheck(v);if(w&&PIXW!==v){PIXW=v;toast('Confira a chave Pix. Toque de novo para guardar assim mesmo');pvw();return false}}
   if(F.pay.length>=6&&!(PEDX>=0&&F.pay[PEDX])){toast('No máximo 6 formas de pagamento');return false}
   const it={k:PAYK,n:$('#pnm').value.trim().slice(0,40),v:v.slice(0,700)};const bk=payAuto()?(F.bank&&PROV[F.bank]&&F.via!=='dinheiro'&&(PAYK==='pix'||t.bk||PAYK==='barras'||PAYK==='outro')?F.bank:''):((PAYK==='pix'||t.bk)?PBK:'');if(bk)it.b=bk;if(PFAV)it.f=1;
-  if(PEDX>=0&&F.pay[PEDX])F.pay[PEDX]=it;else F.pay.push(it);PEDX=-1;PFAV=false;PADDN=false;
+  if(PEDX>=0&&F.pay[PEDX])F.pay[PEDX]=it;else if(F.pay.length===1)F.pay[0]=it;else F.pay.push(it);PEDX=-1;PFAV=false;PADDN=false;
   $('#pvl').value='';$('#pnm').value='';setPB('');PAYK='';renderPay();return true}
 function copyFx(btn,lab){
   if(!btn||!btn.isConnected)return;
@@ -4196,7 +4196,6 @@ $('#paybox').addEventListener('click',e=>{
   if(e.target.closest('#pfav')){PFAV=!PFAV;renderPay();try{navigator.vibrate&&navigator.vibrate(12)}catch(_){}return}
   const fv=e.target.closest('[data-fav]');if(fv){const x=F.pay[+fv.dataset.fav];if(x){if(x.f)delete x.f;else x.f=1;if(PEDX===+fv.dataset.fav)PFAV=!!x.f;renderPay()}return}
   const k=e.target.closest('[data-pk]');if(k){const nk=k.dataset.pk;if(PAYK===nk&&PEDX<0&&!$('#pvl').value.trim()&&!$('#pnm').value.trim())PAYK='';else{PAYK=nk;PADDN=true}renderPay();return} /* tocar de novo na forma marcada a desmarca */
-  if(e.target.closest('#padn')){PADDN=true;renderPay();try{$('#pvl').focus({preventScroll:true});$('#pvl').scrollIntoView({block:'center',behavior:RMq()?'auto':'smooth'})}catch(_){}return}
   if(e.target.closest('#padd')){if(!$('#pvl').value.trim()&&!(PGT[PAYK]&&PGT[PAYK].opt))toast('Digite a chave ou o código');else if(payAdd())toast('Forma de pagamento salva');return}
   const c=e.target.closest('[data-cp]');if(c){const x=F.pay[+c.dataset.cp];if(x)copyTxt(x.v,(PGT[x.k]||PGT.outro).ms,c);return}
   const r=e.target.closest('[data-rm]');if(r){const ix=+r.dataset.rm,x=F.pay[ix];if(!x)return;askYN('Remover esta forma de pagamento?',((PGT[x.k]||PGT.outro).l)+(x.n?' · '+x.n:'')+' — '+(x.v.length>40?x.v.slice(0,40)+'…':x.v),'Remover',()=>{F.pay.splice(ix,1);PEDX=-1;PADDN=false;$('#pvl').value='';$('#pnm').value='';setPB('');renderPay()});return}
