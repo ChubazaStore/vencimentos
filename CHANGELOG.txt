@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.470 · Fluidez geral: todo trabalho de fundo do app (ícones dos bancos, imagens dos cartões, efeitos de pagamento) agora entra numa fila única que roda uma tarefa por vez e só com o app parado (sem toque nem rolagem há 1,8 s, janela fechada). Removidos o aquecimento invisível dos efeitos de pagamento e a montagem antecipada dos ícones dos bancos (ambos engasgavam a borda do cartão; agora são preparados na hora de usar). Nada mais roda em horário fixo.
+
+v13.468 · Travada da borda do cartão: a montagem antecipada dos ícones dos bancos (que rodava ~5 s depois de abrir e engasgava a animação) foi adiada para 25 s depois de abrir, com o app parado.
+
+v13.467 · Corrigida a travada da borda do cartão: 7 segundos depois de abrir, o app refazia sozinho a tela inteira de contas (preparação do efeito de pagamento), e isso engasgava a animação sempre no mesmo momento. Esse preparo automático foi removido. Os demais aquecimentos voltaram ao normal (rodando aos poucos).
+
 v13.466 · VERSÃO DE TESTE: desliga todo o aquecimento automático (efeitos de pagamento, ícones, imagens dos cartões) para descobrir se a travada da borda do cartão vem dele. Os cartões podem demorar um pouco mais na primeira vez que aparecem; é esperado nesta versão.
 
 v13.465 · Restaurado: o logo da abertura volta a voar até o canto superior esquerdo (inclusive ao tocar para pular). Mantido: o brilho prateado não fica mais parado no meio da tela. Travada da borda do cartão: o aquecimento dos efeitos (feito sozinho uns 5 s depois de abrir) agora roda aos poucos, um conjunto por vez, em vez de tudo de uma vez.

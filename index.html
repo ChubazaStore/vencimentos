@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.466';
+(function(){var V='13.470';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1370,8 +1370,8 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const NOWARM=true; /* VERSÃO DE TESTE 13.466: sem nenhuma tarefa de aquecimento, para isolar a travada da borda do cartão */
-const VERSION='13.466';
+const NOWARM=false;
+const VERSION='13.470';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1810,6 +1810,19 @@ function tween(el,to,fmt,ms){
 }
 
 
+/* ---------- Agendador de trabalho de fundo ----------
+   Tudo que o app prepara sozinho (ícones, imagens, efeitos) entra nesta fila: uma tarefa por vez, só com o app
+   parado (sem toque/rolagem há 1,8 s, janela fechada, app à vista), nunca em horário fixo. Tocou ou rolou: a fila espera. */
+(function(){const Q=[];let T=0,LA=performance.now()+2500;
+  const act=()=>{LA=performance.now()};
+  ['touchstart','touchmove','pointerdown','scroll','wheel','keydown'].forEach(n=>{try{addEventListener(n,act,{passive:true,capture:true})}catch(e){}});
+  const quiet=()=>{const sh=document.getElementById('sheet');return !document.hidden&&performance.now()-LA>1800&&!(sh&&!sh.hidden)&&!document.body.classList.contains('so')};
+  const pump=d=>{if(T||!Q.length)return;T=setTimeout(run,d)};
+  function run(){T=0;if(!Q.length)return;if(!quiet()){pump(900);return}
+    const f=Q.shift(),go=()=>{try{f()}catch(e){}pump(1500)};
+    if(window.requestIdleCallback)requestIdleCallback(go,{timeout:2500});else go()}
+  window.__idle=function(f){Q.push(f);pump(1200)};
+})();
 const FXP={sets:[],n:0,NS:3};
 const STAR_SVG='<svg viewBox="-10 -10 20 20" width="100%" height="100%"><path d="M0-10C1.2-3 3-1.2 10 0 3 1.2 1.2 3 0 10-1.2 3-3 1.2-10 0-3-1.2-1.2-3 0-10Z" fill="currentColor"/></svg>';
 const ARROW_SVG='<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.4-5.5"/><path d="M4 4.5v4.2h4.2"/></svg>';
@@ -1863,10 +1876,8 @@ function fxWarm(){ /* roda uma vez, quase invisível (1%), no meio da tela, só 
     if(document.hidden||performance.now()-FXV<4000){setTimeout(fxWarm,4000);return} 
     /* um conjunto por vez, com pausa entre eles: tudo de uma vez travava a animação da borda do cartão */
     let k=0;const tot=FXP.NS*2,one=()=>{
-      if(document.hidden){setTimeout(one,1500);return}
-      const sh2=$('#sheet');if(sh2&&!sh2.hidden){setTimeout(one,1500);return}
-      FXW=1;try{if(k<FXP.NS)fxOk(-420,innerHeight/2,1);else fxUn(-420,innerHeight/2,1)}finally{FXW=0}
-      k++;if(k<tot)setTimeout(one,700);else setTimeout(fxHideAll,1300)};
+            FXW=1;try{if(k<FXP.NS)fxOk(-420,innerHeight/2,1);else fxUn(-420,innerHeight/2,1)}finally{FXW=0}
+      k++;if(k<tot)__idle(one);else setTimeout(fxHideAll,1300)};
     one()}catch(_){}
 }
 function burst(x,y){if(RMq())return;fxOk(x,y)}
@@ -2719,13 +2730,13 @@ function appWarm(){
     if(AWI>=cats.length)return;
     const sh=$('#sheet');
     if(document.hidden||(sh&&!sh.hidden)){return} /* app fora de cena ou janela aberta: o provWarm normal assume */
-    if(performance.now()-AWTouch<700){AWT=setTimeout(step,700);return} /* dedo na tela há pouco: espera */
+    if(performance.now()-AWTouch<700){__idle(step);return} /* dedo na tela há pouco: espera */
     const c=cats[AWI++],dk=c+'|'+S.pord;
     try{if(!PGD.has(dk)){const nd=provNodes(c);PGD.set(dk,nd);
       if(!PGW){PGW=document.createElement('div');PGW.id='pgw';PGW.setAttribute('aria-hidden','true');PGW.style.cssText='position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:360px';document.body.appendChild(PGW)}
       PGW.append(...nd)}}catch(e){}
-    AWT=setTimeout(step,450)};
-  AWT=setTimeout(step,300);
+    __idle(step)};
+  __idle(step);
 }
 function renderProv(){
   window.__diagAct&&window.__diagAct('montando os ícones');
@@ -3464,8 +3475,8 @@ document.addEventListener('contextmenu',e=>{const t=e.target;if(t&&t.closest&&t.
     }catch(e){}
   }
   window.fixTop=fix;
-  if(!NOWARM)try{(window.requestIdleCallback||setTimeout)(()=>setTimeout(()=>{try{(window.__appWarm||appWarm)()}catch(e){}},2500),{timeout:6000})}catch(e){}
-  if(!NOWARM)setTimeout(()=>{try{window.__imgPre()}catch(e){}},8000);
+  /* appWarm (montar escondido os ícones de todos os bancos ao abrir) removido: o desenho dessas telas escondidas engasgava a borda do cartão; os ícones se montam ao abrir o + (provWarm) */ /* era 2,5 s: montar os ícones dos bancos logo ao abrir engasgava a borda do cartão */
+  if(!NOWARM)__idle(()=>{try{window.__imgPre()}catch(e){}});
   [9000,25000].forEach(ms=>setTimeout(()=>{try{(window.requestIdleCallback||setTimeout)(()=>icPre())}catch(e){}},ms)); 
   document.addEventListener('focusout',()=>{setTimeout(fix,350)});
   ['pageshow','focus','resize','orientationchange'].forEach(n=>window.addEventListener(n,()=>{fix();setTimeout(fix,120);setTimeout(fix,450)}));
@@ -4548,7 +4559,7 @@ function prewarm(){
     }).catch(()=>{});
   }catch(e){}
 }
-if(!NOWARM)setTimeout(prewarm,9000);
+if(!NOWARM)__idle(prewarm);
 /* confere só o arquivo minúsculo v.txt (uns 5 bytes); o index.html inteiro só é baixado se houver versão nova */
 function checkUpdate(manual){
   if(!/^https?:/.test(location.protocol)){if(manual)toast('Sem conexão com o site');return}
@@ -4608,7 +4619,7 @@ window.__app={get:()=>S,toast:toast,renderAll:()=>renderAll(),
   put:(o)=>{S={bills:Array.isArray(o&&o.bills)?o.bills:[],goals:(o&&o.goals&&typeof o.goals==='object')?o.goals:{},order:(o&&o.order&&typeof o.order==='object')?o.order:{},pord:(o&&o.pord==='custom')?'custom':'az'};normS();const tr=tipRestore();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}renderAll();try{renderCats()}catch(e){}if(tr)setTimeout(save,80)}};
 $('#ver').textContent='v'+VERSION;document.querySelectorAll('.sband .ver').forEach(e=>e.textContent='v'+VERSION);
 setTab('home');
-if(!NOWARM)setTimeout(()=>{try{if(!RMq())(window.requestIdleCallback||setTimeout)(fxWarm,0)}catch(e){}},5200);
+/* fxWarm (efeito invisível em 1%) removido: criava camadas na GPU e engasgava a borda do cartão; o efeito de pagamento se prepara na hora de usar */
 
 function payBootWarm(n){
   try{
@@ -4619,7 +4630,7 @@ function payBootWarm(n){
     payMedir();
   }catch(e){PAYPATCH=false}
 }
-setTimeout(()=>{try{payBootWarm(0)}catch(e){}},7000);
+/* payBootWarm não roda mais sozinho aos 7 s: refazia a tela inteira de contas no meio da animação da borda do cartão (era a travada) */
 
 window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',()=>renderBank,f=>{renderBank=f}],['syncForm',()=>syncForm,f=>{syncForm=f}],['cpLayout',()=>cpLayout,f=>{cpLayout=f}],['cpLabel',()=>cpLabel,f=>{cpLabel=f}],['cpLoad',()=>cpLoad,f=>{cpLoad=f}],['openSheet',()=>openSheet,f=>{openSheet=f}],['closeSheet',()=>closeSheet,f=>{closeSheet=f}],['ccPrev',()=>ccPrev,f=>{ccPrev=f}],['togglePaid',()=>togglePaid,f=>{togglePaid=f}],['paySwap',()=>paySwap,f=>{paySwap=f}],['payFinish',()=>payFinish,f=>{payFinish=f}],['icoDecode',()=>icoDecode,f=>{icoDecode=f}],['cpRevealStep',()=>cpRevealStep,f=>{cpRevealStep=f}],['cfLayout',()=>cfLayout,f=>{cfLayout=f}],['renderHome',()=>renderHome,f=>{renderHome=f}],['renderPan',()=>renderPan,f=>{renderPan=f}],['renderSet',()=>renderSet,f=>{renderSet=f}],['renderAll',()=>renderAll,f=>{renderAll=f}],['cp3d',()=>cp3d,f=>{cp3d=f}]];
 })();
