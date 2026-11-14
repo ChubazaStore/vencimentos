@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.477 · Segunda página de teste (testa-bancos2.html) com mais endereços para os bancos instalados no iPhone (Itaú, Bradesco, Santander, Caixa, XP, Genial, Ágora, íon, Neon, Porto, Sofisa, 99, Santander Corretora, Mercado Livre, Livelo, Nubank). O app em si não mudou.
+
 v13.476 · Novo arquivo testa-bancos.html (página de teste, fora do app) para descobrir quais atalhos abrem o app de cada banco no iPhone. O app em si não mudou.
 
 v13.475 · Cofre, nova chave: agora só Pix e Débito automático. O débito tem escolha do banco, campos próprios de agência e conta com dígito e a opção Conta corrente / Conta poupança (a chave Pix também aceita banco, opcional). Dá para editar esses dados depois no cartão. A folha de nova chave agora fecha arrastando para baixo, como as outras janelas.
