@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.472 · Menos trabalho na rolagem: os brilhos decorativos (cabeçalho, pílula de status, botão +, reflexo dos cartões) ficam em pausa enquanto você rola a tela ou com uma janela aberta, e voltam 0,2 s depois de parar. A borda animada do cartão continua girando. Revisão das leituras de tamanho de tela: sem novos pontos de travada além do ajuste de altura já corrigido na 13.471.
+
 v13.471 · Janelas mais leves: o ajuste automático de altura da janela (nova conta, editar, pagar) rodava a cada quadro e forçava o cálculo da tela inteira dentro das animações (era o maior custo ao abrir/fechar janelas). Agora só roda com a janela aberta e no máximo ~7 vezes por segundo, só quando o conteúdo muda. Comportamento igual ao anterior.
 
 v13.470 · Fluidez geral: todo trabalho de fundo do app (ícones dos bancos, imagens dos cartões, efeitos de pagamento) agora entra numa fila única que roda uma tarefa por vez e só com o app parado (sem toque nem rolagem há 1,8 s, janela fechada). Removidos o aquecimento invisível dos efeitos de pagamento e a montagem antecipada dos ícones dos bancos (ambos engasgavam a borda do cartão; agora são preparados na hora de usar). Nada mais roda em horário fixo.

@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.471';
+(function(){var V='13.472';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1126,6 +1126,7 @@ body.dragging .pt:active,body.dragging .pt.on{transform:none}
 @keyframes sppa{from{opacity:0;transform:translateX(-50%) scale(.9)}to{opacity:1;transform:translateX(-50%) scale(1)}}
 @keyframes sppm{to{transform:translateX(420%)}}
 .spl.skp .spl-mw::after,.spl.fly .spl-mw::after{display:none!important}
+html.scr .hero::before,html.scr .pill::after,html.scr .fab::before,html.scr .fab svg,html.scr .cc::after,html.scr .cc-fx::after,body.so .hero::before,body.so .pill::after,body.so .fab::before,body.so .fab svg,body.so .cc::after,body.so .cc-fx::after{animation-play-state:paused!important}
 .spl.fly{background-color:transparent}
 .spl.fly .spl-n,.spl.fly .spl-t,.spl.fly .spl-pm{opacity:0!important;transition:opacity .28s ease}
 .spl.fly::after{animation:splgo .45s ease forwards!important}
@@ -1371,7 +1372,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 (function(){
 'use strict';
 const NOWARM=false;
-const VERSION='13.471';
+const VERSION='13.472';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1822,6 +1823,13 @@ function tween(el,to,fmt,ms){
     const f=Q.shift(),go=()=>{try{f()}catch(e){}pump(1500)};
     if(window.requestIdleCallback)requestIdleCallback(go,{timeout:2500});else go()}
   window.__idle=function(f){Q.push(f);pump(1200)};
+})();
+/* Rolando a tela, os brilhos decorativos (cabeçalho, pílula, botão +, reflexo dos cartões) ficam em pausa e voltam
+   0,2 s depois de parar; com janela aberta também ficam em pausa. Menos trabalho na hora que você mais sente. */
+(function(){let t=0,on=0;const R=document.documentElement;
+  const stop=()=>{t=0;on=0;R.classList.remove('scr')};
+  const go=()=>{if(!on){on=1;R.classList.add('scr')}clearTimeout(t);t=setTimeout(stop,220)};
+  ['scroll','touchmove','wheel'].forEach(n=>{try{addEventListener(n,go,{passive:true,capture:true})}catch(e){}});
 })();
 const FXP={sets:[],n:0,NS:3};
 const STAR_SVG='<svg viewBox="-10 -10 20 20" width="100%" height="100%"><path d="M0-10C1.2-3 3-1.2 10 0 3 1.2 1.2 3 0 10-1.2 3-3 1.2-10 0-3-1.2-1.2-3 0-10Z" fill="currentColor"/></svg>';
