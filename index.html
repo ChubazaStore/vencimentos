@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.472';
+(function(){var V='13.473';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -496,7 +496,10 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pit .pst svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.pit .prm{display:grid;place-items:center;transition:background .2s,color .2s,box-shadow .2s}.pit .prm svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.pit .prm .lid{transform-origin:5px 7px;transition:transform .3s var(--ease)}.pit .prm:active,.pit .prm.pr{color:#fb6f6f;background:rgba(251,111,111,.16);box-shadow:inset 0 0 0 1px rgba(251,111,111,.5)}.pit .prm:active .lid,.pit .prm.pr .lid{transform:translateY(-2px) rotate(-18deg)}@media(prefers-reduced-motion:reduce){.pit .prm .lid{transition:none}}html.nofx .pit .prm .lid{transition:none}.pit .pst svg{transition:transform .35s var(--ease),fill .25s}.pit .pst.on{color:#f2c94c;background:rgba(242,201,76,.16);box-shadow:inset 0 0 0 1px rgba(242,201,76,.5)}.pit .pst.on svg{fill:currentColor;transform:rotate(72deg) scale(1.15);filter:drop-shadow(0 0 6px rgba(242,201,76,.6))}
 .cfs{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:var(--mu);transition:color .2s,background .2s,transform .3s var(--ease)}
 .cfs svg,.cff svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;vertical-align:-3px}
-.cfs.on{color:#f2c94c;background:rgba(242,201,76,.14);transform:scale(1.08)}.cfs.on svg{fill:currentColor}
+.cfs svg{transition:transform .35s var(--ease),fill .25s}.cfs.on{color:#f2c94c;background:rgba(242,201,76,.16);box-shadow:inset 0 0 0 1px rgba(242,201,76,.5)}.cfs.on svg{fill:currentColor;transform:rotate(72deg) scale(1.15);filter:drop-shadow(0 0 6px rgba(242,201,76,.6))}
+.cfnew{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:44px;margin:4px 0 2px;border-radius:14px;border:1px dashed var(--line2,var(--line));background:rgba(255,255,255,.04);color:var(--tx);font:700 13.5px var(--fb)}.cfnew svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}.cfnew:active{transform:scale(.98)}
+.cfnf{margin:6px 0 4px;padding:14px;border-radius:18px;border:1px solid var(--line2,var(--line));background:rgba(255,255,255,.04)}.cfnk{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}.cfnk .cfc{flex:none}.cfnf .cfl{margin-top:10px}.cfnf .pcr2{margin-top:12px}
+.pcs.del{display:flex;align-items:center;justify-content:center;gap:6px;flex:none;padding:0 14px;color:#fb8f8f;transition:background .2s,color .2s,box-shadow .2s}.pcs.del svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.pcs.del .lid{transform-origin:5px 7px;transition:transform .3s var(--ease)}.pcs.del:active,.pcs.del.pr{color:#fb6f6f;background:rgba(251,111,111,.16);box-shadow:inset 0 0 0 1px rgba(251,111,111,.5)}.pcs.del:active .lid,.pcs.del.pr .lid{transform:translateY(-2px) rotate(-18deg)}html.nofx .pcs.del .lid{transition:none}
 .cff svg{width:15px;height:15px}.cfc.cff.on svg{fill:currentColor}
 .cfh svg{width:13px;height:13px;fill:#f2c94c;stroke:none;vertical-align:-1px;margin-right:6px}
 
@@ -1240,6 +1243,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
       <h2 class="pg-title">Cofre</h2>
       <p class="pg-sub">Chaves Pix, boletos, contas e débitos de todas as suas contas, num lugar só.</p>
       <div class="sbar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="cfq" type="search" placeholder="Buscar chave, banco ou conta" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-label="Buscar no cofre" name="sb-cfq" data-lpignore="true" data-1p-ignore></div>
+      <div id="cfadd"></div>
       <div id="cfch" class="cfch"></div>
       <div id="cflist"></div>
     </section>
@@ -1372,7 +1376,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 (function(){
 'use strict';
 const NOWARM=false;
-const VERSION='13.472';
+const VERSION='13.473';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1692,7 +1696,7 @@ if(!S.goals||typeof S.goals!=='object')S.goals={};
 if(!S.order||typeof S.order!=='object')S.order={};
 if(S.pord!=='custom')S.pord='az';
 /* garante que toda conta tem a estrutura mínima (dados antigos, backup ou nuvem) */
-function normS(){S.bills=(S.bills||[]).filter(b=>b&&typeof b==='object');S.bills.forEach(b=>{
+function normS(){S.cofre=Array.isArray(S.cofre)?S.cofre.filter(c=>c&&typeof c==='object'&&c.k):[];S.bills=(S.bills||[]).filter(b=>b&&typeof b==='object');S.bills.forEach(b=>{
     
     b.id=String(b.id==null?'':b.id).replace(/[^A-Za-z0-9_.-]/g,'').slice(0,64);if(!b.id)b.id=uid();
     if(typeof b.cat!=='string'||!(b.cat in CAT))b.cat='outros';
@@ -1740,7 +1744,7 @@ window.__openLegal=openLegal;
 const BKAJ=['sobrou.fx','sobrou.bri','sobrou.ic'];
 function bkPack(){const aj={};try{const t=(window.THEME&&window.THEME.cur)||JSON.parse(localStorage.getItem('vencimentos.theme'));if(t&&t.length===2)aj.theme=[t[0]|0,t[1]|0]}catch(e){}
   BKAJ.forEach(k=>{try{const v=localStorage.getItem(k);if(v!=null)aj[k]=v}catch(e){}});
-  return {app:'sobrou',fmt:2,v:VERSION,em:new Date().toISOString(),bills:S.bills,goals:S.goals,order:S.order,pord:S.pord,ajustes:aj}}
+  return {app:'sobrou',fmt:2,v:VERSION,em:new Date().toISOString(),bills:S.bills,goals:S.goals,order:S.order,pord:S.pord,cofre:S.cofre||[],ajustes:aj}}
 function bkCount(bills){let c=0,p=0,f=0;const seen={};(bills||[]).forEach(b=>{if(!b||typeof b!=='object')return;c++;(Array.isArray(b.pay)?b.pay:[]).forEach(x=>{if(!x||typeof x!=='object')return;const k=String(x.k)+'|'+(x.v?normV(x.k,x.v):'n|'+b.id+'|'+x.k);if(!seen[k]){seen[k]=1;p++}if(x.f&&seen[k]!==2){seen[k]=2;f++}})});return {c:c,p:p,f:f}}
 function bkApply(a){if(!a||typeof a!=='object')return;
   try{if(Array.isArray(a.theme)&&a.theme.length===2&&a.theme[0]>=0&&a.theme[0]<10&&a.theme[1]>=0&&a.theme[1]<10&&window.THEME)window.THEME.set(a.theme[0]|0,a.theme[1]|0)}catch(e){}
@@ -2403,7 +2407,7 @@ function renderSet(){
     let o;try{o=JSON.parse($('#bpaste').value.trim());if(!o||!Array.isArray(o.bills))throw 0}catch(e){toast('Backup inválido');return}
     const c=bkCount(o.bills),q=o.em?new Date(o.em):null;
     askYN('Restaurar este backup?',c.c+(c.c===1?' conta':' contas')+' · '+c.p+(c.p===1?' item':' itens')+' no Cofre'+(c.f?' ('+c.f+(c.f===1?' favorito)':' favoritos)'):'')+(q&&!isNaN(q)?' · salvo em '+p2(q.getDate())+'/'+p2(q.getMonth()+1)+'/'+q.getFullYear():'')+'. Isso troca tudo o que está no app agora.','Restaurar',()=>{
-      S={bills:o.bills,goals:(o.goals&&typeof o.goals==='object')?o.goals:{},order:(o.order&&typeof o.order==='object')?o.order:{},pord:o.pord==='custom'?'custom':'az'};normS();save();bkApply(o.ajustes);try{renderAll()}catch(_){}toast('Backup restaurado ('+S.bills.length+' contas)');renderSet()})
+      S={bills:o.bills,goals:(o.goals&&typeof o.goals==='object')?o.goals:{},order:(o.order&&typeof o.order==='object')?o.order:{},pord:o.pord==='custom'?'custom':'az',cofre:Array.isArray(o.cofre)?o.cofre:[]};normS();save();bkApply(o.ajustes);try{renderAll()}catch(_){}toast('Backup restaurado ('+S.bills.length+' contas)');renderSet()})
   };
   (function(){let n=0,t=0;$('#vhint').onclick=()=>{n++;clearTimeout(t);t=setTimeout(()=>{n=0},1800);if(n>=5){n=0;const on=!DEV();try{if(on)localStorage.setItem('sobrou.dev','1');else localStorage.removeItem('sobrou.dev')}catch(e){}toast(on?'Opções avançadas ligadas':'Opções avançadas desligadas');renderSet()}}})();
   let armed=0;
@@ -2412,7 +2416,7 @@ function renderSet(){
       const i=document.createElement('input');i.className='fld';i.id='wipein';i.placeholder='Digite APAGAR para confirmar';i.autocomplete='off';i.autocapitalize='characters';i.setAttribute('autocorrect','off');i.style.cssText='margin-top:10px;font-size:16px';
       this.parentNode.insertBefore(i,this);const bt=this;
       i.oninput=()=>{bt.disabled=i.value.trim().toUpperCase()!=='APAGAR'};return}
-    S={bills:[],goals:{},order:{},pord:'az'};save();toast('Tudo apagado');renderSet();
+    S={bills:[],goals:{},order:{},pord:'az',cofre:[]};save();toast('Tudo apagado');renderSet();
   };
 }
 
@@ -4059,7 +4063,7 @@ function payCard(x,i,bid){
     '</div></div>'}
 function payCards(b){return '<div class="pcards">'+b.pay.map((x,i)=>payCard(x,i,bankOf(b,x))).join('')+'</div>'}
 /* ---------- Cofre ---------- */
-let CFQ='',CFT='all',CFO=null,CFB=false,CFED=null,CFW='';
+let CFQ='',CFT='all',CFO=null,CFB=false,CFED=null,CFW='',CFN=null;
 const CFG=[['pix','Chaves Pix',['pix'],'Pix'],['barras','Boletos',['barras'],'Boletos'],['outro','Contas e transferências',['outro'],'Contas'],['dau','Débito automático',['debauto'],'Déb. automático'],['dco','Débito em conta',['debconta'],'Déb. em conta'],['din','Dinheiro',['dinheiro'],'Dinheiro']];
 function cfEntries(){
   const m=new Map();
@@ -4068,6 +4072,9 @@ function cfEntries(){
     let e=m.get(key);if(!e){e={id:'e'+m.size,x:x,bank:'',bills:[],refs:[]};m.set(key,e)}e.refs.push(x);
     const bk=bankOf(b,x);if(bk&&!e.bank)e.bank=bk;if(!e.x.n&&x.n)e.x=Object.assign({},e.x,{n:x.n});
     if(e.bills.indexOf(b)<0&&!e.bills.some(z=>z.name===b.name))e.bills.push(b)})});
+  (S.cofre||[]).forEach(x=>{
+    const key=x.v?x.k+'|'+normV(x.k,x.v):'n|c|'+x.id;
+    let e=m.get(key);if(!e){e={id:'e'+m.size,x:x,bank:'',bills:[],refs:[]};m.set(key,e)}e.refs.push(x);if(!e.x.n&&x.n)e.x=Object.assign({},e.x,{n:x.n})});
   m.forEach(e=>{e.fav=e.refs.some(r=>r.f)});
   return [...m.values()]}
 function cfMask(v){v=String(v);if(v.indexOf('@')>0){const a=v.split('@');return a[0].slice(0,2)+'•••@'+a.slice(1).join('@')}
@@ -4079,6 +4086,16 @@ function renderCofre(){
   if(!CFB){CFB=true;
     q.addEventListener('input',()=>{CFQ=q.value;CFO=null;renderCofre()});
     $('#cfch').addEventListener('click',e=>{const c=e.target.closest('[data-g]');if(!c)return;CFT=c.dataset.g;CFO=null;renderCofre()});
+    $('#cfadd').addEventListener('click',e=>{
+      if(e.target.closest('#cfnew')){CFN={k:'pix'};renderCofre();setTimeout(()=>{const i=$('#cnv');i&&i.focus({preventScroll:false})},80);return}
+      if(e.target.closest('#cncn')){CFN=null;renderCofre();return}
+      const nk=e.target.closest('[data-nk]');if(nk){const v=($('#cnv')||{}).value||'',n=($('#cnn')||{}).value||'';CFN={k:nk.dataset.nk,v:v,n:n};renderCofre();return}
+      if(e.target.closest('#cnsv')){const k=CFN.k,t=PGT[k]||PGT.outro,v=$('#cnv').value.trim().slice(0,700),n=$('#cnn').value.trim().slice(0,40);
+        if(!v&&!t.opt){toast('Digite a chave ou o código');return}
+        if(!v&&!n){toast('Dê um nome para guardar');return}
+        if(v&&cfEntries().some(E=>E.x.k===k&&E.x.v&&normV(k,E.x.v)===normV(k,v))){toast('Essa chave já está no cofre');return}
+        const w=k==='pix'?pixCheck(v):'';if(w&&CFW!==v){CFW=v;const ew=$('#cnw');ew.hidden=false;ew.textContent='⚠ '+w;toast('Confira a chave. Toque de novo para guardar assim mesmo');return}
+        S.cofre=S.cofre||[];S.cofre.push({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:k,n:n,v:v});save();CFN=null;CFW='';CFT='all';CFO=null;toast('Chave guardada no cofre');renderCofre()}});
     $('#cflist').addEventListener('click',e=>{
       const en=e.target.closest('.cfe');if(!en)return;const E=cfEntries().find(z=>z.id===en.dataset.e);if(!E)return;
       if(e.target.closest('.cfed')&&!e.target.closest('button'))return;
@@ -4090,11 +4107,22 @@ function renderCofre(){
         if(E.bills.length>1)askYN('Trocar em '+E.bills.length+' contas?',E.bills.map(b=>b.name).slice(0,6).join(', ')+(E.bills.length>6?' e mais':'')+'. A chave e o nome mudam em todas.','Trocar',go);else go();return}
       const cp=e.target.closest('[data-cfc]');if(cp){copyTxt(E.x.v,(PGT[E.x.k]||PGT.outro).ms,cp);return}
       const op=e.target.closest('[data-cfo]');if(op){openApp(E.bank,E.x.v);return}
-      const fv=e.target.closest('[data-cff]');if(fv){const on=!E.fav;E.refs.forEach(r=>{if(on)r.f=1;else delete r.f});save();toast(on?'Adicionada aos favoritos':'Removida dos favoritos');renderCofre();return}
+      const fv=e.target.closest('[data-cff]');if(fv){const on=!E.fav;E.fav=on;E.refs.forEach(r=>{if(on)r.f=1;else delete r.f});save();fv.classList.toggle('on',on);fv.setAttribute('aria-pressed',on);try{navigator.vibrate&&navigator.vibrate(12)}catch(_){}clearTimeout(fv._t);fv._t=setTimeout(renderCofre,RMq()?0:420);return} /* a estrela anima no próprio botão e só depois a lista é redesenhada */
+      const dl=e.target.closest('[data-cfd]');if(dl){dl.classList.add('pr');setTimeout(()=>{const nb=E.bills.length,t=(PGT[E.x.k]||PGT.outro).l+(E.x.n?' · '+E.x.n:'')+(E.x.v?' — '+(E.x.v.length>40?E.x.v.slice(0,40)+'…':E.x.v):'');
+        askYN('Excluir esta chave do cofre?',nb?t+'. Ela será removida também das '+nb+(nb===1?' conta que a usa':' contas que a usam')+'.':t,'Excluir',()=>{
+          S.bills.forEach(b=>{if(b.pay)b.pay=b.pay.filter(z=>E.refs.indexOf(z)<0)});S.cofre=(S.cofre||[]).filter(z=>E.refs.indexOf(z)<0);save();CFO=null;CFED=null;toast('Chave excluída');renderCofre();try{renderAll()}catch(_){}});
+        setTimeout(()=>dl.classList.remove('pr'),500)},RMq()?0:330);return}
       const sh=e.target.closest('[data-cfs]');if(sh){doShare(E.x,E.bank);return}
       const bl=e.target.closest('[data-cfb]');if(bl){const b=S.bills.find(v=>v.id===bl.dataset.cfb);if(b)openDet(b.id,cfKey(b));return}
       const ed=e.target.closest('[data-cfe]');if(ed){const b=S.bills.find(v=>v.id===ed.dataset.cfe);if(b)openSheet(b.id,cfKey(b));return}
       CFO=CFO===E.id?null:E.id;CFED=null;renderCofre()})}
+  const ad=$('#cfadd');
+  if(ad){if(!CFN)ad.innerHTML='<button type="button" id="cfnew" class="cfnew"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Nova chave</button>';
+    else if(!ad.querySelector('#cnsv')||ad.dataset.k!==CFN.k){const t=PGT[CFN.k]||PGT.outro;ad.dataset.k=CFN.k;
+      ad.innerHTML='<div class="cfnf"><div class="cfu">Guardar no cofre</div><div class="cfnk">'+CFG.map(g=>'<button type="button" class="cfc'+(g[2][0]===CFN.k?' on':'')+'" data-nk="'+g[2][0]+'">'+esc(g[3])+'</button>').join('')+'</div>'+
+      '<div class="cfl">'+(CFN.k==='pix'?'Chave Pix':CFN.k==='barras'?'Código de barras':'Dados')+(t.opt?' (opcional)':'')+'</div><input class="fld" id="cnv" name="sb-cnv" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(CFN.v||'')+'" placeholder="'+esc(t.ph||'Chave ou código')+'">'+
+      '<div class="cfl">Nome (opcional)</div><input class="fld" id="cnn" name="sb-cnn" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(CFN.n||'')+'" placeholder="'+esc(t.np||'Nome de quem recebe (opcional)')+'"><div class="pvw" id="cnw" hidden></div>'+
+      '<div class="pcr2"><button type="button" class="pcs" id="cncn">Cancelar</button><button type="button" class="pcs ok" id="cnsv">Guardar</button></div></div>'}}
   const all=cfEntries(),ql=CFQ.trim().toLowerCase();
   const hit=E=>!ql||[E.x.n,E.x.v,(PGT[E.x.k]||{}).l,E.bank&&bkName(E.bank)].concat(E.bills.map(b=>b.name)).join(' ').toLowerCase().indexOf(ql)>=0;
   const sortF=l=>l.slice().sort((a,b)=>(b.fav-a.fav));
@@ -4103,14 +4131,14 @@ function renderCofre(){
   const tot=grp.reduce((n,g)=>n+g.list.length,0);
   if(CFT!=='all'&&CFT!=='fav'&&!grp.some(g=>g.k===CFT))CFT='all';
   $('#cfch').innerHTML=all.length?'<button type="button" class="cfc'+(CFT==='all'?' on':'')+'" data-g="all">Tudo <i>'+tot+'</i></button><button type="button" class="cfc cff'+(CFT==='fav'?' on':'')+'" data-g="fav">'+SVGSTAR+' Favoritos <i>'+favs.length+'</i></button>'+grp.map(g=>'<button type="button" class="cfc'+(CFT===g.k?' on':'')+'" data-g="'+g.k+'">'+esc(g.c)+' <i>'+g.list.length+'</i></button>').join(''):'';
-  if(!all.length){$('#cflist').innerHTML='<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></svg></div><b>Seu cofre está vazio</b><p>Ao cadastrar uma conta, preencha a forma de pagar (chave Pix, código do boleto, agência e conta). Tudo aparece aqui, sem repetir. Toque na estrela para deixar uma forma nos favoritos.</p></div>';return}
+  if(!all.length){$('#cflist').innerHTML='<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.2"/></svg></div><b>Seu cofre está vazio</b><p>Toque em <b>Nova chave</b> para guardar uma, ou preencha a forma de pagar ao cadastrar uma conta (chave Pix, código do boleto, agência e conta). Tudo aparece aqui, sem repetir. Toque na estrela para deixar uma forma nos favoritos.</p></div>';return}
   const card=E=>{
     const x=E.x,t=PGT[x.k]||PGT.outro,p=E.bank&&PROV[E.bank],tp=x.k==='pix'?pixTipo(x.v):'',on=CFO===E.id;
     const tag=(x.k==='pix'?'Pix'+(tp?' · '+tp:''):t.l)+(p?' · '+p.n:'');
     const ttl=x.n||(x.k==='pix'?'Chave Pix':t.l);
     const lead=p?badge(p):'<div class="pic'+t.c+'">'+t.ic+'</div>';
     return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
-      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button><button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button></div>')+'</div>':'')+'</div>'};
+      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button>'+(E.bills.length?'<button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button>':'')+'<button type="button" class="pcs del" data-cfd="1" aria-label="Excluir chave">'+SVGTRASH+'<span>Excluir</span></button></div>')+'</div>':'')+'</div>'};
   const sec=(t,l,ic)=>'<div class="cfh">'+(ic||'')+esc(t)+' <i>'+l.length+'</i></div>'+l.map(card).join('');
   let h='';
   if(CFT==='fav'){h=favs.length?sec('Favoritos',favs,SVGSTAR):'<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><path d="M12 3.3l2.55 5.36 5.85.75-4.3 4.06 1.1 5.82L12 16.4l-5.2 2.89 1.1-5.82-4.3-4.06 5.85-.75z"/></svg></div><b>Nenhum favorito ainda</b><p>Toque na estrela de uma chave para ela ficar sempre no topo. Também dá para favoritar ao cadastrar a conta.</p></div>'}
@@ -4632,7 +4660,7 @@ document.addEventListener('pointermove',e=>{if(ccHeld&&e.pointerType!=='touch')c
 
 window.VERSION_STR=VERSION;window.__diagF=()=>{try{const c=CAT[F&&F.cat];let t=c?c.l:'';if(F&&F.prov&&PROV[F.prov])t+=' · '+PROV[F.prov].n;if(F&&F.cat==='cartao'&&CF)t+=' ('+(GLAB[CF]||CF)+')';return t}catch(e){return ''}};
 window.__app={get:()=>S,toast:toast,renderAll:()=>renderAll(),
-  put:(o)=>{S={bills:Array.isArray(o&&o.bills)?o.bills:[],goals:(o&&o.goals&&typeof o.goals==='object')?o.goals:{},order:(o&&o.order&&typeof o.order==='object')?o.order:{},pord:(o&&o.pord==='custom')?'custom':'az'};normS();const tr=tipRestore();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}renderAll();try{renderCats()}catch(e){}if(tr)setTimeout(save,80)}};
+  put:(o)=>{S={bills:Array.isArray(o&&o.bills)?o.bills:[],goals:(o&&o.goals&&typeof o.goals==='object')?o.goals:{},order:(o&&o.order&&typeof o.order==='object')?o.order:{},pord:(o&&o.pord==='custom')?'custom':'az',cofre:Array.isArray(o&&o.cofre)?o.cofre:[]};normS();const tr=tipRestore();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}renderAll();try{renderCats()}catch(e){}if(tr)setTimeout(save,80)}};
 $('#ver').textContent='v'+VERSION;document.querySelectorAll('.sband .ver').forEach(e=>e.textContent='v'+VERSION);
 setTab('home');
 /* fxWarm (efeito invisível em 1%) removido: criava camadas na GPU e engasgava a borda do cartão; o efeito de pagamento se prepara na hora de usar */

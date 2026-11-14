@@ -1,5 +1,7 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.473 · Cofre: (1) a estrela de favorito agora anima (gira e acende) antes de a lista se reorganizar, igual ao cadastro de conta; (2) novo botão "Nova chave": guarda direto no Cofre qualquer tipo (Pix, Boleto, Contas, Déb. automático, Déb. em conta, Dinheiro), sem precisar de uma conta; (3) lixeira "Excluir" no cartão aberto, com confirmação. Se a chave estiver em contas, avisa e remove delas também. As chaves avulsas entram no backup, na restauração e na sincronização.
+
 v13.472 · Menos trabalho na rolagem: os brilhos decorativos (cabeçalho, pílula de status, botão +, reflexo dos cartões) ficam em pausa enquanto você rola a tela ou com uma janela aberta, e voltam 0,2 s depois de parar. A borda animada do cartão continua girando. Revisão das leituras de tamanho de tela: sem novos pontos de travada além do ajuste de altura já corrigido na 13.471.
 
 v13.471 · Janelas mais leves: o ajuste automático de altura da janela (nova conta, editar, pagar) rodava a cada quadro e forçava o cálculo da tela inteira dentro das animações (era o maior custo ao abrir/fechar janelas). Agora só roda com a janela aberta e no máximo ~7 vezes por segundo, só quando o conteúdo muda. Comportamento igual ao anterior.
