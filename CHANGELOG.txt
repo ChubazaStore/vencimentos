@@ -1,5 +1,9 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.456 · Pagar > "Abrir Itaú": o atalho itauapp:// era um palpite e não abria o app. O Itaú agora abre a página do app na App Store (id 474505665, conferido no site do banco): a chave é copiada e, com o app instalado, basta tocar em Abrir. O Nubank continua tentando o atalho nubank:// e, se não abrir em 1,6 s, cai na App Store (id 814456780). Demais bancos seguem como antes.
+
+v13.455 · Cadastro de conta > forma de pagamento: o botão "Favoritar" só aparece quando há uma chave digitada/colada (com animação de entrada) e a marca feita antes de tocar em "Usar" é mantida ao escolher uma chave do Cofre; no card da chave escolhida, a estrela fica dourada com o mesmo giro e brilho do botão (e favorita ou desfavorita ao tocar). O botão "×" do card virou uma lixeira: cinza em repouso e, ao tocar, vermelha com a tampa levantando (sem animação com efeitos desligados ou movimento reduzido); a confirmação "Remover esta forma de pagamento?" continua.
+
 v13.454 · Cadastro de conta: removido o botão "+ Adicionar outra forma de pagamento" (uma conta se paga de uma forma só). Ao escolher outra forma ou outra chave numa conta que já tem uma, a nova substitui a anterior (o título avisa "Forma atual · será trocada pela nova"). Contas antigas que já têm mais de uma forma continuam como estão.
 
 v13.453 · Campos preenchidos pelo autopreenchimento do iPhone (sugestão do teclado): em vez de ficarem cinza-escuros fixos (#1b1b1b), agora usam a mesma cor dos outros campos conforme o tema escolhido.

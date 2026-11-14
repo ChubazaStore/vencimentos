@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.454';
+(function(){var V='13.456';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -486,13 +486,13 @@ textarea.fld{height:76px;padding:12px 14px;resize:none;line-height:1.4}
 .pcs{flex:1;min-width:0;height:42px;border-radius:13px;border:1px solid var(--line2,var(--line));background:rgba(255,255,255,.05);color:var(--tx);font:700 12.5px var(--fb);padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pcc.flash{animation:pflash 1s ease-out}
 .pfav{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 14px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--mu);text-align:left;transition:background .25s,border-color .25s,color .25s}
-.pfav[hidden]{display:none}
+.pfav[hidden]{display:none}.pfav{animation:pfin .35s var(--ease)}@keyframes pfin{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.pfav{animation:none}}html.nofx .pfav{animation:none}
 .pfav svg{flex:none;width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;transition:transform .35s var(--ease),fill .25s}
 .pfav span{display:flex;flex-direction:column;gap:1px;min-width:0}.pfav b{font:700 14.5px var(--fb)}.pfav i{font:500 12px var(--fb);font-style:normal;color:var(--mu)}
 .pfav.on{background:linear-gradient(90deg,rgba(242,201,76,.16),rgba(201,234,77,.1));border-color:rgba(242,201,76,.6);color:#f2c94c}
 .pfav.on svg{fill:currentColor;transform:rotate(72deg) scale(1.12);filter:drop-shadow(0 0 8px rgba(242,201,76,.6))}.pfav.on b{color:var(--tx)}
 .pit .pst{flex:none;align-self:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);color:var(--mu);display:grid;place-items:center}
-.pit .pst svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.pit .pst.on{color:#f2c94c}.pit .pst.on svg{fill:currentColor}
+.pit .pst svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}.pit .prm{display:grid;place-items:center;transition:background .2s,color .2s,box-shadow .2s}.pit .prm svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;overflow:visible}.pit .prm .lid{transform-origin:5px 7px;transition:transform .3s var(--ease)}.pit .prm:active,.pit .prm.pr{color:#fb6f6f;background:rgba(251,111,111,.16);box-shadow:inset 0 0 0 1px rgba(251,111,111,.5)}.pit .prm:active .lid,.pit .prm.pr .lid{transform:translateY(-2px) rotate(-18deg)}@media(prefers-reduced-motion:reduce){.pit .prm .lid{transition:none}}html.nofx .pit .prm .lid{transition:none}.pit .pst svg{transition:transform .35s var(--ease),fill .25s}.pit .pst.on{color:#f2c94c;background:rgba(242,201,76,.16);box-shadow:inset 0 0 0 1px rgba(242,201,76,.5)}.pit .pst.on svg{fill:currentColor;transform:rotate(72deg) scale(1.15);filter:drop-shadow(0 0 6px rgba(242,201,76,.6))}
 .cfs{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);color:var(--mu);transition:color .2s,background .2s,transform .3s var(--ease)}
 .cfs svg,.cff svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;vertical-align:-3px}
 .cfs.on{color:#f2c94c;background:rgba(242,201,76,.14);transform:scale(1.08)}.cfs.on svg{fill:currentColor}
@@ -1367,7 +1367,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 <script>
 (function(){
 'use strict';
-const VERSION='13.454';
+const VERSION='13.456';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3991,28 +3991,33 @@ function pixTipo(v){v=String(v||'').trim();if(!v)return '';if(/^000201/.test(v.r
   if(/^\d{11}$/.test(v))return cpfOk(v)?'CPF':'Telefone';
   return '';}
 const SVGSTAR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.3l2.55 5.36 5.85.75-4.3 4.06 1.1 5.82L12 16.4l-5.2 2.89 1.1-5.82-4.3-4.06 5.85-.75z"/></svg>';
-function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;const tp=x.k==='pix'?pixTipo(x.v):'';return '<div class="pit'+(withRm&&i===PEDX?' ed':'')+'"'+(withRm?' data-ed="'+i+'"':'')+'><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm">'+(x.k==='pix'?'<i class="ptag">Pix'+(tp?' · '+esc(tp):'')+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':(t.bk?'<i class="ptag">'+esc(t.l)+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':''))+'<b>'+esc(x.n||t.l)+'</b>'+(x.v&&!withRm?'<span>'+esc(x.v)+'</span>':'')+'</div>'+(x.v?'<button type="button" class="pcp" data-cp="'+i+'">Copiar</button>':'')+(withRm?'<button type="button" class="pst'+(x.f?' on':'')+'" data-fav="'+i+'" aria-label="Favorita">'+SVGSTAR+'</button><button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">×</button>':'')+(withRm&&x.v?'<span class="pkey">'+esc(x.v)+'</span>':'')+'</div>'}).join('')}
+const SVGTRASH='<svg viewBox="0 0 24 24" aria-hidden="true"><g class="lid"><path d="M4.5 7h15"/><path d="M9.5 7V5.4c0-.8.6-1.4 1.4-1.4h2.2c.8 0 1.4.6 1.4 1.4V7"/></g><path d="M6.5 9.5l.7 9c.1 1 .9 1.8 1.9 1.8h5.8c1 0 1.8-.8 1.9-1.8l.7-9"/><path d="M10 12v5M14 12v5"/></svg>';
+function payItems(list,withRm){return list.map((x,i)=>{const t=PGT[x.k]||PGT.outro;const tp=x.k==='pix'?pixTipo(x.v):'';return '<div class="pit'+(withRm&&i===PEDX?' ed':'')+'"'+(withRm?' data-ed="'+i+'"':'')+'><div class="pic'+t.c+'">'+t.ic+'</div><div class="pm">'+(x.k==='pix'?'<i class="ptag">Pix'+(tp?' · '+esc(tp):'')+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':(t.bk?'<i class="ptag">'+esc(t.l)+(x.b?' · '+esc(bkName(x.b)):'')+'</i>':''))+'<b>'+esc(x.n||t.l)+'</b>'+(x.v&&!withRm?'<span>'+esc(x.v)+'</span>':'')+'</div>'+(x.v?'<button type="button" class="pcp" data-cp="'+i+'">Copiar</button>':'')+(withRm?'<button type="button" class="pst'+(x.f?' on':'')+'" data-fav="'+i+'" aria-label="Favorita">'+SVGSTAR+'</button><button type="button" class="prm" data-rm="'+i+'" aria-label="Remover">'+SVGTRASH+'</button>':'')+(withRm&&x.v?'<span class="pkey">'+esc(x.v)+'</span>':'')+'</div>'}).join('')}
 
 /* atalhos para abrir o app de cada instituição no iPhone. Se um não abrir, o app avisa e a chave já fica copiada */
-const APPLINK={nubank:'nubank://',itau:'itauapp://',bradesco:'bradesco://',santander:'santander://',bb:'bbapp://',caixa:'caixa://',inter:'bancointer://',c6:'c6bank://',btg:'btgpactual://',picpay:'picpay://',mercadopago:'mercadopago://',neon:'neon://',xp:'xpinvestimentos://',sicredi:'sicredi://',sicoob:'sicoob://',next:'next://',bmg:'bmg://',safra:'safra://',bv:'bv://',pan:'bancopan://',genial:'genial://',rico:'rico://',agora:'agora://',ion:'ion://'};
+const APPLINK={nubank:'nubank://',bradesco:'bradesco://',santander:'santander://',bb:'bbapp://',caixa:'caixa://',inter:'bancointer://',c6:'c6bank://',btg:'btgpactual://',picpay:'picpay://',mercadopago:'mercadopago://',neon:'neon://',xp:'xpinvestimentos://',sicredi:'sicredi://',sicoob:'sicoob://',next:'next://',bmg:'bmg://',safra:'safra://',bv:'bv://',pan:'bancopan://',genial:'genial://',rico:'rico://',agora:'agora://',ion:'ion://'};
+/* bancos sem atalho conhecido abrem a página do app na App Store (se instalado, aparece o botão Abrir); só entram ids conferidos nas páginas oficiais */
+const APPSTORE={itau:'474505665',nubank:'814456780'};
 const bankOf=(b,x)=>(x&&x.b)||b.bank||(BANKPROV.indexOf(b.cat)>=0?b.prov:'')||'';
 function shareText(x,bid){const t=PGT[x.k]||PGT.outro,tp=x.k==='pix'?pixTipo(x.v):'';return t.l+(tp?' ('+tp+')':'')+(x.n?' · '+x.n:'')+(bid&&PROV[bid]?' · '+PROV[bid].n:'')+'\n'+x.v}
 function doShare(x,bid){const tx=shareText(x,bid);if(navigator.share){navigator.share({text:tx}).catch(()=>{});return}copyTxt(tx,'Copiado para compartilhar')}
 function openApp(id,val){
-  const u=APPLINK[id],nm=bkName(id);
-  if(!u){toast('Abra o app do '+nm+' manualmente');return}
+  const u=APPLINK[id],st=APPSTORE[id],nm=bkName(id);
+  if(!u&&!st){toast('Abra o app do '+nm+' manualmente');return}
   try{if(val&&navigator.clipboard)navigator.clipboard.writeText(val).catch(()=>{})}catch(e){}
+  const store=()=>{toast((val?'Chave copiada. ':'')+'Na página do app, toque em Abrir');try{location.href='https://apps.apple.com/br/app/id'+st}catch(e){}};
+  if(!u){store();return}
   let left=false;const onv=()=>{if(document.hidden)left=true};document.addEventListener('visibilitychange',onv);
   toast(val?'Copiado. Abrindo o '+nm+'…':'Abrindo o '+nm+'…');
   try{location.href=u}catch(e){}
-  setTimeout(()=>{document.removeEventListener('visibilitychange',onv);if(!left&&!document.hidden)toast('Não consegui abrir o '+nm+'. Abra o app por aqui mesmo'+(val?': a chave já está copiada':''))},1600)}
+  setTimeout(()=>{document.removeEventListener('visibilitychange',onv);if(left||document.hidden)return;if(st)store();else toast('Não consegui abrir o '+nm+'. Abra o app por aqui mesmo'+(val?': a chave já está copiada':''))},1600)}
 const PCPT={pix:'Copiar chave Pix',barras:'Copiar código'};
 function payCard(x,i,bid){
   const t=PGT[x.k]||PGT.outro,p=bid&&PROV[bid],tp=x.k==='pix'?pixTipo(x.v):'';
   const tag=x.k==='pix'?'Pagar com Pix':x.k==='barras'?'Pagar com boleto':t.l;
   const top=p?'<div class="pct" style="background:linear-gradient(120deg,'+p.c+',color-mix(in srgb,'+p.c+' 80%,#000));color:'+p.t+'">'+badge(p)+'<div class="pcm"><small>'+esc(tag)+'</small><b>'+esc(p.n)+'</b></div></div>'
     :'<div class="pct pn"><div class="pic'+t.c+'">'+t.ic+'</div><div class="pcm"><small>Pagar com</small><b>'+esc(t.l)+'</b></div></div>';
-  const can=!!(p&&APPLINK[bid]&&x.v);
+  const can=!!(p&&(APPLINK[bid]||APPSTORE[bid])&&x.v);
   return '<div class="pcc">'+top+'<div class="pcbd">'+(x.n?'<div><div class="pcl">'+(x.k==='pix'||x.k==='outro'?'Quem recebe':x.k==='barras'?'Beneficiário':'Nome')+'</div><div class="pcn">'+esc(x.n)+'</div></div>':'')+
     (x.v?'<div class="pcl pkl">'+esc(x.k==='pix'?'Chave Pix'+(tp?' · '+tp:''):x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><div class="pck'+(x.k==='barras'?' mono':'')+'">'+esc(x.v)+'</div><button type="button" class="pcy" data-cp="'+i+'">⧉ '+esc(PCPT[x.k]||'Copiar dados')+'</button><div class="pcr2">'+(can?'<button type="button" class="pcs" data-open="'+esc(bid)+'" data-i="'+i+'">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+'<button type="button" class="pcs" data-sh="'+i+'">⤴ Compartilhar</button></div>':'')+
     '</div></div>'}
@@ -4069,7 +4074,7 @@ function renderCofre(){
     const ttl=x.n||(x.k==='pix'?'Chave Pix':t.l);
     const lead=p?badge(p):'<div class="pic'+t.c+'">'+t.ic+'</div>';
     return '<div class="cfe'+(on?' on':'')+'" data-e="'+E.id+'"><div class="cft">'+lead+'<div class="cfm"><i class="ptag">'+esc(tag)+'</i><b>'+esc(ttl)+'</b>'+(x.v?'<span class="cfv'+(x.k==='barras'?' mono':'')+'">'+esc(on?x.v:cfMask(x.v))+'</span>':'')+'</div><button type="button" class="cfs'+(E.fav?' on':'')+'" data-cff="1" aria-label="Favorita" aria-pressed="'+!!E.fav+'">'+SVGSTAR+'</button>'+(x.v?'<button type="button" class="pcp" data-cfc="1">Copiar</button>':'')+'</div><i class="cfind" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></i>'+
-      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&APPLINK[E.bank]&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button><button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button></div>')+'</div>':'')+'</div>'};
+      (on?'<div class="cfx"><div class="cfu">Usada em</div><div class="cfbs">'+E.bills.map(b=>'<button type="button" class="cfb" data-cfb="'+esc(b.id)+'">'+esc(b.name)+'</button>').join('')+'</div>'+(CFED===E.id?'<div class="cfed"><div class="cfu">'+(E.bills.length===1?'Editar chave':'Editar chave · vale para as '+E.bills.length+' contas')+'</div><div class="cfl">'+(x.k==='pix'?'Chave Pix':x.k==='barras'?'Código de barras':'Dados para pagar')+'</div><input class="fld" id="cfev" name="sb-cfev" data-lpignore="true" data-1p-ignore autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="'+esc(x.v||'')+'" placeholder="Chave ou código"><div class="cfl">'+(x.k==='barras'?'Beneficiário':'Quem recebe')+'</div><input class="fld" id="cfen" name="sb-cfen" data-lpignore="true" data-1p-ignore autocomplete="off" value="'+esc(x.n||'')+'" placeholder="Nome de quem recebe (opcional)"><div class="pvw" id="cfew" hidden></div><div class="pcr2"><button type="button" class="pcs" data-cfcn="1">Cancelar</button><button type="button" class="pcs ok" data-cfsv="1">'+(E.bills.length===1?'Salvar':'Salvar nas '+E.bills.length+' contas')+'</button></div></div>':'<div class="pcr2">'+(p&&(APPLINK[E.bank]||APPSTORE[E.bank])&&x.v?'<button type="button" class="pcs" data-cfo="1">↗ Abrir '+esc(p.n.length>11?'app':p.n)+'</button>':'')+(x.v?'<button type="button" class="pcs" data-cfs="1">⤴ Compartilhar</button>':'')+'</div><div class="pcr2"><button type="button" class="pcs" data-cfk="1">✎ Editar chave</button><button type="button" class="pcs" data-cfe="'+esc(E.bills[0].id)+'">Abrir conta</button></div>')+'</div>':'')+'</div>'};
   const sec=(t,l,ic)=>'<div class="cfh">'+(ic||'')+esc(t)+' <i>'+l.length+'</i></div>'+l.map(card).join('');
   let h='';
   if(CFT==='fav'){h=favs.length?sec('Favoritos',favs,SVGSTAR):'<div class="cfempty"><div class="cfei"><svg viewBox="0 0 24 24"><path d="M12 3.3l2.55 5.36 5.85.75-4.3 4.06 1.1 5.82L12 16.4l-5.2 2.89 1.1-5.82-4.3-4.06 5.85-.75z"/></svg></div><b>Nenhum favorito ainda</b><p>Toque na estrela de uma chave para ela ficar sempre no topo. Também dá para favoritar ao cadastrar a conta.</p></div>'}
@@ -4083,7 +4088,8 @@ function renderCofre(){
 const VIAPK={pix:'pix',boleto:'barras',transf:'outro'};
 const VIATX={pix:{l:'Chave Pix para pagar',ph:'Chave Pix (CPF, e-mail, telefone…)',np:'Nome de quem recebe (opcional)'},boleto:{l:'Código de barras do boleto',ph:'Cole o código de barras do boleto',np:'Nome (opcional)'},transf:{l:'Dados da transferência',ph:'Agência, conta e CPF/CNPJ de quem recebe',np:'Nome de quem recebe (opcional)'}};
 function payAuto(){const x=$('#bkx');return !!x&&!x.hidden}
-function pvw(){const e=$('#pvw');if(!e)return;const w=PAYK==='pix'?pixCheck($('#pvl').value):'';e.hidden=!w;e.textContent=w?'⚠ '+w:'';pxr();pdup();psug();pbol()}
+function pfShow(){const pf=$('#pfav');if(!pf)return;const t=PGT[PAYK];pf.hidden=!t||phid()||!($('#pvl').value.trim()||PEDX>=0||PFAV)}
+function pvw(){const e=$('#pvw');if(!e)return;pfShow();const w=PAYK==='pix'?pixCheck($('#pvl').value):'';e.hidden=!w;e.textContent=w?'⚠ '+w:'';pxr();pdup();psug();pbol()}
 
 const DUPL={pix:['Essa chave Pix','chave'],barras:['Esse boleto','boleto'],outro:['Essa conta','conta'],debconta:['Esse débito','débito'],debauto:['Esse débito','débito']};
 function bolFill(r){if(r.cents)F.cents=r.cents;if(r.date)$('#fd').value=toISO(r.date);syncForm();toast('Valor e vencimento preenchidos')}
@@ -4128,7 +4134,7 @@ function pdup(){const e=$('#pdup');if(!e)return;const d=keyDup();if(!d){e.hidden
   const nm=d.o.map(z=>z.b.name),sh=nm.slice(0,3).map(esc).join(', ')+(nm.length>3?' e mais '+(nm.length-3):''),it=d.o[0].it;
     e.innerHTML='<b>'+L[0]+' já está no Cofre.</b> Usada em '+sh+'. '+(PAYK==='barras'?'Confira se não é um boleto já pago, para não pagar em dobro.':'Tudo bem repetir: no Cofre ela continua uma só.')+'<button type="button" data-use="1">Usar a que já existe</button>'}
 
-function useKey(it){PADDN=true;const v=String(it.v||'').trim();PIXW=v;$('#pvl').value=v;$('#pnm').value=it.n||'';PFAV=!!it.f;
+function useKey(it){PADDN=true;const v=String(it.v||'').trim();PIXW=v;$('#pvl').value=v;$('#pnm').value=it.n||'';PFAV=PFAV||!!it.f;
   if(it.b&&PROV[it.b]){if(payAuto()){F.bank=it.b;try{renderBank()}catch(_){}}else setPB(it.b)}
   payAdd()}
 function sugList(){const k=PAYK;if(!DUPL[k])return [];const q=$('#pvl').value.trim().toLowerCase(),qn=normV(k,q),mine={},seen={},o=[];
@@ -4158,7 +4164,7 @@ function renderPay(){
   if(t){$('#pvl').placeholder=vt?vt.ph:t.ph;$('#pnm').placeholder=vt?vt.np:t.np;}
   $('#pcap').textContent=auto?'Fica guardado nesta conta ao tocar em Adicionar. Na hora de pagar é só tocar na conta e em Copiar.':'Fica guardado nesta conta. Na hora de pagar é só tocar na conta e em Copiar.';
   pvw();
-  { const pf=$('#pfav');pf.hidden=!t||hid;pf.classList.toggle('on',PFAV);pf.setAttribute('aria-pressed',PFAV);pf.querySelector('b').textContent=PFAV?'Favorita':'Favoritar'; }
+  { const pf=$('#pfav');pfShow();pf.classList.toggle('on',PFAV);pf.setAttribute('aria-pressed',PFAV);pf.querySelector('b').textContent=PFAV?'Favorita':'Favoritar'; }
   $('#pbkw').hidden=hid||auto||!(t&&(PAYK==='pix'||t.bk));
   $('#padd').textContent=PEDX>=0?'Atualizar forma de pagamento':'Salvar forma de pagamento';
   $('#plist').classList.toggle('ch',hid);$('#plist').innerHTML=(F.pay&&F.pay.length)?'<div class="lbl" style="margin-top:12px">'+(hid?'Escolhida para esta conta · toque para editar':(F.pay.length===1&&PEDX<0?'Forma atual · será trocada pela nova':'Já salva nesta conta · toque para editar'))+'</div>'+payItems(F.pay,true)+'':'';
