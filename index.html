@@ -112,7 +112,7 @@
 </style>
 <script>
 /* abre direto na versão mais nova guardada no aparelho (o iPhone costuma servir a página antiga do cache) */
-(function(){var V='13.482';
+(function(){var V='13.485';
   function c(a,b){a=a.split('.');b=b.split('.');for(var i=0;i<3;i++){var x=+a[i]||0,y=+b[i]||0;if(x!==y)return x>y?1:-1}return 0}
   try{var v=localStorage.getItem('vencimentos.htmlv'),h=localStorage.getItem('vencimentos.html');
     if(v&&h&&c(v,V)>0&&sessionStorage.getItem('vencimentos.rw')!==v&&h.indexOf("const VERSION='"+v+"'")>0){sessionStorage.setItem('vencimentos.rw',v);document.documentElement.style.visibility='hidden';setTimeout(function(){document.open();document.write(h);document.close()},0)}
@@ -1397,7 +1397,7 @@ body.sfull .app,body.sfull .fab,body.sfull .tabs{opacity:0;pointer-events:none}
 (function(){
 'use strict';
 const NOWARM=false;
-const VERSION='13.482';
+const VERSION='13.485';
 const KEY='vencimentos.v1';
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -1518,7 +1518,9 @@ Object.assign(PROV.agibank,{al:'agi banco digital'});
 const LOGOS={"garagem":"i-garagem.webp","materialescolar":"i-materialescolar.webp","escolaparticular":"i-escolaparticular.webp","creche":"i-creche.webp","vanescolar":"i-vanescolar.webp","trivago":"i-trivago.webp","cvc":"i-cvc.webp","blablacar":"i-blablacar.webp","sabesp":"i-sabesp.webp","agibank":"i-agibank.webp","detran":"i-detran.webp","paytag":"i-paytag.webp","leroymerlin":"i-leroymerlin.webp","quintoandar":"i-quintoandar.webp","oi":"i-oi.webp","sky":"i-sky.webp","starlink":"i-starlink.webp","premiere":"i-premiere.webp","conectcar":"i-conectcar.webp","pinterest":"i-pinterest.webp","santandercorretora":"i-santandercorretora.webp","brb":"i-brb.webp","daycoval":"i-daycoval.webp","nomad":"i-nomad.webp","sofisa":"i-sofisa.webp","guincho":"i-guincho.webp","mecanico":"i-mecanico.webp","pirelli":"i-pirelli.webp","michelin":"i-michelin.webp","bridgestone":"i-bridgestone.webp","veloe":"i-veloe.webp","semparar":"i-semparar.webp","shellbox":"i-shellbox.webp","premmia":"i-premmia.webp","uninove":"i-uninove.webp","cea":"i-cea.webp","abril":"i-abril.webp","agora":"i-agora.webp","airbnb":"i-airbnb.webp","aliexpress":"i-aliexpress.webp","amazon":"i-amazon.webp","amazonmusic":"i-amazonmusic.webp","amil":"i-amil.webp","amildental":"i-amildental.webp","assai":"i-assai.webp","azulaerea":"i-azulaerea.webp","bb":"i-bb.webp","bobs":"i-bobs.webp","booking":"i-booking.webp","bradesco":"i-bradesco.webp","bradescosaude":"i-bradescosaude.webp","bradescoseg":"i-bradescoseg.webp","btg":"i-btg.webp","burgerking":"i-burgerking.webp","buser":"i-buser.webp","bv":"i-bv.webp","c6":"i-c6.webp","cacaushow":"i-cacaushow.webp","caixa":"i-caixa.webp","centauro":"i-centauro.webp","claro":"i-claro.webp","claude":"i-claude.webp","cnh":"i-cnh.webp","cnn":"i-cnn.webp","cocobambu":"i-cocobambu.webp","comgas":"i-comgas.webp","cpfl":"i-cpfl.webp","decolar":"i-decolar.webp","disney":"i-disney.webp","dolcegusto":"i-dolcegusto.webp","dominos":"i-dominos.webp","enel":"i-enel.webp","estadao":"i-estadao.webp","folha":"i-folha.webp","futfanatics":"i-futfanatics.webp","genial":"i-genial.webp","giraffas":"i-giraffas.webp","github":"i-github.webp","globoplay":"i-globoplay.webp","gol":"i-gol.webp","google":"i-google.webp","habibs":"i-habibs.webp","hapvida":"i-hapvida.webp","hotelscom":"i-hotelscom.webp","ifood":"i-ifood.webp","infinitepay":"i-infinitepay.webp","inter":"i-inter.webp","ion":"i-ion.webp","itau":"i-itau.webp","keeta":"i-keeta.webp","kfc":"i-kfc.webp","kiwify":"i-kiwify.webp","latam":"i-latam.webp","latampass":"i-latampass.webp","livelo":"i-livelo.webp","localiza":"i-localiza.webp","max":"i-max.webp","mcdonalds":"i-mcdonalds.webp","mercadolivre":"i-mercadolivre.webp","mercadopago":"i-mercadopago.webp","movida":"i-movida.webp","n99":"i-n99.webp","neon":"i-neon.webp","netflix":"i-netflix.webp","netshoes":"i-netshoes.webp","next":"i-next.webp","nubank":"i-nubank.webp","odonto":"i-odonto.webp","outback":"i-outback.webp","pan":"i-pan.webp","paypal":"i-paypal.webp","picpay":"i-picpay.webp","pizzahut":"i-pizzahut.webp","pluxee":"i-pluxee.webp","popeyes":"i-popeyes.webp","portoseguro":"i-portoseguro.webp","portobank":"@portoseguro","prime":"i-prime.webp","ragazzo":"i-ragazzo.webp","rededor":"i-rededor.webp","rico":"i-rico.webp","santander":"i-santander.webp","serasa":"i-serasa.webp","shein":"i-shein.webp","shopee":"i-shopee.webp","sicoob":"i-sicoob.webp","sicredi":"i-sicredi.webp","smiles":"i-smiles.webp","spotify":"i-spotify.webp","starbucks":"i-starbucks.webp","subway":"i-subway.webp","sulamerica":"i-sulamerica.webp","sulamericaodonto":"i-sulamericaodonto.webp","tim":"i-tim.webp","uber":"i-uber.webp","veja":"i-veja.webp","vivo":"i-vivo.webp","wellhub":"i-wellhub.webp","x":"i-x.webp","xp":"i-xp.webp","yamaha":"i-yamaha.webp","youtube":"i-youtube.webp","youtubemusic":"i-youtubemusic.webp","zedelivery":"i-zedelivery.webp","bmg":"i-bmg.webp","safra":"i-safra.webp","fgc":"i-fgc.webp","gmail":"i-gmail.webp","paodeacucar":"i-paodeacucar.webp","carrefour":"i-carrefour.webp","magalu":"i-magalu.webp","casasbahia":"i-casasbahia.webp","samsclub":"i-samsclub.webp","atacadao":"i-atacadao.webp","rappi":"i-rappi.webp","tendaatacado":"i-tendaatacado.webp","americanas":"i-americanas.webp","swift":"i-swift.webp","marisa":"i-marisa.webp","renner":"i-renner.webp","riachuelo":"i-riachuelo.webp","pernambucanas":"i-pernambucanas.webp","havan":"i-havan.webp","whatsapp":"i-whatsapp.webp","telegram":"i-telegram.webp","facebook":"i-facebook.webp","instagram":"i-instagram.webp","kmv":"i-kmv.webp"};
 /* IV: só vira algo depois de "Limpar memória" (Ajustes): força baixar tudo de novo, como na 1ª vez */
 const IV=(()=>{try{return sessionStorage.getItem('imgv')||'410'}catch(e){return ''}})();
-const imgU=f=>IV?f+'?v='+IV:f;
+/* ICV: ícones que foram TROCADOS mantendo o mesmo nome de arquivo. Só estes baixam de novo no iPhone; os demais continuam guardados. Ao trocar um ícone, some 1 ao número dele (ou adicione-o aqui). */
+const ICV={'i-caixa.webp':1};
+const imgU=f=>IV?f+'?v='+IV+(ICV[f]?'.'+ICV[f]:''):f;
 const IMGCACHE='cartoes-23';
 
 const LOGOC={"i-caixa.webp":1,"i-brb.webp":1,"i-nomad.webp":1,"i-sofisa.webp":1,"i-garagem.webp":1,"i-materialescolar.webp":1,"i-escolaparticular.webp":1,"i-creche.webp":1,"i-vanescolar.webp":1,"i-movida.webp":1,"i-smiles.webp":1,"i-gol.webp":1,"i-hotelscom.webp":1,"i-trivago.webp":1,"i-cvc.webp":1,"i-bradescoseg.webp":1,"i-bradescosaude.webp":1,"i-amil.webp":1,"i-amildental.webp":1,"i-azulaerea.webp":1,"i-sabesp.webp":1,"i-comgas.webp":1,"i-buser.webp":1,"i-blablacar.webp":1,"i-enel.webp":1,"i-github.webp":1,"i-futfanatics.webp":1,"i-livelo.webp":1,"i-bb.webp":1,"i-gmail.webp":1,"i-amazon.webp":1,"i-youtube.webp":1,"i-neon.webp":1,"i-portoseguro.webp":1,"i-whatsapp.webp":1,"i-prime.webp":1,"i-inter.webp":1,"i-instagram.webp":1,"i-netshoes.webp":1,"i-facebook.webp":1,"i-shopee.webp":1,"i-claude.webp":1,"i-ifood.webp":1,"i-btg.webp":1,"i-vivo.webp":1,"i-yamaha.webp":1,"i-fgc.webp":1,"i-agora.webp":1,"i-centauro.webp":1,"i-pinterest.webp":1,"i-premiere.webp":1,"i-oi.webp":1,"i-sky.webp":1,"i-quintoandar.webp":1,"i-picpay.webp":1,"i-nubank.webp":1,"i-mercadopago.webp":1,"i-bv.webp":1,"i-pan.webp":1,"i-sicoob.webp":1};
@@ -1748,7 +1750,7 @@ function legalTxt(){const L=LEGAL,nm=L.nome?esc(L.nome)+(L.doc?' (CPF/CNPJ '+esc
  ['1. Quem cuida dos seus dados','O responsável pelo tratamento dos dados do Sobrou! é '+nm+'. Contato para assuntos de privacidade: '+ct+'.'],
  ['2. Quais dados usamos','<b>Da conta:</b> e-mail e senha (a senha serve só para você entrar). <b>O que você cadastra:</b> contas, valores, vencimentos, pagamentos feitos, metas, e as formas de pagar que você guarda (chaves Pix, códigos de boleto, agência e conta, nome de quem recebe), inclusive os itens do Cofre. <b>Da assinatura:</b> o comprovante de Pix que você nos enviar.'],
  ['3. Para que usamos','Para criar e manter a sua conta, mostrar suas contas e lembretes, sincronizar entre os seus aparelhos, liberar o acesso depois do pagamento e dar suporte. <b>Não vendemos seus dados e não usamos para publicidade.</b>'],
- ['4. Onde ficam e com quem passam','Ficam no seu aparelho e em serviços de nuvem do Google (Firebase), que cuidam do login e do armazenamento da sua conta. Só compartilhamos dados com esses prestadores, para o app funcionar, ou quando a lei exigir.'],
+ ['4. Onde ficam e com quem passam','Ficam no seu aparelho e em servidores do Sobrou!, hospedados na Cloudflare, que cuidam do login e do armazenamento da sua conta. Só compartilhamos dados com esses prestadores, para o app funcionar, ou quando a lei exigir.'],
  ['5. Segurança','Use uma senha só sua e ative a Trava do app (PIN) em Ajustes. O PIN fica apenas no seu aparelho e não vai para o backup. Se perder o aparelho, entre na conta em outro e troque a senha.'],
  ['6. Seus direitos','Pela LGPD, você pode pedir acesso, correção, exclusão e cópia dos seus dados, e retirar o seu consentimento. A cópia você mesmo tira em Ajustes, no backup. O pedido de exclusão da conta é feito '+ct+'. Em Ajustes, <b>Apagar tudo</b> remove os dados deste aparelho.'],
  ['7. Por quanto tempo guardamos','Enquanto a sua conta existir. Depois do pedido de exclusão, apagamos os dados em prazo razoável, salvo o que a lei obrigar a manter.'],
@@ -4778,75 +4780,52 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   const PRECO='R$ 10,00';                      /* valor mensal */
   const PIX='';                                /* sua chave PIX */
   const SUPORTE='';                            /* link do Telegram/WhatsApp para enviar o comprovante */
-  const FB={key:'AIzaSyCQG-0Yft-eAA3EUD6Fli5QFyXkU9l_Lxk',pid:'sobrou-f61cf'};
-  const IDT='https://identitytoolkit.googleapis.com/v1/accounts:';
-  const FS='https://firestore.googleapis.com/v1/projects/'+FB.pid+'/databases/(default)/documents';
-  const AK='sobrou.auth',LK='sobrou.lic',DK='sobrou.dirty',UK='sobrou.upd',BK='sobrou.bkp';
+  const API='https://sobrou-api.sobrou.workers.dev';
+  const AK='sobrou.auth',LK='sobrou.lic',DK='sobrou.dirty',UK='sobrou.upd',BK='sobrou.bkp',LEM='sobrou.lem';
   const $=s=>document.querySelector(s);
   const jget=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}};
   const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
   const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const toast=m=>window.__app&&window.__app.toast(m);
-  let A=jget(AK),LIC=jget(LK)||{ate:0,created:0},tok='',tokExp=0,pulling=false,applying=false,pushT=0,pushing=false,online=true,LST=[];
+  let A=jget(AK),LIC=jget(LK)||{ate:0},pulling=false,applying=false,pushT=0,pushing=false,online=true,LST=[];
+  /* sessões antigas (do login anterior) não valem mais: pede para entrar de novo, sem apagar as contas deste aparelho */
+  if(A&&!A.tk){A=null;try{localStorage.removeItem(AK)}catch(e){}}
 
   /* ----- rede ----- */
   /* com sinal fraco o pedido podia ficar pendurado para sempre e travar a sincronização; agora desiste em 15 s e tenta de novo depois */
   const tfetch=(url,opt,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);return fetch(url,Object.assign({signal:c.signal},opt)).finally(()=>clearTimeout(t))};
-  async function post(url,body,form){
-    const r=await tfetch(url,{method:'POST',headers:{'Content-Type':form?'application/x-www-form-urlencoded':'application/json'},body:form?body:JSON.stringify(body)});
+  /* fala com o servidor do Sobrou! (login, assinatura e dados ficam lá) */
+  async function api(method,path,body,semSessao){
+    const h={};
+    if(body!==undefined)h['Content-Type']='application/json';
+    if(!semSessao&&A&&A.tk)h['Authorization']='Bearer '+A.tk;
+    const r=await tfetch(API+path,{method:method,headers:h,body:body===undefined?undefined:JSON.stringify(body)});
     const j=await r.json().catch(()=>({}));
-    if(!r.ok){const e=new Error((j.error&&j.error.message)||'erro');e.code=(j.error&&j.error.message)||'erro';e.http=r.status;throw e}
+    if(!r.ok){const e=new Error(j.erro||'erro');e.http=r.status;e.msg=j.erro||'';if(r.status===401&&!semSessao)sessaoCaiu();throw e}
     return j;
   }
-  const MSG={EMAIL_NOT_FOUND:'E-mail ou senha incorretos',INVALID_PASSWORD:'E-mail ou senha incorretos',INVALID_LOGIN_CREDENTIALS:'E-mail ou senha incorretos',EMAIL_EXISTS:'Este e-mail já tem conta. Toque em Entrar',INVALID_EMAIL:'E-mail inválido',MISSING_PASSWORD:'Digite a senha',USER_DISABLED:'Conta desativada',TOO_MANY_ATTEMPTS_TRY_LATER:'Muitas tentativas. Espere um pouco'};
-  const errTxt=e=>{const c=String(e.code||'');if(/WEAK_PASSWORD/.test(c))return 'A senha precisa ter pelo menos 6 caracteres';return MSG[c]||(e.http?'Não deu certo ('+c+')':'Sem internet. Conecte e tente de novo')};
-  async function idToken(){
-    if(!A)throw new Error('sem sessão');
-    if(tok&&Date.now()<tokExp-60000)return tok;
-    try{
-      const j=await post('https://securetoken.googleapis.com/v1/token?key='+FB.key,'grant_type=refresh_token&refresh_token='+encodeURIComponent(A.rt),true);
-      tok=j.id_token;tokExp=Date.now()+(+j.expires_in||3600)*1000;
-      if(j.refresh_token&&j.refresh_token!==A.rt){A.rt=j.refresh_token;jset(AK,A)}
-      return tok;
-    }catch(e){
-      if(e.http&&/TOKEN_EXPIRED|USER_NOT_FOUND|USER_DISABLED|INVALID_REFRESH_TOKEN/.test(e.code)){wipe();location.reload()}
-      throw e;
-    }
-  }
-  async function fs(method,path,body){
-    const t=await idToken();
-    const r=await tfetch(FS+path,{method:method,headers:{'Authorization':'Bearer '+t,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
-    if(r.status===404)return null;
-    const j=await r.json().catch(()=>({}));
-    if(!r.ok){const e=new Error((j.error&&j.error.message)||'erro');e.http=r.status;throw e}
-    return j;
-  }
-  const num=f=>f&&(f.integerValue!=null?+f.integerValue:f.doubleValue!=null?+f.doubleValue:0)||0;
+  const errTxt=e=>e.http?(e.http>=500?'O servidor está ocupado. Tente de novo em instantes':(e.msg||'Não deu certo. Tente de novo')):'Sem internet. Conecte e tente de novo';
+  /* a sessão venceu ou foi encerrada: volta para a tela de entrar (as contas deste aparelho ficam guardadas) */
+  function sessaoCaiu(){if(!A)return;A=null;try{localStorage.removeItem(AK)}catch(e){}showLogin('in')}
 
   /* ----- assinatura ----- */
   const isAdmin=()=>!!A&&A.email===ADMIN;
   function status(){
     const n=Date.now();
-    if(isAdmin())return {k:'adm'};
-    if(LIC.ate>n)return LIC.t?{k:'trial',ate:LIC.ate}:{k:'ok',ate:LIC.ate}; 
-    const te=(LIC.created||A&&A.created||0)+TRIAL_DIAS*864e5;
-    if(te>n)return {k:'trial',ate:te};
+    if(isAdmin()||LIC.adm)return {k:'adm'};
+    if(LIC.ate>n)return LIC.t?{k:'trial',ate:LIC.ate}:{k:'ok',ate:LIC.ate};
     return {k:'exp'};
   }
   window.__licStatus=status;
   const dt=ms=>new Date(ms).toLocaleDateString('pt-BR');
   async function checkLic(){
     try{
-      let j=await fs('GET','/licencas/'+encodeURIComponent(A.email));
-      
-      if(!j&&!isAdmin()){
-        try{const fim=Math.min((LIC.created||A.created||Date.now())+TRIAL_DIAS*864e5,Date.now()+TRIAL_DIAS*864e5);
-          j=await fs('POST','/licencas?documentId='+encodeURIComponent(A.email),{fields:{ate:{integerValue:String(Math.round(fim))},t:{booleanValue:true}}})}catch(e){}
-      }
-      LIC.ate=j&&j.fields?num(j.fields.ate):0;
-      LIC.t=!!(j&&j.fields&&j.fields.t&&j.fields.t.booleanValue);
+      const j=await api('GET','/me');
+      LIC.adm=!!j.admin;
+      LIC.t=j.status!=='paid';
+      LIC.ate=((j.status==='paid'?j.paid_until:j.trial_ends_at)||0)*1000;
       jset(LK,LIC);online=true;
-    }catch(e){if(e.http)LIC.ate=LIC.ate||0}
+    }catch(e){}
     gate();
   }
   function gate(){
@@ -4856,7 +4835,6 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   }
 
   /* ----- sincronização ----- */
-  const payload=()=>JSON.stringify({s:window.__app.get(),t:(window.THEME&&window.THEME.cur)||[4,9]});
   window.__sync=function(){
     if(!A||applying)return;
     try{localStorage.setItem(DK,'1');localStorage.setItem(UK,String(Date.now()))}catch(e){}
@@ -4869,7 +4847,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     pushing=true;
     try{
       const upd=+localStorage.getItem(UK)||Date.now();
-      await fs('PATCH','/users/'+A.uid+'?updateMask.fieldPaths=data&updateMask.fieldPaths=upd',{fields:{data:{stringValue:payload()},upd:{integerValue:String(upd)}}});
+      await api('PUT','/data',{s:window.__app.get(),t:(window.THEME&&window.THEME.cur)||[4,9],upd:upd});
       try{localStorage.removeItem(DK)}catch(e){}
       online=true;pushing=false;uiSync();return true;
     }catch(e){
@@ -4882,13 +4860,12 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     if(!A)return;
     pulling=true;
     try{
-      const j=await fs('GET','/users/'+A.uid);
-      const f=j&&j.fields;
-      if(f&&f.data&&f.data.stringValue){
-        const cu=num(f.upd),lu=+localStorage.getItem(UK)||0;
+      const j=await api('GET','/data');
+      const o=j&&j.data;
+      if(o&&o.s){
+        const cu=+o.upd||0,lu=+localStorage.getItem(UK)||0;
         const dirty=localStorage.getItem(DK);
         if(force||(!dirty&&cu>=lu)||(!dirty&&!lu)){
-          const o=JSON.parse(f.data.stringValue);
           const cur=JSON.stringify(window.__app.get());
           applying=true;
           try{
@@ -4920,8 +4897,8 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
 
   /* ----- sessão ----- */
   function wipe(){
-    A=null;tok='';clearTimeout(pushT);
-    ['vencimentos.v1','vencimentos.theme','sobrou.pin',AK,LK,DK,UK].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+    A=null;clearTimeout(pushT);
+    ['vencimentos.v1','vencimentos.theme','sobrou.pin',AK,LK,DK,UK,LEM].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
     try{sessionStorage.removeItem('spl')}catch(e){}
   }
   async function logout(){
@@ -4931,12 +4908,16 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   }
   window.__sobrouLogout=logout;window.__sobrouSup=()=>SUPORTE;
   async function enter(kind,email,pw){
-    const j=await post(IDT+(kind==='new'?'signUp':'signInWithPassword')+'?key='+FB.key,{email:email,password:pw,returnSecureToken:true});
-    tok=j.idToken;tokExp=Date.now()+(+j.expiresIn||3600)*1000;
-    let created=Date.now();
-    try{const l=await post(IDT+'lookup?key='+FB.key,{idToken:tok});created=+l.users[0].createdAt||created}catch(e){}
-    A={uid:j.localId,email:(j.email||email).toLowerCase(),rt:j.refreshToken,created:created};
-    jset(AK,A);LIC={ate:0,created:created};jset(LK,LIC);
+    const j=await api('POST',kind==='new'?'/signup':'/login',{email:email,password:pw},true);
+    let lem='';try{lem=localStorage.getItem(LEM)||''}catch(e){}
+    A={email:email,tk:j.token};jset(AK,A);
+    try{localStorage.setItem(LEM,email)}catch(e){}
+    if(lem&&lem!==email){
+      /* entrou outra pessoa neste aparelho: limpa as contas da anterior e recarrega para buscar as desta */
+      ['vencimentos.v1','vencimentos.theme','sobrou.pin',DK,UK,LK].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+      location.reload();return new Promise(()=>{});
+    }
+    LIC={ate:0};jset(LK,LIC);
   }
 
   /* ----- telas ----- */
@@ -5024,10 +5005,9 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
     };
     $('#lgg').onclick=go;
     ov.querySelectorAll('.fld').forEach(i=>i.addEventListener('keydown',e=>{if(e.key==='Enter')go()}));
-    const f=$('#lgf');if(f)f.onclick=async()=>{
-      const em=$('#lge').value.trim().toLowerCase();
-      if(!/^\S+@\S+\.\S+$/.test(em)){x('Digite seu e-mail acima');return}
-      try{await post(IDT+'sendOobCode?key='+FB.key,{requestType:'PASSWORD_RESET',email:em});x('Enviamos um e-mail para criar nova senha (veja também o spam)',1)}catch(e){x(errTxt(e))}
+    const f=$('#lgf');if(f)f.onclick=()=>{
+      x(SUPORTE?'Fale com o suporte para criar uma nova senha':'Para criar uma nova senha, fale com o suporte do Sobrou!',1);
+      if(SUPORTE){try{window.open(SUPORTE,'_blank','noopener')}catch(e){}}
     };
   }
   function showBlock(){
@@ -5050,7 +5030,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
 
   /* ----- cartão em Ajustes ----- */
   window.__acc={
-    adlHtml(){return LST.length?LST.map(c=>'<div class="adl" data-e="'+esc(c.e)+'" style="display:flex;justify-content:space-between;gap:8px;padding:9px 2px;border-top:1px solid var(--line);font-size:13px"><span style="word-break:break-all">'+esc(c.e)+'</span><b style="color:'+(c.a>Date.now()?'var(--ok)':'var(--bad)')+';white-space:nowrap">'+(c.a>Date.now()?dt(c.a):'vencido')+'</b></div>').join(''):'<p class="hint">Nenhum cliente liberado ainda.</p>'},
+    adlHtml(){return LST.length?LST.map(c=>'<div class="adl" data-e="'+esc(c.e)+'" style="display:flex;justify-content:space-between;gap:8px;padding:9px 2px;border-top:1px solid var(--line);font-size:13px"><span style="word-break:break-all">'+esc(c.e)+'</span><b style="color:'+(c.a>Date.now()?'var(--ok)':'var(--bad)')+';white-space:nowrap">'+(c.a>Date.now()?dt(c.a)+(c.t?' (teste)':''):'vencido')+'</b></div>').join(''):'<p class="hint">Nenhum cliente liberado ainda.</p>'},
     card(){
       if(!A)return '';
       const s=status();
@@ -5059,7 +5039,7 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
         '<div class="cap" style="margin-top:6px"><b>'+stt+'</b></div>'+
         '<div class="cap" style="margin-top:6px"><span id="acsync"></span></div>'+
         '<button class="act" id="acout" type="button">Sair da conta</button></div>';
-      if(isAdmin())h+='<div class="card"><h3>Clientes</h3><div class="cap">Digite o e-mail do cliente que pagou e toque em +30 dias.</div>'+
+      if(isAdmin())h+='<div class="card"><h3>Clientes</h3><div class="cap">Digite o e-mail do cliente que pagou e toque em +30 dias. O cliente precisa já ter criado a conta no app.</div>'+
         '<input class="fld" id="adm" type="email" autocapitalize="off" autocorrect="off" placeholder="E-mail do cliente" style="margin-top:12px;font-size:16px">'+
         '<button class="act" id="adp" type="button">+30 dias</button><button class="act danger" id="adb" type="button">Bloquear</button>'+
         '<div id="adl" style="margin-top:12px;min-height:'+(LST.length?0:36)+'px">'+(LST.length?window.__acc.adlHtml():'<p class="hint">Carregando…</p>')+'</div></div>';
@@ -5071,21 +5051,19 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
       if(!isAdmin())return;
       const list=async()=>{
         try{
-          const j=await fs('GET','/licencas?pageSize=300');const d=(j&&j.documents)||[];
-          LST=d.map(x=>({e:decodeURIComponent(x.name.split('/').pop()),a:num(x.fields&&x.fields.ate)})).sort((a,b)=>b.a-a.a);
+          const j=await api('GET','/admin/clientes');
+          LST=((j&&j.clientes)||[]).map(c=>({e:c.email,t:c.status==='trial',a:(c.status==='paid'?c.paid_until||0:c.status==='trial'?c.trial_ends_at||0:0)*1000})).sort((a,b)=>b.a-a.a);
           $('#adl').innerHTML=window.__acc.adlHtml();
           $('#adl').querySelectorAll('.adl').forEach(r=>r.onclick=()=>{$('#adm').value=r.dataset.e});
-        }catch(e){$('#adl').innerHTML='<p class="hint">Não consegui listar (verifique as regras do Firestore).</p>'}
+        }catch(e){$('#adl').innerHTML='<p class="hint">Não consegui listar agora. Tente de novo.</p>'}
       };
       const setAte=async(add)=>{
         const em=$('#adm').value.trim().toLowerCase();
         if(!/^\S+@\S+\.\S+$/.test(em)){toast('Digite o e-mail do cliente');return}
         try{
-          let cur=0;const j=await fs('GET','/licencas/'+encodeURIComponent(em));if(j&&j.fields)cur=num(j.fields.ate);
-          const ate=add?Math.max(Date.now(),cur)+DIAS_MES*864e5:0;
-          await fs('PATCH','/licencas/'+encodeURIComponent(em)+'?updateMask.fieldPaths=ate&updateMask.fieldPaths=t',{fields:{ate:{integerValue:String(ate)},t:{booleanValue:false}}}); 
-          toast(add?'Liberado até '+dt(ate):'Cliente bloqueado');list();
-        }catch(e){toast('Erro ao salvar (regras do Firestore?)')}
+          const j=await api('POST','/admin/liberar',{email:em,acao:add?'mais30':'bloquear'});
+          toast(add?'Liberado até '+dt(j.ate*1000):'Cliente bloqueado');list();
+        }catch(e){toast(e.http?(e.msg||'Erro ao salvar'):'Sem internet')}
       };
       $('#adp').onclick=()=>setAte(true);$('#adb').onclick=()=>setAte(false);
       list();
@@ -5096,9 +5074,8 @@ window.__diagFn=[['renderProv',()=>renderProv,f=>{renderProv=f}],['renderBank',(
   if(!A){
     showLogin('in');
   }else{
-    gate();
+    if(LIC.ate)gate();
     (async()=>{
-      try{await idToken()}catch(e){}
       if(localStorage.getItem(DK))await push();else await pull();
       checkLic();
       /* não redesenha a tela de novo aqui: se a nuvem trouxe dados diferentes, o pull() já redesenhou.

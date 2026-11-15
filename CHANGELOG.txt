@@ -1,5 +1,11 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.485 · Login, assinatura e dados agora ficam no servidor próprio do Sobrou! (Cloudflare), no lugar do Firebase. Tela de entrar/criar conta, 7 dias grátis, bloqueio quando vence, sincronização entre aparelhos e painel de clientes (+30 dias / bloquear) em Ajustes, só para o administrador. Esqueci a senha passa pelo suporte. Texto da Privacidade atualizado.
+
+v13.484 · Ícones: agora só baixa de novo o ícone que foi trocado (hoje, o da Caixa), em vez de todos. Cada ícone trocado com o mesmo nome ganha um número próprio na lista ICV. Versão geral das imagens volta a 410.
+
+v13.483 · Corrigido: o ícone escuro novo da Caixa não aparecia porque o iPhone guardava o arquivo antigo com o mesmo nome. A versão das imagens subiu de 410 para 411, forçando baixar de novo os ícones (só uma vez).
+
 v13.482 · Ícone do banco Caixa trocado pelo do app Novo CAIXA (versão escura e clara). O nome continua Caixa.
 
 v13.481 · Logos de BRB, Daycoval, Nomad e Sofisa Direto (a partir dos ícones do iPhone), em versão escura e, onde o ícone muda, versão clara. Substituem os selos provisórios.
