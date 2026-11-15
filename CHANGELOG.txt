@@ -1,5 +1,9 @@
 # Histórico de versões — Vencimentos
 # (novas versões são registradas só aqui; o index.html não guarda mais histórico)
+v13.488 · Botão "Enviar comprovante" da tela de assinatura agora abre o robô do Sobrou! no Telegram (@Sobrou_App_Bot). O "Esqueci a senha" e o botão de suporte em Ajustes usam o mesmo link.
+
+v13.487 · Tela de assinatura: botão "Copiar Pix copia e cola" com o valor de R$ 10,00 já preenchido (o cliente cola no app do banco e só confirma). Mostra a chave aleatória abaixo como referência.
+
 v13.486 · Ícone do BRB: o tema escuro agora usa o fundo preto puro e o claro o cinza-chumbo (estavam trocados). Só os dois arquivos do BRB são baixados de novo.
 
 v13.485 · Login, assinatura e dados agora ficam no servidor próprio do Sobrou! (Cloudflare), no lugar do Firebase. Tela de entrar/criar conta, 7 dias grátis, bloqueio quando vence, sincronização entre aparelhos e painel de clientes (+30 dias / bloquear) em Ajustes, só para o administrador. Esqueci a senha passa pelo suporte. Texto da Privacidade atualizado.
